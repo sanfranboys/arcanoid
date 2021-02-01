@@ -1,0 +1,46 @@
+{
+  "name": "arcanoid",
+  "version": "1.0.0",
+  "description": "just simple arcanoid on canvas api with React frontend",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack serve --mode development --open --hot ",
+    "build": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sanfranboys/arcanoid.git"
+  },
+  "keywords": [],
+  "author": "sanfranboys",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sanfranboys/arcanoid/issues"
+  },
+  "homepage": "https://github.com/sanfranboys/arcanoid#readme",
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/preset-react": "^7.12.10",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^5.0.1",
+    "html-webpack-plugin": "^4.5.1",
+    "mini-css-extract-plugin": "^1.3.5",
+    "path": "^0.12.7",
+    "sass": "^1.32.5",
+    "sass-loader": "^10.1.1",
+    "style-loader": "^2.0.0",
+    "ts-loader": "^8.0.14",
+    "typescript": "^4.1.3",
+    "webpack": "^5.19.0",
+    "webpack-cli": "^4.4.0",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "dependencies": {
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  },
+  "node": "12.x"
+}
