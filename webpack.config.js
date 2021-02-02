@@ -1,5 +1,6 @@
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
@@ -9,15 +10,10 @@ module.exports = {
     filename: "bundle.js",
   },
   resolve: {
-    extensions: [".ts", ".tsx", ".js", ".jsx"],
+    extensions: [".ts", ".tsx", ".js"],
   },
   module: {
     rules: [
-      {
-        test: /\.js$/,
-        use: "babel-loader",
-        exclude: /node_modules/,
-      },
       {
         test: /\.tsx$/,
         use: [
@@ -34,6 +30,17 @@ module.exports = {
         test: /\.s[ac]ss$/i,
         use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
       },
+      {
+        test: /\.(png|jpe?g|gif|icon|xml|svg|json)$/,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              outputPath: "./assets/images",
+            },
+          },
+        ],
+      },
     ],
   },
   plugins: [
@@ -42,6 +49,15 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: "main.css",
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: "images/*",
+          context: path.resolve(__dirname, "src", "assets"),
+          to: "./assets",
+        },
+      ],
     }),
   ],
 };

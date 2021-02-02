@@ -9,4 +9,4 @@ npm run build - build production build
 
 ## Members
 
-Domion-M, Dihlofos ...
+Domion-M, Dihlofos, malig
