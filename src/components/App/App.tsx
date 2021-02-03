@@ -1,12 +1,8 @@
-import React, { Component } from "react";
+import React, { FC } from 'react'
 
-class App extends Component {
-  render() {
-    return (
-      <div>
-        <h1>Arcanoid runs well</h1>
-      </div>
-    );
-  }
-}
-export default App;
+const App: FC = () => (
+  <div>
+    <h1>Arcanoid runs well</h1>
+  </div>
+)
+export default App
