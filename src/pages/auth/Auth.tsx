@@ -22,6 +22,9 @@ export const Auth: FC = () => {
             </Button>
           </div>
         </Form>
+        <a href="/" className="auth__link">
+          Нет аккаунта?
+        </a>
       </div>
     </Content>
   )
