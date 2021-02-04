@@ -18,6 +18,9 @@ module.exports = {
         'no-prototype-builtins': 0,
         'consistent-return': 0,
         'no-console': 0,
+        'react/jsx-props-no-spreading': [2, {
+          'custom': 'ignore',
+        }]
     },
     ignorePatterns: [
         '.eslintrc.js',
