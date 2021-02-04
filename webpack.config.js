@@ -11,6 +11,7 @@ new CleanWebpackPlugin({
     output: {
       path: path.join(__dirname, '/dist'),
       filename: 'bundle.js',
+      publicPath: '',
     },
     resolve: {
       extensions: ['.ts', '.tsx', '.js'],
@@ -18,7 +19,7 @@ new CleanWebpackPlugin({
     module: {
       rules: [
         {
-          test: /\.tsx$/,
+          test: /\.tsx?$/,
           use: [
             {
               loader: 'ts-loader',
