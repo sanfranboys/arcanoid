@@ -1,9 +1,9 @@
+import React, { FC } from 'react'
 import { Form, Input, Button, Layout } from 'antd'
-import React from 'react'
 import './Auth.scss'
 
 // eslint-disable-next-line import/prefer-default-export
-export const Auth: React.FC = () => {
+export const Auth: FC = () => {
   const { Content } = Layout
   return (
     <Content className="auth">

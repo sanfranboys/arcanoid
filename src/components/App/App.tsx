@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { Auth } from '../pages/auth/Auth'
+import { Auth } from '../../pages/auth/Auth'
 import './App.scss'
 
 const App: FC = () => (
