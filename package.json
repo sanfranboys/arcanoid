@@ -58,7 +58,8 @@
     "@types/classnames": "2.2.11",
     "antd": "4.12.1",
     "react": "17.0.1",
-    "react-dom": "17.0.1"
+    "react-dom": "17.0.1",
+    "react-hook-form": "6.15.1"
   },
   "husky": {
     "hooks": {
