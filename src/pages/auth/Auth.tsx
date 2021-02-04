@@ -1,23 +1,55 @@
 import React, { FC } from 'react'
-import { Form, Input, Button, Layout } from 'antd'
+import { Form, Button, Layout } from 'antd'
+import { useForm } from 'react-hook-form'
+import cx from 'classnames'
 import './Auth.scss'
+
+type FormData = {
+  login: string
+  password: string
+}
 
 // eslint-disable-next-line import/prefer-default-export
 export const Auth: FC = () => {
   const { Content } = Layout
+  const { register, handleSubmit, errors } = useForm<FormData>()
+
+  const onSubmit = (data: FormData) => console.log(data)
+
   return (
     <Content className="auth">
       <div className="auth__wrapper">
         <h2 className="auth__title">Авторизация</h2>
-        <Form className="auth__container">
+        <Form className="auth__container" onFinish={handleSubmit(onSubmit)}>
           <Form.Item label="Имя" className="auth__container__input">
-            <Input className="auth__input" />
+            <input
+              className={cx('auth__input', {
+                auth__input_error: errors.login,
+              })}
+              name="login"
+              ref={register({
+                required: true,
+                minLength: 3,
+              })}
+            />
+            {errors.login && (
+              <div className="auth__error">Обязательное поле</div>
+            )}
           </Form.Item>
           <Form.Item label="Пароль" className="auth__container__input">
-            <Input className="auth__input" />
+            <input
+              className={cx('auth__input', {
+                auth__input_error: errors.password,
+              })}
+              name="password"
+              ref={register({ required: true, minLength: 6 })}
+            />
+            {errors.password && (
+              <div className="auth__error">Обязательное поле</div>
+            )}
           </Form.Item>
           <div className="auth__wrapper-button">
-            <Button type="primary" className="auth__button">
+            <Button htmlType="submit" className="auth__button">
               Авторизоваться
             </Button>
           </div>

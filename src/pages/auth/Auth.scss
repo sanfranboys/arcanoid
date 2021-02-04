@@ -8,8 +8,8 @@
 }
 .auth__wrapper {
   border: 4px solid var(--color-border-dark);
-  padding: 16px;
-  min-width: 550px;
+  padding: 20px;
+  min-width: 600px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,7 +20,7 @@
   margin: 0 0 10px 0;
 }
 .auth__container__input {
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 .auth__button:focus,
 .auth__input:focus {
@@ -34,20 +34,13 @@
 .auth__input,
 .auth__button {
   min-width: 250px;
-}
-.auth__input {
-  padding: 10px 20px;
-  border: 2px solid var(--color-border-dark);
+  padding: 12px 20px;
+  color: var(--white);
   background-color: transparent;
-  color: var(--lightBg);
+  border: 2px solid var(--color-border-dark);
 }
 
 .auth__button {
-  border: none;
-  border: 2px solid var(--color-border-dark);
-  background-color: transparent;
-  color: var(--white);
-  padding: 12px 20px;
   margin-top: 10px;
   cursor: pointer;
 }
@@ -69,4 +62,15 @@
 
 .auth__link:hover {
   color: var(--link-hover);
+}
+
+.auth__input_error {
+  border-color: var(--error);
+}
+.ant-form-item-control-input-content {
+  position: relative;
+}
+.auth__error {
+  position: absolute;
+  color: var(--error);
 }
