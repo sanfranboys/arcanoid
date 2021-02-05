@@ -23,8 +23,6 @@ const LeaderBord = () => {
 
   return (
     <div className='leader-bord'>
-      <h1 className='leader-bord__title'>Leader Bord</h1>
-
       <Row gutter={[16, 16]}>{ leaderCards }</Row>
     </div>
   )
