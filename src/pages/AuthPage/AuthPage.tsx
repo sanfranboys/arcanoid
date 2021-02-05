@@ -1,16 +1,11 @@
 import React, { FC } from 'react'
 import { Form, Button, Layout } from 'antd'
 import { useForm } from 'react-hook-form'
-import cx from 'classnames'
-import './Auth.scss'
+import { FormData } from './types'
+import classNames from '../../utils'
+import './AuthPage.scss'
 
-type FormData = {
-  login: string
-  password: string
-}
-
-// eslint-disable-next-line import/prefer-default-export
-export const Auth: FC = () => {
+const AuthPage: FC = () => {
   const { Content } = Layout
   const { register, handleSubmit, errors } = useForm<FormData>()
 
@@ -23,8 +18,8 @@ export const Auth: FC = () => {
         <Form className="auth__container" onFinish={handleSubmit(onSubmit)}>
           <Form.Item label="Имя" className="auth__container__input">
             <input
-              className={cx('auth__input', {
-                auth__input_error: errors.login,
+              className={classNames('auth__input', {
+                auth__input_error: !!errors.login,
               })}
               name="login"
               ref={register({
@@ -38,8 +33,8 @@ export const Auth: FC = () => {
           </Form.Item>
           <Form.Item label="Пароль" className="auth__container__input">
             <input
-              className={cx('auth__input', {
-                auth__input_error: errors.password,
+              className={classNames('auth__input', {
+                auth__input_error: !!errors.password,
               })}
               name="password"
               ref={register({ required: true, minLength: 6 })}
@@ -61,3 +56,5 @@ export const Auth: FC = () => {
     </Content>
   )
 }
+
+export default AuthPage
