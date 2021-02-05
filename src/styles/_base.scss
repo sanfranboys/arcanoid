@@ -33,12 +33,19 @@ body {
   --board: #ebe8e9;
   --lightBg: #d2cdde;
   --tooltipBg: #fcfcfd;
+
+  --color-gold: #c2ba92;
+  --color-light-purple: #9286b7;
   --color-border-dark: #5e5087;
+
+  --size-text-4xl: 48px;
+  --size-text-5xl: 72px;
+  --size-text-l: 18px;
 }
 
 body {
   color: var(--black);
-  font-family: 'Noto Sans';
+  font-family: 'Noto Sans', sans-serif;
   line-height: 1.5;
 }
 
@@ -81,14 +88,6 @@ input:input-placeholder {
 }
 
 :focus::placeholder {
-  color: transparent;
-}
-
-:focus:placeholder {
-  color: transparent;
-}
-
-:focus:input-placeholder {
   color: transparent;
 }
 

@@ -1,11 +1,12 @@
 import React, { FC } from 'react'
-import { Auth } from '../../pages/auth/Auth'
+import LeaderBordPage from '../../pages/LeaderBordPage'
 import './App.scss'
 
 const App: FC = () => (
   <div>
     <h1>Arcanoid runs well</h1>
-    <Auth />
+
+    <LeaderBordPage />
   </div>
 )
 export default App

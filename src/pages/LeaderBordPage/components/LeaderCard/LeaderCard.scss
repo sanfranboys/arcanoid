@@ -1,0 +1,33 @@
+.leader-card {
+  border: 2px solid var(--color-border-dark);
+  padding: 30px;
+  width: 100%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+
+  &__position,
+  &__name {
+    color: var(--lightBg);
+    font-size: var(--size-text-l);
+  }
+
+  &__head {
+    border-bottom: 1px solid var(--color-border-dark);
+    padding: 5px;
+  }
+
+  &__body {
+    text-align: center;
+  }
+
+  &__score {
+    font-size: var(--size-text-5xl);
+    font-weight: bold;
+    font-family: 'Agency FB', sans-serif;
+    color: var(--color-gold);
+
+    &_small {
+      font-size: var(--size-text-4xl);
+      color: var(--color-light-purple);
+    }
+  }
+}

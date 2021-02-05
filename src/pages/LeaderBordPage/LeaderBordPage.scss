@@ -1,0 +1,9 @@
+.leader-bord-page {
+  padding: 30px 100px 100px;
+  background: var(--main);
+
+  &__title {
+    color: var(--lightBg);
+    font-size: var(--size-text-4xl);
+  }
+}
