@@ -3,8 +3,6 @@ import Row from '../../../../components/Row';
 import { Player } from '../../types';
 import LeaderCard from '../LeaderCard';
 
-import './LeaderBord.scss';
-
 const leaders: Player[] = new Array(8).fill('Player').map((name, idx) => {
   const id = idx + 1;
   return {
@@ -21,11 +19,7 @@ const LeaderBord = () => {
     ))
   ), [leaders]);
 
-  return (
-    <div className='leader-bord'>
-      <Row gutter={[16, 16]}>{ leaderCards }</Row>
-    </div>
-  )
+  return <Row gutter={[16, 16]}>{ leaderCards }</Row>
 }
 
 export default LeaderBord;
