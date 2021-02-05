@@ -1,0 +1,36 @@
+.forum-row {
+
+}
+
+.forum-col {
+
+}
+
+.forum-cell {
+  background: var(--lightBg);
+  padding: 15px;
+  font-size: var(--size-text-l);
+  border-radius: 25px;
+  border: 2px solid var(--color-border-dark);
+
+  &_stroke {
+    border: 2px solid var(--lightBg);
+    background: var(--main);
+    color: var(--lightBg);
+  }
+
+  &_with-control{
+    display: flex;
+    justify-content: space-evenly;
+  }
+}
+
+.forum-plus-btn {
+  font-weight: bold;
+  color: var(--link);
+
+  &:hover {
+    cursor: pointer;
+    color: var(--link-hover);
+  }
+}
