@@ -5,6 +5,8 @@ import Content from '../Content'
 import Layout from '../Layout'
 import Header from '../Header'
 import './App.scss'
+import ProfilePage from '../../pages/ProfilePage'
+import ForumPage from '../../pages/ForumPage'
 
 const App: FC = () => (
   <BrowserRouter>
@@ -17,6 +19,12 @@ const App: FC = () => (
           </Route>
           <Route path="/leaderboard">
             <LeaderBordPage />
+          </Route>
+          <Route path="/profile">
+            <ProfilePage />
+          </Route>
+          <Route path="/forum">
+            <ForumPage />
           </Route>
           <Route>
             <h1>ErrorPage will be here</h1>
