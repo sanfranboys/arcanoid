@@ -1,8 +1,8 @@
 import React, { FC } from 'react'
 import { Content as AntdContent } from 'antd/lib/layout/layout'
 
-const Content: FC<unknown> = (props) => (
-  <AntdContent className="content" {...props} />
+const Content: FC<{ children: JSX.Element }> = (props) => (
+  <AntdContent {...props} />
 )
 
 export default Content
