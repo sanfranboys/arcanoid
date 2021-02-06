@@ -7,6 +7,7 @@ import './AuthPage.scss'
 
 const AuthPage: FC = () => {
   const { Content } = Layout
+
   const { register, handleSubmit, errors } = useForm<FormData>()
 
   const onSubmit = (data: FormData) => console.log(data)
@@ -16,11 +17,16 @@ const AuthPage: FC = () => {
       <div className="auth__wrapper">
         <h2 className="auth__title">Авторизация</h2>
         <Form className="auth__container" onFinish={handleSubmit(onSubmit)}>
-          <Form.Item label="Имя" className="auth__container__input">
+          <Form.Item
+            label="Имя"
+            className="auth__container__input"
+            htmlFor="login"
+          >
             <input
               className={classNames('auth__input', {
                 auth__input_error: !!errors.login,
               })}
+              id="login"
               name="login"
               ref={register({
                 required: true,
@@ -31,11 +37,16 @@ const AuthPage: FC = () => {
               <div className="auth__error">Обязательное поле</div>
             )}
           </Form.Item>
-          <Form.Item label="Пароль" className="auth__container__input">
+          <Form.Item
+            label="Пароль"
+            className="auth__container__input"
+            htmlFor="password"
+          >
             <input
               className={classNames('auth__input', {
                 auth__input_error: !!errors.password,
               })}
+              id="password"
               name="password"
               ref={register({ required: true, minLength: 6 })}
             />
