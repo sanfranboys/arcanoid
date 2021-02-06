@@ -1,14 +1,11 @@
 import React from 'react';
 import { LeaderBord } from './components';
-
-import './LeaderBordPage.scss';
+import Page from '../Page';
 
 const LeaderBordPage = () => (
-  <section className='leader-bord-page'>
-    <h1 className='leader-bord-page__title'>Leader Bord</h1>
-
+  <Page title='Лидеры'>
     <LeaderBord />
-  </section>
+  </Page>
 )
 
 export default LeaderBordPage;

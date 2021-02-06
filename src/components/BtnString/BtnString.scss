@@ -1,0 +1,9 @@
+.btn-string {
+  font-weight: bold;
+  color: var(--link);
+
+  &:hover {
+    cursor: pointer;
+    color: var(--link-hover);
+  }
+}
