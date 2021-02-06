@@ -4,14 +4,18 @@ import LeaderBordPage from '../../pages/LeaderBordPage'
 import Content from '../Content'
 import Layout from '../Layout'
 import Header from '../Header'
-import './App.scss'
 import ProfilePage from '../../pages/ProfilePage'
 import ForumPage from '../../pages/ForumPage'
+import Nav from '../Nav'
+
+import './App.scss'
 
 const App: FC = () => (
   <BrowserRouter>
     <Layout>
-      <Header>Меню</Header>
+      <Header>
+        <Nav />
+      </Header>
       <Content>
         <Switch>
           <Route exact path="/">
