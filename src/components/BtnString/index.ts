@@ -1,1 +1,1 @@
-export {default} from './BtnString';
+export { default } from './BtnString'

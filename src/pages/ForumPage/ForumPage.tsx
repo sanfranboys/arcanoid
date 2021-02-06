@@ -1,11 +1,11 @@
-import React from 'react';
-import Forums from './components/Forums';
-import Row from '../../components/Row';
-import Col from '../../components/Col';
-import Page from '../Page';
+import React from 'react'
+import Forums from './components/Forums'
+import Row from '../../components/Row'
+import Col from '../../components/Col'
+import Page from '../Page'
 
 const ForumPage = () => (
-  <Page title='Форум'>
+  <Page title="Форум">
     <Row>
       <Col span={18} offset={4}>
         <Forums />
@@ -14,4 +14,4 @@ const ForumPage = () => (
   </Page>
 )
 
-export default ForumPage;
+export default ForumPage

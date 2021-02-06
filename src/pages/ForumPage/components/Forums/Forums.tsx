@@ -1,12 +1,12 @@
-import React from 'react';
-import Row from '../../../../components/Row';
-import Col from '../../../../components/Col';
-import Space from '../../../../components/Space';
-import BtnString from '../../../../components/BtnString';
-import Panel from '../../../../components/Panel';
+import React from 'react'
+import Row from '../../../../components/Row'
+import Col from '../../../../components/Col'
+import Space from '../../../../components/Space'
+import BtnString from '../../../../components/BtnString'
+import Panel from '../../../../components/Panel'
 
 const Forums = () => (
-  <Space direction='vertical' full>
+  <Space direction="vertical" full>
     <Row gutter={[16, 16]}>
       <Col span={20}>
         <Panel>Новые игры</Panel>
@@ -66,4 +66,4 @@ const Forums = () => (
   </Space>
 )
 
-export default Forums;
+export default Forums

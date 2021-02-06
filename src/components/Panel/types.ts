@@ -1,6 +1,6 @@
-import { ReactElement } from 'react';
+import { ReactElement } from 'react'
 
 export type PanelProps = {
-  head?: ReactElement | string,
+  head?: ReactElement | string
   center?: boolean
 }

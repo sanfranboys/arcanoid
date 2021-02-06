@@ -1,4 +1,4 @@
 export type DescriptionProps = {
-  title: string,
+  title: string
   noBorder?: boolean
 }

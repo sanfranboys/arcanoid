@@ -1,11 +1,11 @@
-import React, { FC } from 'react';
+import React, { FC } from 'react'
 
-import './Centered.scss';
+import './Centered.scss'
 
 const Centered: FC = (props) => {
-  const { children } = props;
+  const { children } = props
 
-  return <div className='centered'>{ children }</div>
+  return <div className="centered">{children}</div>
 }
 
-export default Centered;
+export default Centered
