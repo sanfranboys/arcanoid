@@ -1,7 +1,7 @@
 export type Player = {
-  id: number,
-  avatar?: string,
-  name: string,
+  id: number
+  avatar?: string
+  name: string
   score: number
 }
 

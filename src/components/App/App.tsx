@@ -1,12 +1,14 @@
-import React, { FC } from 'react';
-import LeaderBordPage from '../../pages/LeaderBordPage';
+import React, { FC } from 'react'
+import ForumPage from '../../pages/ForumPage'
+import LeaderBordPage from '../../pages/LeaderBordPage'
+import ProfilePage from '../../pages/ProfilePage'
 import './App.scss'
 
 const App: FC = () => (
-  <div>
-    <h1>Arcanoid runs well</h1>
-
+  <>
+    <ForumPage />
     <LeaderBordPage />
-  </div>
+    <ProfilePage />
+  </>
 )
 export default App

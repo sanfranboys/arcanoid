@@ -1,8 +1,8 @@
-import React, {FC} from 'react';
-import { Avatar as AntdAvatar, AvatarProps } from 'antd';
+import React, { FC } from 'react'
+import { Avatar as AntdAvatar, AvatarProps } from 'antd'
 
-import 'antd/lib/avatar/style/css';
+import 'antd/lib/avatar/style/css'
 
-const Avatar: FC<AvatarProps> = (props) => (<AntdAvatar {...props} />);
+const Avatar: FC<AvatarProps> = (props) => <AntdAvatar {...props} />
 
-export default Avatar;
+export default Avatar

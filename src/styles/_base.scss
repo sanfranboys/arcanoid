@@ -38,9 +38,11 @@ body {
   --color-light-purple: #9286b7;
   --color-border-dark: #5e5087;
 
-  --size-text-4xl: 48px;
   --size-text-5xl: 72px;
+  --size-text-4xl: 48px;
   --size-text-l: 18px;
+  --size-text-m: 16px;
+  --size-text-s: 14px;
 }
 
 body {
@@ -101,14 +103,6 @@ input::placeholder {
 
 .page {
 	height: 100%;
-}
-
-.centered-content {
-	align-items: center;
-	display: flex;
-	flex-direction: column;
-	height: 100%;
-	justify-content: center;
 }
 
 .js-focus-visible:focus:not(.focus-visible) {

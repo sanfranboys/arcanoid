@@ -1,1 +1,1 @@
-export {default} from './LeaderCard';
+export { default } from './LeaderCard'
