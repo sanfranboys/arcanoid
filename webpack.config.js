@@ -88,4 +88,3 @@ new CleanWebpackPlugin({
       }),
     ],
   })
-

@@ -14,7 +14,7 @@ const Error: FC<ErrorProps> = ({ description, hasLink, errorType }) => (
 
       <Image
         className="error__image"
-        src="assets/images/eыыrror.jpg"
+        src="assets/images/error.jpg"
         preview={false}
         fallback={fallbackImage}
         onError={(event) => {

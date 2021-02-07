@@ -9,6 +9,7 @@ module.exports = {
   rules: {
     'react-hooks/rules-of-hooks': 2,
     'react-hooks/exhaustive-deps': 1,
+
     'no-underscore-dangle': 0,
     '@typescript-eslint/no-shadow': 0,
     'import/no-cycle': 0,
@@ -23,12 +24,15 @@ module.exports = {
     'no-console': 0,
     'react/prop-types': 0,
     'import/prefer-default-export': 0,
+
     'react/jsx-props-no-spreading': [
-      2,
+      0,
       {
         custom: 'ignore',
       },
     ],
+    'react/button-has-type': 0,
+    'button-has-type': 0,
   },
   ignorePatterns: [
     '.eslintrc.js',
