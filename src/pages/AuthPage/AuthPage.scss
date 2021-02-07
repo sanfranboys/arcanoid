@@ -27,26 +27,21 @@
   color: var(--lightBg);
 }
 
-.auth__input,
-.auth__button {
-  min-width: 250px;
-  padding: 12px 20px;
-  color: var(--white);
-  background-color: transparent;
-  border: 2px solid var(--color-border-dark);
-}
+// .auth__input {
+//   min-width: 250px;
+//   padding: 12px 20px;
+//   color: var(--white);
+//   background-color: transparent;
+//   border: 2px solid var(--color-border-dark);
+// }
 
 .auth__button {
   margin-top: 10px;
-  cursor: pointer;
 }
 
 .auth__wrapper-button {
   display: flex;
   justify-content: center;
-}
-.auth__button:hover {
-  background-color: var(--mainHover);
 }
 
 .auth__link {
@@ -60,9 +55,6 @@
   color: var(--link-hover);
 }
 
-.auth__input_error {
-  border-color: var(--error);
-}
 .ant-form-item-control-input-content {
   position: relative;
 }

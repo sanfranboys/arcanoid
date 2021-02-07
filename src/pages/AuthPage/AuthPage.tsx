@@ -1,19 +1,21 @@
 import React, { FC } from 'react'
-import { Form, Button, Layout } from 'antd'
+import { Form } from 'antd'
 import { useForm } from 'react-hook-form'
-import { FormData } from './types'
-import classNames from '../../utils'
+import { AuthFormData } from './types'
+import Button from '../../components/Button'
+import Input from '../../components/Input/Input'
 import './AuthPage.scss'
 
 const AuthPage: FC = () => {
-  const { Content } = Layout
-
-  const { register, handleSubmit, errors } = useForm<FormData>()
+  const { handleSubmit, errors, register, setValue } = useForm<AuthFormData>({
+    mode: 'onChange',
+    reValidateMode: 'onChange',
+  })
 
   const onSubmit = (data: FormData) => console.log(data)
 
   return (
-    <Content className="auth">
+    <div className="auth">
       <div className="auth__wrapper">
         <h2 className="auth__title">Авторизация</h2>
         <Form className="auth__container" onFinish={handleSubmit(onSubmit)}>
@@ -22,16 +24,15 @@ const AuthPage: FC = () => {
             className="auth__container__input"
             htmlFor="login"
           >
-            <input
-              className={classNames('auth__input', {
-                auth__input_error: !!errors.login,
-              })}
-              id="login"
+            <Input
               name="login"
-              ref={register({
-                required: true,
-                minLength: 3,
-              })}
+              id="login"
+              onChange={(e) => setValue('login', e.target.value)}
+              register={register(
+                { name: 'login' },
+                { required: true, minLength: 3 }
+              )}
+              error={!!errors.login}
             />
             {errors.login && (
               <div className="auth__error">Обязательное поле</div>
@@ -42,20 +43,22 @@ const AuthPage: FC = () => {
             className="auth__container__input"
             htmlFor="password"
           >
-            <input
-              className={classNames('auth__input', {
-                auth__input_error: !!errors.password,
-              })}
-              id="password"
+            <Input
               name="password"
-              ref={register({ required: true, minLength: 6 })}
+              id="password"
+              onChange={(e) => setValue('password', e.target.value)}
+              register={register(
+                { name: 'password' },
+                { required: true, minLength: 6 }
+              )}
+              error={!!errors.password}
             />
             {errors.password && (
               <div className="auth__error">Обязательное поле</div>
             )}
           </Form.Item>
           <div className="auth__wrapper-button">
-            <Button htmlType="submit" className="auth__button">
+            <Button type="submit" className="auth__button">
               Авторизоваться
             </Button>
           </div>
@@ -64,7 +67,7 @@ const AuthPage: FC = () => {
           Нет аккаунта?
         </a>
       </div>
-    </Content>
+    </div>
   )
 }
 
