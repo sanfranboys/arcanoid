@@ -17,7 +17,7 @@ const ErrorPage: FC<ErrorPageProps> = ({ errorType }) => {
         errorType={errorType}
       />
     ),
-    [errorType]
+    [errorType, description, hasLink]
   )
 
   return (

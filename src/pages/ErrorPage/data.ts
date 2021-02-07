@@ -1,6 +1,6 @@
 import { ErrorData } from './types'
 
-const errorTexts: Record<number, ErrorData> = {
+const errorTexts: Record<number | 'default', ErrorData> = {
   404: {
     title: 'Данной страницы не существует',
     description: 'Убедитесь что адрес верный, или вернитесь на главную',
@@ -11,7 +11,7 @@ const errorTexts: Record<number, ErrorData> = {
     description:
       'Попробуйте зайти к нам позже, скорее всего ошибки уже не будет',
   },
-  999: {
+  default: {
     title: 'Произошла неизвестная ошибка',
     description: 'Мы сами не знаем, что происходит, бегите!',
   },
