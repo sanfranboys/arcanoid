@@ -1,1 +1,1 @@
-export {default} from './LeaderBordPage';
+export { default } from './LeaderBordPage'

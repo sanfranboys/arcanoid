@@ -1,0 +1,11 @@
+.score {
+  font-size: var(--size-text-5xl);
+  font-weight: bold;
+  font-family: 'Agency FB', sans-serif;
+  color: var(--color-gold);
+
+  &_small {
+    font-size: var(--size-text-4xl);
+    color: var(--color-light-purple);
+  }
+}

@@ -1,0 +1,21 @@
+.description {
+  border-bottom: 1px solid var(--color-border-dark);
+  padding: 5px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  color: var(--lightBg);
+
+  &_border_no {
+    border-bottom: none;
+  }
+
+  &__key {
+    font-size: var(--size-text-s);
+
+  }
+
+  &__value {
+    font-size: var(--size-text-l);
+  }
+}
