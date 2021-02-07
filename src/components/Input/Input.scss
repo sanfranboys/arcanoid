@@ -9,3 +9,11 @@
 .input-component-error {
   border-color: var(--error);
 }
+.validation-input-error {
+  position: absolute;
+  color: var(--error);
+}
+
+.label-input-component {
+  color: var(--lightBg);
+}
