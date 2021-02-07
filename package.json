@@ -22,6 +22,7 @@
   "devDependencies": {
     "@types/react": "17.0.0",
     "@types/react-dom": "17.0.0",
+    "@types/react-router-dom": "^5.1.7",
     "@typescript-eslint/eslint-plugin": "4.14.2",
     "@typescript-eslint/parser": "4.14.2",
     "clean-webpack-plugin": "3.0.0",
@@ -34,7 +35,7 @@
     "eslint-plugin-import": "2.22.1",
     "eslint-plugin-jsx-a11y": "6.4.1",
     "eslint-plugin-react": "7.22.0",
-    "eslint-plugin-react-hooks": "4.2.0",
+    "eslint-plugin-react-hooks": "0.0.0-4e08fb10c",
     "fibers": "5.0.0",
     "file-loader": "6.2.0",
     "html-webpack-plugin": "4.5.1",
@@ -58,7 +59,9 @@
     "@sentry/tracing": "6.1.0",
     "antd": "4.12.1",
     "react": "17.0.1",
-    "react-dom": "17.0.1"
+    "react-dom": "17.0.1",
+    "react-router-dom": "5.2.0",
+    "react-hook-form": "6.15.1"
   },
   "husky": {
     "hooks": {

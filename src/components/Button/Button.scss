@@ -1,0 +1,12 @@
+.button-component {
+  width: 100%;
+  padding: 12px 20px;
+  color: var(--white);
+  background-color: transparent;
+  border: 2px solid var(--color-border-dark);
+  cursor: pointer;
+}
+
+.button-component:hover {
+  background-color: var(--mainHover);
+}
