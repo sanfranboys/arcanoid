@@ -6,13 +6,8 @@
 
 html,
 body {
-  font-size: 62.5%;
   height: 100%;
   width: 100%;
-
-  @media (min-width: 1281px) {
-    font-size: 84%;
-  }
 }
 
 :root {
@@ -51,6 +46,10 @@ body {
   line-height: 1.5;
 }
 
+#root {
+  height: 100%;
+}
+
 address {
   font-style: normal;
 }
@@ -74,10 +73,6 @@ input[placeholder] {
 }
 
 input::placeholder {
-  text-overflow: ellipsis;
-}
-
-input:placeholder {
   text-overflow: ellipsis;
 }
 

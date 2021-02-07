@@ -16,6 +16,14 @@ new CleanWebpackPlugin({
     resolve: {
       extensions: ['.ts', '.tsx', '.js'],
     },
+    devServer: {
+      contentBase: path.join(__dirname, 'dist'),
+      compress: true,
+      port: 4000,
+      historyApiFallback: {
+        index: 'index.html',
+      },
+    },
     module: {
       rules: [
         {
