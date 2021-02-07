@@ -1,0 +1,9 @@
+.link-component {
+  color: var(--link);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.link-component:hover {
+  color: var(--link-hover);
+}

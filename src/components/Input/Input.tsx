@@ -16,7 +16,7 @@ const renderLabel = (label: string | undefined, id: string | undefined) => {
 const Input: React.FC<OwnInputProps & InputProps> = (props) => {
   const { className, error, register, label, id, ...prop } = props
   return (
-    <div className={className}>
+    <div className={classNames(className, 'wrapper-input-component')}>
       {renderLabel(label, id)}
       <InputAnt
         className={classNames('input-component', {
