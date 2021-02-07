@@ -1,11 +1,15 @@
 module.exports = {
-  extends: [ 'airbnb-typescript', 'prettier', 'prettier/@typescript-eslint' ],
+  extends: ['airbnb-typescript', 'prettier', 'prettier/@typescript-eslint'],
   parserOptions: {
-    project: [ './tsconfig.json' ],
+    project: ['./tsconfig.json'],
     tsconfigRootDir: __dirname,
     sourceType: 'module',
   },
+  plugins: ['react-hooks'],
   rules: {
+    'react-hooks/rules-of-hooks': 2,
+    'react-hooks/exhaustive-deps': 1,
+
     'no-underscore-dangle': 0,
     '@typescript-eslint/no-shadow': 0,
     'import/no-cycle': 0,
@@ -20,11 +24,15 @@ module.exports = {
     'no-console': 0,
     'react/prop-types': 0,
     'import/prefer-default-export': 0,
-    'react/jsx-props-no-spreading': [ 0, {
-      'custom': 'ignore',
-    } ],
+
+    'react/jsx-props-no-spreading': [
+      0,
+      {
+        custom: 'ignore',
+      },
+    ],
     'react/button-has-type': 0,
-    'button-has-type': 0
+    'button-has-type': 0,
   },
   ignorePatterns: [
     '.eslintrc.js',
