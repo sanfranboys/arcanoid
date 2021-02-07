@@ -11,6 +11,7 @@ import ProfilePage from '../../pages/ProfilePage'
 import Nav from '../Nav'
 
 import './App.scss'
+import RegistrationPage from '../../pages/RegistrationPage'
 
 const App: FC = () => (
   <BrowserRouter>
@@ -35,6 +36,9 @@ const App: FC = () => (
           </Route>
           <Route path="/auth">
             <AuthPage />
+          </Route>
+          <Route path="/reg">
+            <RegistrationPage />
           </Route>
           <Route>
             <ErrorPage errorType={404} />

@@ -2,6 +2,7 @@ import React, { FC } from 'react'
 import { Form } from 'antd'
 import { useForm } from 'react-hook-form'
 import { AuthFormData } from '../../types'
+import { LinkElement } from '../../../../components/LinkElement'
 import Button from '../../../../components/Button'
 import Input from '../../../../components/Input'
 import './Auth.scss'
@@ -48,9 +49,7 @@ const Auth: FC = () => {
             </Button>
           </div>
         </Form>
-        <a href="/" className="auth__link">
-          Нет аккаунта?
-        </a>
+        <LinkElement link="/reg">Нет аккаунта?</LinkElement>
       </div>
     </div>
   )
