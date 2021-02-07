@@ -7,8 +7,7 @@ import Error from './components/Error'
 import getErrorTexts from './utils/getErrorTexts'
 
 const ErrorPage: FC<ErrorPageProps> = ({ errorType }) => {
-  const { title, description } = getErrorTexts(errorType)
-  const hasLink: boolean = errorType === 404
+  const { title, description, hasLink = false } = getErrorTexts(errorType)
 
   const errorBody = useMemo(
     () => (

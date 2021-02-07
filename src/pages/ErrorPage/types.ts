@@ -5,8 +5,7 @@ export type ErrorPageProps = {
 export type ErrorData = {
   title: string
   description: string
+  hasLink?: boolean
 }
 
-export type ErrorProps = Omit<ErrorData, 'title'> & {
-  hasLink?: boolean
-} & ErrorPageProps
+export type ErrorProps = Omit<ErrorData, 'title'> & ErrorPageProps
