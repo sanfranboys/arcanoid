@@ -105,14 +105,6 @@ input::placeholder {
   height: 100%;
 }
 
-.centered-content {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  justify-content: center;
-}
-
 .js-focus-visible:focus:not(.focus-visible) {
   outline: none;
 }
