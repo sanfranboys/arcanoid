@@ -1,11 +1,13 @@
 import React, { FC } from 'react'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
+import ErrorPage from '../../pages/ErrorPage'
+import AuthPage from '../../pages/AuthPage'
+import ForumPage from '../../pages/ForumPage'
 import LeaderBordPage from '../../pages/LeaderBordPage'
 import Content from '../Content'
 import Layout from '../Layout'
 import Header from '../Header'
 import ProfilePage from '../../pages/ProfilePage'
-import ForumPage from '../../pages/ForumPage'
 import Nav from '../Nav'
 
 import './App.scss'
@@ -19,7 +21,8 @@ const App: FC = () => (
       <Content>
         <Switch>
           <Route exact path="/">
-            <h1>Arcanoid works well</h1>
+            {/* Пока просто редирект без условия */}
+            <Redirect to="/auth" />
           </Route>
           <Route path="/leaderboard">
             <LeaderBordPage />
@@ -30,8 +33,11 @@ const App: FC = () => (
           <Route path="/forum">
             <ForumPage />
           </Route>
+          <Route path="/auth">
+            <AuthPage />
+          </Route>
           <Route>
-            <h1>ErrorPage will be here</h1>
+            <ErrorPage errorType={404} />
           </Route>
         </Switch>
       </Content>

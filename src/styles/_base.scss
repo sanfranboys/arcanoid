@@ -44,7 +44,6 @@ body {
   color: var(--black);
   font-family: 'Noto Sans', sans-serif;
   line-height: 1.5;
-  background: var(--main);
 }
 
 #root {
@@ -75,6 +74,14 @@ input[placeholder] {
 
 input::placeholder {
   text-overflow: ellipsis;
+}
+
+input:input-placeholder {
+  text-overflow: ellipsis;
+}
+
+:focus::input-placeholder {
+  color: transparent;
 }
 
 :focus::placeholder {
