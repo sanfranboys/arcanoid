@@ -2,13 +2,13 @@ import React, { FC } from 'react'
 import { Form } from 'antd'
 import { useForm } from 'react-hook-form'
 import { AuthFormData } from '../../types'
-import { ContentBox } from '../../../../components/ContetntBox'
+import ContentBox from '../../../../elements/ContentBox'
 import Input from '../../../../components/Input'
-import Button from '../../../../components/Button'
-import { LinkElement } from '../../../../components/LinkElement'
-import Row from '../../../../components/Row'
-import Col from '../../../../components/Col'
 import { AuthServices } from '../../../../components/Services'
+import Button from '../../../../elements/Button'
+import LinkElement from '../../../../elements/LinkElement'
+import Row from '../../../../elements/Row'
+import Col from '../../../../elements/Col'
 
 const Auth: FC = () => {
   const { handleSubmit, errors, register, setValue } = useForm<AuthFormData>()

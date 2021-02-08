@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import Row from '../../../../components/Row'
+import Row from '../../../../elements/Row'
 import { Player } from '../../types'
 import LeaderCard from '../LeaderCard'
 

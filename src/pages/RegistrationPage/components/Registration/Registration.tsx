@@ -1,14 +1,14 @@
 import React, { FC } from 'react'
 import { Form } from 'antd'
 import { useForm } from 'react-hook-form'
-import Button from '../../../../components/Button'
-import { ContentBox } from '../../../../components/ContetntBox'
+import Button from '../../../../elements/Button'
+import ContentBox from '../../../../elements/ContentBox'
 import Input from '../../../../components/Input'
-import { LinkElement } from '../../../../components/LinkElement'
+import LinkElement from '../../../../elements/LinkElement'
 import { RegistrationFormData } from '../../types'
-import Row from '../../../../components/Row'
-import Col from '../../../../components/Col'
 import { AuthServices } from '../../../../components/Services'
+import Row from '../../../../elements/Row'
+import Col from '../../../../elements/Col'
 
 const Registration: FC = () => {
   const {
