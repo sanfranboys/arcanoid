@@ -1,3 +1,5 @@
+import { RegistrationFormData } from '../RegistrationPage/types'
+
 export type ProfileTypes ={
   display_name:string,
     email:string,
@@ -6,3 +8,9 @@ export type ProfileTypes ={
     phone:string,
     second_name:string,
 }
+
+export type ProfileFormData = {
+  new_password: string
+} & RegistrationFormData
+
+export type ProfileFormDataKey = keyof ProfileFormData

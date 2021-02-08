@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import Page from '../Page'
+import { Page } from '@/pages/'
 import { Registration } from './components/Registration'
 
 const RegistrationPage: FC = () => (

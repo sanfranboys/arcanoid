@@ -14,6 +14,9 @@ new CleanWebpackPlugin({
       publicPath: '',
     },
     resolve: {
+      alias: {
+        '@': path.join(__dirname, './src'),
+      },
       extensions: ['.ts', '.tsx', '.js'],
     },
     devServer: {

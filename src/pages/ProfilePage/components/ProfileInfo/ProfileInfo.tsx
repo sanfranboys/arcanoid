@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import Space from '../../../../elements/Space'
-import Avatar from '../../../../elements/Avatar'
-import Description from '../../../../components/Description'
-import Centered from '../../../../elements/Centered'
+import { Space, Avatar, Centered, Button } from '@/elements/'
+import { Description } from '@/components/'
 import { AuthServices } from '../../../../components/Services'
 import { ProfileTypes } from '../../types'
-import Button from '../../../../elements/Button'
 
 const ProfileInfo = () => {
   const [userData, setUserData] = useState<ProfileTypes>({
@@ -43,5 +40,4 @@ const ProfileInfo = () => {
     </Space>
   )
 }
-
 export default ProfileInfo
