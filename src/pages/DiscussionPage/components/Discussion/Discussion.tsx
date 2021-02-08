@@ -55,7 +55,7 @@ const Discussion = () => {
   return (
     <Space direction="vertical" full size={50} className="discussion">
       <Row gutter={[16, 16]}>
-        <Col span={18} offset={3}>
+        <Col span={24}>
           <Panel head="Как вам дизайн?">
             <Space
               size={20}
@@ -70,7 +70,7 @@ const Discussion = () => {
       </Row>
 
       <Row gutter={[16, 16]}>
-        <Col span={18} offset={3}>
+        <Col span={24}>
           <Space direction="vertical" full size="large">
             <TextArea rows={3} onChange={handleMessageChange} value={message} />
 

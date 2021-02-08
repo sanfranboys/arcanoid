@@ -44,7 +44,7 @@ const Topics = () => {
 
         return (
           <Row gutter={[16, 16]} key={id}>
-            <Col span={20} onClick={goToDiscussion(id)}>
+            <Col span={22} onClick={goToDiscussion(id)}>
               <Panel hoverable>{name}</Panel>
             </Col>
 
@@ -60,7 +60,7 @@ const Topics = () => {
   return (
     <Space direction="vertical" full className="topics">
       <Row gutter={[16, 16]} className="topics__add-block">
-        <Col span={9} offset={10}>
+        <Col span={11} offset={10}>
           <Input value={topic} onChange={handleTopicChange} />
         </Col>
 
@@ -76,7 +76,7 @@ const Topics = () => {
       </Row>
 
       <Row gutter={[16, 16]}>
-        <Col span={20}>
+        <Col span={22}>
           <Description title="Темы" />
         </Col>
 
