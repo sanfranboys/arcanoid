@@ -6,7 +6,6 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: ['react-hooks'],
-
   rules: {
     'react-hooks/rules-of-hooks': 2,
     'react-hooks/exhaustive-deps': 1,
@@ -34,7 +33,6 @@ module.exports = {
     'react/button-has-type': 0,
     'button-has-type': 0,
   },
-
   ignorePatterns: [
     '.eslintrc.js',
     'webpack.config.js',
