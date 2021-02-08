@@ -9,3 +9,11 @@ export enum METHOD {
   DELETE='DELETE',
   PUT = 'PUT'
 }
+
+export enum NotificationType {
+  success = 'success',
+  error = 'error',
+  info = 'info',
+  warning = 'warning',
+}
+

@@ -1,5 +1,4 @@
-import { request } from "../../../utils/Request"
-import { METHOD } from '../../../constants';
+import axios from 'axios';
 
 export class ApiServices {
   baseUrl: string
@@ -8,32 +7,26 @@ export class ApiServices {
     this.baseUrl = url
   }
 
-  get(url:string){
-    return request({
-      method:METHOD.GET,
-      url:`${this.baseUrl}${url}`
-    })
+  get(endpoint:string){
+    return axios(`${this.baseUrl}${endpoint}`,{ withCredentials: true })
+    .then(res=>res)
+    .catch(e => e.response)
   }
-  post(url:string,data?:{}){
-    return request({
-      method:METHOD.POST,
-      url:`${this.baseUrl}${url}`,
-      data
-    })
+
+  post(endpoint:string, payload?:{}){
+    return axios.post(`${this.baseUrl}${endpoint}`, payload,{ withCredentials: true })
+    .then(res=>res)
+    .catch(e => e.response)
   }
-  put(url:string,data?:{}){
-    return request({
-      method:METHOD.PUT,
-      url:`${this.baseUrl}${url}`,
-      data
-    })
+
+  put(endpoint:string, payload:{}){
+    return axios.put(`${this.baseUrl}${endpoint}`, payload,{ withCredentials: true })
+    .then(res=>res)
+    .catch(e => e.response)
   }
-  delete(url:string,data?:{}){
-    return request({
-      method:METHOD.DELETE,
-      url:`${this.baseUrl}${url}`,
-      data
-    })
+
+  delete(endpoint:string){
+    return axios.delete(`${this.baseUrl}${endpoint}`,{ withCredentials: true })
   }
 
 }

@@ -37,7 +37,7 @@ const App: FC = () => (
           <Route path="/auth">
             <AuthPage />
           </Route>
-          <Route path="/reg">
+          <Route path="/registration">
             <RegistrationPage />
           </Route>
           <Route>

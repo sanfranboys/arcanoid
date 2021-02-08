@@ -18,8 +18,7 @@ const Registration: FC = () => {
     setValue,
   } = useForm<RegistrationFormData>()
 
-  const onSubmit = (data: RegistrationFormData) =>
-    console.log(AuthServices.signUp(data))
+  const onSubmit = (data: RegistrationFormData) => AuthServices.signUp(data)
 
   return (
     <ContentBox>

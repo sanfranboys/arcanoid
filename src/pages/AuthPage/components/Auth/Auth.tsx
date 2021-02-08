@@ -12,10 +12,7 @@ import Col from '../../../../elements/Col'
 
 const Auth: FC = () => {
   const { handleSubmit, errors, register, setValue } = useForm<AuthFormData>()
-  const onSubmit = (data: AuthFormData) =>
-    AuthServices.signIn(data).then((res) => {
-      console.log(res)
-    })
+  const onSubmit = (data: AuthFormData) => AuthServices.signIn(data)
 
   return (
     <ContentBox>
@@ -58,7 +55,7 @@ const Auth: FC = () => {
           </Form>
         </Col>
         <Col span={24}>
-          <LinkElement link="/reg">Нет аккаунта?</LinkElement>
+          <LinkElement link="/registration">Нет аккаунта?</LinkElement>
         </Col>
       </Row>
     </ContentBox>
