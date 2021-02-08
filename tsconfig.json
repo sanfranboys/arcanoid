@@ -1,5 +1,9 @@
 {
   "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["./"]
+    },
     "target": "ES5",
     "lib": ["esnext", "dom", "dom.iterable"],
     "outDir": "./build",

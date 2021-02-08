@@ -1,10 +1,7 @@
 import React from 'react'
+import { Row, Col, Space, BtnString } from '@/elements/'
+import { Page } from '@/pages/'
 import ProfileInfo from './components/ProfileInfo'
-import Row from '../../elements/Row'
-import Col from '../../elements/Col'
-import Space from '../../elements/Space'
-import BtnString from '../../elements/BtnString'
-import Page from '../Page'
 
 const ProfilePage = () => (
   <Page title="Профиль">

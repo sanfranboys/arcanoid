@@ -1,9 +1,5 @@
 import React from 'react'
-import Row from '../../../../elements/Row'
-import Col from '../../../../elements/Col'
-import Space from '../../../../elements/Space'
-import BtnString from '../../../../elements/BtnString'
-import Panel from '../../../../elements/Panel'
+import { Row, Col, Space, BtnString, Panel } from '@/elements/'
 
 const Forums = () => (
   <Space direction="vertical" full>
