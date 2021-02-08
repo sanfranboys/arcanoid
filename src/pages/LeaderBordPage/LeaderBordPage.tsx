@@ -1,6 +1,6 @@
 import React from 'react'
+import { Page } from '@/pages/'
 import { LeaderBord } from './components'
-import Page from '../Page'
 
 const LeaderBordPage = () => (
   <Page title="Лидеры">

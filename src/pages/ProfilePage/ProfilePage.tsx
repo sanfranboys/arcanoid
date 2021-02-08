@@ -1,11 +1,8 @@
 import React, { useCallback, useState } from 'react'
+import { Row, Col, Space, StringButton } from '@/elements/'
+import { Page } from '@/pages/'
 import ProfileInfo from './components/ProfileInfo'
-import ProfileEditForm from './components/ProfileEditForm'
-import Row from '../../elements/Row'
-import Col from '../../elements/Col'
-import Space from '../../elements/Space'
-import StringButton from '../../elements/StringButton'
-import Page from '../Page'
+import ProfileEditForm from './components/ProfileEditForm/ProfileEditForm'
 
 enum ProfilePageMode {
   Edit = 'Редактировать',

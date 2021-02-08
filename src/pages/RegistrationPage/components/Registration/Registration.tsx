@@ -1,13 +1,9 @@
 import React, { FC } from 'react'
 import { Form } from 'antd'
 import { useForm } from 'react-hook-form'
-import Button from '../../../../elements/Button'
-import ContentBox from '../../../../elements/ContentBox'
-import Input from '../../../../components/Input'
-import LinkElement from '../../../../elements/LinkElement'
+import { Button, ContentBox, LinkElement, Row, Col } from '@/elements/'
+import { Input } from '@/components/'
 import { RegistrationFormData } from '../../types'
-import Row from '../../../../elements/Row'
-import Col from '../../../../elements/Col'
 
 const Registration: FC = () => {
   const {
@@ -30,7 +26,9 @@ const Registration: FC = () => {
                   name="first_name"
                   id="first_name"
                   className="registration__container-input"
-                  onChange={(e) => setValue('first_name', e.target.value)}
+                  onChange={({ target }: InputEvent) =>
+                    setValue('first_name', (target as HTMLInputElement)?.value)
+                  }
                   register={register(
                     { name: 'first_name' },
                     { required: true, minLength: 3 }
@@ -44,7 +42,9 @@ const Registration: FC = () => {
                   name="second_name"
                   id="second_name"
                   className="registration__container-input"
-                  onChange={(e) => setValue('second_name', e.target.value)}
+                  onChange={({ target }: InputEvent) =>
+                    setValue('second_name', (target as HTMLInputElement)?.value)
+                  }
                   register={register(
                     { name: 'second_name' },
                     { required: true, minLength: 3 }
@@ -58,7 +58,9 @@ const Registration: FC = () => {
                   name="login"
                   id="login"
                   className="registration__container-input"
-                  onChange={(e) => setValue('login', e.target.value)}
+                  onChange={({ target }: InputEvent) =>
+                    setValue('login', (target as HTMLInputElement)?.value)
+                  }
                   register={register(
                     { name: 'login' },
                     { required: true, minLength: 3 }
@@ -72,7 +74,9 @@ const Registration: FC = () => {
                   name="email"
                   id="email"
                   className="registration__container-input"
-                  onChange={(e) => setValue('email', e.target.value)}
+                  onChange={({ target }: InputEvent) =>
+                    setValue('email', (target as HTMLInputElement)?.value)
+                  }
                   register={register(
                     { name: 'email' },
                     { required: true, minLength: 3 }
@@ -86,7 +90,9 @@ const Registration: FC = () => {
                   name="password"
                   id="password"
                   className="registration__container-input"
-                  onChange={(e) => setValue('password', e.target.value)}
+                  onChange={({ target }: InputEvent) =>
+                    setValue('password', (target as HTMLInputElement)?.value)
+                  }
                   register={register(
                     { name: 'password' },
                     { required: true, minLength: 3 }
@@ -100,7 +106,9 @@ const Registration: FC = () => {
                   name="phone"
                   id="phone"
                   className="registration__container-input"
-                  onChange={(e) => setValue('phone', e.target.value)}
+                  onChange={({ target }: InputEvent) =>
+                    setValue('phone', (target as HTMLInputElement)?.value)
+                  }
                   register={register(
                     { name: 'phone' },
                     { required: true, minLength: 3 }

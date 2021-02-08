@@ -1,8 +1,6 @@
 import React, { FC } from 'react'
+import { Image, Centered } from '@/elements/'
 import { ErrorProps } from '../types'
-import Image from '../../../elements/Image'
-import Centered from '../../../elements/Centered'
-
 import './Error.scss'
 import { fallbackImage } from '../../../constants'
 
@@ -17,8 +15,8 @@ const Error: FC<ErrorProps> = ({ description, hasLink, errorType }) => (
         src="assets/images/error.jpg"
         preview={false}
         fallback={fallbackImage}
-        onError={(event) => {
-          console.error('failure while image loading here:', event.target)
+        onError={(event: Event) => {
+          console.error('failure while image loading here:', event?.target)
         }}
       />
 

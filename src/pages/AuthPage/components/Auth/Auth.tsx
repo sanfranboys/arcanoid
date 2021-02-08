@@ -1,13 +1,9 @@
 import React, { FC } from 'react'
 import { Form } from 'antd'
 import { useForm } from 'react-hook-form'
+import { ContentBox, Button, LinkElement, Row, Col } from '@/elements/'
+import { Input } from '@/components/'
 import { AuthFormData } from '../../types'
-import ContentBox from '../../../../elements/ContentBox'
-import Input from '../../../../components/Input'
-import Button from '../../../../elements/Button'
-import LinkElement from '../../../../elements/LinkElement'
-import Row from '../../../../elements/Row'
-import Col from '../../../../elements/Col'
 
 const Auth: FC = () => {
   const { handleSubmit, errors, register, setValue } = useForm<AuthFormData>()
@@ -23,7 +19,9 @@ const Auth: FC = () => {
                   label="Имя"
                   name="login"
                   id="login"
-                  onChange={(e) => setValue('login', e.target.value)}
+                  onChange={({ target }: InputEvent) =>
+                    setValue('login', (target as HTMLInputElement)?.value)
+                  }
                   register={register(
                     { name: 'login' },
                     { required: true, minLength: 3 }
@@ -36,7 +34,9 @@ const Auth: FC = () => {
                   label="Пароль"
                   name="password"
                   id="password"
-                  onChange={(e) => setValue('password', e.target.value)}
+                  onChange={({ target }: InputEvent) =>
+                    setValue('password', (target as HTMLInputElement)?.value)
+                  }
                   register={register(
                     { name: 'password' },
                     { required: true, minLength: 6 }
