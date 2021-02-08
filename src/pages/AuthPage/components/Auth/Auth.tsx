@@ -13,7 +13,9 @@ import Col from '../../../../elements/Col'
 const Auth: FC = () => {
   const { handleSubmit, errors, register, setValue } = useForm<AuthFormData>()
   const onSubmit = (data: AuthFormData) =>
-    console.log(AuthServices.signIn(data))
+    AuthServices.signIn(data).then((res) => {
+      console.log(res)
+    })
 
   return (
     <ContentBox>
