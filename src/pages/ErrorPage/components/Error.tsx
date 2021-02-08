@@ -1,7 +1,6 @@
 import React, { FC } from 'react'
 import { Image, Centered } from '@/elements/'
 import { ErrorProps } from '../types'
-
 import './Error.scss'
 import { fallbackImage } from '../../../constants'
 
