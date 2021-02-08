@@ -8,10 +8,13 @@ import Button from '../../../../components/Button'
 import { LinkElement } from '../../../../components/LinkElement'
 import Row from '../../../../components/Row'
 import Col from '../../../../components/Col'
+import { AuthServices } from '../../../../components/Services'
 
 const Auth: FC = () => {
   const { handleSubmit, errors, register, setValue } = useForm<AuthFormData>()
-  const onSubmit = (data: FormData) => console.log(data)
+  const onSubmit = (data: AuthFormData) =>
+    console.log(AuthServices.signIn(data))
+
   return (
     <ContentBox>
       <Row gutter={[0, 10]}>

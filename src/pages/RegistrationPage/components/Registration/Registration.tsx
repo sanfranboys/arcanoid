@@ -8,6 +8,7 @@ import { LinkElement } from '../../../../components/LinkElement'
 import { RegistrationFormData } from '../../types'
 import Row from '../../../../components/Row'
 import Col from '../../../../components/Col'
+import { AuthServices } from '../../../../components/Services'
 
 const Registration: FC = () => {
   const {
@@ -17,7 +18,9 @@ const Registration: FC = () => {
     setValue,
   } = useForm<RegistrationFormData>()
 
-  const onSubmit = (data: FormData) => console.log(data)
+  const onSubmit = (data: RegistrationFormData) =>
+    console.log(AuthServices.signUp(data))
+
   return (
     <ContentBox>
       <Row gutter={[0, 10]}>
