@@ -1,5 +1,5 @@
 export { default as Avatar } from './Avatar'
-export { default as BtnString } from './BtnString'
+export { default as StringButton } from './StringButton'
 export { default as Button } from './Button'
 export { default as Centered } from './Centered'
 export { default as Col } from './Col'
