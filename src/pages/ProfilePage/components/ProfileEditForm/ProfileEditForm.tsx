@@ -1,14 +1,9 @@
 import React, { ChangeEvent, useCallback } from 'react'
 import { useForm } from 'react-hook-form'
 import { Form } from 'antd'
-import Row from '../../../../elements/Row'
-import Col from '../../../../elements/Col'
-import Input from '../../../../components/Input'
-import Button from '../../../../elements/Button'
+import { Row, Col, Button, Avatar, Centered, Space } from '@/elements/'
+import { Input } from '@/components/'
 import { ProfileFormData, ProfileFormDataKey } from '../../types'
-import Avatar from '../../../../elements/Avatar'
-import Centered from '../../../../elements/Centered'
-import Space from '../../../../elements/Space'
 
 const ProfileEditForm = () => {
   const {
