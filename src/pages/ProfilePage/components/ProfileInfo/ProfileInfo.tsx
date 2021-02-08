@@ -1,8 +1,6 @@
 import React from 'react'
-import Space from '../../../../components/Space'
-import Avatar from '../../../../components/Avatar'
-import Description from '../../../../components/Description'
-import Centered from '../../../../components/Centered'
+import { Space, Avatar, Centered } from '@/elements/'
+import { Description } from '@/components/'
 
 const ProfileInfo = () => (
   <Space size="large" direction="vertical" full>
@@ -12,10 +10,10 @@ const ProfileInfo = () => (
 
     <Description title="Имя:">Алексей</Description>
     <Description title="Фамилия:">Андриенко</Description>
-    <Description title="Никнейм:">C@rabasBaraba$</Description>
+    <Description title="Логин:">C@rabasBaraba$</Description>
     <Description title="Email:">andrienko_av@gmail.com</Description>
+    <Description title="Пароль:">*******</Description>
     <Description title="Телефон:">+9 970 976 55 44</Description>
-    <Description title="Пароль:">qWerTy_</Description>
   </Space>
 )
 

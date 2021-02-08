@@ -1,9 +1,5 @@
 import React from 'react'
-import Row from '../../../../components/Row'
-import Col from '../../../../components/Col'
-import Space from '../../../../components/Space'
-import BtnString from '../../../../components/BtnString'
-import Panel from '../../../../components/Panel'
+import { Row, Col, Space, StringButton, Panel } from '@/elements/'
 
 const Forums = () => (
   <Space direction="vertical" full>
@@ -16,7 +12,7 @@ const Forums = () => (
         <Panel>
           <Space between full>
             <span>456</span>
-            <BtnString>+</BtnString>
+            <StringButton>+</StringButton>
           </Space>
         </Panel>
       </Col>
@@ -35,7 +31,7 @@ const Forums = () => (
         <Panel>
           <Space between full>
             <span>232</span>
-            <BtnString>+</BtnString>
+            <StringButton>+</StringButton>
           </Space>
         </Panel>
       </Col>
@@ -54,7 +50,7 @@ const Forums = () => (
         <Panel>
           <Space between full>
             <span>1</span>
-            <BtnString>+</BtnString>
+            <StringButton>+</StringButton>
           </Space>
         </Panel>
       </Col>

@@ -1,7 +1,5 @@
 import React, { FC } from 'react'
-import Col from '../../../../components/Col'
-import Panel from '../../../../components/Panel'
-import Score from '../../../../components/Score'
+import { Col, Panel, Score } from '@/elements/'
 import { Leader } from '../../types'
 
 import './LeaderCard.scss'

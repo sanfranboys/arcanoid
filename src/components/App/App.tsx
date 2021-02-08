@@ -1,14 +1,15 @@
 import React, { FC } from 'react'
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
-import ErrorPage from '../../pages/ErrorPage'
-import AuthPage from '../../pages/AuthPage'
-import ForumPage from '../../pages/ForumPage'
-import LeaderBordPage from '../../pages/LeaderBordPage'
-import Content from '../Content'
-import Layout from '../Layout'
-import Header from '../Header'
-import ProfilePage from '../../pages/ProfilePage'
-import Nav from '../Nav'
+import { Header, Content, Layout } from '@/elements/'
+import {
+  ErrorPage,
+  AuthPage,
+  ForumPage,
+  LeaderBordPage,
+  ProfilePage,
+  RegistrationPage,
+} from '@/pages/'
+import { Nav } from '@/components/'
 
 import './App.scss'
 
@@ -35,6 +36,9 @@ const App: FC = () => (
           </Route>
           <Route path="/auth">
             <AuthPage />
+          </Route>
+          <Route path="/reg">
+            <RegistrationPage />
           </Route>
           <Route>
             <ErrorPage errorType={404} />
