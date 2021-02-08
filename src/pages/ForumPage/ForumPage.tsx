@@ -1,7 +1,7 @@
 import React from 'react'
 import Forums from './components/Forums'
-import Row from '../../components/Row'
-import Col from '../../components/Col'
+import Row from '../../elements/Row'
+import Col from '../../elements/Col'
 import Page from '../Page'
 
 const ForumPage = () => (

@@ -1,9 +1,9 @@
 import React from 'react'
-import Row from '../../../../components/Row'
-import Col from '../../../../components/Col'
-import Space from '../../../../components/Space'
-import BtnString from '../../../../components/BtnString'
-import Panel from '../../../../components/Panel'
+import Row from '../../../../elements/Row'
+import Col from '../../../../elements/Col'
+import Space from '../../../../elements/Space'
+import BtnString from '../../../../elements/BtnString'
+import Panel from '../../../../elements/Panel'
 
 const Forums = () => (
   <Space direction="vertical" full>

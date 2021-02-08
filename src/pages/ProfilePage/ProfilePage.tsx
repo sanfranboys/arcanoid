@@ -1,9 +1,9 @@
 import React from 'react'
 import ProfileInfo from './components/ProfileInfo'
-import Row from '../../components/Row'
-import Col from '../../components/Col'
-import Space from '../../components/Space'
-import BtnString from '../../components/BtnString'
+import Row from '../../elements/Row'
+import Col from '../../elements/Col'
+import Space from '../../elements/Space'
+import BtnString from '../../elements/BtnString'
 import Page from '../Page'
 
 const ProfilePage = () => (
