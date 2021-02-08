@@ -2,7 +2,7 @@ import React from 'react'
 import Row from '../../../../elements/Row'
 import Col from '../../../../elements/Col'
 import Space from '../../../../elements/Space'
-import BtnString from '../../../../elements/BtnString'
+import StringButton from '../../../../elements/StringButton'
 import Panel from '../../../../elements/Panel'
 
 const Forums = () => (
@@ -16,7 +16,7 @@ const Forums = () => (
         <Panel>
           <Space between full>
             <span>456</span>
-            <BtnString>+</BtnString>
+            <StringButton>+</StringButton>
           </Space>
         </Panel>
       </Col>
@@ -35,7 +35,7 @@ const Forums = () => (
         <Panel>
           <Space between full>
             <span>232</span>
-            <BtnString>+</BtnString>
+            <StringButton>+</StringButton>
           </Space>
         </Panel>
       </Col>
@@ -54,7 +54,7 @@ const Forums = () => (
         <Panel>
           <Space between full>
             <span>1</span>
-            <BtnString>+</BtnString>
+            <StringButton>+</StringButton>
           </Space>
         </Panel>
       </Col>
