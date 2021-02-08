@@ -5,22 +5,16 @@ import { RegistrationFormData } from "../../../pages/RegistrationPage/types";
 
 export class Auth {
 
-async signIn(data:AuthFormData & AxiosRequestConfig){
-  try {
-    const res = await axios.post(`${BASE_URL}/auth/signin`, data).then(res=>res.data)
-    return res
-  } catch (error) {
-    return console.log(error,'Ошибка');
-  }
+signIn(data:AuthFormData & AxiosRequestConfig){
+    return axios.post(`${BASE_URL}/auth/signin`, data)
+    .then(({data})=>data)
+    .catch(error=>console.error(error))
 }
 
-async signUp(data:RegistrationFormData){
-try {
-  const res = await axios.post(`${BASE_URL}/auth/signup`,data).then(res=>res.data)
-  return res
-} catch (error) {
-  return console.log(error,'Ошибка');
-}
+signUp(data:RegistrationFormData){
+ return axios.post(`${BASE_URL}/auth/signup`,data)
+ .then(({data})=>data)
+ .catch(error=>console.error(error))
 }
 
 getUserInfo(){
@@ -32,3 +26,5 @@ logOut(){
 }
 
 }
+
+axios.interceptors.request.use(conf=>{console.log('inter',conf); return conf});
