@@ -1,8 +1,7 @@
 import React from 'react'
-import Forums from './components/Forums'
-import Row from '../../elements/Row'
-import Col from '../../elements/Col'
-import Page from '../Page'
+import { Row, Col } from '@/elements/'
+import { Page } from '@/pages/'
+import { Forums } from './components/Forums'
 
 const ForumPage = () => (
   <Page title="Форум">

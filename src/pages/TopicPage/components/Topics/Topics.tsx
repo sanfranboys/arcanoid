@@ -1,12 +1,8 @@
 import React, { useCallback, useMemo, useState, ChangeEvent } from 'react'
 import { useHistory, useRouteMatch } from 'react-router-dom'
-import Row from '../../../../elements/Row'
-import Col from '../../../../elements/Col'
-import Space from '../../../../elements/Space'
-import Panel from '../../../../elements/Panel'
-import Description from '../../../../components/Description'
-import Input from '../../../../components/Input'
-import Button from '../../../../elements/Button'
+import { Row, Col, Space, Panel, Button } from '@/elements/'
+import { Description, Input } from '@/components/'
+
 import { mock } from './mock'
 
 import './Topics.scss'

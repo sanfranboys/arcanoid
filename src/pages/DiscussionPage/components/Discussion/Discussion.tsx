@@ -1,10 +1,5 @@
 import React, { ChangeEvent, useCallback, useMemo, useState } from 'react'
-import Space from '../../../../elements/Space'
-import Panel from '../../../../elements/Panel'
-import TextArea from '../../../../elements/TextArea'
-import Button from '../../../../elements/Button'
-import Row from '../../../../elements/Row'
-import Col from '../../../../elements/Col'
+import { Space, Panel, TextArea, Button, Row, Col } from '@/elements/'
 import classNames from '../../../../utils'
 import { mock } from './mock'
 

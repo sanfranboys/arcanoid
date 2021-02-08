@@ -1,6 +1,6 @@
 import React from 'react'
-import Discussion from './components/Discussion'
-import Page from '../Page'
+import { Page } from '@/pages/'
+import { Discussion } from './components/Discussion'
 
 const DiscussionPage = () => (
   <Page title="Обсуждение">

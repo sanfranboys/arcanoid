@@ -1,8 +1,7 @@
 import React from 'react'
-import Topics from './components/Topics'
-import Row from '../../elements/Row'
-import Col from '../../elements/Col'
-import Page from '../Page'
+import { Row, Col } from '@/elements/'
+import { Page } from '@/pages/'
+import { Topics } from './components/Topics'
 
 const TopicPage = () => (
   <Page title="Темы">

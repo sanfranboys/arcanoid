@@ -1,10 +1,7 @@
 import React, { useCallback, useMemo } from 'react'
 import { useHistory, useRouteMatch } from 'react-router-dom'
-import Row from '../../../../elements/Row'
-import Col from '../../../../elements/Col'
-import Space from '../../../../elements/Space'
-import Panel from '../../../../elements/Panel'
-import Description from '../../../../components/Description'
+import { Row, Col, Space, Panel } from '@/elements/'
+import { Description } from '@/components/'
 import { mock } from './mock'
 
 const Forums = () => {
