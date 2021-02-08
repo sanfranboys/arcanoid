@@ -1,8 +1,8 @@
 import React from 'react'
-import Space from '../../../../components/Space'
-import Avatar from '../../../../components/Avatar'
+import Space from '../../../../elements/Space'
+import Avatar from '../../../../elements/Avatar'
 import Description from '../../../../components/Description'
-import Centered from '../../../../components/Centered'
+import Centered from '../../../../elements/Centered'
 
 const ProfileInfo = () => (
   <Space size="large" direction="vertical" full>
