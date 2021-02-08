@@ -1,17 +1,17 @@
 import React from 'react'
-import Forums from './components/Forums'
+import Topics from './components/Topics'
 import Row from '../../elements/Row'
 import Col from '../../elements/Col'
 import Page from '../Page'
 
-const ForumPage = () => (
-  <Page title="Форум">
+const TopicPage = () => (
+  <Page title="Темы">
     <Row>
       <Col span={18} offset={4}>
-        <Forums />
+        <Topics />
       </Col>
     </Row>
   </Page>
 )
 
-export default ForumPage
+export default TopicPage

@@ -5,8 +5,16 @@
   background-color: transparent;
   border: 2px solid var(--color-border-dark);
   cursor: pointer;
-}
 
-.button-component:hover {
-  background-color: var(--mainHover);
+  &:hover {
+    background-color: var(--mainHover);
+  }
+
+  &__disabled {
+    opacity: 0.5;
+
+    &:hover {
+      background-color: inherit;
+    }
+  }
 }

@@ -1,0 +1,23 @@
+.discussion {
+  &__messages {
+    padding: 20px;
+  }
+
+  &__author {
+    font-size: var(--size-text-xs);
+    color: var(--grey);
+  }
+
+  &__message {
+    background: var(--color-shadow-purple);
+    padding: 10px 20px 20px;
+    font-size: var(--size-text-s);
+    margin-right: 30px;
+    color: var(--color-gold);
+
+    &_odd {
+      margin-right: 0;
+      margin-left: 30px;
+    }
+  }
+}

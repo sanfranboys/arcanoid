@@ -7,11 +7,15 @@ const Button: FC<ButtonHTMLAttributes<HTMLButtonElement>> = ({
   onClick,
   className,
   type = 'button',
+  disabled,
 }) => (
   <button
-    className={classNames(className, 'button-component')}
+    className={classNames(className, 'button-component', {
+      'button-component__disabled': disabled,
+    })}
     type={type}
     onClick={onClick}
+    disabled={disabled}
   >
     {children}
   </button>

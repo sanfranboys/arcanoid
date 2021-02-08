@@ -35,8 +35,14 @@ const App: FC = () => (
           <Route path="/profile">
             <ProfilePage />
           </Route>
-          <Route path="/forum">
+          <Route path="/forum" exact>
             <ForumPage />
+          </Route>
+          <Route path="/forum/:forumId" exact>
+            <TopicPage />
+          </Route>
+          <Route path="/forum/:forumId/:topicId" exact>
+            <DiscussionPage />
           </Route>
           <Route path="/auth">
             <AuthPage />

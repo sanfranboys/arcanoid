@@ -1,84 +1,64 @@
-import React from 'react'
-import Row from '../../../../components/Row'
-import Col from '../../../../components/Col'
-import Space from '../../../../components/Space'
-import BtnString from '../../../../components/BtnString'
-import Panel from '../../../../components/Panel'
+import React, { useCallback, useMemo } from 'react'
+import { useHistory, useRouteMatch } from 'react-router-dom'
+import Row from '../../../../elements/Row'
+import Col from '../../../../elements/Col'
+import Space from '../../../../elements/Space'
+import Panel from '../../../../elements/Panel'
 import Description from '../../../../components/Description'
+import { mock } from './mock'
 
-const Forums = () => (
-  <Space direction="vertical" full>
-    <Row gutter={[16, 16]}>
-      <Col span={20}>
-        <Description title="Форумы" />
-      </Col>
+const Forums = () => {
+  const history = useHistory()
+  const { url } = useRouteMatch()
 
-      <Col span={2}>
-        <Description title="Темы" />
-      </Col>
+  const goToTopic = useCallback(
+    (id: number) => () => history.push(`${url}/${id}`),
+    [history, url]
+  )
 
-      <Col span={2}>
-        <Description title="Ответы" />
-      </Col>
-    </Row>
+  const forumList = useMemo(
+    () =>
+      mock.map((forum, idx) => {
+        const { id, name } = forum
 
-    <Row gutter={[16, 16]}>
-      <Col span={20}>
-        <Panel>Новые игры</Panel>
-      </Col>
+        return (
+          <Row gutter={[16, 16]} key={id}>
+            <Col span={20} onClick={goToTopic(id)}>
+              <Panel hoverable>{name}</Panel>
+            </Col>
 
-      <Col span={2}>
-        <Panel>
-          <Space between full>
-            <span>456</span>
-            <BtnString>+</BtnString>
-          </Space>
-        </Panel>
-      </Col>
+            <Col span={2}>
+              <Panel center>{(idx + 1) * 33}</Panel>
+            </Col>
 
-      <Col span={2}>
-        <Panel center>345</Panel>
-      </Col>
-    </Row>
+            <Col span={2}>
+              <Panel center>{(idx + 1) * 47}</Panel>
+            </Col>
+          </Row>
+        )
+      }),
+    [goToTopic]
+  )
 
-    <Row gutter={[16, 16]}>
-      <Col span={20}>
-        <Panel>Технологии</Panel>
-      </Col>
+  return (
+    <Space direction="vertical" full>
+      <Row gutter={[16, 16]}>
+        <Col span={20}>
+          <Description title="Форумы" />
+        </Col>
 
-      <Col span={2}>
-        <Panel>
-          <Space between full>
-            <span>232</span>
-            <BtnString>+</BtnString>
-          </Space>
-        </Panel>
-      </Col>
+        <Col span={2}>
+          <Description title="Темы" />
+        </Col>
 
-      <Col span={2}>
-        <Panel center>666</Panel>
-      </Col>
-    </Row>
+        <Col span={2}>
+          <Description title="Ответы" />
+        </Col>
+      </Row>
 
-    <Row gutter={[16, 16]}>
-      <Col span={20}>
-        <Panel>Дизайн</Panel>
-      </Col>
-
-      <Col span={2}>
-        <Panel>
-          <Space between full>
-            <span>1</span>
-            <BtnString>+</BtnString>
-          </Space>
-        </Panel>
-      </Col>
-
-      <Col span={2}>
-        <Panel center>56</Panel>
-      </Col>
-    </Row>
-  </Space>
-)
+      {forumList}
+    </Space>
+  )
+}
 
 export default Forums
