@@ -1,7 +1,14 @@
 import React, { FC } from 'react'
 import { Form } from 'antd'
 import { useForm } from 'react-hook-form'
-import { ContentBox, Button, LinkElement, Row, Col } from '@/elements/'
+import {
+  ContentBox,
+  Button,
+  LinkElement,
+  Row,
+  Col,
+  Centered,
+} from '@/elements/'
 import { Input } from '@/components/'
 import { AuthFormData } from '../../types'
 
@@ -53,7 +60,9 @@ const Auth: FC = () => {
           </Form>
         </Col>
         <Col span={24}>
-          <LinkElement link="/reg">Нет аккаунта?</LinkElement>
+          <Centered>
+            <LinkElement link="/reg">Нет аккаунта?</LinkElement>
+          </Centered>
         </Col>
       </Row>
     </ContentBox>

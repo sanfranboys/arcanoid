@@ -1,7 +1,14 @@
 import React, { FC } from 'react'
 import { Form } from 'antd'
 import { useForm } from 'react-hook-form'
-import { Button, ContentBox, LinkElement, Row, Col } from '@/elements/'
+import {
+  Button,
+  ContentBox,
+  LinkElement,
+  Row,
+  Col,
+  Centered,
+} from '@/elements/'
 import { Input } from '@/components/'
 import { RegistrationFormData } from '../../types'
 
@@ -125,7 +132,9 @@ const Registration: FC = () => {
           </Form>
         </Col>
         <Col span={24}>
-          <LinkElement link="/auth">Войти</LinkElement>
+          <Centered>
+            <LinkElement link="/auth">Войти</LinkElement>
+          </Centered>
         </Col>
       </Row>
     </ContentBox>
