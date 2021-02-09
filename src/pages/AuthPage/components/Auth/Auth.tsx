@@ -4,12 +4,11 @@ import { useForm } from 'react-hook-form'
 import { ContentBox, Button, LinkElement, Row, Col } from '@/elements/'
 import { Input } from '@/components/'
 import { AuthFormData } from '../../types'
-import { AuthServices } from '../../../../components/Services'
+import { AuthServices } from '../../../../services'
 
 const Auth: FC = () => {
   const { handleSubmit, errors, register, setValue } = useForm<AuthFormData>()
   const onSubmit = (data: AuthFormData) => AuthServices.signIn(data)
-
   return (
     <ContentBox>
       <Row gutter={[0, 10]}>
@@ -41,7 +40,7 @@ const Auth: FC = () => {
                   }
                   register={register(
                     { name: 'password' },
-                    { required: true, minLength: 6 }
+                    { required: true, minLength: 3 }
                   )}
                   error={!!errors.password}
                 />

@@ -9,20 +9,14 @@ export class ApiServices {
 
   get(endpoint:string){
     return axios(`${this.baseUrl}${endpoint}`,{ withCredentials: true })
-    .then(res=>res)
-    .catch(e => e.response)
   }
 
   post(endpoint:string, payload?:{}){
     return axios.post(`${this.baseUrl}${endpoint}`, payload,{ withCredentials: true })
-    .then(res=>res)
-    .catch(e => e.response)
   }
 
   put(endpoint:string, payload:{}){
     return axios.put(`${this.baseUrl}${endpoint}`, payload,{ withCredentials: true })
-    .then(res=>res)
-    .catch(e => e.response)
   }
 
   delete(endpoint:string){
@@ -30,3 +24,13 @@ export class ApiServices {
   }
 
 }
+
+axios.interceptors.response.use(
+  (response)=>response,
+  (error)=>{
+    if(window.location.pathname !== '/auth'
+    && error.request.status === 401){
+        window.location.href = '/auth'
+    }
+    return error.request
+})

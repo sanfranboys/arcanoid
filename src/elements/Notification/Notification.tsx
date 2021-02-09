@@ -1,7 +1,7 @@
 import { notification } from 'antd'
 import { NotificationProps } from './types'
 
-export const notificationWindow = ({
+export const NotificationWindow = ({
   type,
   title,
   description,

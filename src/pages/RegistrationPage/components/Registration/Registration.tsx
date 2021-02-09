@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form'
 import { Button, ContentBox, LinkElement, Row, Col } from '@/elements/'
 import { Input } from '@/components/'
 import { RegistrationFormData } from '../../types'
-import { AuthServices } from '../../../../components/Services'
+import { AuthServices } from '../../../../services'
 
 const Registration: FC = () => {
   const {

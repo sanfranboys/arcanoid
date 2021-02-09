@@ -1,7 +1,5 @@
-import { NotificationType } from "../../constants";
-
 export type NotificationProps = {
-  type: NotificationType
+  type: 'success'|'error'|'info'|'warning'
   title: string
   description: string
 }

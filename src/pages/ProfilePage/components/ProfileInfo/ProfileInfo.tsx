@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Space, Avatar, Centered, Button } from '@/elements/'
 import { Description } from '@/components/'
-import { AuthServices } from '../../../../components/Services'
+import { AuthServices } from '../../../../services'
 import { ProfileTypes } from '../../types'
 
 const ProfileInfo = () => {
