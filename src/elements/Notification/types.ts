@@ -1,5 +1,4 @@
 export type NotificationProps = {
-  type: 'success'|'error'|'info'|'warning'
-  title: string
+  type?: 'success'|'error'|'info'|'warning'
   description: string
 }
