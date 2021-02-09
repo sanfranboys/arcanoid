@@ -8,6 +8,7 @@ import {
   LeaderBordPage,
   ProfilePage,
   RegistrationPage,
+  GamePage,
 } from '@/pages/'
 import { Nav } from '@/components/'
 
@@ -24,6 +25,9 @@ const App: FC = () => (
           <Route exact path="/">
             {/* Пока просто редирект без условия */}
             <Redirect to="/auth" />
+          </Route>
+          <Route path="/game">
+            <GamePage />
           </Route>
           <Route path="/leaderboard">
             <LeaderBordPage />
