@@ -3,8 +3,8 @@ import { Form } from 'antd'
 import { useForm } from 'react-hook-form'
 import { Button, ContentBox, LinkElement, Row, Col } from '@/elements/'
 import { Input } from '@/components/'
+import { AuthServices } from '@/services/'
 import { RegistrationFormData } from '../../types'
-import { AuthServices } from '../../../../services'
 
 const Registration: FC = () => {
   const {
