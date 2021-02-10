@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useCallback, useMemo, useState } from 'react'
 import { Space, Panel, TextArea, Button, Row, Col } from '@/elements/'
-import classNames from '../../../../utils'
+import Message from '../Message'
 import { mock } from './mock'
 
 import './Discussion.scss'
@@ -16,7 +16,7 @@ const Discussion = () => {
     []
   )
 
-  const addMessage = () => {
+  const addMessage = useCallback(() => {
     setMessages((oldMessages) => {
       const messages = [...oldMessages]
       const { length } = messages
@@ -31,38 +31,22 @@ const Discussion = () => {
     })
 
     setMessage('')
-  }
+  }, [message])
 
   const messageList = useMemo(
     () =>
-      messages.map((message, idx) => {
-        const { id, text, author } = message
-
-        const className = classNames('discussion__message', {
-          discussion__message_odd: !!(idx % 2),
-        })
-
-        return (
-          <div className={className} key={id}>
-            <span className="discussion__author">{author}</span>
-            <div>{text}</div>
-          </div>
-        )
-      }),
+      messages.map((message, idx) => (
+        <Message key={message.id} message={message} odd={!!(idx % 2)} />
+      )),
     [messages]
   )
 
   return (
-    <Space direction="vertical" full size={50} className="discussion">
+    <Space direction="vertical" full size={50}>
       <Row gutter={[16, 16]}>
         <Col span={24}>
           <Panel head="Как вам дизайн?">
-            <Space
-              size={20}
-              direction="vertical"
-              full
-              className="discussion__messages"
-            >
+            <Space size={20} direction="vertical" full className="discussion">
               {messageList}
             </Space>
           </Panel>

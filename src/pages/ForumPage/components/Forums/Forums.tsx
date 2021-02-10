@@ -1,7 +1,8 @@
 import React, { useCallback, useMemo } from 'react'
 import { useHistory, useRouteMatch } from 'react-router-dom'
-import { Row, Col, Space, Panel } from '@/elements/'
+import { Row, Col, Space } from '@/elements/'
 import { Description } from '@/components/'
+import Forum from '../Forum'
 import { mock } from './mock'
 
 const Forums = () => {
@@ -15,24 +16,9 @@ const Forums = () => {
 
   const forumList = useMemo(
     () =>
-      mock.map((forum, idx) => {
-        const { id, name } = forum
-
-        return (
-          <Row gutter={[16, 16]} key={id}>
-            <Col span={20} onClick={goToTopic(id)}>
-              <Panel hoverable>{name}</Panel>
-            </Col>
-
-            <Col span={2}>
-              <Panel center>{(idx + 1) * 33}</Panel>
-            </Col>
-
-            <Col span={2}>
-              <Panel center>{(idx + 1) * 47}</Panel>
-            </Col>
-          </Row>
-        )
+      mock.map((forum) => {
+        const { id } = forum
+        return <Forum key={id} forum={forum} onClick={goToTopic(id)} />
       }),
     [goToTopic]
   )
