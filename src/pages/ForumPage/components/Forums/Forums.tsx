@@ -1,65 +1,47 @@
-import React from 'react'
-import { Row, Col, Space, StringButton, Panel } from '@/elements/'
+import React, { useCallback, useMemo } from 'react'
+import { useHistory, useRouteMatch } from 'react-router-dom'
+import { Row, Col, Space } from '@/elements/'
+import { Description } from '@/components/'
+import Forum from '../Forum'
+import { mock } from './mock'
 
-const Forums = () => (
-  <Space direction="vertical" full>
-    <Row gutter={[16, 16]}>
-      <Col span={20}>
-        <Panel>Новые игры</Panel>
-      </Col>
+const Forums = () => {
+  const history = useHistory()
+  const { url } = useRouteMatch()
 
-      <Col span={2}>
-        <Panel>
-          <Space between full>
-            <span>456</span>
-            <StringButton>+</StringButton>
-          </Space>
-        </Panel>
-      </Col>
+  const goToTopic = useCallback(
+    (id: number) => () => history.push(`${url}/${id}`),
+    [history, url]
+  )
 
-      <Col span={2}>
-        <Panel center>345</Panel>
-      </Col>
-    </Row>
+  const forumList = useMemo(
+    () =>
+      mock.map((forum) => {
+        const { id } = forum
+        return <Forum key={id} forum={forum} onClick={goToTopic(id)} />
+      }),
+    [goToTopic]
+  )
 
-    <Row gutter={[16, 16]}>
-      <Col span={20}>
-        <Panel>Технологии</Panel>
-      </Col>
+  return (
+    <Space direction="vertical" full>
+      <Row gutter={[16, 16]}>
+        <Col span={20}>
+          <Description title="Форумы" />
+        </Col>
 
-      <Col span={2}>
-        <Panel>
-          <Space between full>
-            <span>232</span>
-            <StringButton>+</StringButton>
-          </Space>
-        </Panel>
-      </Col>
+        <Col span={2}>
+          <Description title="Темы" />
+        </Col>
 
-      <Col span={2}>
-        <Panel center>666</Panel>
-      </Col>
-    </Row>
+        <Col span={2}>
+          <Description title="Ответы" />
+        </Col>
+      </Row>
 
-    <Row gutter={[16, 16]}>
-      <Col span={20}>
-        <Panel>Дизайн</Panel>
-      </Col>
-
-      <Col span={2}>
-        <Panel>
-          <Space between full>
-            <span>1</span>
-            <StringButton>+</StringButton>
-          </Space>
-        </Panel>
-      </Col>
-
-      <Col span={2}>
-        <Panel center>56</Panel>
-      </Col>
-    </Row>
-  </Space>
-)
+      {forumList}
+    </Space>
+  )
+}
 
 export default Forums
