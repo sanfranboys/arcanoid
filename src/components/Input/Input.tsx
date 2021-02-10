@@ -4,25 +4,22 @@ import classNames from '@/utils/'
 import { OwnInputProps } from './types'
 import './Input.scss'
 
-const renderLabel = (label: string | undefined, id: string | undefined) => {
-  if (label) {
-    return (
-      <Form.Item label={label} className="label-input-component" htmlFor={id} />
-    )
-  }
-  return null
-}
 const MessageErrorText = {
   required: 'Обязательное поле',
   minLength: 'Нужно больше символов',
 }
 
 const Input: React.FC<OwnInputProps & InputProps> = (props) => {
-  const { className, error, register, label, id, ...prop } = props
+  const { className, error, register, label, id, value, ...prop } = props
   const message = error ? MessageErrorText[error] : null
   return (
     <div className={classNames(className, 'wrapper-input-component')}>
-      {renderLabel(label, id)}
+      <Form.Item
+        label={label}
+        className="label-input-component"
+        htmlFor={id}
+        initialValue={value}
+      />
       <InputAnt
         className={classNames('input-component', {
           'input-component-error': !!error,
