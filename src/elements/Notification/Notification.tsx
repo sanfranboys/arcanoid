@@ -2,7 +2,7 @@ import { notification } from 'antd'
 import { NotificationProps } from './types'
 import 'antd/lib/notification/style/css'
 
-export const NotificationWindow = ({
+const NotificationWindow = ({
   type = 'warning',
   description,
 }: NotificationProps) => {
@@ -28,3 +28,5 @@ export const NotificationWindow = ({
     onClose: () => notification.destroy(),
   })
 }
+
+export default NotificationWindow

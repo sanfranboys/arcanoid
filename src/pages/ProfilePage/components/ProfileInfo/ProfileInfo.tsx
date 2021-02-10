@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Space, Avatar, Centered, Button } from '@/elements/'
 import { Description } from '@/components/'
-import { AuthServices } from '../../../../services'
+import { AuthServices } from '@/services/'
 import { ProfileTypes } from '../../types'
 
 const ProfileInfo = () => {
@@ -13,9 +13,11 @@ const ProfileInfo = () => {
     phone: '',
     second_name: '',
   })
+
   useEffect(() => {
-    AuthServices.getUserInfo().then((res) => setUserData(res))
+    AuthServices.getUserInfo().then((data: ProfileTypes) => setUserData(data))
   }, [])
+
   const {
     display_name,
     email,
@@ -24,12 +26,12 @@ const ProfileInfo = () => {
     phone,
     second_name,
   } = userData
+
   return (
     <Space size="large" direction="vertical" full>
       <Centered>
         <Avatar size={150} src="/assets/images/avatar.png" />
       </Centered>
-
       <Description title="Имя:">{first_name}</Description>
       <Description title="Фамилия:">{second_name}</Description>
       <Description title="Никнейм:">{display_name}</Description>
@@ -40,4 +42,5 @@ const ProfileInfo = () => {
     </Space>
   )
 }
+
 export default ProfileInfo

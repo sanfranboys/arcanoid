@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosError, AxiosResponse } from 'axios';
 
 export class ApiServices {
   baseUrl: string
@@ -26,11 +26,11 @@ export class ApiServices {
 }
 
 axios.interceptors.response.use(
-  (response)=>response,
-  (error)=>{
+  (response:AxiosResponse<any>)=>response,
+  (error:AxiosError)=>{
     if(window.location.pathname !== '/auth'
     && error.request.status === 401){
         window.location.href = '/auth'
     }
     return error.request
-})
+});

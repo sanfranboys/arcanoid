@@ -1,6 +1,6 @@
 import { NotificationWindow } from "@/elements/";
-import { AuthFormData } from "../../pages/AuthPage/types";
-import { RegistrationFormData } from "../../pages/RegistrationPage/types";
+import { AuthFormData } from "pages/AuthPage/types";
+import { RegistrationFormData } from "pages/RegistrationPage/types";
 import { ApiServices } from "../Api";
 
 export class Auth {
@@ -9,6 +9,7 @@ export class Auth {
     this.APIService = APIService
 
   }
+
   signIn(data:AuthFormData){
     return this.APIService.post('/auth/signin',data)
     .then((res)=>{
@@ -44,7 +45,7 @@ export class Auth {
   }
 
   getUserInfo(){
-    return this.APIService.get('/auth/user').then(res=>{
+    return this.APIService.get('/auth/user').then((res)=>{
       if(res.status >= 200 && res.status < 299){
         return res.data
       }

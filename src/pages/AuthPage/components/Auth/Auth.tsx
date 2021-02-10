@@ -15,6 +15,7 @@ import { AuthFormData, AuthFormDataKey } from '../../types'
 
 const Auth: FC = () => {
   const { handleSubmit, errors, register, setValue } = useForm<AuthFormData>()
+
   const onSubmit = (data: AuthFormData) => AuthServices.signIn(data)
 
   const handleChange = useCallback(
@@ -30,6 +31,7 @@ const Auth: FC = () => {
       register({ name: fieldName }, { required: true, minLength: 3 }),
     [register]
   )
+
   return (
     <ContentBox>
       <Row gutter={[0, 10]}>

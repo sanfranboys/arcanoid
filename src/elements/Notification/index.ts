@@ -1,1 +1,1 @@
-export  {NotificationWindow} from './Notification'
+export  {default} from './Notification'

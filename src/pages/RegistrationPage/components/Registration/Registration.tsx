@@ -36,6 +36,7 @@ const Registration: FC = () => {
       register({ name: fieldName }, { required: true, minLength: 3 }),
     [register]
   )
+
   return (
     <ContentBox>
       <Row gutter={[0, 10]}>
