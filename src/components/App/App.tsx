@@ -9,6 +9,8 @@ import {
   ProfilePage,
   RegistrationPage,
   GamePage,
+  TopicPage,
+  DiscussionPage,
 } from '@/pages/'
 import { Nav } from '@/components/'
 
