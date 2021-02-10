@@ -1,6 +1,6 @@
 import React from 'react'
 import { Input as InputAnt, InputProps, Form } from 'antd'
-import classNames from '../../utils'
+import classNames from '@/utils/'
 import { OwnInputProps } from './types'
 import './Input.scss'
 

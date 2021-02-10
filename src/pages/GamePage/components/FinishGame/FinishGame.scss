@@ -1,0 +1,13 @@
+.finish-game {
+  text-align: center;
+
+  &__title {
+    color: var(--lightBg);
+    font-size: 30px;
+  }
+
+  &__score {
+    font-size: 40px;
+    margin: 0 0 10px;
+  }
+}
