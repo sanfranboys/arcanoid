@@ -6,3 +6,5 @@ export type RegistrationFormData = {
   password: string,
   phone: string
 }
+
+export type RegistrationFormDataKey = keyof RegistrationFormData

@@ -13,7 +13,7 @@
 # Использование
 Локальный запуск
 ```shell script
-npm run start
+npm run dev
 ```
 
 Сборка

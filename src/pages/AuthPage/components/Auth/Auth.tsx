@@ -1,14 +1,35 @@
-import React, { FC } from 'react'
+import React, { ChangeEvent, FC, useCallback } from 'react'
 import { Form } from 'antd'
 import { useForm } from 'react-hook-form'
-import { ContentBox, Button, LinkElement, Row, Col } from '@/elements/'
+import {
+  ContentBox,
+  Button,
+  LinkElement,
+  Row,
+  Col,
+  Centered,
+} from '@/elements/'
 import { Input } from '@/components/'
 import { AuthServices } from '@/services/'
-import { AuthFormData } from '../../types'
+import { AuthFormData, AuthFormDataKey } from '../../types'
 
 const Auth: FC = () => {
   const { handleSubmit, errors, register, setValue } = useForm<AuthFormData>()
   const onSubmit = (data: AuthFormData) => AuthServices.signIn(data)
+
+  const handleChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      const { name, value } = e.currentTarget
+      setValue(name as AuthFormDataKey, value)
+    },
+    [setValue]
+  )
+
+  const getRegister = useCallback(
+    (fieldName: AuthFormDataKey) =>
+      register({ name: fieldName }, { required: true, minLength: 3 }),
+    [register]
+  )
   return (
     <ContentBox>
       <Row gutter={[0, 10]}>
@@ -20,14 +41,9 @@ const Auth: FC = () => {
                   label="Имя"
                   name="login"
                   id="login"
-                  onChange={({ target }: InputEvent) =>
-                    setValue('login', (target as HTMLInputElement)?.value)
-                  }
-                  register={register(
-                    { name: 'login' },
-                    { required: true, minLength: 3 }
-                  )}
-                  error={!!errors.login}
+                  onChange={handleChange}
+                  register={getRegister('login')}
+                  error={errors.login?.type}
                 />
               </Col>
               <Col span={24}>
@@ -35,14 +51,10 @@ const Auth: FC = () => {
                   label="Пароль"
                   name="password"
                   id="password"
-                  onChange={({ target }: InputEvent) =>
-                    setValue('password', (target as HTMLInputElement)?.value)
-                  }
-                  register={register(
-                    { name: 'password' },
-                    { required: true, minLength: 3 }
-                  )}
-                  error={!!errors.password}
+                  type="password"
+                  onChange={handleChange}
+                  register={getRegister('password')}
+                  error={errors.password?.type}
                 />
               </Col>
               <Col span={24}>
@@ -54,7 +66,9 @@ const Auth: FC = () => {
           </Form>
         </Col>
         <Col span={24}>
-          <LinkElement link="/registration">Нет аккаунта?</LinkElement>
+          <Centered>
+            <LinkElement link="/registration">Нет аккаунта?</LinkElement>
+          </Centered>
         </Col>
       </Row>
     </ContentBox>

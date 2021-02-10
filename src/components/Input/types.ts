@@ -1,5 +1,5 @@
 export type OwnInputProps = {
-  error?: boolean
+  error?: 'required'|'minLength'
   register?: any
   label?:string
 }

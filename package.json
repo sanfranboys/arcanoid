@@ -4,7 +4,7 @@
   "description": "just simple arcanoid on canvas api with React frontend",
   "main": "index.js",
   "scripts": {
-    "start": "webpack serve --mode development --open --hot ",
+    "dev": "webpack serve --mode development --open --hot ",
     "build": "webpack --mode production",
     "lint": "eslint --ext .js,.ts,.tsx src/"
   },
@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/sanfranboys/arcanoid#readme",
   "devDependencies": {
+    "@sentry/types": "6.1.0",
     "@types/react": "17.0.0",
     "@types/react-dom": "17.0.0",
     "@types/react-router-dom": "5.1.7",
@@ -55,8 +56,11 @@
     "webpack-dev-server": "3.11.2"
   },
   "dependencies": {
+    "@sentry/react": "6.1.0",
+    "@sentry/tracing": "6.1.0",
     "antd": "4.12.1",
     "axios": "0.21.1",
+    "express": "4.17.1",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-hook-form": "6.15.1",

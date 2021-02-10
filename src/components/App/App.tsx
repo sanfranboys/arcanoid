@@ -8,6 +8,9 @@ import {
   LeaderBordPage,
   ProfilePage,
   RegistrationPage,
+  GamePage,
+  TopicPage,
+  DiscussionPage,
 } from '@/pages/'
 import { Nav } from '@/components/'
 
@@ -25,14 +28,23 @@ const App: FC = () => (
             {/* Пока просто редирект без условия */}
             <Redirect to="/auth" />
           </Route>
+          <Route path="/game">
+            <GamePage />
+          </Route>
           <Route path="/leaderboard">
             <LeaderBordPage />
           </Route>
           <Route path="/profile">
             <ProfilePage />
           </Route>
-          <Route path="/forum">
+          <Route path="/forum" exact>
             <ForumPage />
+          </Route>
+          <Route path="/forum/:forumId" exact>
+            <TopicPage />
+          </Route>
+          <Route path="/forum/:forumId/:topicId" exact>
+            <DiscussionPage />
           </Route>
           <Route path="/auth">
             <AuthPage />

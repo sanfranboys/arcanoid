@@ -1,13 +1,16 @@
 import React, { FC } from 'react'
+import classNames from '@/utils/'
 import { PanelProps } from './types'
-import classNames from '../../utils'
 
 import './Panel.scss'
 
 const Panel: FC<PanelProps> = (props) => {
-  const { children, head, center } = props
+  const { children, head, center, hoverable } = props
   const bodyClassName = classNames('panel__body', { panel_center: center })
-  const panelClassName = classNames('panel', { 'panel_with-head': !!head })
+  const panelClassName = classNames('panel', {
+    'panel_with-head': !!head,
+    panel_hoverable: !!hoverable,
+  })
 
   return (
     <div className={panelClassName}>
