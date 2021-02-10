@@ -1,6 +1,21 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { App } from '@/components/'
+import * as Sentry from '@sentry/react'
+import { Integrations } from '@sentry/tracing'
+import { App, ErrorBoundary } from '@/components/'
+
 import './styles/main.scss'
 
-ReactDOM.render(<App />, document.getElementById('root'))
+Sentry.init({
+  dsn:
+    'https://31b183368c0547f3928e5a8893d45e8b@o518053.ingest.sentry.io/5626520',
+  integrations: [new Integrations.BrowserTracing()],
+  tracesSampleRate: 1.0,
+})
+
+ReactDOM.render(
+  <ErrorBoundary>
+    <App />
+  </ErrorBoundary>,
+  document.getElementById('root')
+)
