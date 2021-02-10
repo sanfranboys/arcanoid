@@ -44,7 +44,7 @@ const ProfileEditForm = () => {
               id="first_name"
               onChange={handleChange}
               register={getRegister('first_name')}
-              error={!!errors.first_name}
+              error={errors.first_name?.type}
             />
           </Col>
 
@@ -55,7 +55,7 @@ const ProfileEditForm = () => {
               id="second_name"
               onChange={handleChange}
               register={getRegister('second_name')}
-              error={!!errors.second_name}
+              error={errors.second_name?.type}
             />
           </Col>
 
@@ -66,7 +66,7 @@ const ProfileEditForm = () => {
               id="login"
               onChange={handleChange}
               register={getRegister('login')}
-              error={!!errors.login}
+              error={errors.login?.type}
             />
           </Col>
 
@@ -77,7 +77,7 @@ const ProfileEditForm = () => {
               id="email"
               onChange={handleChange}
               register={getRegister('email')}
-              error={!!errors.email}
+              error={errors.email?.type}
             />
           </Col>
 
@@ -88,7 +88,7 @@ const ProfileEditForm = () => {
               id="password"
               onChange={handleChange}
               register={getRegister('password')}
-              error={!!errors.password}
+              error={errors.password?.type}
             />
           </Col>
 
@@ -99,7 +99,7 @@ const ProfileEditForm = () => {
               id="new_password"
               onChange={handleChange}
               register={getRegister('new_password')}
-              error={!!errors.password}
+              error={errors.password?.type}
             />
           </Col>
 
@@ -110,7 +110,7 @@ const ProfileEditForm = () => {
               id="phone"
               onChange={handleChange}
               register={getRegister('phone')}
-              error={!!errors.phone}
+              error={errors.phone?.type}
             />
           </Col>
 

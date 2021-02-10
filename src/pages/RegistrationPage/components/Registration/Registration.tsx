@@ -1,9 +1,9 @@
-import React, { FC } from 'react'
+import React, { ChangeEvent, FC, useCallback } from 'react'
 import { Form } from 'antd'
 import { useForm } from 'react-hook-form'
 import { Button, ContentBox, LinkElement, Row, Col } from '@/elements/'
 import { Input } from '@/components/'
-import { RegistrationFormData } from '../../types'
+import { RegistrationFormData, RegistrationFormDataKey } from '../../types'
 
 const Registration: FC = () => {
   const {
@@ -14,6 +14,20 @@ const Registration: FC = () => {
   } = useForm<RegistrationFormData>()
 
   const onSubmit = (data: FormData) => console.log(data)
+
+  const handleChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      const { name, value } = e.currentTarget
+      setValue(name as RegistrationFormDataKey, value)
+    },
+    [setValue]
+  )
+
+  const getRegister = useCallback(
+    (fieldName: RegistrationFormDataKey) =>
+      register({ name: fieldName }, { required: true, minLength: 3 }),
+    [register]
+  )
   return (
     <ContentBox>
       <Row gutter={[0, 10]}>
@@ -25,15 +39,9 @@ const Registration: FC = () => {
                   label="Имя"
                   name="first_name"
                   id="first_name"
-                  className="registration__container-input"
-                  onChange={({ target }: InputEvent) =>
-                    setValue('first_name', (target as HTMLInputElement)?.value)
-                  }
-                  register={register(
-                    { name: 'first_name' },
-                    { required: true, minLength: 3 }
-                  )}
-                  error={!!errors.first_name}
+                  onChange={handleChange}
+                  register={getRegister('first_name')}
+                  error={errors.first_name?.type}
                 />
               </Col>
               <Col span={24}>
@@ -41,15 +49,9 @@ const Registration: FC = () => {
                   label="Фамилия"
                   name="second_name"
                   id="second_name"
-                  className="registration__container-input"
-                  onChange={({ target }: InputEvent) =>
-                    setValue('second_name', (target as HTMLInputElement)?.value)
-                  }
-                  register={register(
-                    { name: 'second_name' },
-                    { required: true, minLength: 3 }
-                  )}
-                  error={!!errors.second_name}
+                  onChange={handleChange}
+                  register={getRegister('second_name')}
+                  error={errors.second_name?.type}
                 />
               </Col>
               <Col span={24}>
@@ -57,15 +59,9 @@ const Registration: FC = () => {
                   label="Логин"
                   name="login"
                   id="login"
-                  className="registration__container-input"
-                  onChange={({ target }: InputEvent) =>
-                    setValue('login', (target as HTMLInputElement)?.value)
-                  }
-                  register={register(
-                    { name: 'login' },
-                    { required: true, minLength: 3 }
-                  )}
-                  error={!!errors.login}
+                  onChange={handleChange}
+                  register={getRegister('login')}
+                  error={errors.login?.type}
                 />
               </Col>
               <Col span={24}>
@@ -73,15 +69,9 @@ const Registration: FC = () => {
                   label="Почта"
                   name="email"
                   id="email"
-                  className="registration__container-input"
-                  onChange={({ target }: InputEvent) =>
-                    setValue('email', (target as HTMLInputElement)?.value)
-                  }
-                  register={register(
-                    { name: 'email' },
-                    { required: true, minLength: 3 }
-                  )}
-                  error={!!errors.email}
+                  onChange={handleChange}
+                  register={getRegister('email')}
+                  error={errors.email?.type}
                 />
               </Col>
               <Col span={24}>
@@ -89,15 +79,9 @@ const Registration: FC = () => {
                   label="Пароль"
                   name="password"
                   id="password"
-                  className="registration__container-input"
-                  onChange={({ target }: InputEvent) =>
-                    setValue('password', (target as HTMLInputElement)?.value)
-                  }
-                  register={register(
-                    { name: 'password' },
-                    { required: true, minLength: 3 }
-                  )}
-                  error={!!errors.password}
+                  onChange={handleChange}
+                  register={getRegister('password')}
+                  error={errors.password?.type}
                 />
               </Col>
               <Col span={24}>
@@ -105,15 +89,9 @@ const Registration: FC = () => {
                   label="Телефон"
                   name="phone"
                   id="phone"
-                  className="registration__container-input"
-                  onChange={({ target }: InputEvent) =>
-                    setValue('phone', (target as HTMLInputElement)?.value)
-                  }
-                  register={register(
-                    { name: 'phone' },
-                    { required: true, minLength: 3 }
-                  )}
-                  error={!!errors.phone}
+                  onChange={handleChange}
+                  register={getRegister('phone')}
+                  error={errors.phone?.type}
                 />
               </Col>
               <Col span={24}>
