@@ -10,6 +10,7 @@ import {
   Centered,
 } from '@/elements/'
 import { Input } from '@/components/'
+import { AuthServices } from '@/services/'
 import { RegistrationFormData, RegistrationFormDataKey } from '../../types'
 
 const Registration: FC = () => {
@@ -20,7 +21,7 @@ const Registration: FC = () => {
     setValue,
   } = useForm<RegistrationFormData>()
 
-  const onSubmit = (data: FormData) => console.log(data)
+  const onSubmit = (data: RegistrationFormData) => AuthServices.signUp(data)
 
   const handleChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
@@ -35,6 +36,7 @@ const Registration: FC = () => {
       register({ name: fieldName }, { required: true, minLength: 3 }),
     [register]
   )
+
   return (
     <ContentBox>
       <Row gutter={[0, 10]}>

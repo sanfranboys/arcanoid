@@ -10,11 +10,13 @@ import {
   Centered,
 } from '@/elements/'
 import { Input } from '@/components/'
+import { AuthServices } from '@/services/'
 import { AuthFormData, AuthFormDataKey } from '../../types'
 
 const Auth: FC = () => {
   const { handleSubmit, errors, register, setValue } = useForm<AuthFormData>()
-  const onSubmit = (data: FormData) => console.log(data)
+
+  const onSubmit = (data: AuthFormData) => AuthServices.signIn(data)
 
   const handleChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
@@ -29,6 +31,7 @@ const Auth: FC = () => {
       register({ name: fieldName }, { required: true, minLength: 3 }),
     [register]
   )
+
   return (
     <ContentBox>
       <Row gutter={[0, 10]}>
@@ -66,7 +69,7 @@ const Auth: FC = () => {
         </Col>
         <Col span={24}>
           <Centered>
-            <LinkElement link="/reg">Нет аккаунта?</LinkElement>
+            <LinkElement link="/registration">Нет аккаунта?</LinkElement>
           </Centered>
         </Col>
       </Row>

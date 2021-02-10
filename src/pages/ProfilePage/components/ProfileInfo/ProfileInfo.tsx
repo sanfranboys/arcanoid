@@ -1,20 +1,46 @@
-import React from 'react'
-import { Space, Avatar, Centered } from '@/elements/'
+import React, { useEffect, useState } from 'react'
+import { Space, Avatar, Centered, Button } from '@/elements/'
 import { Description } from '@/components/'
+import { AuthServices } from '@/services/'
+import { ProfileTypes } from '../../types'
 
-const ProfileInfo = () => (
-  <Space size="large" direction="vertical" full>
-    <Centered>
-      <Avatar size={150} src="/assets/images/avatar.png" />
-    </Centered>
+const ProfileInfo = () => {
+  const [userData, setUserData] = useState<ProfileTypes>({
+    display_name: '',
+    email: '',
+    first_name: '',
+    login: '',
+    phone: '',
+    second_name: '',
+  })
 
-    <Description title="Имя:">Алексей</Description>
-    <Description title="Фамилия:">Андриенко</Description>
-    <Description title="Логин:">C@rabasBaraba$</Description>
-    <Description title="Email:">andrienko_av@gmail.com</Description>
-    <Description title="Пароль:">*******</Description>
-    <Description title="Телефон:">+9 970 976 55 44</Description>
-  </Space>
-)
+  useEffect(() => {
+    AuthServices.getUserInfo().then((data: ProfileTypes) => setUserData(data))
+  }, [])
+
+  const {
+    display_name,
+    email,
+    first_name,
+    login,
+    phone,
+    second_name,
+  } = userData
+
+  return (
+    <Space size="large" direction="vertical" full>
+      <Centered>
+        <Avatar size={150} src="/assets/images/avatar.png" />
+      </Centered>
+      <Description title="Имя:">{first_name}</Description>
+      <Description title="Фамилия:">{second_name}</Description>
+      <Description title="Никнейм:">{display_name}</Description>
+      <Description title="Email:">{email}</Description>
+      <Description title="Телефон:">{phone}</Description>
+      <Description title="Логин:">{login}</Description>
+      <Button onClick={() => AuthServices.logOut()}>Выйти</Button>
+    </Space>
+  )
+}
 
 export default ProfileInfo
