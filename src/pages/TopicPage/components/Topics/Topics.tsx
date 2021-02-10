@@ -1,7 +1,8 @@
 import React, { useCallback, useMemo, useState, ChangeEvent } from 'react'
 import { useHistory, useRouteMatch } from 'react-router-dom'
-import { Row, Col, Space, Panel, Button } from '@/elements/'
+import { Row, Col, Space, Button } from '@/elements/'
 import { Description, Input } from '@/components/'
+import Topic from '../Topic'
 
 import { mock } from './mock'
 
@@ -22,37 +23,27 @@ const Topics = () => {
     [history, url]
   )
 
-  const addTopic = () => {
+  const addTopic = useCallback(() => {
     setTopics((oldTopics) => {
       const topics = [...oldTopics]
 
       topics.push({
         id: topics.length + 1,
         name: topic,
+        answersCount: topics.length * 44,
       })
 
       return topics
     })
 
     setTopic('')
-  }
+  }, [topic])
 
   const topicList = useMemo(
     () =>
-      topics.map((forum, idx) => {
-        const { id, name } = forum
-
-        return (
-          <Row gutter={[16, 16]} key={id}>
-            <Col span={22} onClick={goToDiscussion(id)}>
-              <Panel hoverable>{name}</Panel>
-            </Col>
-
-            <Col span={2}>
-              <Panel center>{(idx + 1) * 47}</Panel>
-            </Col>
-          </Row>
-        )
+      topics.map((topic) => {
+        const { id } = topic
+        return <Topic key={id} topic={topic} onClick={goToDiscussion(id)} />
       }),
     [goToDiscussion, topics]
   )
