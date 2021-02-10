@@ -10,20 +10,16 @@ const MessageErrorText = {
 }
 
 const Input: React.FC<OwnInputProps & InputProps> = (props) => {
-  const { className, error, register, label, id, value, ...prop } = props
+  const { className, error, register, label, id, defaultValue, ...prop } = props
   const message = error ? MessageErrorText[error] : null
   return (
     <div className={classNames(className, 'wrapper-input-component')}>
-      <Form.Item
-        label={label}
-        className="label-input-component"
-        htmlFor={id}
-        initialValue={value}
-      />
+      <Form.Item label={label} className="label-input-component" htmlFor={id} />
       <InputAnt
         className={classNames('input-component', {
           'input-component-error': !!error,
         })}
+        defaultValue={defaultValue}
         id={id}
         ref={register}
         {...prop}
