@@ -12,21 +12,26 @@ const renderLabel = (label: string | undefined, id: string | undefined) => {
   }
   return null
 }
+const MessageErrorText = {
+  required: 'Обязательное поле',
+  minLength: 'Нужно больше символов',
+}
 
 const Input: React.FC<OwnInputProps & InputProps> = (props) => {
   const { className, error, register, label, id, ...prop } = props
+  const message = error ? MessageErrorText[error] : null
   return (
     <div className={classNames(className, 'wrapper-input-component')}>
       {renderLabel(label, id)}
       <InputAnt
         className={classNames('input-component', {
-          'input-component-error': error,
+          'input-component-error': !!error,
         })}
         id={id}
         ref={register}
         {...prop}
       />
-      {error && <div className="validation-input-error">Обязательное поле</div>}
+      {error && <div className="validation-input-error">{message}</div>}
     </div>
   )
 }
