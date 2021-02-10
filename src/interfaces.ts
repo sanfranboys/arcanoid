@@ -1,4 +1,4 @@
-export type SimpleLink = {
+export interface SimpleLink {
   label: string
   href: string
 }

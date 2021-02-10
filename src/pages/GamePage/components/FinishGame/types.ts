@@ -1,4 +1,4 @@
-import { SimpleLink } from '../../../../interfaces'
+import { SimpleLink } from 'interfaces'
 
 export type FinishGameDataProps = {
   description: string

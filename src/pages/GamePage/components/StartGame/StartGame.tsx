@@ -24,9 +24,8 @@ const StartGame = () => {
     setValue,
   } = useForm<StartGameFormData>()
 
-  const onSubmit = (data: FormData) => {
+  const onSubmit = () => {
     history.push('/game/proccess')
-    console.log(data)
   }
 
   const handleChange = useCallback(

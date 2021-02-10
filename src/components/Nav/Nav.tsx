@@ -21,7 +21,7 @@ const Nav: FC = () => (
       </li>
       <li className="nav__item">
         <NavLink className="nav__link" to="/leaderboard">
-          <span>Доска лидеров</span>
+          <span>Лидеры</span>
         </NavLink>
       </li>
       <li className="nav__item">

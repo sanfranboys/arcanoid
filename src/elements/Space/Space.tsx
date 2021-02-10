@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { Space as AntdSpace } from 'antd'
+import classNames from '@/utils/'
 import { SpaceProps } from './types'
-import classNames from '../../utils'
 
 import 'antd/lib/space/style/css'
 

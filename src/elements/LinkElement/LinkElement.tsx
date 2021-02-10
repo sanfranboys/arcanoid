@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { Link } from 'react-router-dom'
+import classNames from '@/utils/'
 import { LinkElementTypes } from './types'
-import classNames from '../../utils'
 import './LinkElement.scss'
 
 const LinkElement: FC<LinkElementTypes> = ({ className, link, children }) => (

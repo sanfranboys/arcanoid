@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
+import classNames from '@/utils/'
 import { PanelProps } from './types'
-import classNames from '../../utils'
 
 import './Panel.scss'
 
