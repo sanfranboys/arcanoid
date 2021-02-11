@@ -58,7 +58,7 @@ const StartGame = () => {
                 id="nickname"
                 onChange={handleChange}
                 register={register({ name: 'nickname' }, { required: true })}
-                error={!!errors.nickname}
+                error={errors.nickname?.type}
               />
             </Col>
             <Col span={24}>
