@@ -1,3 +1,6 @@
+import { RcFile } from 'antd/lib/upload';
+// import { UploadChangeParam } from "antd/lib/upload"
+
 export type ProfileTypes = {
     display_name:string,
     email:string,
@@ -11,6 +14,7 @@ export type ProfileTypes = {
 
 type ChangeDataUser = {
   onSubmit:(data:ProfileTypes)=>void
+  changeAvatar:(file:RcFile) => void
 }
 
 export type ProfileFormDataKey = keyof ProfileTypes

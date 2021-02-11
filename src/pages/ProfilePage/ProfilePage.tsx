@@ -2,9 +2,9 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { Row, Col, Space, StringButton } from '@/elements/'
 import { AuthServices, UserServices } from '@/services/'
 import { Page } from '@/pages/'
+import { RcFile } from 'antd/lib/upload'
 import ProfileInfo from './components/ProfileInfo'
 import ProfileEditForm from './components/ProfileEditForm/ProfileEditForm'
-
 import { ProfileTypes } from './types'
 
 enum ProfilePageMode {
@@ -35,11 +35,19 @@ const ProfilePage = () => {
     setIsEditMode((editMode) => !editMode)
   }, [])
 
-  const onSubmit = (data: ProfileTypes) => {
+  const onSubmit = useCallback((data: ProfileTypes) => {
     UserServices.changeUserProfile(data).then((data: ProfileTypes) =>
       setUserData(data)
     )
-  }
+  }, [])
+
+  const handleChangeAvatar = useCallback((file: RcFile) => {
+    const data = new FormData()
+    data.append('avatar', file)
+    UserServices.changeUserAvatar(data).then((data: ProfileTypes) =>
+      setUserData(data)
+    )
+  }, [])
 
   return (
     <Page title="Профиль">
@@ -51,7 +59,11 @@ const ProfilePage = () => {
             </StringButton>
           </Space>
           {isEditMode ? (
-            <ProfileEditForm {...userData} onSubmit={onSubmit} />
+            <ProfileEditForm
+              {...userData}
+              changeAvatar={handleChangeAvatar}
+              onSubmit={onSubmit}
+            />
           ) : (
             <ProfileInfo {...userData} />
           )}

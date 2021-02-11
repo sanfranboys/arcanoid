@@ -1,18 +1,7 @@
-import React, { ChangeEvent, FC, useCallback, useState } from 'react'
+import React, { ChangeEvent, FC, useCallback } from 'react'
 import { useForm } from 'react-hook-form'
 import { Form } from 'antd'
-import {
-  Row,
-  Col,
-  Button,
-  Avatar,
-  Centered,
-  Space,
-  Modal,
-  Upload,
-  NotificationWindow,
-} from '@/elements/'
-import { UserServices } from '@/services/'
+import { Row, Col, Button, Avatar, Centered, Space, Upload } from '@/elements/'
 import { Input } from '@/components/'
 import {
   ProfileFormDataKey,
@@ -20,12 +9,14 @@ import {
   ProfileTypes,
 } from '../../types'
 
-const ProfileEditForm: FC<ChangeProfileTypes> = ({ onSubmit, ...props }) => {
+const ProfileEditForm: FC<ChangeProfileTypes> = ({
+  onSubmit,
+  changeAvatar,
+  ...props
+}) => {
   const { handleSubmit, errors, register, setValue } = useForm<ProfileTypes>({
     defaultValues: props,
   })
-  const [modalOpen, setModalOpen] = useState<boolean>(false)
-  const [avatarData, setAvatarData] = useState<null | {}>(null)
 
   const handleChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
@@ -41,22 +32,6 @@ const ProfileEditForm: FC<ChangeProfileTypes> = ({ onSubmit, ...props }) => {
     [register]
   )
 
-  const changeAvatar = () => {
-    if (avatarData) {
-      setModalOpen(false)
-      return UserServices.changeUserAvatar(avatarData)
-    }
-    return NotificationWindow({ description: 'Загрузити фотографию' })
-  }
-
-  const onChange = ({ file }: any) => {
-    if (file.status !== 'uploading') {
-      const data = new FormData()
-      data.append('avatar', file.originFileObj)
-      setAvatarData(data)
-    }
-  }
-
   const {
     first_name,
     second_name,
@@ -69,18 +44,10 @@ const ProfileEditForm: FC<ChangeProfileTypes> = ({ onSubmit, ...props }) => {
 
   return (
     <Space size="large" direction="vertical" full>
-      <Modal
-        title="Аатар"
-        onOk={changeAvatar}
-        onCancel={() => setModalOpen(false)}
-        visible={modalOpen}
-      >
-        <Upload onChange={onChange} onlistType="picture">
-          <Button>Загрузить</Button>
-        </Upload>
-      </Modal>
       <Centered>
-        <Avatar size={150} src={avatar} onClick={() => setModalOpen(true)} />
+        <Upload action={changeAvatar} showUploadList={false}>
+          <Avatar size={150} src={avatar} />
+        </Upload>
       </Centered>
       <Form onFinish={handleSubmit(onSubmit)}>
         <Row gutter={[0, 24]}>
