@@ -22,6 +22,7 @@ const ProfilePage = () => {
     email: '',
     display_name: '',
     phone: '',
+    avatar: null,
   })
 
   useEffect(() => {

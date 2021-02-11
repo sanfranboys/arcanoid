@@ -5,7 +5,9 @@ export type ProfileTypes = {
     login:string,
     phone:string,
     second_name:string,
+    avatar:null | string,
 }
+
 
 type ChangeDataUser = {
   onSubmit:(data:ProfileTypes)=>void

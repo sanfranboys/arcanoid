@@ -1,7 +1,17 @@
-import React, { ChangeEvent, FC, useCallback } from 'react'
+import React, { ChangeEvent, FC, useCallback, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Form } from 'antd'
-import { Row, Col, Button, Avatar, Centered, Space } from '@/elements/'
+import {
+  Row,
+  Col,
+  Button,
+  Avatar,
+  Centered,
+  Space,
+  Modal,
+  Upload,
+} from '@/elements/'
+import { UserServices } from '@/services/'
 import { Input } from '@/components/'
 import {
   ProfileFormDataKey,
@@ -13,6 +23,8 @@ const ProfileEditForm: FC<ChangeProfileTypes> = ({ onSubmit, ...props }) => {
   const { handleSubmit, errors, register, setValue } = useForm<ProfileTypes>({
     defaultValues: props,
   })
+  const [modalOpen, setModalOpen] = useState<boolean>(false)
+  // const [avatarData, setAvatarData] = useState<null | {}>(null)
 
   const handleChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
@@ -27,11 +39,48 @@ const ProfileEditForm: FC<ChangeProfileTypes> = ({ onSubmit, ...props }) => {
       register({ name: fieldName }, { required: true, minLength: 3 }),
     [register]
   )
-  const { first_name, second_name, email, display_name, phone, login } = props
+
+  const changeAvatar = (file: any) => {
+    // setModalOpen(false)
+    console.log(file)
+
+    const data = new FormData()
+    data.append('avatar', file)
+    return UserServices.changeUserAvatar(data)
+  }
+
+  const onChange = ({ file }: any) => {
+    if (file.status !== 'uploading') {
+      const data = new FormData()
+      data.append('avatar', file)
+      console.log()
+    }
+  }
+
+  const {
+    first_name,
+    second_name,
+    email,
+    display_name,
+    phone,
+    login,
+    avatar,
+  } = props
+
   return (
     <Space size="large" direction="vertical" full>
+      <Modal
+        title="Аатар"
+        onOk={changeAvatar}
+        onCancel={() => setModalOpen(false)}
+        visible={modalOpen}
+      >
+        <Upload action={changeAvatar} onChange={onChange} onlistType="picture">
+          <Button>Загрузить</Button>
+        </Upload>
+      </Modal>
       <Centered>
-        <Avatar size={150} src="/assets/images/avatar.png" />
+        <Avatar size={150} src={avatar} onClick={() => setModalOpen(true)} />
       </Centered>
       <Form onFinish={handleSubmit(onSubmit)}>
         <Row gutter={[0, 24]}>

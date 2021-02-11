@@ -19,4 +19,14 @@ export class User {
     })
   }
 
+  changeUserAvatar(data: {}){
+    return this.APIService.put('/user/profile/avatar',data).then(res=>{
+      if(res.status >= 200 && res.status < 299){
+        NotificationWindow({description:'Аватар успешно изменены',type:'success'})
+        return res.data
+      }
+        NotificationWindow({description:'Неверный формат изображения',type:'error'})
+    })
+  }
+
 }
