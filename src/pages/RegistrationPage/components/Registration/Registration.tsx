@@ -86,6 +86,7 @@ const Registration: FC = () => {
               <Col span={24}>
                 <Input
                   label="Пароль"
+                  type="password"
                   name="password"
                   id="password"
                   onChange={handleChange}
