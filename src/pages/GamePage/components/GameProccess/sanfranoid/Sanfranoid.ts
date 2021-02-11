@@ -73,8 +73,7 @@ class Sanfranoid {
                 b.status = 0
                 score += 1
                 if (score === brickRowCount * brickColumnCount) {
-                  alert('YOU WIN, CONGRATS!')
-                  document.location.reload()
+                  window.location.href = '/game/finish'
                 }
               }
             }
@@ -149,8 +148,7 @@ class Sanfranoid {
           } else {
             lives -= 1
             if (!lives) {
-              alert('GAME OVER')
-              document.location.reload()
+              window.location.href = '/game/finish'
             } else {
               x = canvas.width / 2
               y = canvas.height - 30

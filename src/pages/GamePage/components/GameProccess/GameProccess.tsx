@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react'
-import { Col, Row } from '@/elements/'
+import { Col, Row, Centered } from '@/elements/'
 import { Sanfranoid, Nullable } from './sanfranoid'
 
 import './GameProccess.scss'
@@ -19,12 +19,14 @@ const GameProccess = () => {
   return (
     <Row>
       <Col span={18} offset={3}>
-        <canvas
-          ref={ref}
-          className="game-container"
-          width="1200"
-          height="750"
-        />
+        <Centered>
+          <canvas
+            ref={ref}
+            className="game-container"
+            width="480"
+            height="320"
+          />
+        </Centered>
       </Col>
     </Row>
   )
