@@ -10,6 +10,7 @@ import {
   Space,
   Modal,
   Upload,
+  NotificationWindow,
 } from '@/elements/'
 import { UserServices } from '@/services/'
 import { Input } from '@/components/'
@@ -24,7 +25,7 @@ const ProfileEditForm: FC<ChangeProfileTypes> = ({ onSubmit, ...props }) => {
     defaultValues: props,
   })
   const [modalOpen, setModalOpen] = useState<boolean>(false)
-  // const [avatarData, setAvatarData] = useState<null | {}>(null)
+  const [avatarData, setAvatarData] = useState<null | {}>(null)
 
   const handleChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
@@ -40,20 +41,19 @@ const ProfileEditForm: FC<ChangeProfileTypes> = ({ onSubmit, ...props }) => {
     [register]
   )
 
-  const changeAvatar = (file: any) => {
-    // setModalOpen(false)
-    console.log(file)
-
-    const data = new FormData()
-    data.append('avatar', file)
-    return UserServices.changeUserAvatar(data)
+  const changeAvatar = () => {
+    if (avatarData) {
+      setModalOpen(false)
+      return UserServices.changeUserAvatar(avatarData)
+    }
+    return NotificationWindow({ description: 'Загрузити фотографию' })
   }
 
   const onChange = ({ file }: any) => {
     if (file.status !== 'uploading') {
       const data = new FormData()
-      data.append('avatar', file)
-      console.log()
+      data.append('avatar', file.originFileObj)
+      setAvatarData(data)
     }
   }
 
@@ -75,7 +75,7 @@ const ProfileEditForm: FC<ChangeProfileTypes> = ({ onSubmit, ...props }) => {
         onCancel={() => setModalOpen(false)}
         visible={modalOpen}
       >
-        <Upload action={changeAvatar} onChange={onChange} onlistType="picture">
+        <Upload onChange={onChange} onlistType="picture">
           <Button>Загрузить</Button>
         </Upload>
       </Modal>
