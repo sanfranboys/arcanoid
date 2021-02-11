@@ -1,6 +1,4 @@
-import { RegistrationFormData } from '../RegistrationPage/types'
-
-export type ProfileTypes ={
+export type ProfileTypes = {
     display_name:string,
     email:string,
     first_name:string,
@@ -9,8 +7,10 @@ export type ProfileTypes ={
     second_name:string,
 }
 
-export type ProfileFormData = {
-  new_password: string
-} & RegistrationFormData
+type ChangeDataUser = {
+  onSubmit:(data:ProfileTypes)=>void
+}
 
-export type ProfileFormDataKey = keyof ProfileFormData
+export type ProfileFormDataKey = keyof ProfileTypes
+
+export type ChangeProfileTypes = ProfileTypes & ChangeDataUser

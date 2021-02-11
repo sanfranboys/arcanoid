@@ -1,8 +1,11 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { Row, Col, Space, StringButton } from '@/elements/'
+import { AuthServices, UserServices } from '@/services/'
 import { Page } from '@/pages/'
 import ProfileInfo from './components/ProfileInfo'
 import ProfileEditForm from './components/ProfileEditForm/ProfileEditForm'
+
+import { ProfileTypes } from './types'
 
 enum ProfilePageMode {
   Edit = 'Редактировать',
@@ -12,9 +15,30 @@ enum ProfilePageMode {
 const ProfilePage = () => {
   const [isEditMode, setIsEditMode] = useState(false)
 
+  const [userData, setUserData] = useState<ProfileTypes>({
+    first_name: '',
+    second_name: '',
+    login: '',
+    email: '',
+    display_name: '',
+    phone: '',
+  })
+
+  useEffect(() => {
+    AuthServices.getUserInfo().then((data: ProfileTypes) => {
+      setUserData(data)
+    })
+  }, [])
+
   const toggleProfilePageMode = useCallback(() => {
     setIsEditMode((editMode) => !editMode)
   }, [])
+
+  const onSubmit = (data: ProfileTypes) => {
+    UserServices.changeUserProfile(data).then((data: ProfileTypes) =>
+      setUserData(data)
+    )
+  }
 
   return (
     <Page title="Профиль">
@@ -25,8 +49,11 @@ const ProfilePage = () => {
               {isEditMode ? ProfilePageMode.Info : ProfilePageMode.Edit}
             </StringButton>
           </Space>
-
-          {isEditMode ? <ProfileEditForm /> : <ProfileInfo />}
+          {isEditMode ? (
+            <ProfileEditForm {...userData} onSubmit={onSubmit} />
+          ) : (
+            <ProfileInfo {...userData} />
+          )}
         </Col>
       </Row>
     </Page>

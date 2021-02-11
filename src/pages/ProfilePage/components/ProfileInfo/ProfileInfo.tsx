@@ -1,31 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { FC } from 'react'
 import { Space, Avatar, Centered, Button } from '@/elements/'
 import { Description } from '@/components/'
 import { AuthServices } from '@/services/'
 import { ProfileTypes } from '../../types'
 
-const ProfileInfo = () => {
-  const [userData, setUserData] = useState<ProfileTypes>({
-    display_name: '',
-    email: '',
-    first_name: '',
-    login: '',
-    phone: '',
-    second_name: '',
-  })
-
-  useEffect(() => {
-    AuthServices.getUserInfo().then((data: ProfileTypes) => setUserData(data))
-  }, [])
-
-  const {
-    display_name,
-    email,
-    first_name,
-    login,
-    phone,
-    second_name,
-  } = userData
+const ProfileInfo: FC<ProfileTypes> = (props) => {
+  const { display_name, email, first_name, login, phone, second_name } = props
 
   return (
     <Space size="large" direction="vertical" full>
