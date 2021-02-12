@@ -11,7 +11,37 @@ import {
 } from '@/elements/'
 import { Input } from '@/components/'
 import { AuthServices } from '@/services/'
+import { yupResolver } from '@hookform/resolvers/yup'
+import * as yup from 'yup'
 import { RegistrationFormData, RegistrationFormDataKey } from '../../types'
+
+const phoneRegExp = /[0-9]+$/
+
+const RegistrationSchema = yup.object().shape({
+  login: yup.string().required('Обязательное поле').min(3, 'Мининум 3 символа'),
+  password: yup
+    .string()
+    .required('Обязательное поле')
+    .min(3, 'Мининум 3 символа'),
+  email: yup
+    .string()
+    .required('Обязательное поле')
+    .email('Поле должно быть в формате email'),
+  first_name: yup
+    .string()
+    .required('Обязательное поле')
+    .min(3, 'Мининум 3 символа'),
+  second_name: yup
+    .string()
+    .required('Обязательное поле')
+    .min(3, 'Мининум 3 символа'),
+  phone: yup
+    .string()
+    .matches(phoneRegExp, 'Неверный формат номера')
+    .required('Обязательное поле')
+    .min(11, 'Мининум 11 символа')
+    .max(11, 'Максимум 11 символа'),
+})
 
 const Registration: FC = () => {
   const {
@@ -19,7 +49,9 @@ const Registration: FC = () => {
     errors,
     register,
     setValue,
-  } = useForm<RegistrationFormData>()
+  } = useForm<RegistrationFormData>({
+    resolver: yupResolver(RegistrationSchema),
+  })
 
   const onSubmit = (data: RegistrationFormData) => AuthServices.signUp(data)
 
@@ -32,8 +64,7 @@ const Registration: FC = () => {
   )
 
   const getRegister = useCallback(
-    (fieldName: RegistrationFormDataKey) =>
-      register({ name: fieldName }, { required: true, minLength: 3 }),
+    (fieldName: RegistrationFormDataKey) => register({ name: fieldName }),
     [register]
   )
 
@@ -50,7 +81,7 @@ const Registration: FC = () => {
                   id="first_name"
                   onChange={handleChange}
                   register={getRegister('first_name')}
-                  error={errors.first_name?.type}
+                  error={errors.first_name}
                 />
               </Col>
               <Col span={24}>
@@ -60,7 +91,7 @@ const Registration: FC = () => {
                   id="second_name"
                   onChange={handleChange}
                   register={getRegister('second_name')}
-                  error={errors.second_name?.type}
+                  error={errors.second_name}
                 />
               </Col>
               <Col span={24}>
@@ -70,7 +101,7 @@ const Registration: FC = () => {
                   id="login"
                   onChange={handleChange}
                   register={getRegister('login')}
-                  error={errors.login?.type}
+                  error={errors.login}
                 />
               </Col>
               <Col span={24}>
@@ -80,7 +111,7 @@ const Registration: FC = () => {
                   id="email"
                   onChange={handleChange}
                   register={getRegister('email')}
-                  error={errors.email?.type}
+                  error={errors.email}
                 />
               </Col>
               <Col span={24}>
@@ -91,7 +122,7 @@ const Registration: FC = () => {
                   id="password"
                   onChange={handleChange}
                   register={getRegister('password')}
-                  error={errors.password?.type}
+                  error={errors.password}
                 />
               </Col>
               <Col span={24}>
@@ -101,7 +132,7 @@ const Registration: FC = () => {
                   id="phone"
                   onChange={handleChange}
                   register={getRegister('phone')}
-                  error={errors.phone?.type}
+                  error={errors.phone}
                 />
               </Col>
               <Col span={24}>

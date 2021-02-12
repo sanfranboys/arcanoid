@@ -3,11 +3,41 @@ import { useForm } from 'react-hook-form'
 import { Form } from 'antd'
 import { Row, Col, Button, Avatar, Centered, Space, Upload } from '@/elements/'
 import { Input } from '@/components/'
+import { yupResolver } from '@hookform/resolvers/yup'
+import * as yup from 'yup'
 import {
   ProfileFormDataKey,
   ChangeProfileTypes,
   ProfileTypes,
 } from '../../types'
+
+const phoneRegExp = /[0-9]+$/
+
+const ProfileEditFormSchema = yup.object().shape({
+  login: yup.string().required('Обязательное поле').min(3, 'Мининум 3 символа'),
+  email: yup
+    .string()
+    .required('Обязательное поле')
+    .email('Поле должно быть в формате email'),
+  first_name: yup
+    .string()
+    .required('Обязательное поле')
+    .min(3, 'Мининум 3 символа'),
+  second_name: yup
+    .string()
+    .required('Обязательное поле')
+    .min(3, 'Мининум 3 символа'),
+  display_name: yup
+    .string()
+    .required('Обязательное поле')
+    .min(3, 'Мининум 3 символа'),
+  phone: yup
+    .string()
+    .matches(phoneRegExp, 'Неверный формат номера')
+    .required('Обязательное поле')
+    .min(11, 'Мининум 11 символа')
+    .max(11, 'Максимум 11 символа'),
+})
 
 const ProfileEditForm: FC<ChangeProfileTypes> = ({
   onSubmit,
@@ -15,6 +45,7 @@ const ProfileEditForm: FC<ChangeProfileTypes> = ({
   ...props
 }) => {
   const { handleSubmit, errors, register, setValue } = useForm<ProfileTypes>({
+    resolver: yupResolver(ProfileEditFormSchema),
     defaultValues: props,
   })
 
@@ -27,8 +58,7 @@ const ProfileEditForm: FC<ChangeProfileTypes> = ({
   )
 
   const getRegister = useCallback(
-    (fieldName: ProfileFormDataKey) =>
-      register({ name: fieldName }, { required: true, minLength: 3 }),
+    (fieldName: ProfileFormDataKey) => register({ name: fieldName }),
     [register]
   )
 
@@ -59,7 +89,7 @@ const ProfileEditForm: FC<ChangeProfileTypes> = ({
               defaultValue={first_name}
               onChange={handleChange}
               register={getRegister('first_name')}
-              error={errors.first_name?.type}
+              error={errors.first_name}
             />
           </Col>
           <Col span={24}>
@@ -70,7 +100,7 @@ const ProfileEditForm: FC<ChangeProfileTypes> = ({
               defaultValue={second_name}
               onChange={handleChange}
               register={getRegister('second_name')}
-              error={errors.second_name?.type}
+              error={errors.second_name}
             />
           </Col>
           <Col span={24}>
@@ -81,7 +111,7 @@ const ProfileEditForm: FC<ChangeProfileTypes> = ({
               defaultValue={login}
               onChange={handleChange}
               register={getRegister('login')}
-              error={errors.login?.type}
+              error={errors.login}
             />
           </Col>
           <Col span={24}>
@@ -92,7 +122,7 @@ const ProfileEditForm: FC<ChangeProfileTypes> = ({
               defaultValue={email}
               onChange={handleChange}
               register={getRegister('email')}
-              error={errors.email?.type}
+              error={errors.email}
             />
           </Col>
           <Col span={24}>
@@ -103,7 +133,7 @@ const ProfileEditForm: FC<ChangeProfileTypes> = ({
               defaultValue={display_name}
               onChange={handleChange}
               register={getRegister('display_name')}
-              error={errors.display_name?.type}
+              error={errors.display_name}
             />
           </Col>
           <Col span={24}>
@@ -114,7 +144,7 @@ const ProfileEditForm: FC<ChangeProfileTypes> = ({
               defaultValue={phone}
               onChange={handleChange}
               register={getRegister('phone')}
-              error={errors.phone?.type}
+              error={errors.phone}
             />
           </Col>
           <Col span={24}>

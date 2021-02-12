@@ -11,10 +11,22 @@ import {
 } from '@/elements/'
 import { Input } from '@/components/'
 import { AuthServices } from '@/services/'
+import { yupResolver } from '@hookform/resolvers/yup'
+import * as yup from 'yup'
 import { AuthFormData, AuthFormDataKey } from '../../types'
 
+const authSchema = yup.object().shape({
+  login: yup.string().required('Обязательное поле').min(3, 'Мининум 3 символа'),
+  password: yup
+    .string()
+    .required('Обязательное поле')
+    .min(3, 'Мининум 3 символа'),
+})
+
 const Auth: FC = () => {
-  const { handleSubmit, errors, register, setValue } = useForm<AuthFormData>()
+  const { handleSubmit, errors, register, setValue } = useForm<AuthFormData>({
+    resolver: yupResolver(authSchema),
+  })
 
   const onSubmit = (data: AuthFormData) => AuthServices.signIn(data)
 
@@ -27,8 +39,7 @@ const Auth: FC = () => {
   )
 
   const getRegister = useCallback(
-    (fieldName: AuthFormDataKey) =>
-      register({ name: fieldName }, { required: true, minLength: 3 }),
+    (fieldName: AuthFormDataKey) => register({ name: fieldName }),
     [register]
   )
 
@@ -45,7 +56,7 @@ const Auth: FC = () => {
                   id="login"
                   onChange={handleChange}
                   register={getRegister('login')}
-                  error={errors.login?.type}
+                  error={errors.login}
                 />
               </Col>
               <Col span={24}>
@@ -56,7 +67,7 @@ const Auth: FC = () => {
                   type="password"
                   onChange={handleChange}
                   register={getRegister('password')}
-                  error={errors.password?.type}
+                  error={errors.password}
                 />
               </Col>
               <Col span={24}>
