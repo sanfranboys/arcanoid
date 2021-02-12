@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form'
 import { Form } from 'antd'
 import { Input } from '@/components/'
 import { StartGameFormData, StartGameFormDataKey } from './types'
-import StartData from './data'
+import StartData from './mock'
 
 const StartGame = () => {
   const history = useHistory()

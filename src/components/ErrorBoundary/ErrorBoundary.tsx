@@ -1,4 +1,6 @@
 import React, { Component, ErrorInfo } from 'react'
+import { ErrorPage } from '@/pages/'
+import { Layout } from '@/elements/'
 import { ErrorBoundaryProps, ErrorBoundaryState } from './types'
 
 class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
@@ -36,12 +38,14 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
     const { children } = this.props
     if (hasError) {
       return (
-        <h1>
-          Sorry.. there was an
-          <p>{error && error.toString()}</p>
-          <p>{errorInfo && errorInfo.componentStack}</p>
-        </h1>
-      ) // Тут потом отрисовать страницу ошибки
+        <Layout>
+          <ErrorPage
+            title={error && error.toString()}
+            description={errorInfo && errorInfo.componentStack}
+            haslink
+          />
+        </Layout>
+      )
     }
 
     return children

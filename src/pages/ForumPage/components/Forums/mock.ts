@@ -16,7 +16,7 @@ export const mock: Forum[] = [
   {
     id: 3,
     name: 'Разработка',
-    answersCount: 45454,
+    answersCount: 454,
     topicsCount: 323,
   },
 ]
