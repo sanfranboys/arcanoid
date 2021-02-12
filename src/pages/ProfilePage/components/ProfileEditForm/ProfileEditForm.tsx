@@ -4,40 +4,12 @@ import { Form } from 'antd'
 import { Row, Col, Button, Avatar, Centered, Space, Upload } from '@/elements/'
 import { Input } from '@/components/'
 import { yupResolver } from '@hookform/resolvers/yup'
-import * as yup from 'yup'
+import { ProfileEditFormSchema } from '../../schema'
 import {
   ProfileFormDataKey,
   ChangeProfileTypes,
   ProfileTypes,
 } from '../../types'
-
-const phoneRegExp = /[0-9]+$/
-
-const ProfileEditFormSchema = yup.object().shape({
-  login: yup.string().required('Обязательное поле').min(3, 'Мининум 3 символа'),
-  email: yup
-    .string()
-    .required('Обязательное поле')
-    .email('Поле должно быть в формате email'),
-  first_name: yup
-    .string()
-    .required('Обязательное поле')
-    .min(3, 'Мининум 3 символа'),
-  second_name: yup
-    .string()
-    .required('Обязательное поле')
-    .min(3, 'Мининум 3 символа'),
-  display_name: yup
-    .string()
-    .required('Обязательное поле')
-    .min(3, 'Мининум 3 символа'),
-  phone: yup
-    .string()
-    .matches(phoneRegExp, 'Неверный формат номера')
-    .required('Обязательное поле')
-    .min(11, 'Мининум 11 символа')
-    .max(11, 'Максимум 11 символа'),
-})
 
 const ProfileEditForm: FC<ChangeProfileTypes> = ({
   onSubmit,

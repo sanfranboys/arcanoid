@@ -12,16 +12,8 @@ import {
 import { Input } from '@/components/'
 import { AuthServices } from '@/services/'
 import { yupResolver } from '@hookform/resolvers/yup'
-import * as yup from 'yup'
+import { authSchema } from '../../schema'
 import { AuthFormData, AuthFormDataKey } from '../../types'
-
-const authSchema = yup.object().shape({
-  login: yup.string().required('Обязательное поле').min(3, 'Мининум 3 символа'),
-  password: yup
-    .string()
-    .required('Обязательное поле')
-    .min(3, 'Мининум 3 символа'),
-})
 
 const Auth: FC = () => {
   const { handleSubmit, errors, register, setValue } = useForm<AuthFormData>({
