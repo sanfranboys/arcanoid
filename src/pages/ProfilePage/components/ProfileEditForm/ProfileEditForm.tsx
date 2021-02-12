@@ -1,7 +1,7 @@
 import React, { ChangeEvent, FC, useCallback } from 'react'
 import { useForm } from 'react-hook-form'
 import { Form } from 'antd'
-import { Row, Col, Button, Avatar, Centered, Space } from '@/elements/'
+import { Row, Col, Button, Avatar, Centered, Space, Upload } from '@/elements/'
 import { Input } from '@/components/'
 import {
   ProfileFormDataKey,
@@ -9,7 +9,11 @@ import {
   ProfileTypes,
 } from '../../types'
 
-const ProfileEditForm: FC<ChangeProfileTypes> = ({ onSubmit, ...props }) => {
+const ProfileEditForm: FC<ChangeProfileTypes> = ({
+  onSubmit,
+  changeAvatar,
+  ...props
+}) => {
   const { handleSubmit, errors, register, setValue } = useForm<ProfileTypes>({
     defaultValues: props,
   })
@@ -27,11 +31,23 @@ const ProfileEditForm: FC<ChangeProfileTypes> = ({ onSubmit, ...props }) => {
       register({ name: fieldName }, { required: true, minLength: 3 }),
     [register]
   )
-  const { first_name, second_name, email, display_name, phone, login } = props
+
+  const {
+    first_name,
+    second_name,
+    email,
+    display_name,
+    phone,
+    login,
+    avatar,
+  } = props
+
   return (
     <Space size="large" direction="vertical" full>
       <Centered>
-        <Avatar size={150} src="/assets/images/avatar.png" />
+        <Upload action={changeAvatar} showUploadList={false}>
+          <Avatar size={150} src={avatar} />
+        </Upload>
       </Centered>
       <Form onFinish={handleSubmit(onSubmit)}>
         <Row gutter={[0, 24]}>

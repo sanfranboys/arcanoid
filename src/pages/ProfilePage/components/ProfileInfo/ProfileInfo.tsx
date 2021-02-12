@@ -5,12 +5,20 @@ import { AuthServices } from '@/services/'
 import { ProfileTypes } from '../../types'
 
 const ProfileInfo: FC<ProfileTypes> = (props) => {
-  const { display_name, email, first_name, login, phone, second_name } = props
+  const {
+    display_name,
+    email,
+    first_name,
+    login,
+    phone,
+    second_name,
+    avatar,
+  } = props
 
   return (
     <Space size="large" direction="vertical" full>
       <Centered>
-        <Avatar size={150} src="/assets/images/avatar.png" />
+        <Avatar size={150} src={avatar} />
       </Centered>
       <Description title="Имя:">{first_name}</Description>
       <Description title="Фамилия:">{second_name}</Description>

@@ -1,0 +1,14 @@
+.ant-modal-content {
+  background-color: var(--main);
+}
+.ant-modal-title {
+  color: var(--light);
+}
+.ant-modal-header {
+  background-color: var(--main);
+}
+
+.ant-modal-header,
+.ant-modal-footer {
+  border-color: var(--link);
+}
