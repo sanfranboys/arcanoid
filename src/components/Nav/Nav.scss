@@ -7,7 +7,7 @@
 
   &__link {
     color: var(--color-gold);
-    font-size: 16px;
+    font-size: var(--size-text-m);
 
     &:hover {
       color: var(--link-hover);

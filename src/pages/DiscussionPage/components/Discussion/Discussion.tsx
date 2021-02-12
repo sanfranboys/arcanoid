@@ -57,7 +57,6 @@ const Discussion = () => {
         <Col span={24}>
           <Space direction="vertical" full size="large">
             <TextArea rows={3} onChange={handleMessageChange} value={message} />
-
             <Button onClick={addMessage} disabled={!message.trim()}>
               Отправить
             </Button>

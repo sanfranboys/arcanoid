@@ -1,4 +1,4 @@
-import errorTexts from '../data'
+import errorTexts from '../mock'
 import { ErrorData } from '../types'
 
 const getErrorTexts = (errorType: number): ErrorData => {

@@ -48,7 +48,9 @@ class Sanfranoid {
         }
       }
       const mouseMoveHandler = (e: MouseEvent) => {
-        const relativeX = e.clientX - canvas.offsetLeft
+        const canvasOffsetLeft =
+          canvas.getBoundingClientRect().left + document.body.scrollLeft
+        const relativeX = e.clientX - canvasOffsetLeft
         if (relativeX > 0 && relativeX < canvas.width) {
           paddleX = relativeX - paddleWidth / 2
         }
