@@ -4,14 +4,8 @@ import classNames from '@/utils/'
 import { OwnInputProps } from './types'
 import './Input.scss'
 
-const MessageErrorText = {
-  required: 'Обязательное поле',
-  minLength: 'Нужно больше символов',
-}
-
 const Input: React.FC<OwnInputProps & InputProps> = (props) => {
   const { className, error, register, label, id, defaultValue, ...prop } = props
-  const message = error ? MessageErrorText[error] : null
   return (
     <div className={classNames(className, 'wrapper-input-component')}>
       <Form.Item label={label} className="label-input-component" htmlFor={id} />
@@ -24,7 +18,7 @@ const Input: React.FC<OwnInputProps & InputProps> = (props) => {
         ref={register}
         {...prop}
       />
-      {error && <div className="validation-input-error">{message}</div>}
+      {error && <div className="validation-input-error">{error.message}</div>}
     </div>
   )
 }
