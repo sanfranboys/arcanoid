@@ -4,8 +4,10 @@ import { ContentBox, Row, Col, Button, Image } from '@/elements/'
 import { useForm } from 'react-hook-form'
 import { Form } from 'antd'
 import { Input } from '@/components/'
+import { yupResolver } from '@hookform/resolvers/yup'
 import { StartGameFormData, StartGameFormDataKey } from './types'
 import StartData from './mock'
+import { startGameSchema } from './schema'
 
 const StartGame = () => {
   const history = useHistory()
@@ -17,12 +19,15 @@ const StartGame = () => {
     dogImage,
     dogText,
   } = StartData
+
   const {
     handleSubmit,
     errors,
     register,
     setValue,
-  } = useForm<StartGameFormData>()
+  } = useForm<StartGameFormData>({
+    resolver: yupResolver(startGameSchema),
+  })
 
   const onSubmit = () => {
     history.push('/game/proccess')
@@ -57,8 +62,8 @@ const StartGame = () => {
                 name="nickname"
                 id="nickname"
                 onChange={handleChange}
-                register={register({ name: 'nickname' }, { required: true })}
-                error={errors.nickname?.type}
+                register={register({ name: 'nickname' })}
+                error={errors.nickname}
               />
             </Col>
             <Col span={24}>
