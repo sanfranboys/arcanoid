@@ -1,6 +1,7 @@
 const classNames = (...args: any[]) => {
   let res: string[] = []
 
+  /* eslint-disable-next-line */
   for (const item of args) {
     if (typeof item === 'string' && item !== '') {
       res.push(item)

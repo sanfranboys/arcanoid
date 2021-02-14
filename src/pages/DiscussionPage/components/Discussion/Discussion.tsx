@@ -18,16 +18,16 @@ const Discussion = () => {
 
   const addMessage = useCallback(() => {
     setMessages((oldMessages) => {
-      const messages = [...oldMessages]
-      const { length } = messages
+      const newMessages = [...oldMessages]
+      const { length } = newMessages
 
-      messages.push({
+      newMessages.push({
         id: length + 1,
         text: message,
         author: `author${length}`,
       })
 
-      return messages
+      return newMessages
     })
 
     setMessage('')
@@ -35,8 +35,8 @@ const Discussion = () => {
 
   const messageList = useMemo(
     () =>
-      messages.map((message, idx) => (
-        <Message key={message.id} message={message} odd={!!(idx % 2)} />
+      messages.map((item, idx) => (
+        <Message key={item.id} message={item} odd={!!(idx % 2)} />
       )),
     [messages]
   )

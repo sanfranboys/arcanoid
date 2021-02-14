@@ -30,7 +30,6 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
       error,
       errorInfo,
     })
-    console.error('Uncaught error:', error, errorInfo)
   }
 
   public render() {

@@ -13,7 +13,6 @@ const Description: FC<DescriptionProps> = (props) => {
   return (
     <div className={className}>
       <div className="description__key">{title}</div>
-
       <div className="description__value">{children}</div>
     </div>
   )

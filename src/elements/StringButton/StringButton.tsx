@@ -7,9 +7,14 @@ const StringButton: FC<StringButtonProps> = (props) => {
   const { children, onClick = () => {} } = props
 
   return (
-    <span className="string-button" onClick={onClick} onKeyDown={onClick}>
+    <button
+      className="string-button"
+      onClick={onClick}
+      onKeyDown={onClick}
+      type="button"
+    >
       {children}
-    </span>
+    </button>
   )
 }
 
