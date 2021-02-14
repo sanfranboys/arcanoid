@@ -16,7 +16,7 @@ class Sanfranoid {
       let rightPressed = false
       let leftPressed = false
       const brickRowCount = 5
-      const brickColumnCount = 3
+      let brickColumnCount = 3
       const brickWidth = 75
       const brickHeight = 20
       const brickPadding = 10
@@ -26,6 +26,7 @@ class Sanfranoid {
       let lives = 3
 
       const bricks: any = []
+
       for (let c = 0; c < brickColumnCount; c += 1) {
         bricks[c] = []
         for (let r = 0; r < brickRowCount; r += 1) {
@@ -74,7 +75,14 @@ class Sanfranoid {
                 dy = -dy
                 b.status = 0
                 score += 1
-                if (score === brickRowCount * brickColumnCount) {
+                if(score % 5 === 0){
+                  brickColumnCount +=1
+                  console.log(bricks);
+                  bricks.unshift([{ x: 0, y: 0, status: 1 },
+                    { x: 0, y: 0, status: 1 },{ x: 0, y: 0, status: 1 }
+                  ,{ x: 0, y: 0, status: 1 },{ x: 0, y: 0, status: 1 }])
+                }
+                if (lives === 0) {
                   window.location.href = '/game/finish'
                 }
               }
@@ -104,8 +112,10 @@ class Sanfranoid {
       }
       const drawBricks = () => {
         for (let c = 0; c < brickColumnCount; c += 1) {
+          let row = true
           for (let r = 0; r < brickRowCount; r += 1) {
             if (bricks[c][r].status === 1) {
+              row = false
               const brickX = r * (brickWidth + brickPadding) + brickOffsetLeft
               const brickY = c * (brickHeight + brickPadding) + brickOffsetTop
               bricks[c][r].x = brickX
@@ -116,6 +126,11 @@ class Sanfranoid {
               ctx.fill()
               ctx.closePath()
             }
+          }
+          if(row){
+            row = false
+            brickColumnCount -= 1
+            bricks.splice(c, 1)
           }
         }
       }
