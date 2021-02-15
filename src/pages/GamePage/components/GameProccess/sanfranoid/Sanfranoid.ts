@@ -61,6 +61,12 @@ class Sanfranoid {
       document.addEventListener('keyup', keyUpHandler, false)
       document.addEventListener('mousemove', mouseMoveHandler, false)
 
+     const destroy = () => {
+        document.removeEventListener('keydown', keyDownHandler, false)
+        document.removeEventListener('keyup', keyUpHandler, false)
+        document.removeEventListener('mousemove', mouseMoveHandler, false)
+  }
+
       const collisionDetection = () => {
         for (let c = 0; c < brickColumnCount; c += 1) {
           for (let r = 0; r < brickRowCount; r += 1) {
@@ -77,14 +83,16 @@ class Sanfranoid {
                 score += 1
                 if(score % 5 === 0){
                   brickColumnCount +=1
-                  console.log(bricks);
                   bricks.unshift([{ x: 0, y: 0, status: 1 },
                     { x: 0, y: 0, status: 1 },{ x: 0, y: 0, status: 1 }
                   ,{ x: 0, y: 0, status: 1 },{ x: 0, y: 0, status: 1 }])
                 }
                 if (lives === 0) {
+                if (score === brickRowCount * brickColumnCount) {
+                  destroy()
                   window.location.href = '/game/finish'
                 }
+              }
               }
             }
           }
@@ -165,6 +173,7 @@ class Sanfranoid {
           } else {
             lives -= 1
             if (!lives) {
+              destroy()
               window.location.href = '/game/finish'
             } else {
               x = canvas.width / 2
@@ -191,6 +200,8 @@ class Sanfranoid {
     }
   }
 
+  // Пока отрубим тут линтер, потом будем рефакторить и ошибка class-methods-use-this уйдет
+  /* eslint-disable-next-line */
   public go() {}
 }
 

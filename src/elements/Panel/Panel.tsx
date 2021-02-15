@@ -4,8 +4,7 @@ import { PanelProps } from './types'
 
 import './Panel.scss'
 
-const Panel: FC<PanelProps> = (props) => {
-  const { children, head, center, hoverable } = props
+const Panel: FC<PanelProps> = ({ children, head, center, hoverable }) => {
   const bodyClassName = classNames('panel__body', { panel_center: center })
   const panelClassName = classNames('panel', {
     'panel_with-head': !!head,

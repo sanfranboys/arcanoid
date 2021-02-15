@@ -1,3 +1,7 @@
 .game-container {
   border: 2px solid var(--color-border-dark);
 }
+
+.game-container:hover {
+  cursor: none;
+}

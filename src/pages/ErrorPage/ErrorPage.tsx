@@ -1,5 +1,5 @@
 import React, { FC, useMemo } from 'react'
-import { Row, Col } from '@/elements/'
+import { Col } from '@/elements/'
 import { Page } from '@/pages/'
 import { ErrorPageProps } from './types'
 import Error from './components/Error'
@@ -21,9 +21,7 @@ const ErrorPage: FC<ErrorPageProps> = ({ errorType }) => {
 
   return (
     <Page title={title}>
-      <Row>
-        <Col span={24}>{errorBody}</Col>
-      </Row>
+      <Col span={24}>{errorBody}</Col>
     </Page>
   )
 }

@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
-import { Content as AntdContent } from 'antd/lib/layout/layout'
+import { Content as ContentComponent } from 'antd/lib/layout/layout'
 
-const Content: FC = (props) => <AntdContent {...props} />
+const Content: FC = (props) => <ContentComponent {...props} />
 
 export default Content
