@@ -1,5 +1,5 @@
 import React from 'react'
-import { Input as InputAnt, InputProps, Form } from 'antd'
+import { Input as InputComponent, InputProps, Form } from 'antd'
 import classNames from '@/utils/'
 import { OwnInputProps } from './types'
 import './Input.scss'
@@ -9,7 +9,7 @@ const Input: React.FC<OwnInputProps & InputProps> = (props) => {
   return (
     <div className={classNames(className, 'wrapper-input-component')}>
       <Form.Item label={label} className="label-input-component" htmlFor={id} />
-      <InputAnt
+      <InputComponent
         className={classNames('input-component', {
           'input-component-error': !!error,
         })}

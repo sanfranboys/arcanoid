@@ -1,8 +1,8 @@
 import React, { FC } from 'react'
-import { Col as AntdCol, ColProps } from 'antd'
+import { Col as ColComponent, ColProps } from 'antd'
 
 import 'antd/lib/col/style/css'
 
-const Col: FC<ColProps> = (props) => <AntdCol {...props} />
+const Col: FC<ColProps> = (props) => <ColComponent {...props} />
 
 export default Col

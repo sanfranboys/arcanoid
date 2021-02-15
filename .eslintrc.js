@@ -18,5 +18,5 @@ module.exports = {
     'react/button-has-type': 0,
     '@typescript-eslint/naming-convention': 0,
   },
-  ignorePatterns: [],
+  ignorePatterns: ['.eslintrc.js'],
 }
