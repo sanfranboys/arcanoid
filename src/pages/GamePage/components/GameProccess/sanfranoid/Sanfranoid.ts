@@ -60,6 +60,12 @@ class Sanfranoid {
       document.addEventListener('keyup', keyUpHandler, false)
       document.addEventListener('mousemove', mouseMoveHandler, false)
 
+     const destroy = () => {
+        document.removeEventListener('keydown', keyDownHandler, false)
+        document.removeEventListener('keyup', keyUpHandler, false)
+        document.removeEventListener('mousemove', mouseMoveHandler, false)
+  }
+
       const collisionDetection = () => {
         for (let c = 0; c < brickColumnCount; c += 1) {
           for (let r = 0; r < brickRowCount; r += 1) {
@@ -75,6 +81,7 @@ class Sanfranoid {
                 b.status = 0
                 score += 1
                 if (score === brickRowCount * brickColumnCount) {
+                  destroy()
                   window.location.href = '/game/finish'
                 }
               }
@@ -150,6 +157,7 @@ class Sanfranoid {
           } else {
             lives -= 1
             if (!lives) {
+              destroy()
               window.location.href = '/game/finish'
             } else {
               x = canvas.width / 2

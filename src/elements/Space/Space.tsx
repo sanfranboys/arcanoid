@@ -7,8 +7,12 @@ import 'antd/lib/space/style/css'
 
 import './Space.scss'
 
-const Space: FC<SpaceProps> = (props) => {
-  const { full, between, className: initialClassName, ...rest } = props
+const Space: FC<SpaceProps> = ({
+  full,
+  between,
+  className: initialClassName,
+  ...rest
+}) => {
   const className = classNames('space', initialClassName, {
     'space_full-width': full,
     space_between: between,

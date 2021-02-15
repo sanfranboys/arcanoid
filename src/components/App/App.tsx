@@ -5,7 +5,7 @@ import {
   ErrorPage,
   AuthPage,
   ForumPage,
-  LeaderBordPage,
+  LeaderboardPage,
   ProfilePage,
   RegistrationPage,
   GamePage,
@@ -32,7 +32,7 @@ const App: FC = () => (
             <GamePage />
           </Route>
           <Route path="/leaderboard">
-            <LeaderBordPage />
+            <LeaderboardPage />
           </Route>
           <Route path="/profile">
             <ProfilePage />
