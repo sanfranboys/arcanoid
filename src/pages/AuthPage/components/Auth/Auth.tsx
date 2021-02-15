@@ -12,7 +12,7 @@ import {
 import { Input } from '@/components/'
 import { AuthServices } from '@/services/'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { authSchema } from '../../schema'
+import authSchema from '../../schema'
 import { AuthFormData, AuthFormDataKey } from '../../types'
 
 const Auth: FC = () => {

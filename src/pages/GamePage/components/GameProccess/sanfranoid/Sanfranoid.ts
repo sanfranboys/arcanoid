@@ -183,7 +183,8 @@ class Sanfranoid {
       draw()
     }
   }
-
+  // Пока отрубим тут линтер, потом будем рефакторить и ошибка class-methods-use-this уйдет
+  /* eslint-disable-next-line */
   public go() {}
 }
 

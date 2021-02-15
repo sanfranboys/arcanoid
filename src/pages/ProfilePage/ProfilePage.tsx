@@ -36,16 +36,16 @@ const ProfilePage = () => {
   }, [])
 
   const onSubmit = useCallback((data: ProfileTypes) => {
-    UserServices.changeUserProfile(data).then((data: ProfileTypes) =>
-      setUserData(data)
+    UserServices.changeUserProfile(data).then((profileData: ProfileTypes) =>
+      setUserData(profileData)
     )
   }, [])
 
   const handleChangeAvatar = useCallback((file: RcFile) => {
     const data = new FormData()
     data.append('avatar', file)
-    UserServices.changeUserAvatar(data).then((data: ProfileTypes) =>
-      setUserData(data)
+    UserServices.changeUserAvatar(data).then((profileData: ProfileTypes) =>
+      setUserData(profileData)
     )
   }, [])
 

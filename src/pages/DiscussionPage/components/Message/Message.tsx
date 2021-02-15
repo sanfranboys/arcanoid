@@ -4,10 +4,10 @@ import { MessageProps } from './types'
 
 import './Message.scss'
 
-const Message: FC<MessageProps> = ({ message: { author, text }, odd }) => (
+const Message: FC<MessageProps> = ({ message: { author, text }, offset }) => (
   <div
     className={classNames('message', {
-      message_odd: odd,
+      message_offset: offset,
     })}
   >
     <span className="message__author">{author}</span>

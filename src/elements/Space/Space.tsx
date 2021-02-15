@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { Space as AntdSpace } from 'antd'
+import { Space as SpaceComponent } from 'antd'
 import classNames from '@/utils/'
 import { SpaceProps } from './types'
 
@@ -11,14 +11,14 @@ const Space: FC<SpaceProps> = ({
   full,
   between,
   className: initialClassName,
-  ...rest
+  ...restProps
 }) => {
   const className = classNames('space', initialClassName, {
     'space_full-width': full,
     space_between: between,
   })
 
-  return <AntdSpace {...rest} className={className} />
+  return <SpaceComponent {...restProps} className={className} />
 }
 
 export default Space

@@ -4,8 +4,8 @@ const CleanWebpackPlugin = require('clean-webpack-plugin').CleanWebpackPlugin
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-const isProd = process.env.NODE_ENV === 'production';
-const isDev = !isProd;
+const isProd = process.env.NODE_ENV === 'production'
+const isDev = !isProd
 
 new CleanWebpackPlugin({
   dangerouslyAllowCleanPatternsOutsideProject: true,
@@ -21,7 +21,7 @@ new CleanWebpackPlugin({
       alias: {
         '@': path.join(__dirname, './src'),
       },
-      extensions: [ '.ts', '.tsx', '.js' ],
+      extensions: ['.ts', '.tsx', '.js'],
     },
     devtool: isDev ? 'source-map' : false,
     devServer: {
@@ -44,15 +44,15 @@ new CleanWebpackPlugin({
               },
             },
           ],
-          exclude: [ path.resolve(__dirname, 'node_modules') ],
+          exclude: [path.resolve(__dirname, 'node_modules')],
         },
         {
           test: /\.css$/,
-          use: [ MiniCssExtractPlugin.loader, 'css-loader' ],
+          use: [MiniCssExtractPlugin.loader, 'css-loader'],
         },
         {
           test: /\.s[ac]ss$/i,
-          use: [ MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader' ],
+          use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
         },
         {
           test: /\.(png|jpe?g|gif|icon|xml|svg|json)$/,

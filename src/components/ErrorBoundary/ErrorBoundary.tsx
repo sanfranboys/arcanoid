@@ -30,25 +30,23 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
       error,
       errorInfo,
     })
-    console.error('Uncaught error:', error, errorInfo)
   }
 
   public render() {
     const { hasError, error, errorInfo } = this.state
     const { children } = this.props
-    if (hasError) {
-      return (
-        <Layout>
-          <ErrorPage
-            title={error && error.toString()}
-            description={errorInfo && errorInfo.componentStack}
-            haslink
-          />
-        </Layout>
-      )
+    if (!hasError) {
+      return children
     }
-
-    return children
+    return (
+      <Layout>
+        <ErrorPage
+          title={error && error.toString()}
+          description={errorInfo && errorInfo.componentStack}
+          haslink
+        />
+      </Layout>
+    )
   }
 }
 

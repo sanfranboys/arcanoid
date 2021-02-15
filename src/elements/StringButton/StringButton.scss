@@ -1,6 +1,8 @@
 .string-button {
   font-weight: bold;
   color: var(--link);
+  border: none;
+  background: none;
 
   &:hover {
     cursor: pointer;

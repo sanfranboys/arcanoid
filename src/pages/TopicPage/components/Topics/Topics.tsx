@@ -25,15 +25,15 @@ const Topics = () => {
 
   const addTopic = useCallback(() => {
     setTopics((oldTopics) => {
-      const topics = [...oldTopics]
+      const newTopics = [...oldTopics]
 
-      topics.push({
+      newTopics.push({
         id: topics.length + 1,
         name: topic,
         answersCount: topics.length * 44,
       })
 
-      return topics
+      return newTopics
     })
 
     setTopic('')
@@ -41,9 +41,9 @@ const Topics = () => {
 
   const topicList = useMemo(
     () =>
-      topics.map((topic) => {
-        const { id } = topic
-        return <Topic key={id} topic={topic} onClick={goToDiscussion(id)} />
+      topics.map((item) => {
+        const { id } = item
+        return <Topic key={id} topic={item} onClick={goToDiscussion(id)} />
       }),
     [goToDiscussion, topics]
   )
