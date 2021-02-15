@@ -5,3 +5,11 @@ export const BASE_URL ='https://ya-praktikum.tech'
 
 export const API_URL =`${BASE_URL}/api/v2`
 export const phoneRegExp = /[0-9]+$/
+export const withCredentials = { withCredentials: true }
+
+export const titleNotificationWindow = {
+  warning: 'Предупрежддение!',
+  error: 'Ошибка',
+  success: 'Успех',
+  info: 'Информация',
+}

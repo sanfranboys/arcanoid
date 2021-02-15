@@ -5,16 +5,13 @@ import { fallbackImage } from '@/constants'
 
 import 'antd/lib/image/style/css'
 
-const Image: FC<ImageProps> = (props) => {
-  const { preview } = props
-  return (
-    <ImageComponent
-      fallback={fallbackImage}
-      onError={imgErrorConsole}
-      preview={preview ?? false}
-      {...props}
-    />
-  )
-}
+const Image: FC<ImageProps> = ({ preview, ...props }) => (
+  <ImageComponent
+    fallback={fallbackImage}
+    onError={imgErrorConsole}
+    preview={preview ?? false}
+    {...props}
+  />
+)
 
 export default Image

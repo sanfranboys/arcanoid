@@ -4,8 +4,7 @@ import { ScoreProps } from './types'
 
 import './Score.scss'
 
-const Score: FC<ScoreProps> = (props) => {
-  const { children, small } = props
+const Score: FC<ScoreProps> = ({ children, small }) => {
   const className = classNames('score', { score_small: small })
 
   return <span className={className}>{children}</span>

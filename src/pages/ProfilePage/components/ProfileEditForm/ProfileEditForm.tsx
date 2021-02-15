@@ -4,6 +4,7 @@ import { Form } from 'antd'
 import { Row, Col, Button, Avatar, Centered, Space, Upload } from '@/elements/'
 import { Input } from '@/components/'
 import { yupResolver } from '@hookform/resolvers/yup'
+import { BASE_URL } from '@/constants'
 import { ProfileEditFormSchema } from '../../schema'
 import {
   ProfileFormDataKey,
@@ -48,7 +49,10 @@ const ProfileEditForm: FC<ChangeProfileTypes> = ({
     <Space size="large" direction="vertical" full>
       <Centered>
         <Upload action={changeAvatar} showUploadList={false}>
-          <Avatar size={150} src={avatar} />
+          <Avatar
+            size={150}
+            src={avatar ? BASE_URL + avatar : '/assets/images/avatar.png'}
+          />
         </Upload>
       </Centered>
       <Form onFinish={handleSubmit(onSubmit)}>

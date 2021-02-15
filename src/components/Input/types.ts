@@ -1,5 +1,7 @@
-export type OwnInputProps = {
-  error?: {message:string}
+export type OwnProps = {
+  error?: {
+    message:string
+  }
   register?: any
   label?:string
 }
