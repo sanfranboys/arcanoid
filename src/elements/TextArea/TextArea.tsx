@@ -6,10 +6,10 @@ import 'antd/lib/input/style/css'
 
 import './TextArea.scss'
 
-const { TextArea: AntdTextArea } = Input
+const { TextArea: TextAreaComponent } = Input
 
 const TextArea: FC<TextAreaProps> = (props) => (
-  <AntdTextArea {...props} className="textarea" />
+  <TextAreaComponent {...props} className="textarea" />
 )
 
 export default TextArea

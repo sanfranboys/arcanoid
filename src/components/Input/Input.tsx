@@ -11,7 +11,7 @@ const Input: React.FC<OwnProps & InputProps> = ({
   label,
   id,
   defaultValue,
-  ...restProp
+  ...restProps
 }) => (
   <div className={classNames(className, 'wrapper-input-component')}>
     <Form.Item label={label} className="label-input-component" htmlFor={id} />
@@ -22,7 +22,7 @@ const Input: React.FC<OwnProps & InputProps> = ({
       defaultValue={defaultValue}
       id={id}
       ref={register}
-      {...restProp}
+      {...restProps}
     />
     {error && <div className="validation-input-error">{error.message}</div>}
   </div>

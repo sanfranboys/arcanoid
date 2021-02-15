@@ -7,11 +7,11 @@ import './Discussion.scss'
 
 const Discussion = () => {
   const [messages, setMessages] = useState(mock)
-  const [message, setMessage] = useState('')
+  const [activeMessage, setActiveMessage] = useState('')
 
   const handleMessageChange = useCallback(
     (e: ChangeEvent<HTMLTextAreaElement>) => {
-      setMessage(e.currentTarget.value)
+      setActiveMessage(e.currentTarget.value)
     },
     []
   )
@@ -23,20 +23,20 @@ const Discussion = () => {
 
       newMessages.push({
         id: length + 1,
-        text: message,
+        text: activeMessage,
         author: `author${length}`,
       })
 
       return newMessages
     })
 
-    setMessage('')
-  }, [message])
+    setActiveMessage('')
+  }, [activeMessage])
 
   const messageList = useMemo(
     () =>
       messages.map((item, idx) => (
-        <Message key={item.id} message={item} odd={!!(idx % 2)} />
+        <Message key={item.id} message={item} offset={!!(idx % 2)} />
       )),
     [messages]
   )
@@ -56,8 +56,12 @@ const Discussion = () => {
       <Row gutter={[16, 16]}>
         <Col span={24}>
           <Space direction="vertical" full size="large">
-            <TextArea rows={3} onChange={handleMessageChange} value={message} />
-            <Button onClick={addMessage} disabled={!message.trim()}>
+            <TextArea
+              rows={3}
+              onChange={handleMessageChange}
+              value={activeMessage}
+            />
+            <Button onClick={addMessage} disabled={!activeMessage.trim()}>
               Отправить
             </Button>
           </Space>
