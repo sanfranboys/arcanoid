@@ -1,0 +1,19 @@
+.nav {
+  &__list {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+  }
+
+  &__link {
+    color: var(--color-gold);
+    font-size: var(--size-text-m);
+
+    &:hover {
+      color: var(--link-hover);
+    }
+    &.active {
+      color: var(--color-light-purple);
+    }
+  }
+}

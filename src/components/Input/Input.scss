@@ -1,0 +1,22 @@
+.wrapper-input-component {
+  position: relative;
+}
+.input-component {
+  width: 100%;
+  padding: 12px 20px;
+  color: var(--white);
+  background-color: transparent;
+  border: 2px solid var(--color-border-dark);
+}
+
+.input-component-error {
+  border-color: var(--error);
+}
+.validation-input-error {
+  position: absolute;
+  color: var(--error);
+}
+
+.label-input-component {
+  color: var(--lightBg);
+}

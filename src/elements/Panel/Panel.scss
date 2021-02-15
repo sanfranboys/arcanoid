@@ -1,0 +1,28 @@
+.panel {
+  width: 100%;
+  padding: 10px;
+  color: var(--lightBg);
+  font-size: var(--size-text-l);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  border: 2px solid var(--color-border-dark);
+
+  &__head {
+    border-bottom: 1px solid var(--color-border-dark);
+    padding: 10px;
+  }
+
+  &_center {
+    text-align: center;
+  }
+
+  &_with-head {
+    padding: 20px;
+  }
+
+  &_hoverable{
+    &:hover {
+      cursor: pointer;
+      opacity: 0.6;
+    }
+  }
+}

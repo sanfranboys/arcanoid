@@ -1,0 +1,9 @@
+.page {
+  padding: 30px 100px 100px;
+  overflow-y: auto;
+
+  &__title {
+    color: var(--lightBg);
+    font-size: var(--size-text-4xl);
+  }
+}

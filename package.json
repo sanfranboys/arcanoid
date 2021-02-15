@@ -1,0 +1,72 @@
+{
+  "name": "arcanoid",
+  "version": "1.0.0",
+  "description": "just simple arcanoid on canvas api with React frontend",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack serve --mode development --open --hot",
+    "build": "webpack --mode production",
+    "lint": "eslint --ext .js,.ts,.tsx src/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sanfranboys/arcanoid.git"
+  },
+  "keywords": [],
+  "author": "sanfranboys",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sanfranboys/arcanoid/issues"
+  },
+  "homepage": "https://github.com/sanfranboys/arcanoid#readme",
+  "devDependencies": {
+    "@sentry/types": "6.1.0",
+    "@types/react": "17.0.0",
+    "@types/react-dom": "17.0.0",
+    "@types/react-router-dom": "5.1.7",
+    "@typescript-eslint/eslint-plugin": "4.14.2",
+    "@typescript-eslint/parser": "4.14.2",
+    "clean-webpack-plugin": "3.0.0",
+    "copy-webpack-plugin": "7.0.0",
+    "css-loader": "5.0.1",
+    "eslint": "7.19.0",
+    "eslint-config-airbnb": "18.2.1",
+    "eslint-config-airbnb-typescript": "12.0.0",
+    "eslint-config-prettier": "7.2.0",
+    "eslint-plugin-import": "2.22.1",
+    "eslint-plugin-jsx-a11y": "6.4.1",
+    "eslint-plugin-react": "7.22.0",
+    "eslint-plugin-react-hooks": "0.0.0-4e08fb10c",
+    "file-loader": "6.2.0",
+    "html-webpack-plugin": "4.5.1",
+    "husky": "4.3.8",
+    "mini-css-extract-plugin": "1.3.5",
+    "prettier": "2.2.1",
+    "sass": "1.32.5",
+    "sass-loader": "10.1.1",
+    "style-loader": "2.0.0",
+    "ts-loader": "8.0.14",
+    "typescript": "4.0.5",
+    "webpack": "5.19.0",
+    "webpack-cli": "4.4.0",
+    "webpack-dev-server": "3.11.2"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "1.3.4",
+    "@sentry/react": "6.1.0",
+    "@sentry/tracing": "6.1.0",
+    "antd": "4.12.1",
+    "axios": "0.21.1",
+    "express": "4.17.1",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
+    "react-hook-form": "6.15.1",
+    "react-router-dom": "5.2.0",
+    "yup": "0.32.8"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
+  }
+}

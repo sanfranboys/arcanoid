@@ -1,0 +1,21 @@
+.error {
+  &__description {
+    font-size: var(--size-text-s);
+    color: var(--white);
+    margin: 0 0 20px;
+  }
+
+  &__status {
+    font-size: 60px;
+    color: var(--color-gold);
+    margin: 0 0 20px;
+  }
+
+  &__link {
+    font-size: 18px;
+  }
+
+  &__image {
+    margin: 0 0 20px;
+  }
+}
