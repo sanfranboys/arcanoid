@@ -3,8 +3,10 @@ import ReactDOM from 'react-dom'
 import * as Sentry from '@sentry/react'
 import { Integrations } from '@sentry/tracing'
 import { App, ErrorBoundary } from '@/components/'
+import { Provider } from 'react-redux'
 
 import './styles/main.scss'
+import store from './store'
 
 Sentry.init({
   dsn:
@@ -15,7 +17,9 @@ Sentry.init({
 
 ReactDOM.render(
   <ErrorBoundary>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </ErrorBoundary>,
   document.getElementById('root')
 )
