@@ -1,13 +1,8 @@
-export default function useStorage() {
-  const storege = (data: string) => {
-    if (!data) {
-      return JSON.parse(localStorage.getItem('isAuth') || '')
-    }
-    localStorage.setItem('isAuth', JSON.stringify(data))
+const storege = (data?: boolean) => {
+  if (data === true || data === false) {
+    localStorage.isAuth = data
     return ''
   }
-  const deleteStorage = () => {
-    localStorage.removeItem(`isAuth`)
-  }
-  return [storege, deleteStorage]
+  return JSON.parse(localStorage.isAuth)
 }
+export default storege

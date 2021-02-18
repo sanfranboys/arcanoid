@@ -1,7 +1,7 @@
 import { AuthServices, UserServices } from '@/services/'
 import { takeEvery, put, call } from 'redux-saga/effects'
 import { NotificationWindow } from '@/elements/'
-import { useStorege } from '@/utils/'
+import { storage } from '@/utils/'
 import { ActionAvatar, ActionUser } from './types'
 import { isAuthAction } from '../auth'
 import { userFailedAction, userSuccessAction } from './actions'
@@ -11,20 +11,18 @@ import {
   USER_UPDATE_AVATAR,
 } from './actionTypes'
 
-const [storage] = useStorege()
-
 function* sagaWorkerUser() {
   try {
     const data = yield call([AuthServices, 'getUserInfo'])
     yield put(isAuthAction())
-    storage('true')
+    storage(true)
     yield put(userSuccessAction(data))
   } catch (error) {
     NotificationWindow({
       type: 'error',
       description: 'Что-то пошло не так!',
     })
-    storage('false')
+    storage(false)
     yield put(userFailedAction(error.response))
   }
 }

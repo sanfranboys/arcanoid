@@ -1,7 +1,7 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
 import { AuthServices } from '@/services/'
 import { NotificationWindow } from '@/elements/'
-import { useStorege } from '@/utils/'
+import { storage } from '@/utils/'
 import {
   authSeccessAction,
   isAuthAction,
@@ -10,8 +10,6 @@ import {
 } from './actions'
 import { AUTH_LOGIN, AUTH_LOGOUT, AUTH_REGISTRATION } from './actionTypes'
 import { ActionLoginTypes, ActionRegistrationTypes } from './types'
-
-const [storage] = useStorege()
 
 function* sagaWorkerLogin({ payload }: ActionLoginTypes) {
   try {
@@ -37,7 +35,7 @@ function* sagaWorkerLogin({ payload }: ActionLoginTypes) {
 
 function* sagaWorkerLogout() {
   try {
-    storage('false')
+    storage(false)
     yield call([AuthServices, 'logOut'])
     yield put(authSeccessAction())
     yield put(notAuthAction())
