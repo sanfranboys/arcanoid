@@ -1,29 +1,32 @@
 import { AuthServices, UserServices } from '@/services/'
 import { takeEvery, put, call } from 'redux-saga/effects'
 import { NotificationWindow } from '@/elements/'
-import { storage } from '@/utils/'
+import { useStorage } from '@/utils/'
 import { ActionAvatar, ActionUser } from './types'
-import { isAuthAction } from '../auth'
-import { userFailedAction, userSuccessAction } from './actions'
+import { setAuthAction } from '../auth'
+import { userSetStatusAction, userSuccessAction } from './actions'
 import {
   USER_REQUEST,
   USER_UPDATE_PROFILE,
   USER_UPDATE_AVATAR,
 } from './actionTypes'
 
+const [setSorage] = useStorage()
+
 function* sagaWorkerUser() {
   try {
     const data = yield call([AuthServices, 'getUserInfo'])
-    yield put(isAuthAction())
-    storage(true)
+    yield put(setAuthAction(true))
+    setSorage(true)
     yield put(userSuccessAction(data))
   } catch (error) {
     NotificationWindow({
       type: 'error',
       description: 'Что-то пошло не так!',
     })
-    storage(false)
-    yield put(userFailedAction(error.response))
+    setSorage(false)
+    yield put(setAuthAction(false))
+    yield put(userSetStatusAction())
   }
 }
 
@@ -40,7 +43,7 @@ function* sagaWorkerChangePrifile({ payload }: ActionUser) {
       description: 'Неверные заполнены поля',
       type: 'error',
     })
-    yield put(userFailedAction(error.response))
+    yield put(userSetStatusAction())
   }
 }
 
@@ -57,7 +60,7 @@ function* sagaWorkerChangeAvatar({ payload }: ActionAvatar) {
       description: 'Неверный формат изображения',
       type: 'error',
     })
-    yield put(userFailedAction(error.response))
+    yield put(userSetStatusAction())
   }
 }
 

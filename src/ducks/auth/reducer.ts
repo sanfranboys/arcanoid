@@ -10,7 +10,6 @@ import { ActionAuth, AuthState } from './types'
 const initialState: AuthState = {
   isAuth: false,
   loading: false,
-  error: null,
 }
 
 const reducer = (state = initialState, action: ActionAuth) => {

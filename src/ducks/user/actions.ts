@@ -1,6 +1,6 @@
 import { ChangeUserDataAction, UserTypes } from './types'
 import {
-  USER_FAILED,
+  USER_SET_STATUS,
   USER_REQUEST,
   USER_SUCCESS,
   USER_UPDATE_AVATAR,
@@ -28,14 +28,13 @@ const userSuccessAction = (data: UserTypes) => ({
   },
 })
 
-const userFailedAction = (error: string) => ({
-  type: USER_FAILED,
-  payload: { error },
+const userSetStatusAction = () => ({
+  type: USER_SET_STATUS,
 })
 
 export {
   userRequestAction,
-  userFailedAction,
+  userSetStatusAction,
   userSuccessAction,
   userChangeProfileAction,
   userChangeAvatarAction,

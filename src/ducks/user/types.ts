@@ -14,7 +14,6 @@ export type UserTypes = {
 export type UserState = {
   user: UserTypes
   loading: boolean
-  error: string | null
 }
 
 export type ActionUser = {

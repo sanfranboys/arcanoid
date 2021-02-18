@@ -11,4 +11,3 @@ export const isLoadingUser = createSelector(
   prifileState,
   (state) => state.loading
 )
-export const isErrorUser = createSelector(prifileState, (state) => state.error)

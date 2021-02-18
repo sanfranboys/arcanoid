@@ -1,6 +1,6 @@
 import { ActionUser, UserState } from './types'
 import {
-  USER_FAILED,
+  USER_SET_STATUS,
   USER_REQUEST,
   USER_SUCCESS,
   USER_UPDATE_AVATAR,
@@ -18,7 +18,6 @@ const initialState: UserState = {
     avatar: '',
   },
   loading: false,
-  error: null,
 }
 
 const reducer = (state = initialState, action: ActionUser) => {
@@ -27,19 +26,16 @@ const reducer = (state = initialState, action: ActionUser) => {
       return {
         ...state,
         loading: true,
-        error: null,
       }
     case USER_UPDATE_AVATAR:
       return {
         ...state,
         loading: true,
-        error: null,
       }
     case USER_UPDATE_PROFILE:
       return {
         ...state,
         loading: true,
-        error: null,
       }
     case USER_SUCCESS:
       return {
@@ -47,10 +43,9 @@ const reducer = (state = initialState, action: ActionUser) => {
         user: action.payload.user,
         loading: false,
       }
-    case USER_FAILED:
+    case USER_SET_STATUS:
       return {
         loading: false,
-        error: action.payload.error,
       }
     default:
       return state
