@@ -1,20 +1,15 @@
 import { ActionAuthLogin, ActionRegistration } from './types'
 import {
-  AUTH_FAILED,
-  AUTH_IS_AUTH,
+  AUTH_SET_AUTH,
   AUTH_LOGIN,
-  AUTH_NOT_AUTH,
   AUTH_REGISTRATION,
-  AUTH_SUCCESS,
+  AUTH_SET_STATUS,
   AUTH_LOGOUT,
 } from './actionTypes'
 
-const isAuthAction = () => ({
-  type: AUTH_IS_AUTH,
-})
-
-const notAuthAction = () => ({
-  type: AUTH_NOT_AUTH,
+const setAuthAction = (data: boolean) => ({
+  type: AUTH_SET_AUTH,
+  payload: data,
 })
 
 const authLoginAction = (data: ActionAuthLogin) => ({
@@ -31,21 +26,14 @@ const authRegistrationAction = (data: ActionRegistration) => ({
   payload: data,
 })
 
-const authSeccessAction = () => ({
-  type: AUTH_SUCCESS,
-})
-
-const authFailedAction = (error: string) => ({
-  type: AUTH_FAILED,
-  payload: error,
+const setStatusAction = () => ({
+  type: AUTH_SET_STATUS,
 })
 
 export {
-  isAuthAction,
-  notAuthAction,
   authLoginAction,
   authRegistrationAction,
-  authSeccessAction,
-  authFailedAction,
   authLogoutAction,
+  setAuthAction,
+  setStatusAction,
 }

@@ -1,7 +1,6 @@
 export type AuthState = {
   isAuth: boolean
   loading: boolean
-  error: null | string
 }
 
 export type ActionAuth = {

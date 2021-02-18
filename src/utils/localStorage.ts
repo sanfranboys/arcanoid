@@ -1,8 +1,13 @@
-const storege = (data?: boolean) => {
-  if (data === true || data === false) {
+function useStorage() {
+  function setStorage(data: boolean) {
     localStorage.isAuth = data
-    return ''
   }
-  return JSON.parse(localStorage.isAuth)
+
+  function getStorage() {
+    return JSON.parse(localStorage.isAuth)
+  }
+
+  return [setStorage, getStorage]
 }
-export default storege
+
+export default useStorage

@@ -1,11 +1,9 @@
 import {
-  AUTH_FAILED,
-  AUTH_IS_AUTH,
   AUTH_LOGIN,
-  AUTH_NOT_AUTH,
   AUTH_REGISTRATION,
-  AUTH_SUCCESS,
   AUTH_LOGOUT,
+  AUTH_SET_AUTH,
+  AUTH_SET_STATUS,
 } from './actionTypes'
 import { ActionAuth, AuthState } from './types'
 
@@ -17,15 +15,10 @@ const initialState: AuthState = {
 
 const reducer = (state = initialState, action: ActionAuth) => {
   switch (action.type) {
-    case AUTH_IS_AUTH:
+    case AUTH_SET_AUTH:
       return {
         ...state,
-        isAuth: true,
-      }
-    case AUTH_NOT_AUTH:
-      return {
-        ...state,
-        isAuth: false,
+        isAuth: action.payload,
       }
     case AUTH_LOGIN:
       return {
@@ -42,15 +35,10 @@ const reducer = (state = initialState, action: ActionAuth) => {
         ...state,
         loading: true,
       }
-    case AUTH_SUCCESS:
+    case AUTH_SET_STATUS:
       return {
         ...state,
         loading: false,
-      }
-    case AUTH_FAILED:
-      return {
-        ...state,
-        error: action.payload,
       }
     default:
       return state

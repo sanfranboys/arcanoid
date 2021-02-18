@@ -1,11 +1,9 @@
-const prefix = 'USER/'
-
-const USER_DATA = `${prefix}DATA`
-const USER_REQUEST = `${prefix}REQUEST`
-const USER_SUCCESS = `${prefix}SUCCESS`
-const USER_FAILED = `${prefix}FAILED`
-const USER_UPDATE_PROFILE = `${prefix}UPDATE_PROFILE`
-const USER_UPDATE_AVATAR = `${prefix}UPDATE_AVATAR`
+const USER_DATA = `USER/DATA`
+const USER_REQUEST = `USER/REQUEST`
+const USER_SUCCESS = `USER/SUCCESS`
+const USER_FAILED = `USER/FAILED`
+const USER_UPDATE_PROFILE = `USER/UPDATE_PROFILE`
+const USER_UPDATE_AVATAR = `USER/UPDATE_AVATAR`
 
 export {
   USER_DATA,
