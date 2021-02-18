@@ -2,9 +2,9 @@ import React from 'react'
 import { Page, ErrorPage } from '@/pages/'
 import { Redirect, Route, Switch } from 'react-router-dom'
 import { StartGame, GameProccess, FinishGame } from './components'
-import './GamePage.scss'
+import './GameRoutePage.scss'
 
-const GamePage = () => (
+const GameRoutePage = () => (
   <Page>
     <div className="game">
       <Switch>
@@ -28,4 +28,4 @@ const GamePage = () => (
   </Page>
 )
 
-export default GamePage
+export default GameRoutePage

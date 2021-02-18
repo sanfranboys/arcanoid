@@ -4,13 +4,11 @@ import { Header, Content, Layout } from '@/elements/'
 import {
   ErrorPage,
   AuthPage,
-  ForumPage,
+  ForumRoutePage,
   LeaderboardPage,
   ProfilePage,
   RegistrationPage,
-  GamePage,
-  TopicPage,
-  DiscussionPage,
+  GameRoutePage,
 } from '@/pages/'
 import { Nav } from '@/components/'
 
@@ -28,15 +26,10 @@ const App: FC = () => (
           <Route exact path="/">
             <Redirect to="/auth" />
           </Route>
-          <GuardedRoute component={GamePage} path="/game" />
+          <GuardedRoute component={GameRoutePage} path="/game" />
           <GuardedRoute component={LeaderboardPage} path="/leaderboard" />
           <GuardedRoute component={ProfilePage} path="/profile" />
-          <GuardedRoute component={ForumPage} path="/forum" />
-          <GuardedRoute component={TopicPage} path="/forum/:forumId" />
-          <GuardedRoute
-            component={DiscussionPage}
-            path="/forum/:forumId/:topicId"
-          />
+          <GuardedRoute component={ForumRoutePage} path="/forum" />
           <GuardedRoute component={AuthPage} path="/auth" nonAuth />
           <GuardedRoute
             component={RegistrationPage}

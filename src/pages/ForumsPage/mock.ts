@@ -1,4 +1,4 @@
-import { Forum } from '../../types'
+import { Forum } from './types'
 
 export const mock: Forum[] = [
   {
