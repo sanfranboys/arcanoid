@@ -15,6 +15,7 @@ import {
 import { Nav } from '@/components/'
 
 import './App.scss'
+import GuardedRoute from '@/hocs/'
 
 const App: FC = () => (
   <BrowserRouter>
@@ -25,33 +26,23 @@ const App: FC = () => (
       <Content>
         <Switch>
           <Route exact path="/">
-            {/* Пока просто редирект без условия */}
             <Redirect to="/auth" />
           </Route>
-          <Route path="/game">
-            <GamePage />
-          </Route>
-          <Route path="/leaderboard">
-            <LeaderboardPage />
-          </Route>
-          <Route path="/profile">
-            <ProfilePage />
-          </Route>
-          <Route path="/forum" exact>
-            <ForumPage />
-          </Route>
-          <Route path="/forum/:forumId" exact>
-            <TopicPage />
-          </Route>
-          <Route path="/forum/:forumId/:topicId" exact>
-            <DiscussionPage />
-          </Route>
-          <Route path="/auth">
-            <AuthPage />
-          </Route>
-          <Route path="/registration">
-            <RegistrationPage />
-          </Route>
+          <GuardedRoute component={GamePage} path="/game" />
+          <GuardedRoute component={LeaderboardPage} path="/leaderboard" />
+          <GuardedRoute component={ProfilePage} path="/profile" />
+          <GuardedRoute component={ForumPage} path="/forum" />
+          <GuardedRoute component={TopicPage} path="/forum/:forumId" />
+          <GuardedRoute
+            component={DiscussionPage}
+            path="/forum/:forumId/:topicId"
+          />
+          <GuardedRoute component={AuthPage} path="/auth" nonAuth />
+          <GuardedRoute
+            component={RegistrationPage}
+            path="/registration"
+            nonAuth
+          />
           <Route>
             <ErrorPage errorType={404} />
           </Route>
