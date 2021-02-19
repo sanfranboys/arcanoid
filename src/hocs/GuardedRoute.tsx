@@ -20,7 +20,7 @@ const GuardedRoute: FC<GuardedRouteProps> = ({
           auth ? (
             <Redirect to={{ pathname: '/game/start' }} />
           ) : (
-            <Component auth={!auth} {...props} />
+            <Component {...props} />
           )
         }
       />
@@ -31,7 +31,7 @@ const GuardedRoute: FC<GuardedRouteProps> = ({
     <Route
       render={(props) =>
         auth ? (
-          <Component auth={auth} {...props} />
+          <Component {...props} />
         ) : (
           <Redirect to={{ pathname: '/auth' }} />
         )
