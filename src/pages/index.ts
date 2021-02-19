@@ -1,6 +1,6 @@
 export { default as AuthPage } from './AuthPage'
 export { default as ErrorPage } from './ErrorPage'
-export { default as ForumsPage } from './ForumsPage'
+export { default as ForumPage } from './ForumPage'
 export { default as TopicPage } from './TopicPage'
 export { default as DiscussionPage } from './DiscussionPage'
 export { default as LeaderboardPage } from './LeaderboardPage'

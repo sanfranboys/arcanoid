@@ -6,7 +6,7 @@ import { Page } from '@/pages/'
 import Forum from './components/Forum'
 import { mock } from './mock'
 
-const ForumsPage = () => {
+const ForumPage = () => {
   const history = useHistory()
   const { url } = useRouteMatch()
 
@@ -48,4 +48,4 @@ const ForumsPage = () => {
   )
 }
 
-export default ForumsPage
+export default ForumPage
