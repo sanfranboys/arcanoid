@@ -2,7 +2,7 @@ import React from 'react'
 import { TopicPage, DiscussionPage, ForumsPage } from '@/pages/'
 import { Route, Switch } from 'react-router-dom'
 
-const ForumRoutePage = () => (
+const ForumRoutes = () => (
   <Switch>
     <Route exact path="/forum">
       <ForumsPage />
@@ -16,4 +16,4 @@ const ForumRoutePage = () => (
   </Switch>
 )
 
-export default ForumRoutePage
+export default ForumRoutes
