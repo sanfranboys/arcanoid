@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom'
 import * as Sentry from '@sentry/react'
 import { Integrations } from '@sentry/tracing'
 import { App, ErrorBoundary } from '@/components/'
-
+import { fullScreenMode } from '@/utils/'
+import Context from './context'
 import './styles/main.scss'
 
 Sentry.init({
@@ -13,9 +14,13 @@ Sentry.init({
   tracesSampleRate: 1.0,
 })
 
+const root: HTMLElement | null = document.getElementById('root')
+
 ReactDOM.render(
   <ErrorBoundary>
-    <App />
+    <Context.Provider value={fullScreenMode(root)}>
+      <App />
+    </Context.Provider>
   </ErrorBoundary>,
-  document.getElementById('root')
+  root
 )
