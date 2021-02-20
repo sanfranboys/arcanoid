@@ -20,8 +20,8 @@ const RootRoutes = () => (
     <PrivateRoute component={LeaderboardPage} path="/leaderboard" />
     <PrivateRoute component={ProfilePage} path="/profile" />
     <PrivateRoute component={ForumRoutes} path="/forum" />
-    <UnPrivateRoute component={AuthPage} path="/auth" nonAuth />
-    <UnPrivateRoute component={RegistrationPage} path="/registration" nonAuth />
+    <UnPrivateRoute component={AuthPage} path="/auth" />
+    <UnPrivateRoute component={RegistrationPage} path="/registration" />
     <Route>
       <ErrorPage errorType={404} />
     </Route>
