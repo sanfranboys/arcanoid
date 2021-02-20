@@ -3,29 +3,11 @@ import { Route, Redirect } from 'react-router-dom'
 
 type GuardedRouteProps = {
   component: FC<any>
-  nonAuth?: boolean
 }
 
-const GuardedRoute: FC<GuardedRouteProps> = ({
-  component: Component,
-  nonAuth,
-}) => {
+const PrivateRoute: FC<GuardedRouteProps> = ({ component: Component }) => {
   // заглушка, эти данные будут браться из стейта или локалсторейджа.
   const auth = true
-
-  if (nonAuth) {
-    return (
-      <Route
-        render={(props) =>
-          auth ? (
-            <Redirect to={{ pathname: '/game/start' }} />
-          ) : (
-            <Component {...props} />
-          )
-        }
-      />
-    )
-  }
 
   return (
     <Route
@@ -40,4 +22,4 @@ const GuardedRoute: FC<GuardedRouteProps> = ({
   )
 }
 
-export default GuardedRoute
+export default PrivateRoute

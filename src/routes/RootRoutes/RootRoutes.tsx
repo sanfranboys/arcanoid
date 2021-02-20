@@ -8,7 +8,7 @@ import {
   RegistrationPage,
 } from '@/pages/'
 
-import GuardedRoute from '@/hocs/'
+import { PrivateRoute, UnPrivateRoute } from '@/hocs/'
 import { ForumRoutes, GameRoutes } from '@/routes/'
 
 const RootRoutes = () => (
@@ -16,12 +16,12 @@ const RootRoutes = () => (
     <Route exact path="/">
       <Redirect to="/auth" />
     </Route>
-    <GuardedRoute component={GameRoutes} path="/game" />
-    <GuardedRoute component={LeaderboardPage} path="/leaderboard" />
-    <GuardedRoute component={ProfilePage} path="/profile" />
-    <GuardedRoute component={ForumRoutes} path="/forum" />
-    <GuardedRoute component={AuthPage} path="/auth" nonAuth />
-    <GuardedRoute component={RegistrationPage} path="/registration" nonAuth />
+    <PrivateRoute component={GameRoutes} path="/game" />
+    <PrivateRoute component={LeaderboardPage} path="/leaderboard" />
+    <PrivateRoute component={ProfilePage} path="/profile" />
+    <PrivateRoute component={ForumRoutes} path="/forum" />
+    <UnPrivateRoute component={AuthPage} path="/auth" nonAuth />
+    <UnPrivateRoute component={RegistrationPage} path="/registration" nonAuth />
     <Route>
       <ErrorPage errorType={404} />
     </Route>
