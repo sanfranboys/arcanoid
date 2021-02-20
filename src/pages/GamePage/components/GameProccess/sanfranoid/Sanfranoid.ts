@@ -1,191 +1,135 @@
 import { Nullable } from './types'
+import { Ball } from './Ball'
+import { Paddle } from './Paddle'
+import { Wall } from './Wall'
+import { Score } from './Score'
+import { Lives } from './Lives'
+import { Color } from './colors'
 
 class Sanfranoid {
+  finishPageRoute = '/game/finish'
+
+  ctx: Nullable<CanvasRenderingContext2D>
+
+  canvas: HTMLCanvasElement
+
+  ball: Ball
+
+  paddle: Paddle
+
+  wall: Wall
+
+  score: Score
+
+  lives: Lives
+
   constructor(canvas: HTMLCanvasElement) {
-    const ctx: Nullable<CanvasRenderingContext2D> = canvas.getContext('2d')
+    this.canvas = canvas
+    this.ctx = this.canvas.getContext('2d')
 
-    if (ctx) {
-      const ballRadius = 10
-      let x = canvas.width / 2
-      let y = canvas.height - 30
-      let dx = 2
-      let dy = -2
-      const paddleHeight = 10
-      const paddleWidth = 75
-      let paddleX = (canvas.width - paddleWidth) / 2
-      let rightPressed = false
-      let leftPressed = false
-      const brickRowCount = 5
-      const brickColumnCount = 3
-      const brickWidth = 75
-      const brickHeight = 20
-      const brickPadding = 10
-      const brickOffsetTop = 30
-      const brickOffsetLeft = 30
-      let score = 0
-      let lives = 3
-
-      const bricks: any = []
-      for (let c = 0; c < brickColumnCount; c += 1) {
-        bricks[c] = []
-        for (let r = 0; r < brickRowCount; r += 1) {
-          bricks[c][r] = { x: 0, y: 0, status: 1 }
-        }
-      }
-
-      const keyDownHandler = (e: KeyboardEvent) => {
-        if (e.keyCode === 39) {
-          rightPressed = true
-        } else if (e.keyCode === 37) {
-          leftPressed = true
-        }
-      }
-      const keyUpHandler = (e: KeyboardEvent) => {
-        if (e.keyCode === 39) {
-          rightPressed = false
-        } else if (e.keyCode === 37) {
-          leftPressed = false
-        }
-      }
-      const mouseMoveHandler = (e: MouseEvent) => {
-        const canvasOffsetLeft =
-          canvas.getBoundingClientRect().left + document.body.scrollLeft
-        const relativeX = e.clientX - canvasOffsetLeft
-        if (relativeX > 0 && relativeX < canvas.width) {
-          paddleX = relativeX - paddleWidth / 2
-        }
-      }
-
-      document.addEventListener('keydown', keyDownHandler, false)
-      document.addEventListener('keyup', keyUpHandler, false)
-      document.addEventListener('mousemove', mouseMoveHandler, false)
-
-     const destroy = () => {
-        document.removeEventListener('keydown', keyDownHandler, false)
-        document.removeEventListener('keyup', keyUpHandler, false)
-        document.removeEventListener('mousemove', mouseMoveHandler, false)
+    this.ball = new Ball(canvas)
+    this.paddle = new Paddle(canvas)
+    this.wall = new Wall(canvas, { color: Color.Green })
+    this.score = new Score(canvas)
+    this.lives = new Lives(canvas)
   }
 
-      const collisionDetection = () => {
-        for (let c = 0; c < brickColumnCount; c += 1) {
-          for (let r = 0; r < brickRowCount; r += 1) {
-            const b = bricks[c][r]
-            if (b.status === 1) {
-              if (
-                x > b.x &&
-                x < b.x + brickWidth &&
-                y > b.y &&
-                y < b.y + brickHeight
-              ) {
-                dy = -dy
-                b.status = 0
-                score += 1
-                if (score === brickRowCount * brickColumnCount) {
-                  destroy()
-                  window.location.href = '/game/finish'
-                }
-              }
-            }
-          }
+  public go() {
+    const draw = () => {
+      this.clear()
+
+      this.bricksProcessing()
+
+      const { ball } = this
+
+      if (ball.crossedRightOrLeft()) {
+        ball.changeXDirection()
+      }
+
+      if (ball.crossedTop()) {
+        ball.changeYDirection()
+      } else if (ball.crossedBottom()) {
+        if (this.paddle.isCrossedBy(ball)) {
+          this.paddleCrossedProcessing()
+        } else {
+          this.failProcessing()
         }
       }
 
-      const drawBall = () => {
-        ctx.beginPath()
-        ctx.arc(x, y, ballRadius, 0, Math.PI * 2)
-        ctx.fillStyle = '#0095DD'
-        ctx.fill()
-        ctx.closePath()
-      }
-      const drawPaddle = () => {
-        ctx.beginPath()
-        ctx.rect(
-          paddleX,
-          canvas.height - paddleHeight,
-          paddleWidth,
-          paddleHeight
-        )
-        ctx.fillStyle = '#0095DD'
-        ctx.fill()
-        ctx.closePath()
-      }
-      const drawBricks = () => {
-        for (let c = 0; c < brickColumnCount; c += 1) {
-          for (let r = 0; r < brickRowCount; r += 1) {
-            if (bricks[c][r].status === 1) {
-              const brickX = r * (brickWidth + brickPadding) + brickOffsetLeft
-              const brickY = c * (brickHeight + brickPadding) + brickOffsetTop
-              bricks[c][r].x = brickX
-              bricks[c][r].y = brickY
-              ctx.beginPath()
-              ctx.rect(brickX, brickY, brickWidth, brickHeight)
-              ctx.fillStyle = '#0095DD'
-              ctx.fill()
-              ctx.closePath()
-            }
-          }
-        }
-      }
-      const drawScore = () => {
-        ctx.font = '16px Arial'
-        ctx.fillStyle = '#0095DD'
-        ctx.fillText(`Score: ${score}`, 8, 20)
-      }
-      const drawLives = () => {
-        ctx.font = '16px Arial'
-        ctx.fillStyle = '#0095DD'
-        ctx.fillText(`Lives: ${lives}`, canvas.width - 65, 20)
-      }
+      this.ball.draw()
+      this.paddle.draw()
+      this.wall.draw()
+      this.score.draw()
+      this.lives.draw()
 
-      const draw = () => {
-        ctx.clearRect(0, 0, canvas.width, canvas.height)
-        drawBricks()
-        drawBall()
-        drawPaddle()
-        drawScore()
-        drawLives()
-        collisionDetection()
+      requestAnimationFrame(draw)
+    }
 
-        if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
-          dx = -dx
-        }
-        if (y + dy < ballRadius) {
-          dy = -dy
-        } else if (y + dy > canvas.height - ballRadius) {
-          if (x > paddleX && x < paddleX + paddleWidth) {
-            dy = -dy
-          } else {
-            lives -= 1
-            if (!lives) {
-              destroy()
-              window.location.href = '/game/finish'
-            } else {
-              x = canvas.width / 2
-              y = canvas.height - 30
-              dx = 3
-              dy = -3
-              paddleX = (canvas.width - paddleWidth) / 2
-            }
-          }
-        }
+    draw()
+  }
 
-        if (rightPressed && paddleX < canvas.width - paddleWidth) {
-          paddleX += 7
-        } else if (leftPressed && paddleX > 0) {
-          paddleX -= 7
-        }
+  private failProcessing() {
+    this.lives.decrease()
 
-        x += dx
-        y += dy
-        requestAnimationFrame(draw)
-      }
+    if (this.lives.isLow()) {
+      this.wall.setColor(Color.Yellow)
+    } else if (this.lives.isCritical()) {
+      this.wall.setColor(Color.Red)
+    }
 
-      draw()
+    if (this.lives.isOver()) {
+      this.endGame()
+    } else {
+      this.ball.setStartPosition()
+      this.paddle.setStartPosition()
     }
   }
-  // Пока отрубим тут линтер, потом будем рефакторить и ошибка class-methods-use-this уйдет
-  /* eslint-disable-next-line */
-  public go() {}
+
+  private paddleCrossedProcessing() {
+    const { speed } = this.paddle
+    const { ball } = this
+
+    if (Math.abs(speed) > 25) {
+      if (speed > 0) {
+        ball.moveLeft()
+      } else {
+        ball.moveRight()
+      }
+    } else {
+      ball.changeYDirection()
+    }
+
+    this.paddle.speed = 0
+  }
+
+  private bricksProcessing() {
+    const { ball } = this
+
+    this.wall.eachBrick((brick) => {
+      if (brick.isExist() && brick.isCrossedBy(ball)) {
+        brick.destroy()
+
+        ball.changeYDirection()
+        this.score.increase()
+
+        if (this.wall.isDestroyed()) {
+          this.wall.createBricks()
+        }
+      }
+    })
+  }
+
+  private endGame() {
+    this.paddle.destroy()
+    window.location.href = this.finishPageRoute
+  }
+
+  private clear() {
+    if (this.ctx) {
+      const { width, height } = this.canvas
+      this.ctx.clearRect(0, 0, width, height)
+    }
+  }
 }
 
 export default Sanfranoid
