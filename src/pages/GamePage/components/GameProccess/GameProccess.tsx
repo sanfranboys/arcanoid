@@ -23,8 +23,8 @@ const GameProccess = () => {
           <canvas
             ref={ref}
             className="game-container"
-            width="480"
-            height="320"
+            width="1600"
+            height="700"
           />
         </Centered>
       </Col>
