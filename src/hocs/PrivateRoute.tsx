@@ -1,5 +1,6 @@
 import React, { FC } from 'react'
 import { Route, Redirect } from 'react-router-dom'
+import { getStorage } from '@/utils/'
 
 type GuardedRouteProps = {
   component: FC<any>
@@ -7,12 +8,13 @@ type GuardedRouteProps = {
 
 const PrivateRoute: FC<GuardedRouteProps> = ({ component: Component }) => {
   // заглушка, эти данные будут браться из стейта или локалсторейджа.
-  const auth = true
+
+  const isAuth: boolean = getStorage()
 
   return (
     <Route
       render={(props) =>
-        auth ? (
+        isAuth ? (
           <Component {...props} />
         ) : (
           <Redirect to={{ pathname: '/auth' }} />

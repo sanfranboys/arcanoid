@@ -1,5 +1,6 @@
 import React, { FC } from 'react'
 import { Route, Redirect } from 'react-router-dom'
+import { getStorage } from '@/utils/'
 
 type GuardedRouteProps = {
   component: FC<any>
@@ -7,13 +8,12 @@ type GuardedRouteProps = {
 
 // Route not allowed to visit authorized users to auth/register pages
 const UnPrivateRoute: FC<GuardedRouteProps> = ({ component: Component }) => {
-  // заглушка, эти данные будут браться из стейта или локалсторейджа.
-  const auth = true
+  const isAuth: boolean = getStorage()
 
   return (
     <Route
       render={(props) =>
-        auth ? (
+        isAuth ? (
           <Redirect to={{ pathname: '/game/start' }} />
         ) : (
           <Component {...props} />

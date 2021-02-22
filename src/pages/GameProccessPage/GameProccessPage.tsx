@@ -6,10 +6,10 @@ import { Sanfranoid, Nullable } from './sanfranoid'
 import './GameProccessPage.scss'
 
 const GameProccessPage = () => {
-  const ref = useRef<Nullable<HTMLCanvasElement>>(null)
+  const canvasRef = useRef<Nullable<HTMLCanvasElement>>(null)
 
   useEffect(() => {
-    const canvas = ref.current
+    const canvas = canvasRef.current
 
     if (canvas) {
       const sanfranoid = new Sanfranoid(canvas)
@@ -23,10 +23,10 @@ const GameProccessPage = () => {
         <Col span={18} offset={3}>
           <Centered>
             <canvas
-              ref={ref}
+              ref={canvasRef}
               className="game-container"
-              width="480"
-              height="320"
+              width="1600"
+              height="700"
             />
           </Centered>
         </Col>

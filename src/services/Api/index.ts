@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { AxiosError, AxiosResponse } from 'axios'
 import { withCredentials } from '@/constants'
 
 export class ApiServices {
@@ -24,3 +24,8 @@ export class ApiServices {
     return axios.delete(`${this.baseUrl}${endpoint}`, withCredentials)
   }
 }
+
+axios.interceptors.response.use(
+  (response: AxiosResponse<any>) => response,
+  (error: AxiosError) => Promise.reject(error.request)
+)
