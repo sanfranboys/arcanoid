@@ -1,6 +1,12 @@
 import React, { useCallback, useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  userRequestAction,
+  getProfileUser,
+  userChangeProfileAction,
+  userChangeAvatarAction,
+} from '@/ducks'
 import { Row, Col, Space, StringButton } from '@/elements/'
-import { AuthServices, UserServices } from '@/services/'
 import { Page } from '@/pages/'
 import { RcFile } from 'antd/lib/upload'
 import ProfileInfo from './components/ProfileInfo'
@@ -15,20 +21,11 @@ enum ProfilePageMode {
 const ProfilePage = () => {
   const [isEditMode, setIsEditMode] = useState(false)
 
-  const [userData, setUserData] = useState<ProfileTypes>({
-    first_name: '',
-    second_name: '',
-    login: '',
-    email: '',
-    display_name: '',
-    phone: '',
-    avatar: null,
-  })
+  const dispatch = useDispatch()
+  const userData: ProfileTypes = useSelector(getProfileUser)
 
   useEffect(() => {
-    AuthServices.getUserInfo().then((data: ProfileTypes) => {
-      setUserData(data)
-    })
+    dispatch(userRequestAction())
   }, [])
 
   const toggleProfilePageMode = useCallback(() => {
@@ -36,17 +33,13 @@ const ProfilePage = () => {
   }, [])
 
   const onSubmit = useCallback((data: ProfileTypes) => {
-    UserServices.changeUserProfile(data).then((profileData: ProfileTypes) =>
-      setUserData(profileData)
-    )
+    dispatch(userChangeProfileAction(data))
   }, [])
 
   const handleChangeAvatar = useCallback((file: RcFile) => {
     const data = new FormData()
     data.append('avatar', file)
-    UserServices.changeUserAvatar(data).then((profileData: ProfileTypes) =>
-      setUserData(profileData)
-    )
+    dispatch(userChangeAvatarAction(data))
   }, [])
 
   return (
