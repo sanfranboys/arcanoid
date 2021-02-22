@@ -1,6 +1,7 @@
 import React, { ChangeEvent, FC, useCallback } from 'react'
 import { Form } from 'antd'
 import { useForm } from 'react-hook-form'
+import { useDispatch } from 'react-redux'
 import {
   ContentBox,
   Button,
@@ -10,8 +11,8 @@ import {
   Centered,
 } from '@/elements/'
 import { Input } from '@/components/'
-import { AuthServices } from '@/services/'
 import { yupResolver } from '@hookform/resolvers/yup'
+import { authLoginAction } from '@/ducks'
 import authSchema from '../../schema'
 import { AuthFormData, AuthFormDataKey } from '../../types'
 
@@ -19,8 +20,11 @@ const Auth: FC = () => {
   const { handleSubmit, errors, register, setValue } = useForm<AuthFormData>({
     resolver: yupResolver(authSchema),
   })
-
-  const onSubmit = (data: AuthFormData) => AuthServices.signIn(data)
+  const dispatch = useDispatch()
+  const onSubmit = useCallback(
+    (data: AuthFormData) => dispatch(authLoginAction(data)),
+    [handleSubmit]
+  )
 
   const handleChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
@@ -34,7 +38,6 @@ const Auth: FC = () => {
     (fieldName: AuthFormDataKey) => register({ name: fieldName }),
     [register]
   )
-
   return (
     <ContentBox>
       <Row gutter={[0, 10]}>
