@@ -1,18 +1,17 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
 import { AuthServices } from '@/services/'
 import { NotificationWindow } from '@/elements/'
-import { useStorage } from '@/utils/'
+import { setStorage } from '@/utils/'
 import { setStatusAction, setAuthAction } from './actions'
 import { AUTH_LOGIN, AUTH_LOGOUT, AUTH_REGISTRATION } from './actionTypes'
 import { ActionLoginTypes, ActionRegistrationTypes } from './types'
-
-const [setStorage] = useStorage()
 
 function* sagaWorkerLogin({ payload }: ActionLoginTypes) {
   try {
     yield call([AuthServices, 'signIn'], payload)
     yield put(setStatusAction())
     yield put(setAuthAction(true))
+    setStorage(true)
   } catch (error) {
     if (error.status === 400) {
       NotificationWindow({

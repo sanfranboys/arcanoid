@@ -27,10 +27,5 @@ export class ApiServices {
 
 axios.interceptors.response.use(
   (response: AxiosResponse<any>) => response,
-  (error: AxiosError) => {
-    if (window.location.pathname !== '/auth' && error.request.status === 401) {
-      window.location.href = '/auth'
-    }
-    return Promise.reject(error.request)
-  }
+  (error: AxiosError) => Promise.reject(error.request)
 )

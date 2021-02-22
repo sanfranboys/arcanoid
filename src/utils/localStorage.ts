@@ -1,13 +1,7 @@
-function useStorage() {
-  function setStorage(data: boolean) {
-    localStorage.isAuth = data
-  }
-
-  function getStorage() {
-    return JSON.parse(localStorage.isAuth)
-  }
-
-  return [setStorage, getStorage]
+export function setStorage(data: boolean) {
+  localStorage.isAuth = data
 }
 
-export default useStorage
+export function getStorage() {
+  return JSON.parse(localStorage.isAuth)
+}
