@@ -24,4 +24,8 @@ module.exports = {
     '@typescript-eslint/naming-convention': 0,
   },
   ignorePatterns: ['.eslintrc.js'],
+  globals: {
+    caches: false,
+    fetch: false,
+  },
 }
