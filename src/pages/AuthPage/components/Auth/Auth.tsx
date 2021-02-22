@@ -21,7 +21,10 @@ const Auth: FC = () => {
     resolver: yupResolver(authSchema),
   })
   const dispatch = useDispatch()
-  const onSubmit = (data: AuthFormData) => dispatch(authLoginAction(data))
+  const onSubmit = useCallback(
+    (data: AuthFormData) => dispatch(authLoginAction(data)),
+    [handleSubmit]
+  )
 
   const handleChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {

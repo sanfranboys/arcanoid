@@ -16,6 +16,7 @@ const ProfileInfo: FC<ProfileTypes> = ({
   avatar,
 }) => {
   const dispatch = useDispatch()
+  const handleLogOut = () => dispatch(authLogoutAction())
   return (
     <Space size="large" direction="vertical" full>
       <Centered>
@@ -30,7 +31,7 @@ const ProfileInfo: FC<ProfileTypes> = ({
       <Description title="Email:">{email}</Description>
       <Description title="Телефон:">{phone}</Description>
       <Description title="Логин:">{login}</Description>
-      <Button onClick={() => dispatch(authLogoutAction())}>Выйти</Button>
+      <Button onClick={handleLogOut}>Выйти</Button>
     </Space>
   )
 }
