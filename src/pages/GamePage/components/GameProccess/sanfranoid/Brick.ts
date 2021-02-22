@@ -7,11 +7,11 @@ export enum Status {
 }
 
 export class Brick extends Feature {
-  height = 20
+  public height = 20
 
-  width = 75
+  public width = 75
 
-  status = Status.Exist
+  private status = Status.Exist
 
   constructor(canvas: HTMLCanvasElement, options?: BrickOptions) {
     super(canvas, options)
@@ -23,7 +23,7 @@ export class Brick extends Feature {
     }
   }
 
-  draw(x: number, y: number) {
+  public draw(x: number, y: number) {
     const { ctx, height, width, color } = this
 
     this.x = x
@@ -36,15 +36,15 @@ export class Brick extends Feature {
     ctx.closePath()
   }
 
-  isExist() {
+  public isExist() {
     return this.status === Status.Exist
   }
 
-  destroy() {
+  public destroy() {
     this.status = Status.Destroyed
   }
 
-  isCrossedBy(feature: Feature) {
+  public isCrossedBy(feature: Feature) {
     const { x, y, width, height } = this
     return (
       feature.x > x &&

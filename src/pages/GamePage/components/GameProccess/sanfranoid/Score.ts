@@ -1,13 +1,13 @@
 import { Feature } from './Feature'
 
 export class Score extends Feature {
-  count = 0
+  private count = 0
 
-  x = 8
+  public x = 8
 
-  y = 20
+  public y = 20
 
-  draw() {
+  public draw() {
     const { ctx, count, color, x, y } = this
 
     ctx.font = '16px Arial'
@@ -15,7 +15,7 @@ export class Score extends Feature {
     ctx.fillText(`Score: ${count}`, x, y)
   }
 
-  increase() {
+  public increase() {
     this.count += 1
   }
 }

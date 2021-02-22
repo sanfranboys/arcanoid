@@ -3,21 +3,21 @@ import { Feature } from './Feature'
 import { FeatureOptions } from './types'
 
 export class Wall extends Feature {
-  rowCount = 3
+  private rowCount = 3
 
-  columnCount = 5
+  private columnCount = 5
 
-  padding = 10
+  private padding = 10
 
-  offsetTop = 30
+  private offsetTop = 30
 
-  offsetLeft = 30
+  private offsetLeft = 30
 
-  bricksWidth = 75
+  private bricksWidth = 75
 
-  bricksHeight = 20
+  private bricksHeight = 20
 
-  bricks: Brick[][] = []
+  private bricks: Brick[][] = []
 
   constructor(canvas: HTMLCanvasElement, options?: FeatureOptions) {
     super(canvas, options)
@@ -26,7 +26,9 @@ export class Wall extends Feature {
     this.createBricks()
   }
 
-  eachBrick(callback: (brick: Brick, rowIdx: number, colIdx: number) => void) {
+  public eachBrick(
+    callback: (brick: Brick, rowIdx: number, colIdx: number) => void
+  ) {
     this.bricks.forEach((row, rowIdx) => {
       row.forEach((brick, colIdx) => {
         if (typeof callback === 'function') {
@@ -36,7 +38,7 @@ export class Wall extends Feature {
     })
   }
 
-  draw() {
+  public draw() {
     const { offsetLeft, offsetTop, padding } = this
 
     this.eachBrick((brick, rowIdx, colIdx) => {
@@ -51,11 +53,11 @@ export class Wall extends Feature {
     })
   }
 
-  createBricks() {
+  public createBricks() {
     this.bricks = Array.from(Array(this.rowCount), () => this.createRow())
   }
 
-  createRow() {
+  private createRow() {
     return Array.from(
       Array(this.columnCount),
       () =>
@@ -66,11 +68,11 @@ export class Wall extends Feature {
     )
   }
 
-  isDestroyed() {
+  public isDestroyed() {
     return this.bricks.every((row) => row.every((brick) => !brick.isExist()))
   }
 
-  calculateBrick() {
+  private calculateBrick() {
     const freeXSpace = this.canvas.width - this.offsetLeft * 2 + this.padding
     const brickWidthSpace = this.bricksWidth + this.padding
     this.columnCount = Math.ceil(freeXSpace / brickWidthSpace)

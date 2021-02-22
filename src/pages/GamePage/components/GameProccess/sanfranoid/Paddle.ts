@@ -3,21 +3,21 @@ import { Feature } from './Feature'
 import { BrickOptions } from './types'
 
 export class Paddle extends Brick {
-  height = 10
+  public height = 10
 
-  width = 100
+  public width = 100
 
-  dx = 7
+  private dx = 7
 
-  rightPressed = false
+  private rightPressed = false
 
-  leftPressed = false
+  private leftPressed = false
 
-  speed = 0
+  public speed = 0
 
-  time: number
+  private time: number
 
-  lastX: number
+  private lastX: number
 
   constructor(canvas: HTMLCanvasElement, options?: BrickOptions) {
     super(canvas, options)
@@ -29,13 +29,13 @@ export class Paddle extends Brick {
     document.addEventListener('mousemove', this.mouseMoveHandler, false)
   }
 
-  destroy() {
+  public destroy() {
     document.removeEventListener('keydown', this.keyDownHandler, false)
     document.removeEventListener('keyup', this.keyUpHandler, false)
     document.removeEventListener('mousemove', this.mouseMoveHandler, false)
   }
 
-  draw() {
+  public draw() {
     const { dx } = this
 
     if (this.isNotCrossedRight()) {
@@ -47,7 +47,7 @@ export class Paddle extends Brick {
     super.draw(this.x, this.y)
   }
 
-  keyDownHandler = (e: KeyboardEvent) => {
+  private keyDownHandler = (e: KeyboardEvent) => {
     if (e.keyCode === 39) {
       this.rightPressed = true
     } else if (e.keyCode === 37) {
@@ -55,7 +55,7 @@ export class Paddle extends Brick {
     }
   }
 
-  keyUpHandler = (e: KeyboardEvent) => {
+  private keyUpHandler = (e: KeyboardEvent) => {
     if (e.keyCode === 39) {
       this.rightPressed = false
     } else if (e.keyCode === 37) {
@@ -63,7 +63,7 @@ export class Paddle extends Brick {
     }
   }
 
-  mouseMoveHandler = (e: MouseEvent) => {
+  private mouseMoveHandler = (e: MouseEvent) => {
     const { canvas, width, lastX, x } = this
     const canvasOffsetLeft =
       canvas.getBoundingClientRect().left + document.body.scrollLeft
@@ -80,7 +80,7 @@ export class Paddle extends Brick {
     })
   }
 
-  withTime(callback: (time: number) => void) {
+  private withTime(callback: (time: number) => void) {
     const { time } = this
 
     if (time === null) {
@@ -98,22 +98,22 @@ export class Paddle extends Brick {
     this.time = now
   }
 
-  isCrossedBy(feature: Feature) {
+  public isCrossedBy(feature: Feature) {
     const { x, width } = this
     return feature.x > x && feature.x < x + width
   }
 
-  setStartPosition() {
+  public setStartPosition() {
     this.x = (this.canvas.width - this.width) / 2
     this.y = this.canvas.height - this.height
   }
 
-  isNotCrossedRight() {
+  private isNotCrossedRight() {
     const { x, rightPressed, width, canvas } = this
     return rightPressed && x < canvas.width - width
   }
 
-  isNotCrossedLeft() {
+  private isNotCrossedLeft() {
     const { leftPressed, x } = this
     return leftPressed && x > 0
   }

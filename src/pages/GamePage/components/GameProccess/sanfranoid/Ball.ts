@@ -5,11 +5,11 @@ const startDx = 3
 const startDy = -3
 
 export class Ball extends Feature {
-  radius = 10
+  private radius = 10
 
-  dx = startDx
+  private dx = startDx
 
-  dy = startDy
+  private dy = startDy
 
   constructor(canvas: HTMLCanvasElement, options?: FeatureOptions) {
     super(canvas, options)
@@ -17,7 +17,7 @@ export class Ball extends Feature {
     this.setStartPosition()
   }
 
-  draw() {
+  public draw() {
     const { ctx, radius, color, dx, dy, x, y } = this
 
     this.x += dx
@@ -30,40 +30,40 @@ export class Ball extends Feature {
     ctx.closePath()
   }
 
-  changeXDirection() {
+  public changeXDirection() {
     this.dx = -this.dx
   }
 
-  changeYDirection() {
+  public changeYDirection() {
     this.dy = -this.dy
   }
 
-  moveRight() {
+  public moveRight() {
     this.dy = startDy
     this.dx = startDx
   }
 
-  moveLeft() {
+  public moveLeft() {
     this.dy = startDy
     this.dx = -startDx
   }
 
-  crossedRightOrLeft() {
+  public crossedRightOrLeft() {
     const { x, dx, canvas, radius } = this
     return x + dx > canvas.width - radius || x + dx < radius
   }
 
-  crossedTop() {
+  public crossedTop() {
     const { y, dy, radius } = this
     return y + dy < radius
   }
 
-  crossedBottom() {
+  public crossedBottom() {
     const { y, dy, radius, canvas } = this
     return y + dy > canvas.height - radius
   }
 
-  setStartPosition() {
+  public setStartPosition() {
     this.x = this.canvas.width / 2
     this.y = this.canvas.height - 30
     this.dx = startDx

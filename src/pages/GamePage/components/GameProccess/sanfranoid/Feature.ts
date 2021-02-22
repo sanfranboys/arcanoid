@@ -2,15 +2,15 @@ import { FeatureOptions } from './types'
 import { Color } from './colors'
 
 export abstract class Feature {
-  ctx: CanvasRenderingContext2D
+  protected ctx: CanvasRenderingContext2D
 
-  canvas
+  protected canvas
 
-  color = Color.Blue
+  protected color = Color.Blue
 
-  x = 0
+  public x = 0
 
-  y = 0
+  public y = 0
 
   constructor(canvas: HTMLCanvasElement, options?: FeatureOptions) {
     this.canvas = canvas
@@ -30,9 +30,9 @@ export abstract class Feature {
     }
   }
 
-  abstract draw(x?: number, y?: number): void
+  public abstract draw(x?: number, y?: number): void
 
-  setColor(color: Color) {
+  public setColor(color: Color) {
     this.color = color
   }
 }

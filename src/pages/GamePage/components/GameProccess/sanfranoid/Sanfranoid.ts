@@ -7,21 +7,21 @@ import { Lives } from './Lives'
 import { Color } from './colors'
 
 class Sanfranoid {
-  finishPageRoute = '/game/finish'
+  private finishPageRoute = '/game/finish'
 
-  ctx: Nullable<CanvasRenderingContext2D>
+  private readonly ctx: Nullable<CanvasRenderingContext2D>
 
-  canvas: HTMLCanvasElement
+  private readonly canvas: HTMLCanvasElement
 
-  ball: Ball
+  private ball: Ball
 
-  paddle: Paddle
+  private readonly paddle: Paddle
 
-  wall: Wall
+  private wall: Wall
 
-  score: Score
+  private score: Score
 
-  lives: Lives
+  private lives: Lives
 
   constructor(canvas: HTMLCanvasElement) {
     this.canvas = canvas
