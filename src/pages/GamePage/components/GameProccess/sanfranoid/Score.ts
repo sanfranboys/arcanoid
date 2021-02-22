@@ -10,10 +10,6 @@ export class Score extends Feature {
   draw() {
     const { ctx, count, color, x, y } = this
 
-    if (!ctx) {
-      return
-    }
-
     ctx.font = '16px Arial'
     ctx.fillStyle = color
     ctx.fillText(`Score: ${count}`, x, y)

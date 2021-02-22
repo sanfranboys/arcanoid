@@ -26,10 +26,6 @@ export class Brick extends Feature {
   draw(x: number, y: number) {
     const { ctx, height, width, color } = this
 
-    if (!ctx) {
-      return
-    }
-
     this.x = x
     this.y = y
 

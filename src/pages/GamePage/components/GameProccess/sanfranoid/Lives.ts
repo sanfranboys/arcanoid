@@ -15,9 +15,6 @@ export class Lives extends Feature {
   draw() {
     const { ctx, count, color, x, y } = this
 
-    if (!ctx) {
-      return
-    }
     ctx.font = '16px Arial'
     ctx.fillStyle = color
     ctx.fillText(`Lives: ${count}`, x, y)

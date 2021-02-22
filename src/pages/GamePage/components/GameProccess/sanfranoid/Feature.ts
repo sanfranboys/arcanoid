@@ -2,7 +2,7 @@ import { FeatureOptions } from './types'
 import { Color } from './colors'
 
 export abstract class Feature {
-  ctx
+  ctx: CanvasRenderingContext2D
 
   canvas
 
@@ -14,7 +14,13 @@ export abstract class Feature {
 
   constructor(canvas: HTMLCanvasElement, options?: FeatureOptions) {
     this.canvas = canvas
-    this.ctx = this.canvas.getContext('2d')
+    const ctx = this.canvas.getContext('2d')
+
+    if (ctx) {
+      this.ctx = ctx
+    } else {
+      throw new Error('Не удалось получить 2D контекст')
+    }
 
     if (options) {
       const { color = this.color, x = this.x, y = this.y } = options

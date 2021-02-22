@@ -20,10 +20,6 @@ export class Ball extends Feature {
   draw() {
     const { ctx, radius, color, dx, dy, x, y } = this
 
-    if (!ctx) {
-      return
-    }
-
     this.x += dx
     this.y += dy
 
