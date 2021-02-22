@@ -15,11 +15,13 @@ Sentry.init({
   tracesSampleRate: 1.0,
 })
 
+export const root: HTMLElement | null = document.getElementById('root')
+
 ReactDOM.render(
   <ErrorBoundary>
     <Provider store={store}>
       <App />
     </Provider>
   </ErrorBoundary>,
-  document.getElementById('root')
+  root
 )

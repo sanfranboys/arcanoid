@@ -1,6 +1,9 @@
 import React, { FC } from 'react'
+
 import { NavLink } from 'react-router-dom'
 import { Button } from '@/elements/'
+import { toggleFullScreen } from '@/utils/'
+import { root } from '@'
 
 import './Nav.scss'
 
@@ -28,6 +31,9 @@ const Nav: FC = () => (
         <NavLink className="nav__link" to="/profile">
           <span>Профиль</span>
         </NavLink>
+      </li>
+      <li className="nav__item nav__full-screen">
+        <Button onClick={toggleFullScreen(root)}>Полноэкранный режим</Button>
       </li>
     </ul>
   </nav>
