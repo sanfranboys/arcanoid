@@ -1,7 +1,7 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
 import { AuthServices } from '@/services/'
 import { NotificationWindow } from '@/elements/'
-import { setStorage } from '@/utils/'
+import { userRequestAction } from '@/ducks'
 import { setStatusAction, setAuthAction } from './actions'
 import { AUTH_LOGIN, AUTH_LOGOUT, AUTH_REGISTRATION } from './actionTypes'
 import { ActionLoginTypes, ActionRegistrationTypes } from './types'
@@ -10,8 +10,8 @@ function* sagaWorkerLogin({ payload }: ActionLoginTypes) {
   try {
     yield call([AuthServices, 'signIn'], payload)
     yield put(setStatusAction())
+    yield put(userRequestAction())
     yield put(setAuthAction(true))
-    setStorage(true)
   } catch (error) {
     if (error.status === 400) {
       NotificationWindow({
@@ -30,11 +30,9 @@ function* sagaWorkerLogin({ payload }: ActionLoginTypes) {
 
 function* sagaWorkerLogout() {
   try {
-    setStorage(false)
     yield call([AuthServices, 'logOut'])
     yield put(setStatusAction())
     yield put(setAuthAction(false))
-    window.location.href = '/auth'
   } catch (error) {
     NotificationWindow({
       description: 'Что-то пошло не так!',
@@ -45,9 +43,9 @@ function* sagaWorkerLogout() {
 
 function* sagaWorkerRegistration({ payload }: ActionRegistrationTypes) {
   try {
-    setStorage(true)
     yield call([AuthServices, 'signUp'], payload)
     yield put(setAuthAction(true))
+    yield put(userRequestAction())
     yield put(setStatusAction())
   } catch (error) {
     NotificationWindow({
