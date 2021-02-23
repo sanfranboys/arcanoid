@@ -1,7 +1,6 @@
 import { AuthServices, UserServices } from '@/services/'
 import { takeEvery, put, call } from 'redux-saga/effects'
 import { NotificationWindow } from '@/elements/'
-import { setStorage } from '@/utils/'
 import { ActionAvatar, ActionUser } from './types'
 import { setAuthAction } from '../auth'
 import { userSetStatusAction, userSuccessAction } from './actions'
@@ -15,20 +14,14 @@ function* sagaWorkerUser() {
   try {
     const data = yield call([AuthServices, 'getUserInfo'])
     yield put(setAuthAction(true))
-    setStorage(true)
     yield put(userSuccessAction(data))
   } catch (error) {
-    NotificationWindow({
-      type: 'error',
-      description: 'Что-то пошло не так!',
-    })
-    setStorage(false)
     yield put(setAuthAction(false))
     yield put(userSetStatusAction())
   }
 }
 
-function* sagaWorkerChangePrifile({ payload }: ActionUser) {
+function* sagaWorkerChangeProfile({ payload }: ActionUser) {
   try {
     NotificationWindow({
       description: 'Данные успешно изменены',
@@ -64,6 +57,6 @@ function* sagaWorkerChangeAvatar({ payload }: ActionAvatar) {
 
 export default function* sagaWatcher() {
   yield takeEvery(USER_REQUEST, sagaWorkerUser)
-  yield takeEvery(USER_UPDATE_PROFILE, sagaWorkerChangePrifile)
+  yield takeEvery(USER_UPDATE_PROFILE, sagaWorkerChangeProfile)
   yield takeEvery(USER_UPDATE_AVATAR, sagaWorkerChangeAvatar)
 }

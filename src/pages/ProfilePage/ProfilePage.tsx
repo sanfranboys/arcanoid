@@ -1,7 +1,6 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
-  userRequestAction,
   getProfileUser,
   userChangeProfileAction,
   userChangeAvatarAction,
@@ -23,10 +22,6 @@ const ProfilePage = () => {
 
   const dispatch = useDispatch()
   const userData: ProfileTypes = useSelector(getProfileUser)
-
-  useEffect(() => {
-    dispatch(userRequestAction())
-  }, [])
 
   const toggleProfilePageMode = useCallback(() => {
     setIsEditMode((editMode) => !editMode)

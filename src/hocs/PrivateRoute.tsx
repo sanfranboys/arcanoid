@@ -1,16 +1,14 @@
 import React, { FC } from 'react'
 import { Route, Redirect } from 'react-router-dom'
-import { getStorage } from '@/utils/'
+import { useSelector } from 'react-redux'
+import { getIsAuth } from '@/ducks'
 
 type GuardedRouteProps = {
   component: FC<any>
 }
 
 const PrivateRoute: FC<GuardedRouteProps> = ({ component: Component }) => {
-  // заглушка, эти данные будут браться из стейта или локалсторейджа.
-
-  const isAuth: boolean = getStorage()
-
+  const isAuth: boolean = useSelector(getIsAuth)
   return (
     <Route
       render={(props) =>
