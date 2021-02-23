@@ -10,15 +10,11 @@ export class Auth {
   }
 
   signIn(data: AuthFormData) {
-    return this.APIService.post('/auth/signin', data).then(() => {
-      window.location.href = '/profile'
-    })
+    return this.APIService.post('/auth/signin', data)
   }
 
   signUp(data: RegistrationFormData) {
-    return this.APIService.post('/auth/signup', data).then(() => {
-      window.location.href = '/profile'
-    })
+    return this.APIService.post('/auth/signup', data)
   }
 
   getUserInfo() {
