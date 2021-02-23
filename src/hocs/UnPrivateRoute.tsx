@@ -1,6 +1,5 @@
 import React, { FC } from 'react'
 import { Route, Redirect } from 'react-router-dom'
-import { getStorage } from '@/utils/'
 
 type GuardedRouteProps = {
   component: FC<any>
@@ -8,7 +7,7 @@ type GuardedRouteProps = {
 
 // Route not allowed to visit authorized users to auth/register pages
 const UnPrivateRoute: FC<GuardedRouteProps> = ({ component: Component }) => {
-  const isAuth: boolean = getStorage()
+  const isAuth: boolean = true
 
   return (
     <Route
