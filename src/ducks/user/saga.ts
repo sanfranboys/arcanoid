@@ -21,7 +21,7 @@ function* sagaWorkerUser() {
   }
 }
 
-function* sagaWorkerChangePrifile({ payload }: ActionUser) {
+function* sagaWorkerChangeProfile({ payload }: ActionUser) {
   try {
     NotificationWindow({
       description: 'Данные успешно изменены',
@@ -57,6 +57,6 @@ function* sagaWorkerChangeAvatar({ payload }: ActionAvatar) {
 
 export default function* sagaWatcher() {
   yield takeEvery(USER_REQUEST, sagaWorkerUser)
-  yield takeEvery(USER_UPDATE_PROFILE, sagaWorkerChangePrifile)
+  yield takeEvery(USER_UPDATE_PROFILE, sagaWorkerChangeProfile)
   yield takeEvery(USER_UPDATE_AVATAR, sagaWorkerChangeAvatar)
 }
