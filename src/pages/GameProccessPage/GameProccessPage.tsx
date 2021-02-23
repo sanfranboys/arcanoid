@@ -10,11 +10,14 @@ const GameProccessPage = () => {
 
   useEffect(() => {
     const canvas = canvasRef.current
+    let sanfranoid: Sanfranoid
 
     if (canvas) {
-      const sanfranoid = new Sanfranoid(canvas)
+      sanfranoid = new Sanfranoid(canvas)
       sanfranoid.go()
     }
+
+    return () => sanfranoid && sanfranoid.destroy()
   }, [])
 
   return (
