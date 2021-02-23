@@ -8,7 +8,7 @@ import {
 import { ActionAuth, AuthState } from './types'
 
 const initialState: AuthState = {
-  isAuth: false,
+  isAuth: true,
   loading: false,
 }
 

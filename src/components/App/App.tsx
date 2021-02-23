@@ -5,6 +5,7 @@ import { Header, Content, Layout } from '@/elements/'
 import { Nav } from '@/components/'
 import './App.scss'
 import { RootRoutes } from '@/routes/'
+import { withAuth } from '@/hocs/'
 
 const App: FC = () => (
   <BrowserRouter>
@@ -19,4 +20,4 @@ const App: FC = () => (
   </BrowserRouter>
 )
 
-export default App
+export default withAuth(App)
