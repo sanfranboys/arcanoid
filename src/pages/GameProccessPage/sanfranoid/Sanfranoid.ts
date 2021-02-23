@@ -23,6 +23,8 @@ class Sanfranoid {
 
   private lives: Lives
 
+  private isContinues: boolean
+
   constructor(canvas: HTMLCanvasElement) {
     this.canvas = canvas
     this.ctx = this.canvas.getContext('2d')
@@ -32,6 +34,8 @@ class Sanfranoid {
     this.wall = new Wall(canvas, { color: Color.Green })
     this.score = new Score(canvas)
     this.lives = new Lives(canvas)
+
+    this.isContinues = true
   }
 
   public go() {
@@ -62,7 +66,9 @@ class Sanfranoid {
       this.score.draw()
       this.lives.draw()
 
-      requestAnimationFrame(draw)
+      if (this.isContinues) {
+        requestAnimationFrame(draw)
+      }
     }
 
     draw()
@@ -120,8 +126,13 @@ class Sanfranoid {
   }
 
   private endGame() {
-    this.paddle.destroy()
+    this.destroy()
     window.location.href = this.finishPageRoute
+  }
+
+  public destroy() {
+    this.isContinues = false
+    this.paddle.destroy()
   }
 
   private clear() {
