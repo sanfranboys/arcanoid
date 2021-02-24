@@ -5,7 +5,6 @@ import { Integrations } from '@sentry/tracing'
 import { App, ErrorBoundary } from '@/components/'
 import { Provider } from 'react-redux'
 
-import { CheckUserIsAuth } from '@/hocs/'
 import './styles/main.scss'
 import store from './store'
 
@@ -21,9 +20,7 @@ export const root: HTMLElement | null = document.getElementById('root')
 ReactDOM.render(
   <ErrorBoundary>
     <Provider store={store}>
-      <CheckUserIsAuth>
-        <App />
-      </CheckUserIsAuth>
+      <App />
     </Provider>
   </ErrorBoundary>,
   root
