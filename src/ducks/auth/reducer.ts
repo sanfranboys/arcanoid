@@ -9,7 +9,7 @@ import { ActionAuth, AuthState } from './types'
 
 const initialState: AuthState = {
   isAuth: true,
-  loading: false,
+  loading: true,
 }
 
 const reducer = (state = initialState, action: ActionAuth) => {
@@ -18,6 +18,7 @@ const reducer = (state = initialState, action: ActionAuth) => {
       return {
         ...state,
         isAuth: action.payload,
+        loading: false,
       }
     case AUTH_LOGIN:
       return {
