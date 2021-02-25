@@ -1,5 +1,5 @@
 import * as yup from 'yup'
-import {phoneRegExp} from '@/constants'
+import { phoneRegExp } from '@/constants'
 
 export const RegistrationSchema = yup.object().shape({
   login: yup.string().required('Обязательное поле').min(3, 'Мининум 3 символа'),

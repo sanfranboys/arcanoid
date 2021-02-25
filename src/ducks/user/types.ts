@@ -16,6 +16,10 @@ export type UserState = {
   loading: boolean
 }
 
+export type SagaActionUser = {
+  type: string
+  payload: ChangeUserDataAction
+}
 export type ActionUser = {
   type: string
   payload: UserState

@@ -1,9 +1,9 @@
 export type ErrorPageProps = {
-  errorType: number
+  errorType?: number
 }
 
 export type ErrorData = {
-  title: string
+  title?: string
   description: string
   hasLink?: boolean
 }

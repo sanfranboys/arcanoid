@@ -1,5 +1,5 @@
 import React from 'react'
-import { Page } from '@/pages/'
+import { Page } from 'pages/'
 import { Leaderboard } from './components'
 
 const LeaderboardPage = () => (

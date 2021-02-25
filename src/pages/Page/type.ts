@@ -1,3 +1,3 @@
 export type PageProps = {
-  title: string
+  title?: string
 }

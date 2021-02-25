@@ -4,9 +4,9 @@ import {
   getProfileUser,
   userChangeProfileAction,
   userChangeAvatarAction,
-} from '@/ducks'
-import { Row, Col, Space, StringButton } from '@/elements/'
-import { Page } from '@/pages/'
+} from 'ducks'
+import { Row, Col, Space, StringButton } from 'elements'
+import { Page } from 'pages'
 import { RcFile } from 'antd/lib/upload'
 import ProfileInfo from './components/ProfileInfo'
 import ProfileEditForm from './components/ProfileEditForm/ProfileEditForm'
@@ -35,6 +35,7 @@ const ProfilePage = () => {
     const data = new FormData()
     data.append('avatar', file)
     dispatch(userChangeAvatarAction(data))
+    return ''
   }, [])
 
   return (

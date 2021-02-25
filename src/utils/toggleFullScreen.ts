@@ -1,8 +1,8 @@
-const toggleFullScreen = (element: HTMLElement) => () => {
+const toggleFullScreen = (element: HTMLElement | null) => () => {
   if (document.fullscreenElement) {
     document.exitFullscreen()
   } else {
-    element.requestFullscreen()
+    element?.requestFullscreen()
   }
 }
 

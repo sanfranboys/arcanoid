@@ -15,7 +15,7 @@ export type ChangeProfileDataTypes = {
 
 type ChangeDataUser = {
   onSubmit: (data: ProfileTypes) => void
-  changeAvatar: (file: RcFile) => void
+  changeAvatar: (file: RcFile) => string
 }
 
 export type ProfileFormDataKey = keyof ProfileTypes

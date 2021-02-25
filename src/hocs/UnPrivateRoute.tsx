@@ -1,10 +1,11 @@
 import React, { FC } from 'react'
 import { Route, Redirect } from 'react-router-dom'
-import { getIsAuth, getIsLoadingAuth } from '@/ducks'
+import { getIsAuth, getIsLoadingAuth } from 'ducks'
 import { useSelector } from 'react-redux'
 
 type GuardedRouteProps = {
   component: FC<any>
+  path: string
 }
 
 // Route not allowed to visit authorized users to auth/register pages

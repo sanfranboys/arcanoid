@@ -1,7 +1,7 @@
+import { FieldError } from 'react-hook-form'
+
 export type OwnProps = {
-  error?: {
-    message:string
-  }
+  error?: FieldError | undefined
   register?: any
-  label?:string
+  label?: string
 }

@@ -1,7 +1,7 @@
-import { AuthServices, UserServices } from '@/services/'
+import { AuthServices, UserServices } from 'services'
 import { takeEvery, put, call } from 'redux-saga/effects'
-import { NotificationWindow } from '@/elements/'
-import { ActionAvatar, ActionUser } from './types'
+import { NotificationWindow } from 'elements'
+import { ActionAvatar, SagaActionUser } from './types'
 import { setAuthAction } from '../auth'
 import { userSetStatusAction, userSuccessAction } from './actions'
 import {
@@ -21,7 +21,7 @@ function* sagaWorkerUser() {
   }
 }
 
-function* sagaWorkerChangeProfile({ payload }: ActionUser) {
+function* sagaWorkerChangeProfile({ payload }: SagaActionUser) {
   try {
     NotificationWindow({
       description: 'Данные успешно изменены',
