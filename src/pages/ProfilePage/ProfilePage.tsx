@@ -35,6 +35,7 @@ const ProfilePage = () => {
     const data = new FormData()
     data.append('avatar', file)
     dispatch(userChangeAvatarAction(data))
+    return ''
   }, [])
 
   return (
