@@ -4,7 +4,7 @@ import {
   StartGamePage,
   GameProccessPage,
   FinishGamePage,
-} from '@/pages/'
+} from 'pages/'
 import { Redirect, Route, Switch } from 'react-router-dom'
 
 const GameRoutes = () => (

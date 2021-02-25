@@ -12,7 +12,7 @@ export class User {
     return this.APIService.put('/user/profile', data)
   }
 
-  changeUserAvatar(data: { avatar: FormData }) {
-    return this.APIService.put('/user/profile/avatar', data)
+  changeUserAvatar(avatar: FormData) {
+    return this.APIService.put('/user/profile/avatar', avatar)
   }
 }

@@ -3,7 +3,7 @@ export type ErrorPageProps = {
 }
 
 export type ErrorData = {
-  title: string
+  title: string | undefined
   description: string
   hasLink?: boolean
 }

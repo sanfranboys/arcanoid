@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { Row, Col, Panel } from '@/elements/'
+import { Row, Col, Panel } from 'elements/'
 import { TopicProps } from './types'
 
 const Topic: FC<TopicProps> = ({ topic: { name, answersCount }, onClick }) => (
