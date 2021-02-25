@@ -1,5 +1,5 @@
 import React from 'react'
-import { TopicPage, DiscussionPage, ForumPage } from '@/pages/'
+import { TopicPage, DiscussionPage, ForumPage } from 'pages/'
 import { Route, Switch } from 'react-router-dom'
 
 const ForumRoutes = () => (

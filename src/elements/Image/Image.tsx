@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { Image as ImageComponent, ImageProps } from 'antd'
-import { imgErrorConsole } from '@/utils/'
 import { fallbackImage } from '@/constants'
+import { imgErrorConsole } from 'utils'
 
 import 'antd/lib/image/style/css'
 

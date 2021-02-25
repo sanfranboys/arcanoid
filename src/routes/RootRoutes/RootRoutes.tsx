@@ -6,10 +6,10 @@ import {
   LeaderboardPage,
   ProfilePage,
   RegistrationPage,
-} from '@/pages/'
+} from 'pages/'
 
-import { PrivateRoute, UnPrivateRoute } from '@/hocs/'
-import { ForumRoutes, GameRoutes } from '@/routes/'
+import { PrivateRoute, UnPrivateRoute } from 'hocs/'
+import { ForumRoutes, GameRoutes } from 'routes/'
 
 const RootRoutes = () => (
   <Switch>

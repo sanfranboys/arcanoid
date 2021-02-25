@@ -20,12 +20,20 @@ new CleanWebpackPlugin({
     resolve: {
       alias: {
         '@': path.join(__dirname, './src'),
+        'components': path.join(__dirname, './src/components'),
+        'ducks': path.join(__dirname, './src/ducks'),
+        'elements': path.join(__dirname, './src/elements'),
+        'hocs': path.join(__dirname, './src/hocs'),
+        'pages': path.join(__dirname, './src/pages'),
+        'services': path.join(__dirname, './src/services'),
+        'utils': path.join(__dirname, './src/utils'),
+        'routes': path.join(__dirname, './src/routes'),
       },
-      extensions: ['.ts', '.tsx', '.js'],
+      extensions: [ '.ts', '.tsx', '.js' ],
     },
     devtool: isDev ? 'source-map' : false,
     devServer: {
-      contentBase: path.join(__dirname, 'dist'),
+      contentBase: path.join(__dirname, './dist'),
       compress: true,
       port: 4000,
       historyApiFallback: {
@@ -44,15 +52,15 @@ new CleanWebpackPlugin({
               },
             },
           ],
-          exclude: [path.resolve(__dirname, 'node_modules')],
+          exclude: [ path.resolve(__dirname, 'node_modules') ],
         },
         {
           test: /\.css$/,
-          use: [MiniCssExtractPlugin.loader, 'css-loader'],
+          use: [ MiniCssExtractPlugin.loader, 'css-loader' ],
         },
         {
           test: /\.s[ac]ss$/i,
-          use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+          use: [ MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader' ],
         },
         {
           test: /\.(png|jpe?g|gif|icon|xml|svg|json)$/,

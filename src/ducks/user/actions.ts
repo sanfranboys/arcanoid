@@ -16,9 +16,9 @@ const userChangeProfileAction = (data: ChangeUserDataAction) => ({
   payload: data,
 })
 
-const userChangeAvatarAction = (data: { avatar: FormData }) => ({
+const userChangeAvatarAction = (avatar: FormData) => ({
   type: USER_UPDATE_AVATAR,
-  payload: data,
+  payload: avatar,
 })
 
 const userSuccessAction = (data: UserTypes) => ({
