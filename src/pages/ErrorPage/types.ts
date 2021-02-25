@@ -1,5 +1,5 @@
 export type ErrorPageProps = {
-  errorType: number
+  errorType?: number
 }
 
 export type ErrorData = {
