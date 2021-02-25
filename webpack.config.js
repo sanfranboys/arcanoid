@@ -28,7 +28,6 @@ new CleanWebpackPlugin({
         'services': path.join(__dirname, './src/services'),
         'utils': path.join(__dirname, './src/utils'),
         'routes': path.join(__dirname, './src/routes'),
-        'constants': path.join(__dirname, './src/constants'),
       },
       extensions: [ '.ts', '.tsx', '.js' ],
     },

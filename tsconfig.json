@@ -1,27 +1,3 @@
-// "paths": {
-//   "@": [ "./" ],
-//   "@pages": [ "pages" ],
-//   "@types": [ "types" ],
-//   "@block": [ "utils/Block" ],
-//   "@services": [ "services" ],
-//   "@render": [ "utils/Render" ],
-//   "@components": [ "components" ],
-//   "@button": [ "components/Button" ],
-// }
-
-// declare module '@'
-// declare module '@/elements/'
-// declare module '@/components/'
-// declare module '@/pages/'
-// declare module '@/services/'
-// declare module '@/utils/'
-// declare module '@/constants'
-// declare module '@/hocs/'
-// declare module '@/routes/'
-// declare module '@/ducks'
-
-
-
 {
   "compilerOptions": {
     "baseUrl": "./src",
