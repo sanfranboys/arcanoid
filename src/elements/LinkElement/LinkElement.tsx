@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { Link } from 'react-router-dom'
-import classNames from 'utils/'
+import { classNames } from 'utils/'
 import { LinkElementTypes } from './types'
 import './LinkElement.scss'
 

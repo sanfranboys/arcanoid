@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { Route, Redirect } from 'react-router-dom'
-import { getIsAuth, getIsLoadingAuth } from 'ducks'
+import { getIsAuth, getIsLoadingAuth } from 'ducks/'
 import { useSelector } from 'react-redux'
 
 type GuardedRouteProps = {

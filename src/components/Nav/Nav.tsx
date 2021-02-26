@@ -3,7 +3,7 @@ import React, { FC } from 'react'
 import { NavLink } from 'react-router-dom'
 import { Button } from 'elements/'
 import { toggleFullScreen } from 'utils/'
-import { root } from '@'
+import { root } from '@/constants'
 
 import './Nav.scss'
 

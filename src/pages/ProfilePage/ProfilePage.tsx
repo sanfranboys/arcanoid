@@ -4,8 +4,8 @@ import {
   getProfileUser,
   userChangeProfileAction,
   userChangeAvatarAction,
-} from 'ducks'
-import { Row, Col, Space, StringButton } from 'elements'
+} from 'ducks/'
+import { Row, Col, Space, StringButton } from 'elements/'
 import { Page } from 'pages'
 import { RcFile } from 'antd/lib/upload'
 import ProfileInfo from './components/ProfileInfo'

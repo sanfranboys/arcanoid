@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux'
 import { ContentBox, Button, LinkElement, Row, Col, Centered } from 'elements/'
 import { Input } from 'components/'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { authLoginAction } from 'ducks'
+import { authLoginAction } from 'ducks/'
 import authSchema from '../../schema'
 import { AuthFormData, AuthFormDataKey } from '../../types'
 

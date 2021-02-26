@@ -7,6 +7,8 @@ export const API_URL = `${BASE_URL}/api/v2`
 export const phoneRegExp = /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/
 export const withCredentials = { withCredentials: true }
 
+export const root: HTMLElement | null = document.getElementById('root')
+
 export const titleNotificationWindow = {
   warning: 'Предупрежддение!',
   error: 'Ошибка',
