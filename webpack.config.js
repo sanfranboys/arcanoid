@@ -108,6 +108,11 @@ new CleanWebpackPlugin({
             context: path.resolve(__dirname, 'src', 'assets'),
             to: './assets',
           },
+          {
+            from: 'sw.js',
+            context: path.resolve(__dirname, 'src'),
+            to: './',
+          },
         ],
       }),
     ],

@@ -4,6 +4,7 @@ import * as Sentry from '@sentry/react'
 import { Integrations } from '@sentry/tracing'
 import { App, ErrorBoundary } from 'components/'
 import { Provider } from 'react-redux'
+import { startServiceWorker } from './utils'
 import store from './store'
 
 import './styles/main.scss'
@@ -24,3 +25,5 @@ ReactDOM.render(
   </ErrorBoundary>,
   root
 )
+
+startServiceWorker()
