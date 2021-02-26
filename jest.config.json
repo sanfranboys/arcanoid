@@ -1,0 +1,15 @@
+{
+  "transform": {
+    "^.+\\.tsx?$": "ts-jest",
+    "^.+\\.ts?$": "ts-jest"
+  },
+  "setupFilesAfterEnv": ["<rootDir>/src/jest/setupTests.ts"],
+  "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+  "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
+  "moduleNameMapper": {
+    "^utils/$": "<rootDir>/src/utils/",
+    "^elements/$": "<rootDir>/src/elements/",
+    "^@/constants$": "<rootDir>/src/constants",
+    "^.*[.](css|CSS|scss)$": "<rootDir>/src/jest/styleMock.ts"
+  }
+}

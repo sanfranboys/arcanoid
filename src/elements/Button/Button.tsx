@@ -1,5 +1,5 @@
 import React, { ButtonHTMLAttributes, FC } from 'react'
-import classNames from 'utils'
+import { classNames } from 'utils/'
 import './Button.scss'
 
 const Button: FC<ButtonHTMLAttributes<HTMLButtonElement>> = ({

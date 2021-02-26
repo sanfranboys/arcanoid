@@ -7,6 +7,7 @@ import { Provider } from 'react-redux'
 import store from './store'
 
 import './styles/main.scss'
+import { root } from './constants'
 
 Sentry.init({
   dsn:
@@ -14,8 +15,6 @@ Sentry.init({
   integrations: [new Integrations.BrowserTracing()],
   tracesSampleRate: 1.0,
 })
-
-export const root: HTMLElement | null = document.getElementById('root')
 
 ReactDOM.render(
   <ErrorBoundary>
