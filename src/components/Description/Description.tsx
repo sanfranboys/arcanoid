@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { classNames } from 'utils'
+import { classNames } from 'utils/'
 import { DescriptionProps } from './types'
 
 import './Description.scss'

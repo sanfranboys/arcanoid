@@ -1,4 +1,4 @@
-import { userRequestAction } from 'ducks'
+import { userRequestAction } from 'ducks/'
 import React, { ComponentType, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 

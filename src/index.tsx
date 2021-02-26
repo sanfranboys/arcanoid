@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import * as Sentry from '@sentry/react'
 import { Integrations } from '@sentry/tracing'
-import { App, ErrorBoundary } from 'components'
+import { App, ErrorBoundary } from 'components/'
 import { Provider } from 'react-redux'
 import store from './store'
 

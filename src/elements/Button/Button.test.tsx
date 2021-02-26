@@ -1,5 +1,5 @@
 import * as React from 'react'
-import * as renderer from 'react-test-renderer'
+import { create } from 'react-test-renderer'
 import { shallow, ShallowWrapper } from 'enzyme'
 import Button from './Button'
 
@@ -18,7 +18,7 @@ describe('Button testing', () => {
   })
 
   it('Button renders correctly', () => {
-    const tree = renderer.create(<Button {...props} />).toJSON()
+    const tree = create(<Button {...props} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
 

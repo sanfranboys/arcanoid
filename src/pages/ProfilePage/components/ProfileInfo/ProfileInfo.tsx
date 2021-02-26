@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { Space, Avatar, Centered, Button } from 'elements/'
 import { useDispatch } from 'react-redux'
-import { authLogoutAction } from 'ducks'
+import { authLogoutAction } from 'ducks/'
 import { Description } from 'components/'
 import { BASE_URL } from '@/constants'
 import { ProfileTypes } from '../../types'
