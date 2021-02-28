@@ -2,7 +2,8 @@
   "compilerOptions": {
     "baseUrl": "./src",
     "paths": {
-      "@/*": ["./"]
+      "@": ["./"],
+      "@/constants": ["constants"]
     },
     "target": "ES5",
     "lib": ["esnext", "dom", "dom.iterable"],
@@ -22,11 +23,5 @@
   },
   "types": ["node"],
   "include": ["src/**/**/*"],
-  "exclude": [
-    "node_modules",
-    "**/*.spec.ts",
-    "**/*.test.ts",
-    "**/*.mock.ts",
-    "src/interface.ts"
-  ]
+  "exclude": ["node_modules"]
 }

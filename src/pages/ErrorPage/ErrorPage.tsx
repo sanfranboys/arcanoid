@@ -1,6 +1,6 @@
 import React, { FC, useMemo } from 'react'
-import { Col } from '@/elements/'
-import { Page } from '@/pages/'
+import { Col } from 'elements'
+import { Page } from 'pages'
 import { ErrorPageProps } from './types'
 import Error from './components/Error'
 import getErrorTexts from './utils/getErrorTexts'

@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Score testing Score snapshot testing snapshot matches 1`] = `
+<span
+  className="score score_small"
+>
+  Score here
+</span>
+`;

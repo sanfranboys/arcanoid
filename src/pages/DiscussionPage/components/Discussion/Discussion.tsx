@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useCallback, useMemo, useState } from 'react'
-import { Space, Panel, TextArea, Button, Row, Col } from '@/elements/'
+import { Space, Panel, TextArea, Button, Row, Col } from 'elements'
 import Message from '../Message'
 import { mock } from './mock'
 

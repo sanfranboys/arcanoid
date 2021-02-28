@@ -1,5 +1,11 @@
 module.exports = {
-  extends: ['airbnb-typescript', 'prettier', 'prettier/@typescript-eslint'],
+  extends: [
+    'airbnb-typescript',
+    'prettier',
+    'prettier/@typescript-eslint',
+    'prettier/react',
+  ],
+
   parserOptions: {
     project: ['./tsconfig.json'],
     tsconfigRootDir: __dirname,
@@ -17,6 +23,12 @@ module.exports = {
     'import/prefer-default-export': 0,
     'react/button-has-type': 0,
     '@typescript-eslint/naming-convention': 0,
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'error',
   },
   ignorePatterns: ['.eslintrc.js'],
+  globals: {
+    caches: false,
+    fetch: false,
+  },
 }

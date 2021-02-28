@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo, useState, ChangeEvent } from 'react'
 import { useHistory, useRouteMatch } from 'react-router-dom'
-import { Row, Col, Space, Button } from '@/elements/'
-import { Description, Input } from '@/components/'
+import { Row, Col, Space, Button } from 'elements'
+import { Description, Input } from 'components'
 import Topic from '../Topic'
 
 import { mock } from './mock'
@@ -37,7 +37,7 @@ const Topics = () => {
     })
 
     setTopic('')
-  }, [topic])
+  }, [topic, topics.length])
 
   const topicList = useMemo(
     () =>

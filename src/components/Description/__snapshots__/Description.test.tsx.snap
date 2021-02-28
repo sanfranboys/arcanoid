@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Description testing Description snapshot testing snapshot matches 1`] = `
+<div
+  className="description description_border_no"
+>
+  <div
+    className="description__key"
+  >
+    test-title
+  </div>
+  <div
+    className="description__value"
+  >
+    Content here
+  </div>
+</div>
+`;

@@ -1,6 +1,6 @@
 import React from 'react'
-import { Page } from '@/pages/'
-import { Col, Row } from '@/elements/'
+import { Page } from 'pages'
+import { Col, Row } from 'elements'
 import { Discussion } from './components/Discussion'
 
 const DiscussionPage = () => (

@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LinkElement testing LinkElement snapshot testing snapshot matches 1`] = `
+<a
+  className="link-component mix-className"
+  href="/link"
+  onClick={[Function]}
+>
+  Link text here
+</a>
+`;

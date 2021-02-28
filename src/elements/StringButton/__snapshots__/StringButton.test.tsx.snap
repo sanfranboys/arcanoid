@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StringButton testing StringButton snapshot testing snapshot matches 1`] = `
+<button
+  className="string-button"
+  onClick={[MockFunction]}
+  onKeyDown={[MockFunction]}
+  type="button"
+>
+  Push me
+</button>
+`;
