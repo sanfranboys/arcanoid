@@ -4,8 +4,8 @@ import {
   getProfileUser,
   userChangeProfileAction,
   userChangeAvatarAction,
-} from 'ducks/'
-import { Row, Col, Space, StringButton } from 'elements/'
+} from 'ducks'
+import { Row, Col, Space, StringButton } from 'elements'
 import { Page } from 'pages'
 import { RcFile } from 'antd/lib/upload'
 import ProfileInfo from './components/ProfileInfo'
@@ -27,16 +27,22 @@ const ProfilePage = () => {
     setIsEditMode((editMode) => !editMode)
   }, [])
 
-  const onSubmit = useCallback((data: ProfileTypes) => {
-    dispatch(userChangeProfileAction(data))
-  }, [])
+  const onSubmit = useCallback(
+    (data: ProfileTypes) => {
+      dispatch(userChangeProfileAction(data))
+    },
+    [dispatch]
+  )
 
-  const handleChangeAvatar = useCallback((file: RcFile) => {
-    const data = new FormData()
-    data.append('avatar', file)
-    dispatch(userChangeAvatarAction(data))
-    return ''
-  }, [])
+  const handleChangeAvatar = useCallback(
+    (file: RcFile) => {
+      const data = new FormData()
+      data.append('avatar', file)
+      dispatch(userChangeAvatarAction(data))
+      return ''
+    },
+    [dispatch]
+  )
 
   return (
     <Page title="Профиль">

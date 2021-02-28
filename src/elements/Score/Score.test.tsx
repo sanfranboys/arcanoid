@@ -9,7 +9,7 @@ describe('Score testing', () => {
   }
 
   describe('Score snapshot testing', () => {
-    it('snapshot matches', async () => {
+    it('snapshot matches', () => {
       const tree = create(<Score {...props} />).toJSON()
       expect(tree).toMatchSnapshot()
     })

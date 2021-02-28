@@ -1,11 +1,11 @@
 import React, { FC } from 'react'
 import { BrowserRouter } from 'react-router-dom'
-import { Header, Content, Layout } from 'elements/'
+import { Header, Content, Layout } from 'elements'
 
-import { Nav } from 'components/'
+import { Nav } from 'components'
 import './App.scss'
-import { RootRoutes } from 'routes/'
-import { withAuthCheck } from 'hocs/'
+import { RootRoutes } from 'routes'
+import { withAuthCheck } from 'hocs'
 
 const App: FC = () => (
   <BrowserRouter>

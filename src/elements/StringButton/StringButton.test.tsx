@@ -5,12 +5,10 @@ import StringButton from './StringButton'
 
 describe('StringButton testing', () => {
   let wrapper: ShallowWrapper
+  const mockClick = jest.fn()
   const props = {
     children: 'Push me',
-    onClick: () => {
-      /* eslint-disable no-alert */
-      alert('StringButton was clicked')
-    },
+    onClick: mockClick,
   }
 
   beforeEach(() => {
@@ -18,23 +16,23 @@ describe('StringButton testing', () => {
   })
 
   describe('StringButton snapshot testing', () => {
-    it('snapshot matches', async () => {
+    it('snapshot matches', () => {
       const tree = create(<StringButton {...props} />).toJSON()
       expect(tree).toMatchSnapshot()
     })
   })
 
   describe('StringButton event testing', () => {
-    it('StringButton handleClick works', async () => {
+    it('StringButton handleClick works', () => {
       window.alert = jest.fn()
       wrapper.simulate('click')
-      expect(window.alert).toHaveBeenCalledWith('StringButton was clicked')
+      expect(mockClick.mock.calls.length).toEqual(1)
     })
 
-    it('StringButton handleKeyDown works', async () => {
+    it('StringButton handleKeyDown works', () => {
       window.alert = jest.fn()
       wrapper.simulate('keydown')
-      expect(window.alert).toHaveBeenCalledWith('StringButton was clicked')
+      expect(mockClick.mock.calls.length).toEqual(2)
     })
   })
 })

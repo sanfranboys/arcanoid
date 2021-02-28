@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { Row, Col, Panel } from 'elements/'
+import { Row, Col, Panel } from 'elements'
 import { ForumProps } from './types'
 
 const Forum: FC<ForumProps> = ({

@@ -1,6 +1,6 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
 import { AuthServices } from 'services/'
-import { NotificationWindow } from 'elements/'
+import { NotificationWindow } from 'elements'
 import { userRequestAction } from 'ducks/'
 import { setStatusAction, setAuthAction } from './actions'
 import { AUTH_LOGIN, AUTH_LOGOUT, AUTH_REGISTRATION } from './actionTypes'

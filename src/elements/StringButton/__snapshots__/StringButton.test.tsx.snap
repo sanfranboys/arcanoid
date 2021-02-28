@@ -3,8 +3,8 @@
 exports[`StringButton testing StringButton snapshot testing snapshot matches 1`] = `
 <button
   className="string-button"
-  onClick={[Function]}
-  onKeyDown={[Function]}
+  onClick={[MockFunction]}
+  onKeyDown={[MockFunction]}
   type="button"
 >
   Push me

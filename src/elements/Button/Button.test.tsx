@@ -5,13 +5,11 @@ import Button from './Button'
 
 describe('Button testing', () => {
   let wrapper: ShallowWrapper
+  const mockClick = jest.fn()
   const props = {
     className: 'test-class',
     children: 'Push me',
-    onClick: () => {
-      /* eslint-disable no-alert */
-      alert('Button was clicked')
-    },
+    onClick: mockClick,
   }
   beforeEach(() => {
     wrapper = shallow(<Button {...props} />)
@@ -23,10 +21,9 @@ describe('Button testing', () => {
   })
 
   describe('component event testing', () => {
-    it('Button handleClick works', async () => {
-      window.alert = jest.fn()
+    it('Button handleClick works', () => {
       wrapper.simulate('click')
-      expect(window.alert).toHaveBeenCalledWith('Button was clicked')
+      expect(mockClick.mock.calls.length).toEqual(1)
     })
   })
 })

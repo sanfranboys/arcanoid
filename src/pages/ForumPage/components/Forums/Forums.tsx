@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo } from 'react'
 import { useHistory, useRouteMatch } from 'react-router-dom'
-import { Row, Col, Space } from 'elements/'
-import { Description } from 'components/'
+import { Row, Col, Space } from 'elements'
+import { Description } from 'components'
 import Forum from '../Forum'
 import { mock } from './mock'
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Row, Col } from 'elements/'
+import { Row, Col } from 'elements'
 import { Page } from 'pages/'
 import { Topics } from './components/Topics'
 

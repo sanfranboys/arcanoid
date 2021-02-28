@@ -8,7 +8,7 @@ describe('ContentBox testing', () => {
   }
 
   describe('ContentBox snapshot testing', () => {
-    it('snapshot matches', async () => {
+    it('snapshot matches', () => {
       const tree = create(<ContentBox {...props} />).toJSON()
       expect(tree).toMatchSnapshot()
     })
