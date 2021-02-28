@@ -1,5 +1,5 @@
 import { notification } from 'antd'
-import { titleNotificationWindow } from '@/constants'
+import { titleNotificationWindow } from './constants'
 import { NotificationProps } from './types'
 import 'antd/lib/notification/style/css'
 

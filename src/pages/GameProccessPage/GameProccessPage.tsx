@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
-import { Col, Row, Centered } from 'elements/'
-import { Page } from 'pages/'
+import { Col, Row, Centered } from 'elements'
+import { Page } from 'pages'
 import { Sanfranoid, Nullable } from './sanfranoid'
 
 import './GameProccessPage.scss'

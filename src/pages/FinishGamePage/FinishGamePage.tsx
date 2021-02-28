@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { ContentBox, Row, Col, Button, Image } from 'elements/'
-import { Page } from 'pages/'
+import { ContentBox, Row, Col, Button, Image } from 'elements'
+import { Page } from 'pages'
 import FinishGameData from './mock'
 import './FinishGamePage.scss'
 

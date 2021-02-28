@@ -11,7 +11,7 @@ describe('LinkElement testing', () => {
   }
 
   describe('LinkElement snapshot testing', () => {
-    it('snapshot matches', async () => {
+    it('snapshot matches', () => {
       const tree = create(
         <BrowserRouter>
           <LinkElement {...props} />

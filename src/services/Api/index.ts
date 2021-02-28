@@ -1,5 +1,5 @@
 import axios, { AxiosError, AxiosResponse } from 'axios'
-import { withCredentials } from '@/constants'
+import { withCredentials } from './constants'
 
 export class ApiServices {
   baseUrl: string
