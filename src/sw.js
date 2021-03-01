@@ -15,8 +15,7 @@ const URLS = [
   '/assets/fonts/NotoSans.woff2',
 ]
 
-const WHITE_lIST = URLS.concat(['https://ya-praktikum.tech'])
-
+const WHITE_lIST = URLS.concat([ 'https://ya-praktikum.tech' ])
 this.addEventListener('install', (event) => {
   event.waitUntil(
     caches
@@ -33,11 +32,10 @@ this.addEventListener('fetch', (event) => {
     caches.match(event.request).then((fromCache) => {
       const fetchRequest = event.request.clone()
       const responseUrl = new URL(fetchRequest.url)
-
-      return new Promise((resolve) => {
+      return new Promise((resolve, reject) => {
         fetch(fetchRequest)
           .then((response) => {
-            if (
+            if(
               !response ||
               response.status !== 200 ||
               !WHITE_lIST.some(
@@ -49,20 +47,17 @@ this.addEventListener('fetch', (event) => {
             ) {
               return resolve(response)
             }
-
             const responseToCache = response.clone()
-
             caches.open(CACHE_NAME).then((cache) => {
               cache.put(event.request, responseToCache)
             })
-
             return resolve(response)
           })
-          .catch((error) => {
-            if (fromCache) {
+          .catch(() => {
+            if(fromCache) {
               return resolve(fromCache)
             }
-            throw error
+            return reject()
           })
       })
     })

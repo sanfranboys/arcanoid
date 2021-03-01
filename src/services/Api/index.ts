@@ -6,6 +6,10 @@ export class ApiServices {
 
   constructor(url: string) {
     this.baseUrl = url
+    axios.interceptors.response.use(
+      (response: AxiosResponse<any>) => response,
+      (error: AxiosError) => Promise.reject(error.request)
+    )
   }
 
   get(endpoint: string) {
@@ -24,8 +28,3 @@ export class ApiServices {
     return axios.delete(`${this.baseUrl}${endpoint}`, withCredentials)
   }
 }
-
-axios.interceptors.response.use(
-  (response: AxiosResponse<any>) => response,
-  (error: AxiosError) => Promise.reject(error.request)
-)
