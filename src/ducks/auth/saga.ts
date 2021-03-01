@@ -34,9 +34,11 @@ function* sagaWorkerLogout() {
     yield put(setStatusAction())
     yield put(setAuthAction(false))
   } catch (error) {
-    NotificationWindow({
-      description: 'Что-то пошло не так!',
-    })
+    if (error.status > 399) {
+      NotificationWindow({
+        description: 'Что-то пошло не так!',
+      })
+    }
     yield put(setStatusAction())
   }
 }
@@ -48,9 +50,11 @@ function* sagaWorkerRegistration({ payload }: ActionRegistrationTypes) {
     yield put(userRequestAction())
     yield put(setStatusAction())
   } catch (error) {
-    NotificationWindow({
-      description: 'Неверно введены данные!',
-    })
+    if (error.status > 399) {
+      NotificationWindow({
+        description: 'Неверно введены данные!',
+      })
+    }
     yield put(setStatusAction())
   }
 }
