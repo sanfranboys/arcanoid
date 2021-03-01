@@ -2,37 +2,53 @@ import { FeatureOptions } from './types'
 import { Color } from './colors'
 
 export abstract class Feature {
-  protected ctx: CanvasRenderingContext2D
+  protected _ctx: CanvasRenderingContext2D
 
-  protected canvas
+  protected _canvas
 
-  protected color = Color.Blue
+  protected _color = Color.Blue
 
-  public x = 0
+  protected _x = 0
 
-  public y = 0
+  protected _y = 0
+
+  get x() {
+    return this._x
+  }
+
+  set x(value) {
+    this._x = value
+  }
+
+  get y() {
+    return this._y
+  }
+
+  set y(value) {
+    this._y = value
+  }
 
   constructor(canvas: HTMLCanvasElement, options?: FeatureOptions) {
-    this.canvas = canvas
-    const ctx = this.canvas.getContext('2d')
+    this._canvas = canvas
+    const ctx = this._canvas.getContext('2d')
 
     if (ctx) {
-      this.ctx = ctx
+      this._ctx = ctx
     } else {
       throw new Error('Не удалось получить 2D контекст')
     }
 
     if (options) {
-      const { color = this.color, x = this.x, y = this.y } = options
-      this.color = color
-      this.x = x
-      this.y = y
+      const { color = this._color, x = this._x, y = this._y } = options
+      this._color = color
+      this._x = x
+      this._y = y
     }
   }
 
   public abstract draw(x?: number, y?: number): void
 
   public setColor(color: Color) {
-    this.color = color
+    this._color = color
   }
 }

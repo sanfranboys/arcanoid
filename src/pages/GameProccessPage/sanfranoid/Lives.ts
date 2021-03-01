@@ -2,37 +2,37 @@ import { Feature } from './Feature'
 import { FeatureOptions } from './types'
 
 export class Lives extends Feature {
-  private count = 3
+  private _count = 3
 
-  public y = 20
+  protected _y = 20
 
   constructor(canvas: HTMLCanvasElement, options?: FeatureOptions) {
     super(canvas, options)
 
-    this.x = canvas.width - 65
+    this._x = canvas.width - 65
   }
 
   public draw() {
-    const { ctx, count, color, x, y } = this
+    const { _ctx, _count, _color, _x, _y } = this
 
-    ctx.font = '16px Arial'
-    ctx.fillStyle = color
-    ctx.fillText(`Lives: ${count}`, x, y)
+    _ctx.font = '16px Arial'
+    _ctx.fillStyle = _color
+    _ctx.fillText(`Lives: ${_count}`, _x, _y)
   }
 
   public decrease() {
-    this.count -= 1
+    this._count -= 1
   }
 
   public isOver() {
-    return this.count === 0
+    return this._count === 0
   }
 
   public isLow() {
-    return this.count === 2
+    return this._count === 2
   }
 
   public isCritical() {
-    return this.count === 1
+    return this._count === 1
   }
 }

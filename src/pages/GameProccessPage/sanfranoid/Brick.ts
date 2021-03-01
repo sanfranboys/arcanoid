@@ -7,50 +7,66 @@ export enum Status {
 }
 
 export class Brick extends Feature {
-  public height = 20
+  protected _height = 20
 
-  public width = 75
+  protected _width = 75
 
-  private status = Status.Exist
+  private _status = Status.Exist
+
+  get height() {
+    return this._height
+  }
+
+  set height(value) {
+    this._height = value
+  }
+
+  get width() {
+    return this._width
+  }
+
+  set width(value) {
+    this._width = value
+  }
 
   constructor(canvas: HTMLCanvasElement, options?: BrickOptions) {
     super(canvas, options)
 
     if (options) {
-      const { height = this.height, width = this.width } = options
-      this.height = height
-      this.width = width
+      const { height = this._height, width = this._width } = options
+      this._height = height
+      this._width = width
     }
   }
 
   public draw(x: number, y: number) {
-    const { ctx, height, width, color } = this
+    const { _ctx, _height, _width, _color } = this
 
-    this.x = x
-    this.y = y
+    this._x = x
+    this._y = y
 
-    ctx.beginPath()
-    ctx.rect(x, y, width, height)
-    ctx.fillStyle = color
-    ctx.fill()
-    ctx.closePath()
+    _ctx.beginPath()
+    _ctx.rect(x, y, _width, _height)
+    _ctx.fillStyle = _color
+    _ctx.fill()
+    _ctx.closePath()
   }
 
   public isExist() {
-    return this.status === Status.Exist
+    return this._status === Status.Exist
   }
 
   public destroy() {
-    this.status = Status.Destroyed
+    this._status = Status.Destroyed
   }
 
   public isCrossedBy(feature: Feature) {
-    const { x, y, width, height } = this
+    const { _x, _y, _width, _height } = this
     return (
-      feature.x > x &&
-      feature.x < x + width &&
-      feature.y > y &&
-      feature.y < y + height
+      feature.x > _x &&
+      feature.x < _x + _width &&
+      feature.y > _y &&
+      feature.y < _y + _height
     )
   }
 }

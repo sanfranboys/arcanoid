@@ -7,35 +7,35 @@ import { Lives } from './Lives'
 import { Color } from './colors'
 
 class Sanfranoid {
-  private finishPageRoute = '/game/finish'
+  private _finishPageRoute = '/game/finish'
 
-  private readonly ctx: Nullable<CanvasRenderingContext2D>
+  private readonly _ctx: Nullable<CanvasRenderingContext2D>
 
-  private readonly canvas: HTMLCanvasElement
+  private readonly _canvas: HTMLCanvasElement
 
-  private ball: Ball
+  private _ball: Ball
 
-  private readonly paddle: Paddle
+  private readonly _paddle: Paddle
 
-  private wall: Wall
+  private _wall: Wall
 
-  private score: Score
+  private _score: Score
 
-  private lives: Lives
+  private _lives: Lives
 
-  private isContinues: boolean
+  private _isContinues: boolean
 
   constructor(canvas: HTMLCanvasElement) {
-    this.canvas = canvas
-    this.ctx = this.canvas.getContext('2d')
+    this._canvas = canvas
+    this._ctx = this._canvas.getContext('2d')
 
-    this.ball = new Ball(canvas)
-    this.paddle = new Paddle(canvas)
-    this.wall = new Wall(canvas, { color: Color.Green })
-    this.score = new Score(canvas)
-    this.lives = new Lives(canvas)
+    this._ball = new Ball(canvas)
+    this._paddle = new Paddle(canvas)
+    this._wall = new Wall(canvas, { color: Color.Green })
+    this._score = new Score(canvas)
+    this._lives = new Lives(canvas)
 
-    this.isContinues = true
+    this._isContinues = true
   }
 
   public go() {
@@ -44,29 +44,29 @@ class Sanfranoid {
 
       this.bricksProcessing()
 
-      const { ball } = this
+      const { _ball } = this
 
-      if (ball.crossedRightOrLeft()) {
-        ball.changeXDirection()
+      if (_ball.crossedRightOrLeft()) {
+        _ball.changeXDirection()
       }
 
-      if (ball.crossedTop()) {
-        ball.changeYDirection()
-      } else if (ball.crossedBottom()) {
-        if (this.paddle.isCrossedBy(ball)) {
+      if (_ball.crossedTop()) {
+        _ball.changeYDirection()
+      } else if (_ball.crossedBottom()) {
+        if (this._paddle.isCrossedBy(_ball)) {
           this.paddleCrossedProcessing()
         } else {
           this.failProcessing()
         }
       }
 
-      this.ball.draw()
-      this.paddle.draw()
-      this.wall.draw()
-      this.score.draw()
-      this.lives.draw()
+      this._ball.draw()
+      this._paddle.draw()
+      this._wall.draw()
+      this._score.draw()
+      this._lives.draw()
 
-      if (this.isContinues) {
+      if (this._isContinues) {
         requestAnimationFrame(draw)
       }
     }
@@ -75,51 +75,51 @@ class Sanfranoid {
   }
 
   private failProcessing() {
-    this.lives.decrease()
+    this._lives.decrease()
 
-    if (this.lives.isLow()) {
-      this.wall.setColor(Color.Yellow)
-    } else if (this.lives.isCritical()) {
-      this.wall.setColor(Color.Red)
+    if (this._lives.isLow()) {
+      this._wall.setColor(Color.Yellow)
+    } else if (this._lives.isCritical()) {
+      this._wall.setColor(Color.Red)
     }
 
-    if (this.lives.isOver()) {
+    if (this._lives.isOver()) {
       this.endGame()
     } else {
-      this.ball.setStartPosition()
-      this.paddle.setStartPosition()
+      this._ball.setStartPosition()
+      this._paddle.setStartPosition()
     }
   }
 
   private paddleCrossedProcessing() {
-    const { speed } = this.paddle
-    const { ball } = this
+    const { speed } = this._paddle
+    const { _ball } = this
 
     if (Math.abs(speed) > 25) {
       if (speed > 0) {
-        ball.moveLeft()
+        _ball.moveLeft()
       } else {
-        ball.moveRight()
+        _ball.moveRight()
       }
     } else {
-      ball.changeYDirection()
+      _ball.changeYDirection()
     }
 
-    this.paddle.speed = 0
+    this._paddle.speed = 0
   }
 
   private bricksProcessing() {
-    const { ball } = this
+    const { _ball } = this
 
-    this.wall.eachBrick((brick) => {
-      if (brick.isExist() && brick.isCrossedBy(ball)) {
+    this._wall.eachBrick((brick) => {
+      if (brick.isExist() && brick.isCrossedBy(_ball)) {
         brick.destroy()
 
-        ball.changeYDirection()
-        this.score.increase()
+        _ball.changeYDirection()
+        this._score.increase()
 
-        if (this.wall.isDestroyed()) {
-          this.wall.createBricks()
+        if (this._wall.isDestroyed()) {
+          this._wall.createBricks()
         }
       }
     })
@@ -127,18 +127,18 @@ class Sanfranoid {
 
   private endGame() {
     this.destroy()
-    window.location.href = this.finishPageRoute
+    window.location.href = this._finishPageRoute
   }
 
   public destroy() {
-    this.isContinues = false
-    this.paddle.destroy()
+    this._isContinues = false
+    this._paddle.destroy()
   }
 
   private clear() {
-    if (this.ctx) {
-      const { width, height } = this.canvas
-      this.ctx.clearRect(0, 0, width, height)
+    if (this._ctx) {
+      const { width, height } = this._canvas
+      this._ctx.clearRect(0, 0, width, height)
     }
   }
 }
