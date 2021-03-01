@@ -1,15 +1,13 @@
 import { Feature } from './Feature'
 import { FeatureOptions } from './types'
-
-const startDx = 3
-const startDy = -3
+import { ballSpeed, ballRadius } from './settings'
 
 export class Ball extends Feature {
-  private radius = 10
+  private _radius = ballRadius
 
-  private dx = startDx
+  private _dx = ballSpeed
 
-  private dy = startDy
+  private _dy = -ballSpeed
 
   constructor(canvas: HTMLCanvasElement, options?: FeatureOptions) {
     super(canvas, options)
@@ -18,55 +16,55 @@ export class Ball extends Feature {
   }
 
   public draw() {
-    const { ctx, radius, color, dx, dy, x, y } = this
+    const { _ctx, _radius, _color, _dx, _dy, _x, _y } = this
 
-    this.x += dx
-    this.y += dy
+    this._x += _dx
+    this._y += _dy
 
-    ctx.beginPath()
-    ctx.arc(x, y, radius, 0, Math.PI * 2)
-    ctx.fillStyle = color
-    ctx.fill()
-    ctx.closePath()
+    _ctx.beginPath()
+    _ctx.arc(_x, _y, _radius, 0, Math.PI * 2)
+    _ctx.fillStyle = _color
+    _ctx.fill()
+    _ctx.closePath()
   }
 
   public changeXDirection() {
-    this.dx = -this.dx
+    this._dx = -this._dx
   }
 
   public changeYDirection() {
-    this.dy = -this.dy
+    this._dy = -this._dy
   }
 
   public moveRight() {
-    this.dy = startDy
-    this.dx = startDx
+    this._dy = -ballSpeed
+    this._dx = ballSpeed
   }
 
   public moveLeft() {
-    this.dy = startDy
-    this.dx = -startDx
+    this._dy = -ballSpeed
+    this._dx = -ballSpeed
   }
 
   public crossedRightOrLeft() {
-    const { x, dx, canvas, radius } = this
-    return x + dx > canvas.width - radius || x + dx < radius
+    const { _x, _dx, _canvas, _radius } = this
+    return _x + _dx > _canvas.width - _radius || _x + _dx < _radius
   }
 
   public crossedTop() {
-    const { y, dy, radius } = this
-    return y + dy < radius
+    const { _y, _dy, _radius } = this
+    return _y + _dy < _radius
   }
 
   public crossedBottom() {
-    const { y, dy, radius, canvas } = this
-    return y + dy > canvas.height - radius
+    const { _y, _dy, _radius, _canvas } = this
+    return _y + _dy > _canvas.height - _radius
   }
 
   public setStartPosition() {
-    this.x = this.canvas.width / 2
-    this.y = this.canvas.height - 30
-    this.dx = startDx
-    this.dy = startDy
+    this._x = this._canvas.width / 2
+    this._y = this._canvas.height - 30
+    this._dx = ballSpeed
+    this._dy = -ballSpeed
   }
 }
