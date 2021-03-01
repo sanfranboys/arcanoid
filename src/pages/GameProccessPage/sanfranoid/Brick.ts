@@ -1,5 +1,6 @@
 import { Feature } from './Feature'
 import { BrickOptions } from './types'
+import { brickHeight, brickWidth } from './settings'
 
 export enum Status {
   Destroyed,
@@ -7,9 +8,9 @@ export enum Status {
 }
 
 export class Brick extends Feature {
-  protected _height = 20
+  protected _height = brickHeight
 
-  protected _width = 75
+  protected _width = brickWidth
 
   private _status = Status.Exist
 

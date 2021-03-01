@@ -1,15 +1,13 @@
 import { Feature } from './Feature'
 import { FeatureOptions } from './types'
-
-const startDx = 3
-const startDy = -3
+import { ballSpeed, ballRadius } from './settings'
 
 export class Ball extends Feature {
-  private _radius = 10
+  private _radius = ballRadius
 
-  private _dx = startDx
+  private _dx = ballSpeed
 
-  private _dy = startDy
+  private _dy = -ballSpeed
 
   constructor(canvas: HTMLCanvasElement, options?: FeatureOptions) {
     super(canvas, options)
@@ -39,13 +37,13 @@ export class Ball extends Feature {
   }
 
   public moveRight() {
-    this._dy = startDy
-    this._dx = startDx
+    this._dy = -ballSpeed
+    this._dx = ballSpeed
   }
 
   public moveLeft() {
-    this._dy = startDy
-    this._dx = -startDx
+    this._dy = -ballSpeed
+    this._dx = -ballSpeed
   }
 
   public crossedRightOrLeft() {
@@ -66,7 +64,7 @@ export class Ball extends Feature {
   public setStartPosition() {
     this._x = this._canvas.width / 2
     this._y = this._canvas.height - 30
-    this._dx = startDx
-    this._dy = startDy
+    this._dx = ballSpeed
+    this._dy = -ballSpeed
   }
 }

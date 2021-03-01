@@ -1,5 +1,5 @@
 import { FeatureOptions } from './types'
-import { Color } from './colors'
+import { Color } from './settings'
 
 export abstract class Feature {
   protected _ctx: CanvasRenderingContext2D

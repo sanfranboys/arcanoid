@@ -1,21 +1,28 @@
 import { Brick } from './Brick'
 import { Feature } from './Feature'
 import { FeatureOptions } from './types'
+import {
+  brickPadding,
+  brickWidth,
+  brickHeight,
+  brickOffsetLeft,
+  brickOffsetTop,
+} from './settings'
 
 export class Wall extends Feature {
   private _rowCount = 3
 
   private _columnCount = 5
 
-  private _padding = 10
+  private _padding = brickPadding
 
-  private _offsetTop = 30
+  private _offsetTop = brickOffsetTop
 
-  private _offsetLeft = 30
+  private _offsetLeft = brickOffsetLeft
 
-  private _bricksWidth = 75
+  private _bricksWidth = brickWidth
 
-  private _bricksHeight = 20
+  private _bricksHeight = brickHeight
 
   private _bricks: Brick[][] = []
 

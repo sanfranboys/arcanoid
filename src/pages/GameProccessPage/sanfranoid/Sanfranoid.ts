@@ -4,7 +4,7 @@ import { Paddle } from './Paddle'
 import { Wall } from './Wall'
 import { Score } from './Score'
 import { Lives } from './Lives'
-import { Color } from './colors'
+import { Color } from './settings'
 
 class Sanfranoid {
   private _finishPageRoute = '/game/finish'
@@ -95,7 +95,7 @@ class Sanfranoid {
     const { speed } = this._paddle
     const { _ball } = this
 
-    if (Math.abs(speed) > 25) {
+    if (Math.abs(speed) > 30) {
       if (speed > 0) {
         _ball.moveLeft()
       } else {

@@ -1,10 +1,13 @@
 import { Feature } from './Feature'
 import { FeatureOptions } from './types'
+import { Color, lives } from './settings'
 
 export class Lives extends Feature {
-  private _count = 3
+  private _count = lives
 
   protected _y = 20
+
+  protected _color = Color.White
 
   constructor(canvas: HTMLCanvasElement, options?: FeatureOptions) {
     super(canvas, options)

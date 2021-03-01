@@ -1,4 +1,5 @@
 import { Feature } from './Feature'
+import { Color } from './settings'
 
 export class Score extends Feature {
   private _count = 0
@@ -6,6 +7,8 @@ export class Score extends Feature {
   protected _x = 8
 
   protected _y = 20
+
+  protected _color = Color.White
 
   public draw() {
     const { _ctx, _count, _color, _x, _y } = this

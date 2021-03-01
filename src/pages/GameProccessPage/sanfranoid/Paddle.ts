@@ -1,11 +1,12 @@
 import { Brick } from './Brick'
 import { Feature } from './Feature'
 import { BrickOptions } from './types'
+import { paddleHeight, paddleWidth } from './settings'
 
 export class Paddle extends Brick {
-  protected _height = 10
+  protected _height = paddleHeight
 
-  protected _width = 100
+  protected _width = paddleWidth
 
   private _dx = 7
 
