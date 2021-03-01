@@ -25,17 +25,17 @@ function* sagaWorkerChangeProfile({ payload }: SagaActionUser) {
   try {
     const res = yield call([UserServices, 'changeUserProfile'], payload)
     NotificationWindow({
+      status: res.status,
       description: 'Данные успешно изменены',
       type: 'success',
     })
     yield put(userSuccessAction(res.data))
   } catch (error) {
-    if (error.status > 399) {
-      NotificationWindow({
-        description: 'Неверные заполнены поля',
-        type: 'error',
-      })
-    }
+    NotificationWindow({
+      status: error.status,
+      description: 'Неверные заполнены поля',
+      type: 'error',
+    })
     yield put(userSetStatusAction())
   }
 }
@@ -44,17 +44,17 @@ function* sagaWorkerChangeAvatar({ payload }: ActionAvatar) {
   try {
     const res = yield call([UserServices, 'changeUserAvatar'], payload)
     NotificationWindow({
+      status: res.status,
       description: 'Аватар успешно изменен',
       type: 'success',
     })
     yield put(userSuccessAction(res.data))
   } catch (error) {
-    if (error.status > 399) {
-      NotificationWindow({
-        description: 'Неверный формат изображения',
-        type: 'error',
-      })
-    }
+    NotificationWindow({
+      status: error.status,
+      description: 'Неверный формат изображения',
+      type: 'error',
+    })
     yield put(userSetStatusAction())
   }
 }

@@ -1,5 +1,4 @@
 import axios, { AxiosError, AxiosResponse } from 'axios'
-import { NotificationWindow } from 'elements'
 import { withCredentials } from './constants'
 
 export class ApiServices {
@@ -9,15 +8,7 @@ export class ApiServices {
     this.baseUrl = url
     axios.interceptors.response.use(
       (response: AxiosResponse<any>) => response,
-      (error: AxiosError) => {
-        if (error.request.status === 0) {
-          NotificationWindow({
-            description: 'Нет доступа к интернету, проверте соединение',
-            type: 'error',
-          })
-        }
-        return Promise.reject(error.request)
-      }
+      (error: AxiosError) => Promise.reject(error.request)
     )
   }
 
