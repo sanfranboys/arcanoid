@@ -7,9 +7,9 @@ import {
   AUTH_LOGOUT,
 } from './actionTypes'
 
-const setAuthAction = (data: boolean) => ({
+const setAuthAction = (payload: boolean) => ({
   type: AUTH_SET_AUTH,
-  payload: data,
+  payload,
 })
 
 const authLoginAction = (data: ActionAuthLogin) => ({
@@ -26,8 +26,9 @@ const authRegistrationAction = (data: ActionRegistration) => ({
   payload: data,
 })
 
-const setStatusAction = () => ({
+const setStatusAction = (payload: boolean) => ({
   type: AUTH_SET_STATUS,
+  payload,
 })
 
 export {

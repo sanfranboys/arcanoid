@@ -8,10 +8,11 @@ import { ActionLoginTypes, ActionRegistrationTypes } from './types'
 
 function* sagaWorkerLogin({ payload }: ActionLoginTypes) {
   try {
+    yield put(setStatusAction(true))
     yield call([AuthServices, 'signIn'], payload)
-    yield put(setStatusAction())
-    yield put(userRequestAction())
     yield put(setAuthAction(true))
+    yield put(userRequestAction())
+    yield put(setStatusAction(false))
   } catch (error) {
     if (error.status === 400) {
       NotificationWindow({
@@ -26,37 +27,39 @@ function* sagaWorkerLogin({ payload }: ActionLoginTypes) {
         description: 'Неверный логин или пароль',
       })
     }
-    yield put(setStatusAction())
+    yield put(setStatusAction(false))
   }
 }
 
 function* sagaWorkerLogout() {
   try {
+    yield put(setStatusAction(true))
     yield call([AuthServices, 'logOut'])
-    yield put(setStatusAction())
+    yield put(setStatusAction(false))
     yield put(setAuthAction(false))
   } catch (error) {
     NotificationWindow({
       status: error.status,
       description: 'Что-то пошло не так!',
     })
-    yield put(setStatusAction())
+    yield put(setStatusAction(false))
   }
 }
 
 function* sagaWorkerRegistration({ payload }: ActionRegistrationTypes) {
   try {
+    yield put(setStatusAction(true))
     yield call([AuthServices, 'signUp'], payload)
     yield put(setAuthAction(true))
     yield put(userRequestAction())
-    yield put(setStatusAction())
+    yield put(setStatusAction(false))
   } catch (error) {
     NotificationWindow({
       status: error.status,
       description: 'Неверно введены данные!',
     })
 
-    yield put(setStatusAction())
+    yield put(setStatusAction(false))
   }
 }
 

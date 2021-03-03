@@ -28,8 +28,9 @@ const userSuccessAction = (data: UserTypes) => ({
   },
 })
 
-const userSetStatusAction = () => ({
+const userSetStatusAction = (payload: boolean) => ({
   type: USER_SET_STATUS,
+  payload,
 })
 
 export {
