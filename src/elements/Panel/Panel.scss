@@ -19,10 +19,19 @@
     padding: 20px;
   }
 
-  &_hoverable{
+  &_hoverable {
     &:hover {
       cursor: pointer;
       opacity: 0.6;
     }
   }
+}
+.place_1 {
+  border: 3px solid gold;
+}
+.place_2 {
+  border: 3px solid silver;
+}
+.place_3 {
+  border: 3px solid burlywood;
 }
