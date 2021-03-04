@@ -9,13 +9,17 @@ const Panel: FC<PanelProps> = ({
   head,
   center,
   hoverable,
-  position,
+  className,
 }) => {
   const bodyClassName = classNames('panel__body', { panel_center: center })
-  const panelClassName = classNames(`panel place_${position}`, {
-    'panel_with-head': !!head,
-    panel_hoverable: !!hoverable,
-  })
+  const panelClassName = classNames(
+    'panel',
+    {
+      'panel_with-head': !!head,
+      panel_hoverable: !!hoverable,
+    },
+    className
+  )
   return (
     <div className={panelClassName}>
       {head && <div className="panel__head">{head}</div>}

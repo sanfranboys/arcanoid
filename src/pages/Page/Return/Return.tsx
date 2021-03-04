@@ -11,7 +11,7 @@ const Return: FC<ButtonHTMLAttributes<HTMLButtonElement>> = () => {
       <img
         src="/assets/images/arrow-return.svg"
         alt="arrow-return"
-        className="arrow-return"
+        className="return-button__arrow"
       />
     </button>
   )

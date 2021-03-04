@@ -4,5 +4,5 @@ export type PanelProps = {
   head?: ReactElement | string
   center?: boolean
   hoverable?: boolean
-  position?: number
+  className?: string
 }
