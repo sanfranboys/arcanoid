@@ -16,8 +16,6 @@ const browserNotification = (title: string, option: NotificationOptions) => {
         if (permission === 'granted') {
           storage('notification', 'true')
           showNotification(title, option)
-        } else {
-          storage('notification', 'false')
         }
       })
       .catch((error) => {
