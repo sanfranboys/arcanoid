@@ -1,9 +1,11 @@
-.leader-place-1 {
-  border: 3px solid gold;
-}
-.leader-place-2 {
-  border: 3px solid silver;
-}
-.leader-place-3 {
-  border: 3px solid burlywood;
+.leader-card {
+  &__place-1 {
+    border: 3px solid gold;
+  }
+  &__place-2 {
+    border: 3px solid silver;
+  }
+  &__place-3 {
+    border: 3px solid burlywood;
+  }
 }
