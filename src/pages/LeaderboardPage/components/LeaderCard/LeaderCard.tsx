@@ -6,7 +6,11 @@ import './LeaderCard.scss'
 
 const LeaderCard: FC<Leader> = ({ position, name, score }) => (
   <Col span={8}>
-    <Panel head={`${position}. ${name}`} center>
+    <Panel
+      className={`leader-card__place-${position}`}
+      head={`${position}. ${name}`}
+      center
+    >
       <Score small={position > 3}>{score}</Score>
     </Panel>
   </Col>
