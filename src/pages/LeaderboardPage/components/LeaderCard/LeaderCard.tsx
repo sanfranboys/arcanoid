@@ -7,7 +7,7 @@ import './LeaderCard.scss'
 const LeaderCard: FC<Leader> = ({ position, name, score }) => (
   <Col span={8}>
     <Panel
-      className={`leader-card__place-${position}`}
+      className={`leader-card_place_${position}`}
       head={`${position}. ${name}`}
       center
     >

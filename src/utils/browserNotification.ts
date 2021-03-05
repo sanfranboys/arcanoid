@@ -1,21 +1,40 @@
 import storage from './setLocalStorage'
 
-const showNotification = (title: string, option: NotificationOptions): void => {
-  const notification = new Notification(title, option)
-  notification.onclose = () => storage('notification', 'true')
+const timeForPush = 8
+const hourNow = new Date().getHours()
+const minutesNow = new Date().getMinutes()
+const dateNow = new Date().getDay()
+
+type StorageState = {
+  date: number
 }
 
+const showNotification = (title: string, option: NotificationOptions): void => {
+  const notification = new Notification(title, option)
+  notification.onshow = () => storage('notification', { date: dateNow })
+}
 const browserNotification = (title: string, option: NotificationOptions) => {
+  const stateNotification: StorageState = JSON.parse(
+    storage('notification') || '{ "date":0 }'
+  )
   if (Notification.permission === 'granted') {
-    if (!JSON.parse(storage('notification'))) {
-      showNotification(title, option)
+    if (hourNow >= timeForPush) {
+      if (stateNotification.date !== dateNow) {
+        showNotification(title, option)
+      }
+    } else {
+      const wait = timeForPush - hourNow + (60 - minutesNow)
+      setTimeout(() => {
+        showNotification(title, option)
+      }, wait)
     }
   } else if (Notification.permission === 'default') {
     Notification.requestPermission()
       .then((permission) => {
         if (permission === 'granted') {
-          storage('notification', 'true')
-          showNotification(title, option)
+          showNotification('Поздровляем !', {
+            body: 'Вы подписались на утренние оповещения',
+          })
         }
       })
       .catch((error) => {
