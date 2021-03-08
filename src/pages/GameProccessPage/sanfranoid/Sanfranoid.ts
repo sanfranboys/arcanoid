@@ -28,6 +28,8 @@ class Sanfranoid {
 
   private pausa: Pausa
 
+  private _starting: boolean
+
   constructor(canvas: HTMLCanvasElement) {
     this._canvas = canvas
     this._ctx = this._canvas.getContext('2d')
@@ -40,6 +42,7 @@ class Sanfranoid {
     this.pausa = new Pausa(canvas)
 
     this._isContinues = false
+    this._starting = false
 
     document.addEventListener('keydown', this.keyDownHandler, false)
   }
@@ -48,6 +51,7 @@ class Sanfranoid {
     if (e.keyCode === 32) {
       this._isContinues = !this._isContinues
       if (this._isContinues) {
+        this._starting = true
         this.go()
       }
     }
@@ -71,7 +75,6 @@ class Sanfranoid {
         if (this._paddle.isCrossedBy(_ball)) {
           this.paddleCrossedProcessing()
         } else {
-          this._isContinues = false
           this.failProcessing()
         }
       }
@@ -84,7 +87,7 @@ class Sanfranoid {
 
       if (this._isContinues) {
         requestAnimationFrame(draw)
-      } else {
+      } else if (this._starting) {
         this.pausa.draw()
       }
     }
@@ -93,6 +96,8 @@ class Sanfranoid {
   }
 
   private failProcessing() {
+    this._starting = false
+    this._isContinues = false
     this._lives.decrease()
 
     if (this._lives.isLow()) {
