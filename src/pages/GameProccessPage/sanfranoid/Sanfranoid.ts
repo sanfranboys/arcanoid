@@ -32,9 +32,9 @@ class Sanfranoid {
     this._canvas = canvas
     this._ctx = this._canvas.getContext('2d')
 
-    this._ball = new Ball(canvas)
+    this._ball = new Ball(canvas, { color: Color.Green })
     this._paddle = new Paddle(canvas)
-    this._wall = new Wall(canvas, { color: Color.Green })
+    this._wall = new Wall(canvas)
     this._score = new Score(canvas)
     this._lives = new Lives(canvas)
     this.pausa = new Pausa(canvas)
@@ -96,9 +96,9 @@ class Sanfranoid {
     this._lives.decrease()
 
     if (this._lives.isLow()) {
-      this._wall.setColor(Color.Yellow)
+      this._ball.setColor(Color.Yellow)
     } else if (this._lives.isCritical()) {
-      this._wall.setColor(Color.Red)
+      this._ball.setColor(Color.Red)
     }
 
     if (this._lives.isOver()) {
