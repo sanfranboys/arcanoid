@@ -5,6 +5,7 @@ import { Wall } from './Wall'
 import { Score } from './Score'
 import { Lives } from './Lives'
 import { Color } from './settings'
+import { Pausa } from './Pausa'
 
 class Sanfranoid {
   private _finishPageRoute = '/game/finish'
@@ -25,6 +26,8 @@ class Sanfranoid {
 
   private _isContinues: boolean
 
+  private pausa: Pausa
+
   constructor(canvas: HTMLCanvasElement) {
     this._canvas = canvas
     this._ctx = this._canvas.getContext('2d')
@@ -34,8 +37,20 @@ class Sanfranoid {
     this._wall = new Wall(canvas, { color: Color.Green })
     this._score = new Score(canvas)
     this._lives = new Lives(canvas)
+    this.pausa = new Pausa(canvas)
 
-    this._isContinues = true
+    this._isContinues = false
+
+    document.addEventListener('keydown', this.keyDownHandler, false)
+  }
+
+  private keyDownHandler = (e: KeyboardEvent) => {
+    if (e.keyCode === 32) {
+      this._isContinues = !this._isContinues
+      if (this._isContinues) {
+        this.go()
+      }
+    }
   }
 
   public go() {
@@ -56,6 +71,7 @@ class Sanfranoid {
         if (this._paddle.isCrossedBy(_ball)) {
           this.paddleCrossedProcessing()
         } else {
+          this._isContinues = false
           this.failProcessing()
         }
       }
@@ -68,6 +84,8 @@ class Sanfranoid {
 
       if (this._isContinues) {
         requestAnimationFrame(draw)
+      } else {
+        this.pausa.draw()
       }
     }
 
@@ -131,6 +149,7 @@ class Sanfranoid {
   }
 
   public destroy() {
+    document.removeEventListener('keydown', this.keyDownHandler, false)
     this._isContinues = false
     this._paddle.destroy()
   }
