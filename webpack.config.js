@@ -11,7 +11,7 @@ new CleanWebpackPlugin({
   dangerouslyAllowCleanPatternsOutsideProject: true,
 }),
   (module.exports = {
-    entry: './src/index.tsx',
+    entry: './src/client.tsx',
     output: {
       path: path.join(__dirname, '/dist'),
       filename: 'bundle.js',
@@ -108,11 +108,11 @@ new CleanWebpackPlugin({
             context: path.resolve(__dirname, 'src', 'assets'),
             to: './assets',
           },
-          {
-            from: 'sw.js',
-            context: path.resolve(__dirname, 'src'),
-            to: './',
-          },
+          // {
+          //   from: 'sw.js',
+          //   context: path.resolve(__dirname, 'src'),
+          //   to: './',
+          // },
         ],
       }),
     ],

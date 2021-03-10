@@ -4,14 +4,14 @@ import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 import { ContentBox, Button, LinkElement, Row, Col, Centered } from 'elements'
 import { Input } from 'components'
-import { yupResolver } from '@hookform/resolvers/yup'
+// import { yupResolver } from '@hookform/resolvers/yup'
 import { authLoginAction } from 'ducks'
-import authSchema from '../../schema'
+// import authSchema from '../../schema'
 import { AuthFormData, AuthFormDataKey } from '../../types'
 
 const Auth: FC = () => {
   const { handleSubmit, errors, register, setValue } = useForm<AuthFormData>({
-    resolver: yupResolver(authSchema),
+    // resolver: yupResolver(authSchema),
   })
   const dispatch = useDispatch()
   const onSubmit = useCallback(

@@ -2,10 +2,11 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import * as Sentry from '@sentry/react'
 import { Integrations } from '@sentry/tracing'
+import { ConnectedRouter } from 'connected-react-router'
 import { App, ErrorBoundary } from 'components'
 import { Provider } from 'react-redux'
-import { startServiceWorker } from './utils'
-import store from './store'
+import { configureStore } from './store'
+import { State } from './ducks/types'
 
 import './styles/main.scss'
 import { root } from './constants'
@@ -17,13 +18,22 @@ Sentry.init({
   tracesSampleRate: 1.0,
 })
 
-ReactDOM.render(
+const { store, history } = configureStore(window.__INITIAL_STATE__)
+
+declare global {
+  interface Window {
+    __INITIAL_STATE__: State
+    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: Function
+  }
+}
+
+ReactDOM.hydrate(
   <ErrorBoundary>
     <Provider store={store}>
-      <App />
+      <ConnectedRouter history={history}>
+        <App />
+      </ConnectedRouter>
     </Provider>
   </ErrorBoundary>,
   root
 )
-
-startServiceWorker()

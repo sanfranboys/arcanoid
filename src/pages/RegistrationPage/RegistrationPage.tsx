@@ -1,8 +1,8 @@
-import React, { FC } from 'react'
+import React from 'react'
 import { Page } from 'pages/'
 import { Registration } from './components/Registration'
 
-const RegistrationPage: FC = () => (
+const RegistrationPage = () => (
   <Page title="Регистрация">
     <Registration />
   </Page>

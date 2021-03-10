@@ -4,11 +4,11 @@ import { ContentBox, Row, Col, Button, Image } from 'elements'
 import { useForm } from 'react-hook-form'
 import { Form } from 'antd'
 import { Input } from 'components'
-import { yupResolver } from '@hookform/resolvers/yup'
+// import { yupResolver } from '@hookform/resolvers/yup'
 import { Page } from 'pages'
 import { StartGameFormData, StartGameFormDataKey } from './types'
 import StartData from './mock'
-import { startGameSchema } from './schema'
+// import { startGameSchema } from './schema'
 
 const StartGamePage = () => {
   const history = useHistory()
@@ -27,7 +27,7 @@ const StartGamePage = () => {
     register,
     setValue,
   } = useForm<StartGameFormData>({
-    resolver: yupResolver(startGameSchema),
+    // resolver: yupResolver(startGameSchema),
   })
 
   const onSubmit = useCallback(() => {
