@@ -1,7 +1,7 @@
 import { AUTH_SET_AUTH, AUTH_SET_STATUS } from './actionTypes'
 import { ActionAuth, AuthState } from './types'
 
-const initialState: AuthState = {
+export const initialState: AuthState = {
   isAuth: true,
   loading: true,
 }
