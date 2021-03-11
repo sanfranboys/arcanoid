@@ -4,8 +4,8 @@ import { useForm } from 'react-hook-form'
 import { Button, ContentBox, LinkElement, Row, Col, Centered } from 'elements'
 import { Input } from 'components'
 import { AuthServices } from 'services'
-// import { yupResolver } from '@hookform/resolvers/yup'
-// import { RegistrationSchema } from '../../schema'
+import { yupResolver } from '@hookform/resolvers/yup.js'
+import { RegistrationSchema } from '../../schema'
 import { RegistrationFormData, RegistrationFormDataKey } from '../../types'
 
 const Registration: FC = () => {
@@ -15,7 +15,7 @@ const Registration: FC = () => {
     register,
     setValue,
   } = useForm<RegistrationFormData>({
-    // resolver: yupResolver(RegistrationSchema),
+    resolver: yupResolver(RegistrationSchema),
   })
 
   const onSubmit = (data: RegistrationFormData) => AuthServices.signUp(data)
