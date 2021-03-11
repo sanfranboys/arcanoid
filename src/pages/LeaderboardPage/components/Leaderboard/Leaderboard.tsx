@@ -1,5 +1,7 @@
-import React, { useMemo } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import { Row } from 'elements'
+import { useDispatch } from 'react-redux'
+import { requestLeaders } from 'ducks'
 import { Player } from '../../types'
 import LeaderCard from '../LeaderCard'
 
@@ -13,6 +15,12 @@ const leaders: Player[] = new Array(8).fill('Player').map((name, idx) => {
 })
 
 const LeaderBord = () => {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(requestLeaders())
+  }, [dispatch])
+
   const leaderCards = useMemo(
     () =>
       leaders.map((leader, idx) => (
