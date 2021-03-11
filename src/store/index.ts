@@ -9,6 +9,7 @@ import {
 } from 'ducks'
 import { createBrowserHistory, createMemoryHistory } from 'history'
 import { routerMiddleware, RouterState } from 'connected-react-router'
+import { isProd } from '@/constants'
 import { State } from '../ducks/types'
 
 export const isServer = !(
@@ -18,7 +19,7 @@ export const isServer = !(
 )
 
 function getComposeEnhancers() {
-  if (process.env.NODE_ENV !== 'production' && !isServer) {
+  if (!isProd && !isServer) {
     return window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
   }
 

@@ -9,7 +9,8 @@ import { configureStore } from './store'
 import { State } from './ducks/types'
 
 import './styles/main.scss'
-import { root } from './constants'
+import { isProd, root } from './constants'
+import { startServiceWorker } from './utils'
 
 Sentry.init({
   dsn:
@@ -37,3 +38,5 @@ ReactDOM.hydrate(
   </ErrorBoundary>,
   root
 )
+
+if (isProd) startServiceWorker()
