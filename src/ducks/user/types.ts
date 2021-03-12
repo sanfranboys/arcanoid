@@ -1,4 +1,5 @@
 export type ChangeUserDataAction = {
+  id: number
   display_name: string
   email: string
   first_name: string

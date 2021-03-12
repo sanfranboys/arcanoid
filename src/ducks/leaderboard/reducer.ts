@@ -1,12 +1,12 @@
-import { LeaderBoardState, LeaderAction } from './types'
+import { LeaderBoardState, SetLeadersAction } from './types'
 import { LEADERBOARD_SET, LEADERBOARD_SET_ISLOADING } from './actionTypes'
 
 const initialState: LeaderBoardState = {
-  leaders: {},
+  leaders: [],
   loading: false,
 }
 
-const reducer = (state = initialState, action: LeaderAction) => {
+const reducer = (state = initialState, action: SetLeadersAction) => {
   switch (action.type) {
     case LEADERBOARD_SET:
       return {

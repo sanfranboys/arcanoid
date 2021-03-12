@@ -1,3 +1,5 @@
+import { Player } from 'pages/LeaderboardPage/types'
+
 export type getLeaderBoardPayload = {
   ratingFieldName: string
   cursor: number
@@ -5,8 +7,6 @@ export type getLeaderBoardPayload = {
 }
 
 export type setLeaderBoardPayload = {
-  data: {
-    sanfranoid: Record<string, number>
-  }
+  data: Player
   ratingFieldName: string
 }

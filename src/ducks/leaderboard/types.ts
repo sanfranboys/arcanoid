@@ -1,11 +1,16 @@
+import { Player } from 'pages/LeaderboardPage/types'
+
 export type LeaderBoardState = {
-  leaders: Leader
+  leaders: Player[]
   loading: boolean
 }
 
-export type Leader = Record<string, number>
-
-export type LeaderAction = {
+export type SetLeadersAction = {
   type: string
   payload: LeaderBoardState
+}
+
+export type NewLeaderAction = {
+  type: string
+  payload: Player
 }

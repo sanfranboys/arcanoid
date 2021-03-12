@@ -3,6 +3,7 @@ import { USER_SET_STATUS, USER_SUCCESS } from './actionTypes'
 
 const initialState: UserState = {
   user: {
+    id: 0,
     display_name: '',
     email: '',
     first_name: '',

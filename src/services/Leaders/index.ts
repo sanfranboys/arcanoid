@@ -9,12 +9,10 @@ export class Leaders {
   }
 
   getLeaderboard(data: getLeaderBoardPayload) {
-    return this.APIService.post('/leaderboard/all', data).then(
-      (e) => e.data[0].data.sanfranoid
-    )
+    return this.APIService.post('/leaderboard/all', data)
   }
 
-  setLeaderboard(data: setLeaderBoardPayload) {
-    return this.APIService.post('/leaderboard/all', data)
+  setNewLeader(data: setLeaderBoardPayload) {
+    return this.APIService.post('/leaderboard', data)
   }
 }

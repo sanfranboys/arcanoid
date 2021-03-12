@@ -1,12 +1,14 @@
 import { takeEvery, put, call } from 'redux-saga/effects'
 import { LeadersServices } from 'services'
 import { getLeaderBoardPayload } from 'services/Leaders/types'
-import { setLeaders, setIsLoading } from './actions'
-import { LEADERBOARD_REQUEST } from './actionTypes'
+import { setIsLoading, setLeaders } from './actions'
+import { LEADERBOARD_NEW, LEADERBOARD_REQUEST } from './actionTypes'
+import { NewLeaderAction } from './types'
+import { transformLeadersData, transformNewLeaderData } from './utils'
 
 // ВЫНЕСТИ В КОНСТ ПОКА
 const reqData: getLeaderBoardPayload = {
-  ratingFieldName: 'sanfranoid',
+  ratingFieldName: 'sanfranScore',
   cursor: 0,
   limit: 10,
 }
@@ -14,25 +16,28 @@ const reqData: getLeaderBoardPayload = {
 function* sagaWorkerGetLeaders() {
   try {
     yield put(setIsLoading(true))
-    const data = yield call([LeadersServices, 'getLeaderboard'], reqData)
-    console.log('data', data)
-    yield put(setLeaders(data))
+    const res = yield call([LeadersServices, 'getLeaderboard'], reqData)
+    yield put(setLeaders(transformLeadersData(res.data)))
     yield put(setIsLoading(false))
   } catch (error) {
     yield put(setIsLoading(false))
   }
 }
 
-// function* sagaWorkerSetLeaders({ payload }: LeaderAction) {
-//   try {
-//     yield put(userSetStatusAction(true))
-//     const data = yield call([AuthServices, 'getUserInfo'])
-//   } catch (error) {
-//     yield put(userSetStatusAction(false))
-//   }
-// }
+function* sagaWorkerNewLeaders({ payload }: NewLeaderAction) {
+  try {
+    yield put(setIsLoading(true))
+    yield call(
+      [LeadersServices, 'setNewLeader'],
+      transformNewLeaderData(payload)
+    )
+    yield put(setIsLoading(false))
+  } catch (error) {
+    yield put(setIsLoading(false))
+  }
+}
 
 export default function* sagaWatcher() {
   yield takeEvery(LEADERBOARD_REQUEST, sagaWorkerGetLeaders)
-  // yield takeEvery(LEADERBOARD_SET, sagaWorkerSetLeaders)
+  yield takeEvery(LEADERBOARD_NEW, sagaWorkerNewLeaders)
 }
