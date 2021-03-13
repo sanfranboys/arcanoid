@@ -1,11 +1,12 @@
+import { Player } from 'pages/LeaderboardPage/types'
 import { setLeaderBoardPayload } from 'services/Leaders/types'
 
-// TODO убрать any
-export function transformLeadersData(data: any): any {
+type transformLeadersDataProps = { data: Player }[]
+
+export function transformLeadersData(data: transformLeadersDataProps) {
   return data.map((item: setLeaderBoardPayload) => item.data)
 }
 
-// TODO убрать any
-export function transformNewLeaderData(data: any): any {
+export function transformNewLeaderData(data: Player) {
   return { data, ratingFieldName: 'sanfranScore' }
 }
