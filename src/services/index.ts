@@ -1,5 +1,5 @@
-import { ApiServices } from './Api/index'
-import { API_URL } from '../constants'
+import { API_URL } from '@/constants'
+import { ApiServices } from './Api'
 import { Auth } from './Auth'
 import { User } from './User'
 import { Leaders } from './Leaders'

@@ -23,7 +23,7 @@ const GameProccessPage = () => {
           sanfranScore: score,
         })
       )
-      history.push('/game/finish')
+      history.push(`/game/finish?score=${score}`)
     },
     [userData, dispatch, history]
   )

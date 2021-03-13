@@ -1,7 +1,7 @@
 import { LeaderBoardState, SetLeadersAction } from './types'
 import { LEADERBOARD_SET } from './actionTypes'
 
-const initialState: LeaderBoardState = {
+export const initialState: LeaderBoardState = {
   leaders: [],
   loading: false,
 }

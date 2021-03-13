@@ -125,3 +125,10 @@ input:input-placeholder {
     font-size: 1.6rem;
   }
 }
+
+// Fix for server rendering
+.ant-row {
+  --column-gap: 16px;
+  --row-gap: 16px;
+  gap: 16px;
+}

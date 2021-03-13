@@ -1,7 +1,7 @@
 import { ActionUser, UserState } from './types'
 import { USER_SET_STATUS, USER_SUCCESS } from './actionTypes'
 
-const initialState: UserState = {
+export const initialState: UserState = {
   user: {
     id: 0,
     display_name: '',

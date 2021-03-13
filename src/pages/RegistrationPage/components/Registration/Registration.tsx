@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form'
 import { Button, ContentBox, LinkElement, Row, Col, Centered } from 'elements'
 import { Input } from 'components'
 import { AuthServices } from 'services'
-import { yupResolver } from '@hookform/resolvers/yup'
+import { yupResolver } from '@hookform/resolvers/yup.js'
 import { RegistrationSchema } from '../../schema'
 import { RegistrationFormData, RegistrationFormDataKey } from '../../types'
 
