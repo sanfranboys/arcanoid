@@ -1,9 +1,9 @@
 import { Feature } from './Feature'
 import { FeatureOptions } from './types'
-import { Color, lives } from './settings'
+import { Color, heartImg, lives } from './settings'
 
 export class Lives extends Feature {
-  img: any
+  img: HTMLImageElement[]
 
   private _count = lives
 
@@ -15,9 +15,9 @@ export class Lives extends Feature {
     super(canvas, options)
 
     this._x = canvas.width - 43
-    this.img = new Array(3).fill('').map(() => {
+    this.img = new Array(lives).fill('').map(() => {
       const el = new Image()
-      el.src = '../../../assets/images/heart.png'
+      el.src = heartImg
       return el
     })
   }
@@ -25,7 +25,7 @@ export class Lives extends Feature {
   public draw() {
     const { _ctx, _x, _y } = this
     let position = _x
-    this.img.forEach((img: any) => {
+    this.img.forEach((img: HTMLImageElement) => {
       _ctx.drawImage(img, position, _y, 20, 20)
       position -= 25
     })

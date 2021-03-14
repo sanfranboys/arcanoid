@@ -46,7 +46,7 @@ export abstract class Feature {
     }
   }
 
-  public abstract draw(x?: number, y?: number): void
+  public abstract draw(x?: number, y?: number, text?: string): void
 
   public setColor(color: Color) {
     this._color = color
