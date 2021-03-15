@@ -8,6 +8,7 @@ const fontLoader = require('./loaders/font')
 const cssLoader = require('./loaders/css')
 const scssLoader = require('./loaders/scss')
 const jsLoader = require('./loaders/js')
+const keyLoader = require('./loaders/key')
 
 const config = {
   target: 'node',
@@ -34,11 +35,12 @@ const config = {
       cssLoader.server,
       scssLoader.server,
       jsLoader.server,
+      keyLoader.server
     ],
   },
   resolve: {
     alias,
-    extensions: ['.ts', '.tsx', '.js'],
+    extensions: [ '.ts', '.tsx', '.js' ],
   },
   plugins: [
     new webpack.ProvidePlugin({
