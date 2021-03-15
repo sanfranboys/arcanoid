@@ -13,7 +13,6 @@ const cert = fs.readFileSync(`${__dirname  }/../cert.pem`);
 
 const app = express()
 const server = https.createServer({key, cert }, app);
-console.log(server);
 
 const port = process.env.PORT || 5000
 
@@ -60,7 +59,7 @@ app.get('*', (req:any, res) => {
     })
 })
 
-app.listen(port, () => {
+server.listen(port, () => {
   console.log(`Listening on port: ${port}`)
 })
 
