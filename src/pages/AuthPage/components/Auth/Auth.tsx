@@ -1,19 +1,32 @@
-import React, { ChangeEvent, FC, useCallback } from 'react'
+import React, { ChangeEvent, FC, useCallback, useEffect } from 'react'
 import { Form } from 'antd'
 import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
-import { ContentBox, Button, LinkElement, Row, Col, Centered } from 'elements'
+import {
+  ContentBox,
+  Button,
+  LinkElement,
+  Row,
+  Col,
+  Centered,
+  Image,
+  NotificationWindow,
+} from 'elements'
 import { Input } from 'components'
 import { yupResolver } from '@hookform/resolvers/yup.js'
 import { authLoginAction } from 'ducks'
+import { OAuthService } from 'services'
+import { useHistory } from 'react-router'
 import authSchema from '../../schema'
 import { AuthFormData, AuthFormDataKey } from '../../types'
+import './Auth.scss'
 
 const Auth: FC = () => {
   const { handleSubmit, errors, register, setValue } = useForm<AuthFormData>({
     resolver: yupResolver(authSchema),
   })
   const dispatch = useDispatch()
+  const history = useHistory()
   const onSubmit = useCallback(
     (data: AuthFormData) => dispatch(authLoginAction(data)),
     [dispatch]
@@ -27,10 +40,33 @@ const Auth: FC = () => {
     [setValue]
   )
 
+  useEffect(() => {
+    const code = new URLSearchParams(history.location.search).get('code')
+    if (code) {
+      OAuthService.signIn({ code })
+    }
+  }, [history])
+
+  const handleOauth = useCallback(() => {
+    // TODO тут будет дергаться экшн внутри которого будет эта логика, пока тут оставлю
+    OAuthService.getServiceId().then(({ data }) => {
+      if (data.service_id) {
+        window.location.href = `https://oauth.yandex.ru/authorize?response_type=code&client_id=${data.service_id}`
+      } else {
+        NotificationWindow({
+          status: 5,
+          description: 'Не получилось получить ServiceId',
+          type: 'error',
+        })
+      }
+    })
+  }, [])
+
   const getRegister = useCallback(
     (fieldName: AuthFormDataKey) => register({ name: fieldName }),
     [register]
   )
+
   return (
     <ContentBox>
       <Row gutter={[0, 10]}>
@@ -65,6 +101,20 @@ const Auth: FC = () => {
               </Col>
             </Row>
           </Form>
+        </Col>
+        <Col span={24}>
+          <div className="auth__oauth-container">
+            <Centered>
+              <p>Либо войти через:</p>
+              <Button
+                type="button"
+                className="auth__button-oauth"
+                onClick={handleOauth}
+              >
+                <Image src="/assets/images/yandex-logo.svg" />
+              </Button>
+            </Centered>
+          </div>
         </Col>
         <Col span={24}>
           <Centered>

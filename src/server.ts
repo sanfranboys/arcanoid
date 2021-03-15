@@ -6,7 +6,7 @@ import { configureStore, getInitialState } from './store'
 
 const app = express()
 
-const port = process.env.PORT || 777
+const port = process.env.PORT || 5000
 
 app.use(express.static('dist'))
 
