@@ -10,11 +10,10 @@ import {
   Col,
   Centered,
   Image,
-  NotificationWindow,
 } from 'elements'
 import { Input } from 'components'
 import { yupResolver } from '@hookform/resolvers/yup.js'
-import { authLoginAction } from 'ducks'
+import { authLoginAction, authLoginOauthAction } from 'ducks'
 import { OAuthService } from 'services'
 import { useHistory } from 'react-router'
 import authSchema from '../../schema'
@@ -42,24 +41,14 @@ const Auth: FC = () => {
 
   useEffect(() => {
     const code = new URLSearchParams(history.location.search).get('code')
+    console.log('code', code)
     if (code) {
-      OAuthService.signIn({ code })
+      dispatch(authLoginOauthAction({ code }))
     }
-  }, [history])
+  }, [history, dispatch])
 
   const handleOauth = useCallback(() => {
-    // TODO тут будет дергаться экшн внутри которого будет эта логика, пока тут оставлю
-    OAuthService.getServiceId().then(({ data }) => {
-      if (data.service_id) {
-        window.location.href = `https://oauth.yandex.ru/authorize?response_type=code&client_id=${data.service_id}`
-      } else {
-        NotificationWindow({
-          status: 5,
-          description: 'Не получилось получить ServiceId',
-          type: 'error',
-        })
-      }
-    })
+    OAuthService.getServiceId()
   }, [])
 
   const getRegister = useCallback(
