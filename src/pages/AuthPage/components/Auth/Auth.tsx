@@ -41,7 +41,6 @@ const Auth: FC = () => {
 
   useEffect(() => {
     const code = new URLSearchParams(history.location.search).get('code')
-    console.log('code', code)
     if (code) {
       dispatch(authLoginOauthAction({ code }))
     }
