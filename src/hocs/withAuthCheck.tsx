@@ -1,4 +1,5 @@
 import React, { ComponentType, useEffect } from 'react'
+import { userRequestAction } from 'ducks'
 import { useDispatch } from 'react-redux'
 
 const withAuthCheck = (WrappedComponent: ComponentType) => {
@@ -6,7 +7,7 @@ const withAuthCheck = (WrappedComponent: ComponentType) => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-      // dispatch(userRequestAction())
+      dispatch(userRequestAction())
     }, [dispatch])
 
     return <WrappedComponent {...props} />

@@ -1,9 +1,10 @@
 import axios from "axios";
+import { NextFunction } from "express";
 
 const PRAKTIKUM_AUTH_ENDPOINT = 'https://ya-praktikum.tech/api/v2/auth/user';
 
-export const auth = async (req:any, res:any, next:any) => {
-console.log(res.status);
+
+export const auth = async (req:any, _res:any, next:NextFunction) => {
   const authData = {
     authCookie: req.cookies.authCookie,
     uuid: req.cookies.uuid,
