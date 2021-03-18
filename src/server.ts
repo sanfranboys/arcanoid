@@ -1,10 +1,11 @@
-import express from 'express'
+import express,{Response} from 'express'
 import fs from 'fs'
 import https from 'https'
 import { saga as rootSaga } from 'ducks'
 import cookieParser from 'cookie-parser'
 import { StaticRouterContext } from 'react-router'
-import { auth } from './middleware'
+import { CustomRequest } from 'types'
+import { authMeddleware } from './middleware'
 import serverRender from './serverRender'
 import { configureStore, getInitialState } from './store'
 
@@ -19,13 +20,12 @@ const port = process.env.PORT || 5000
 app.use(express.static('dist'));
 app.use(cookieParser())
 
-app.use(auth)
+app.use(authMeddleware)
 
-app.get('*', (req:any, res) => {
+app.get('*', (req:CustomRequest, res:Response) => {
   const location = req.url
   const { store } = configureStore(getInitialState(location), location)
-  // eslint-disable-next-line @typescript-eslint/no-shadow
-  const {user, auth} = store.getState();
+  const {auth, user} = store.getState();
   if(req.customProperty){
     user.user = req.customProperty
     auth.isAuth = true
