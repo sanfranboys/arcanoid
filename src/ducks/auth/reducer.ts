@@ -2,8 +2,8 @@ import { AUTH_SET_AUTH, AUTH_SET_STATUS } from './actionTypes'
 import { ActionAuth, AuthState } from './types'
 
 export const initialState: AuthState = {
-  isAuth: true,
-  loading: true,
+  isAuth: false,
+  loading: false,
 }
 
 const reducer = (state = initialState, action: ActionAuth) => {

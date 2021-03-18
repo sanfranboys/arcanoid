@@ -4,7 +4,6 @@ import { Header, Content, Layout } from 'elements'
 import { Nav } from 'components'
 import './App.scss'
 import { RootRoutes } from 'routes'
-import { withAuthCheck } from 'hocs'
 
 const App: FC = () => (
   <Layout>
@@ -17,4 +16,4 @@ const App: FC = () => (
   </Layout>
 )
 
-export default withAuthCheck(App)
+export default App
