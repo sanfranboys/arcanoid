@@ -26,7 +26,7 @@ module.exports = {
       utils: path.join(__dirname, './src/utils'),
       routes: path.join(__dirname, './src/routes'),
     },
-    extensions: ['.ts', '.tsx', '.js'],
+    extensions: [ '.ts', '.tsx', '.js' ],
   },
   devtool: isDev ? 'source-map' : false,
   devServer: {
@@ -49,15 +49,15 @@ module.exports = {
             },
           },
         ],
-        exclude: [path.resolve(__dirname, 'node_modules'), /\.test.tsx?$/],
+        exclude: [ path.resolve(__dirname, 'node_modules'), /\.test.tsx?$/ ],
       },
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+        use: [ MiniCssExtractPlugin.loader, 'css-loader' ],
       },
       {
         test: /\.s[ac]ss$/i,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+        use: [ MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader' ],
       },
       {
         test: /\.(png|jpe?g|gif|icon|xml|svg|json)$/,

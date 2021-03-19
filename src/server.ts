@@ -1,6 +1,7 @@
 import express from 'express'
 import { saga as rootSaga } from 'ducks'
 import { StaticRouterContext } from 'react-router'
+import  getWebpackMiddlewares  from './hotReload'
 import serverRender from './serverRender'
 import { configureStore, getInitialState } from './store'
 
@@ -8,7 +9,10 @@ const app = express()
 
 const port = process.env.PORT || 777
 
-app.use(express.static('dist'))
+app.use( express.static('dist'))
+
+
+
 
 app.get('*', (req, res) => {
   const location = req.url
@@ -39,7 +43,7 @@ app.get('*', (req, res) => {
       throw err
     })
 })
-
+app.use(getWebpackMiddlewares)
 app.listen(port, () => {
   console.log(`Listening on port: ${port}`)
 })
