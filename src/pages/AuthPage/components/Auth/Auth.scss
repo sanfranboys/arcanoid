@@ -1,0 +1,18 @@
+.auth {
+  &__button-oauth {
+    border: none;
+    padding: 10px;
+    background-color: var(--light);
+    width: 100px;
+    border-radius: 8px;
+
+    &:hover {
+      background-color: var(--lightBg);
+    }
+  }
+
+  &__oauth-container {
+    border-bottom: 2px solid var(--color-border-dark);
+    padding-bottom: 15px;
+  }
+}

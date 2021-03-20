@@ -11,6 +11,7 @@ export type ChangeProfileDataTypes = {
   login: string
   phone: string
   second_name: string
+  id: number
 }
 
 type ChangeDataUser = {

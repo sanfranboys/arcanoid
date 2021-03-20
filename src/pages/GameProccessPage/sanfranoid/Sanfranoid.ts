@@ -8,8 +8,6 @@ import { Color } from './settings'
 import { Pausa } from './Pausa'
 
 class Sanfranoid {
-  private _finishPageRoute = '/game/finish'
-
   private readonly _ctx: Nullable<CanvasRenderingContext2D>
 
   private readonly _canvas: HTMLCanvasElement
@@ -17,6 +15,8 @@ class Sanfranoid {
   private _ball: Ball
 
   private readonly _paddle: Paddle
+
+  private readonly _onGameEnd: (score: number) => void
 
   private _wall: Wall
 
@@ -30,8 +30,9 @@ class Sanfranoid {
 
   private _starting: boolean
 
-  constructor(canvas: HTMLCanvasElement) {
+  constructor(canvas: HTMLCanvasElement, onGameEnd: (score: number) => void) {
     this._canvas = canvas
+    this._onGameEnd = onGameEnd
     this._ctx = this._canvas.getContext('2d')
 
     this._ball = new Ball(canvas, { color: Color.Green })
@@ -150,7 +151,7 @@ class Sanfranoid {
 
   private endGame() {
     this.destroy()
-    window.location.href = this._finishPageRoute
+    this._onGameEnd(this._score.getScore())
   }
 
   public destroy() {

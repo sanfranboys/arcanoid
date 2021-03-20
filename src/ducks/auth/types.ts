@@ -27,7 +27,14 @@ export type ActionLoginTypes = {
   payload: ActionAuthLogin
 }
 
+export type ActionLoginOauthTypes = {
+  type: string
+  payload: ActionOauthPayload
+}
+
 export type ActionRegistrationTypes = {
   type: string
   payload: ActionRegistration
 }
+
+export type ActionOauthPayload = { code: string }
