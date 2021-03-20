@@ -5,6 +5,7 @@ import { Wall } from './Wall'
 import { Score } from './Score'
 import { Lives } from './Lives'
 import { Color } from './settings'
+import { Pausa } from './Pausa'
 
 class Sanfranoid {
   private readonly _ctx: Nullable<CanvasRenderingContext2D>
@@ -25,18 +26,36 @@ class Sanfranoid {
 
   private _isContinues: boolean
 
+  private pausa: Pausa
+
+  private _starting: boolean
+
   constructor(canvas: HTMLCanvasElement, onGameEnd: (score: number) => void) {
     this._canvas = canvas
     this._onGameEnd = onGameEnd
     this._ctx = this._canvas.getContext('2d')
 
-    this._ball = new Ball(canvas)
+    this._ball = new Ball(canvas, { color: Color.Green })
     this._paddle = new Paddle(canvas)
-    this._wall = new Wall(canvas, { color: Color.Green })
+    this._wall = new Wall(canvas)
     this._score = new Score(canvas)
     this._lives = new Lives(canvas)
+    this.pausa = new Pausa(canvas)
 
-    this._isContinues = true
+    this._isContinues = false
+    this._starting = false
+
+    document.addEventListener('keydown', this.keyDownHandler, false)
+  }
+
+  private keyDownHandler = (e: KeyboardEvent) => {
+    if (e.keyCode === 32) {
+      this._isContinues = !this._isContinues
+      if (this._isContinues) {
+        this._starting = true
+        this.go()
+      }
+    }
   }
 
   public go() {
@@ -69,6 +88,8 @@ class Sanfranoid {
 
       if (this._isContinues) {
         requestAnimationFrame(draw)
+      } else if (this._starting) {
+        this.pausa.draw()
       }
     }
 
@@ -76,12 +97,14 @@ class Sanfranoid {
   }
 
   private failProcessing() {
+    this._starting = false
+    this._isContinues = false
     this._lives.decrease()
 
     if (this._lives.isLow()) {
-      this._wall.setColor(Color.Yellow)
+      this._ball.setColor(Color.Yellow)
     } else if (this._lives.isCritical()) {
-      this._wall.setColor(Color.Red)
+      this._ball.setColor(Color.Red)
     }
 
     if (this._lives.isOver()) {
@@ -132,6 +155,7 @@ class Sanfranoid {
   }
 
   public destroy() {
+    document.removeEventListener('keydown', this.keyDownHandler, false)
     this._isContinues = false
     this._paddle.destroy()
   }

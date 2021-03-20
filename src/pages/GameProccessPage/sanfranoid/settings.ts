@@ -19,3 +19,4 @@ export const paddleHeight = 10
 export const paddleWidth = 100
 
 export const lives = 3
+export const heartImg = '../../../assets/images/heart.png'
