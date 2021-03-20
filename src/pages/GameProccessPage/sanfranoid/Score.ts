@@ -18,6 +18,10 @@ export class Score extends Feature {
     _ctx.fillText(`Score: ${_count}`, _x, _y)
   }
 
+  public getScore() {
+    return this._count
+  }
+
   public increase() {
     this._count += 1
   }

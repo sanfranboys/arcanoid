@@ -10,7 +10,7 @@ import { State } from './ducks/types'
 
 import './styles/main.scss'
 import { isProd, root } from './constants'
-import { startServiceWorker } from './utils'
+import { startServiceWorker,browserNotification } from './utils'
 
 Sentry.init({
   dsn:
@@ -27,6 +27,10 @@ declare global {
     __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: Function
   }
 }
+
+browserNotification('Добро пожаловать в игру', {
+  body: 'Если ты не был в Slack зайди и отметься!',
+})
 
 ReactDOM.hydrate(
   <ErrorBoundary>

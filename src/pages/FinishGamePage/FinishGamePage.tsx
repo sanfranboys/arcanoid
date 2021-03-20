@@ -1,19 +1,28 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link, useHistory } from 'react-router-dom'
 import { ContentBox, Row, Col, Button, Image } from 'elements'
 import { Page } from 'pages'
 import FinishGameData from './mock'
 import './FinishGamePage.scss'
 
 const FinishGamePage = () => {
+  const [score, setScore] = useState<string | null>(null)
+  const history = useHistory()
   const {
     description,
     scoreText,
-    score,
     image,
     leaderbordLink,
     restartLink,
   } = FinishGameData
+
+  useEffect(() => {
+    const params = new URLSearchParams(history.location.search)
+    if (!params.get('score')) {
+      history.push('/game')
+    }
+    setScore(params.get('score'))
+  }, [history])
 
   return (
     <Page>

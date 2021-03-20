@@ -12,6 +12,7 @@ type GuardedRouteProps = {
 const UnPrivateRoute: FC<GuardedRouteProps> = ({ component: Component }) => {
   const isAuth: boolean = useSelector(getIsAuth)
   const isLoading: boolean = useSelector(getIsLoadingAuth)
+
   return (
     <Route
       render={(props) =>

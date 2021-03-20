@@ -1,8 +1,7 @@
 export type Player = {
-  id: number
-  avatar?: string
-  name: string
-  score: number
+  sanfranId: number
+  sanfranPlayer: string
+  sanfranScore: number
 }
 
 export type Leader = Player & { position: number }
