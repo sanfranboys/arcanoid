@@ -1,10 +1,19 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
-import { AuthServices } from 'services/'
+import { AuthServices, OAuthService } from 'services/'
 import { NotificationWindow } from 'elements'
 import { userRequestAction } from 'ducks/'
 import { setStatusAction, setAuthAction } from './actions'
-import { AUTH_LOGIN, AUTH_LOGOUT, AUTH_REGISTRATION } from './actionTypes'
-import { ActionLoginTypes, ActionRegistrationTypes } from './types'
+import {
+  AUTH_LOGIN,
+  AUTH_LOGIN_OAUTH,
+  AUTH_LOGOUT,
+  AUTH_REGISTRATION,
+} from './actionTypes'
+import {
+  ActionLoginOauthTypes,
+  ActionLoginTypes,
+  ActionRegistrationTypes,
+} from './types'
 
 function* sagaWorkerLogin({ payload }: ActionLoginTypes) {
   try {
@@ -25,6 +34,24 @@ function* sagaWorkerLogin({ payload }: ActionLoginTypes) {
         status: error.status,
         type: 'error',
         description: 'Неверный логин или пароль',
+      })
+    }
+    yield put(setStatusAction(false))
+  }
+}
+
+function* sagaWorkerLoginOauth({ payload }: ActionLoginOauthTypes) {
+  try {
+    yield put(setStatusAction(true))
+    yield call([OAuthService, 'signIn'], payload)
+    yield put(setAuthAction(true))
+    yield put(userRequestAction())
+    yield put(setStatusAction(false))
+  } catch (error) {
+    if (error.status === 400) {
+      NotificationWindow({
+        status: error.status,
+        description: 'Вы уже в системе',
       })
     }
     yield put(setStatusAction(false))
@@ -67,4 +94,5 @@ export default function* sagaWatcher() {
   yield takeEvery(AUTH_LOGIN, sagaWorkerLogin)
   yield takeEvery(AUTH_REGISTRATION, sagaWorkerRegistration)
   yield takeEvery(AUTH_LOGOUT, sagaWorkerLogout)
+  yield takeEvery(AUTH_LOGIN_OAUTH, sagaWorkerLoginOauth)
 }

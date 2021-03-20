@@ -1,5 +1,5 @@
 import React from 'react'
-import { Redirect, Route, Switch } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import {
   ErrorPage,
   AuthPage,
@@ -9,12 +9,12 @@ import {
 } from 'pages/'
 
 import { PrivateRoute, UnPrivateRoute } from 'hocs/'
-import { ForumRoutes, GameRoutes } from 'routes/'
+import { ForumRoutes, GameRoutes, RootRedirectRoute } from 'routes/'
 
 const RootRoutes = () => (
   <Switch>
     <Route exact path="/">
-      <Redirect to="/auth" />
+      <RootRedirectRoute />
     </Route>
     <PrivateRoute component={GameRoutes} path="/game" />
     <PrivateRoute component={LeaderboardPage} path="/leaderboard" />

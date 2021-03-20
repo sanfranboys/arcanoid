@@ -1,10 +1,15 @@
-import { ActionAuthLogin, ActionRegistration } from './types'
+import {
+  ActionAuthLogin,
+  ActionOauthPayload,
+  ActionRegistration,
+} from './types'
 import {
   AUTH_SET_AUTH,
   AUTH_LOGIN,
   AUTH_REGISTRATION,
   AUTH_SET_STATUS,
   AUTH_LOGOUT,
+  AUTH_LOGIN_OAUTH,
 } from './actionTypes'
 
 const setAuthAction = (payload: boolean) => ({
@@ -14,6 +19,11 @@ const setAuthAction = (payload: boolean) => ({
 
 const authLoginAction = (data: ActionAuthLogin) => ({
   type: AUTH_LOGIN,
+  payload: data,
+})
+
+const authLoginOauthAction = (data: ActionOauthPayload) => ({
+  type: AUTH_LOGIN_OAUTH,
   payload: data,
 })
 
@@ -37,4 +47,5 @@ export {
   authLogoutAction,
   setAuthAction,
   setStatusAction,
+  authLoginOauthAction,
 }
