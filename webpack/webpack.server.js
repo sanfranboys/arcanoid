@@ -38,7 +38,7 @@ const config = {
   },
   resolve: {
     alias,
-    extensions: ['.ts', '.tsx', '.js'],
+    extensions: [ '.ts', '.tsx', '.js' ],
   },
   plugins: [
     new webpack.ProvidePlugin({

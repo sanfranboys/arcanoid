@@ -1,5 +1,5 @@
-import { userRequestAction } from 'ducks'
 import React, { ComponentType, useEffect } from 'react'
+import { userRequestAction } from 'ducks'
 import { useDispatch } from 'react-redux'
 
 const withAuthCheck = (WrappedComponent: ComponentType) => {
