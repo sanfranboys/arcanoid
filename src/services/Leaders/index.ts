@@ -1,5 +1,5 @@
 import { ApiServices } from 'services/Api'
-import { getLeaderBoardPayload, setLeaderBoardPayload } from './types'
+import { GetLeaderBoardPayload, SetLeaderBoardPayload } from './types'
 
 export class Leaders {
   APIService: ApiServices
@@ -8,11 +8,11 @@ export class Leaders {
     this.APIService = APIService
   }
 
-  getLeaderboard(data: getLeaderBoardPayload) {
+  getLeaderboard(data: GetLeaderBoardPayload) {
     return this.APIService.post('/leaderboard/all', data)
   }
 
-  setNewLeader(data: setLeaderBoardPayload) {
+  setNewLeader(data: SetLeaderBoardPayload) {
     return this.APIService.post('/leaderboard', data)
   }
 }

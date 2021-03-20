@@ -1,12 +1,12 @@
 import { Player } from 'pages/LeaderboardPage/types'
 
-export type getLeaderBoardPayload = {
+export type GetLeaderBoardPayload = {
   ratingFieldName: string
   cursor: number
   limit: number
 }
 
-export type setLeaderBoardPayload = {
+export type SetLeaderBoardPayload = {
   data: Player
   ratingFieldName: string
 }

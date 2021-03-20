@@ -1,13 +1,13 @@
 import { takeEvery, put, call } from 'redux-saga/effects'
 import { LeadersServices } from 'services'
-import { getLeaderBoardPayload } from 'services/Leaders/types'
+import { GetLeaderBoardPayload } from 'services/Leaders/types'
 import { setLeaders } from './actions'
 import { LEADERBOARD_NEW, LEADERBOARD_REQUEST } from './actionTypes'
 import { NewLeaderAction } from './types'
 import { transformLeadersData, transformNewLeaderData } from './utils'
 
 // ВЫНЕСТИ В КОНСТ ПОКА
-const initialReqData: getLeaderBoardPayload = {
+const initialReqData: GetLeaderBoardPayload = {
   ratingFieldName: 'sanfranScore',
   cursor: 0,
   limit: 10,
