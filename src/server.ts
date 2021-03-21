@@ -5,7 +5,8 @@ import { saga as rootSaga } from 'ducks'
 import cookieParser from 'cookie-parser'
 import { StaticRouterContext } from 'react-router'
 import { CustomRequest } from 'types'
-import { authMeddleware } from './middleware'
+import getHotMiddlewares from './middlewares/hot'
+import authMeddleware from './middlewares/auth'
 import serverRender from './serverRender'
 import { configureStore, getInitialState } from './store'
 
@@ -21,6 +22,7 @@ app.use(express.static('dist'))
 app.use(cookieParser())
 
 app.use(authMeddleware)
+app.use(...getHotMiddlewares())
 
 app.get('*', (req: CustomRequest, res: Response) => {
   const location = req.url
