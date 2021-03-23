@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "webpack serve --mode development --open --hot",
     "ssr": "npm run build:clean && npm run build-server && npm-run-all --parallel ssr:*",
-    "ssr:server": "nodemon dist/server.bundle.js --watch",
+    "ssr:server": "node dist/server.bundle.js --watch",
     "ssr:client": "webpack --config webpack/webpack.client.js --watch",
     "build-server": "webpack --config webpack/webpack.server.js",
     "build:clean": "rimraf ./dist",

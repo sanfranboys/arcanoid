@@ -5,6 +5,7 @@ import { Integrations } from '@sentry/tracing'
 import { ConnectedRouter } from 'connected-react-router'
 import { App, ErrorBoundary } from 'components'
 import { Provider } from 'react-redux'
+
 import { configureStore } from './store'
 import { State } from './ducks/types'
 
@@ -39,7 +40,6 @@ ReactDOM.hydrate(
         <App />
       </ConnectedRouter>
     </Provider>
-    ,
   </ErrorBoundary>,
   root
 )
