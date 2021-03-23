@@ -1,6 +1,5 @@
 import React, { FC } from 'react'
 import { Header, Content, Layout } from 'elements'
-import { hot } from 'react-hot-loader/root'
 
 import { Nav } from 'components'
 import './App.scss'
@@ -17,4 +16,4 @@ const App: FC = () => (
   </Layout>
 )
 
-export default hot(App)
+export default App
