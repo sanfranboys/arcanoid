@@ -19,12 +19,12 @@ const server = https.createServer({ key, cert }, app)
 const port = process.env.PORT || 5000
 
 app.use(express.static('dist'))
+
 app.use(cookieParser())
 
 app.use(authMeddleware)
-app.use(...getHotMiddlewares())
 
-app.get('*', (req: CustomRequest, res: Response) => {
+app.get('*', [...getHotMiddlewares()], (req: CustomRequest, res: Response) => {
   const location = req.url
   const { store } = configureStore(getInitialState(location), location)
   const { auth, user } = store.getState()

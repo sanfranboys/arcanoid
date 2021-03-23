@@ -8,10 +8,9 @@ export default function getHotMiddlewares() {
   const compiler = webpack({ ...clientConfig, mode: 'development' })
 
   return [
-    hotMiddleware(compiler),
     devMiddleware(compiler, {
-      serverSideRender: true,
-      writeToDisk: true,
+      publicPath: clientConfig.output!.publicPath!,
     }),
+    hotMiddleware(compiler),
   ]
 }
