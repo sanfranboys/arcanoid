@@ -41,7 +41,6 @@ app.get('*', [...getHotMiddlewares()], (req: CustomRequest, res: Response) => {
     .then(() => {
       const context: StaticRouterContext = {}
       const content = serverRender(req, store, context)
-
       // if (context.notFound) {
       //   res.status(404)
       // }

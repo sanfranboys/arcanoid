@@ -10,7 +10,7 @@ import { State } from './ducks/types'
 
 import './styles/main.scss'
 import { isProd, root } from './constants'
-import { startServiceWorker,browserNotification } from './utils'
+import { startServiceWorker, browserNotification } from './utils'
 
 Sentry.init({
   dsn:
@@ -39,6 +39,7 @@ ReactDOM.hydrate(
         <App />
       </ConnectedRouter>
     </Provider>
+    ,
   </ErrorBoundary>,
   root
 )
