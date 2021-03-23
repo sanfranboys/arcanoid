@@ -29,7 +29,7 @@ npm run lint
 ```shell script
 docker-compose up 
 ```
-потом заскаем локально сервер
+потом запускаем локально сервер
 
 ```shell script
 npm run ssr 
