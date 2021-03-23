@@ -5,7 +5,8 @@ import { saga as rootSaga } from 'ducks'
 import cookieParser from 'cookie-parser'
 import { StaticRouterContext } from 'react-router'
 import { CustomRequest } from 'types'
-import { authMeddleware } from './middleware'
+import getHotMiddlewares from './middlewares/hot'
+import authMeddleware from './middlewares/auth'
 import serverRender from './serverRender'
 import { configureStore, getInitialState } from './store'
 
@@ -18,11 +19,12 @@ const server = https.createServer({ key, cert }, app)
 const port = process.env.PORT || 5000
 
 app.use(express.static('dist'))
+
 app.use(cookieParser())
 
 app.use(authMeddleware)
 
-app.get('*', (req: CustomRequest, res: Response) => {
+app.get('*', [...getHotMiddlewares()], (req: CustomRequest, res: Response) => {
   const location = req.url
   const { store } = configureStore(getInitialState(location), location)
   const { auth, user } = store.getState()
@@ -39,7 +41,6 @@ app.get('*', (req: CustomRequest, res: Response) => {
     .then(() => {
       const context: StaticRouterContext = {}
       const content = serverRender(req, store, context)
-
       // if (context.notFound) {
       //   res.status(404)
       // }

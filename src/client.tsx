@@ -5,12 +5,14 @@ import { Integrations } from '@sentry/tracing'
 import { ConnectedRouter } from 'connected-react-router'
 import { App, ErrorBoundary } from 'components'
 import { Provider } from 'react-redux'
+
+import { hot } from 'react-hot-loader'
 import { configureStore } from './store'
 import { State } from './ducks/types'
 
 import './styles/main.scss'
 import { isProd, root } from './constants'
-import { startServiceWorker,browserNotification } from './utils'
+import { startServiceWorker, browserNotification } from './utils'
 
 Sentry.init({
   dsn:
@@ -32,15 +34,17 @@ browserNotification('Добро пожаловать в игру', {
   body: 'Если ты не был в Slack зайди и отметься!',
 })
 
-ReactDOM.hydrate(
-  <ErrorBoundary>
-    <Provider store={store}>
-      <ConnectedRouter history={history}>
-        <App />
-      </ConnectedRouter>
-    </Provider>
-  </ErrorBoundary>,
-  root
+hot(module)(
+  ReactDOM.hydrate(
+    <ErrorBoundary>
+      <Provider store={store}>
+        <ConnectedRouter history={history}>
+          <App />
+        </ConnectedRouter>
+      </Provider>
+    </ErrorBoundary>,
+    root
+  )
 )
 
 if (isProd) startServiceWorker()

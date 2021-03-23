@@ -10,6 +10,7 @@ const alias = {
   services: path.join(__dirname, '../src/services'),
   utils: path.join(__dirname, '../src/utils'),
   routes: path.join(__dirname, '../src/routes'),
+  'react-dom': '@hot-loader/react-dom',
 }
 
 module.exports = alias

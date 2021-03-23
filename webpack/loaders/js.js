@@ -1,12 +1,21 @@
 const path = require('path')
 
+const isDev = process.env.NODE_ENV !== 'production'
+
 const tpl = {
   test: /\.tsx?$/,
   use: [
+    isDev && {
+      loader: 'babel-loader',
+      options: {
+        cacheDirectory: true,
+        plugins: ['react-hot-loader/babel'],
+      },
+    },
     {
       loader: 'ts-loader',
       options: {
-        configFile: path.resolve(__dirname, '../../tsconfig.json'),
+        transpileOnly: true,
       },
     },
   ],

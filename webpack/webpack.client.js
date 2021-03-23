@@ -1,6 +1,8 @@
 const path = require('path')
+const webpack = require('webpack')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
 
 const alias = require('./alias')
 const fileLoader = require('./loaders/file')
@@ -14,8 +16,12 @@ const isDev = !isProd
 
 const config = {
   mode: 'development',
-  entry: path.join(__dirname, '../src/client.tsx'),
-
+  entry: [
+    isDev && 'react-hot-loader/patch',
+    isDev && 'webpack-hot-middleware/client',
+    isDev && 'css-hot-loader/hotModuleReplacement',
+    path.join(__dirname, '../src/client'),
+  ],
   output: {
     path: path.join(__dirname, '../dist'),
     filename: 'bundle.js',
@@ -35,7 +41,8 @@ const config = {
   },
   resolve: {
     alias,
-    extensions: [ '.ts', '.tsx', '.js' ],
+    extensions: ['.ts', '.tsx', '.js'],
+    plugins: [new TsconfigPathsPlugin({ configFile: './tsconfig.json' })],
   },
 
   plugins: [
@@ -61,6 +68,7 @@ const config = {
         },
       ],
     }),
+    isDev && new webpack.HotModuleReplacementPlugin(),
   ],
 }
 
