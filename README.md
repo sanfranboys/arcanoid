@@ -25,6 +25,15 @@ npm run build
 ```shell script
 npm run lint
 ```
+## Запуск PostgresSQL
+```shell script
+docker-compose up 
+```
+потом заскаем локально сервер
+
+```shell script
+npm run ssr 
+```
 
 ## Команда
 
