@@ -1,19 +1,31 @@
-import React, { ChangeEvent, FC, useCallback } from 'react'
+import React, { ChangeEvent, FC, useCallback, useEffect } from 'react'
 import { Form } from 'antd'
 import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
-import { ContentBox, Button, LinkElement, Row, Col, Centered } from 'elements'
+import {
+  ContentBox,
+  Button,
+  LinkElement,
+  Row,
+  Col,
+  Centered,
+  Image,
+} from 'elements'
 import { Input } from 'components'
-import { yupResolver } from '@hookform/resolvers/yup'
-import { authLoginAction } from 'ducks'
+import { yupResolver } from '@hookform/resolvers/yup.js'
+import { authLoginAction, authLoginOauthAction } from 'ducks'
+import { OAuthService } from 'services'
+import { useHistory } from 'react-router'
 import authSchema from '../../schema'
 import { AuthFormData, AuthFormDataKey } from '../../types'
+import './Auth.scss'
 
 const Auth: FC = () => {
   const { handleSubmit, errors, register, setValue } = useForm<AuthFormData>({
     resolver: yupResolver(authSchema),
   })
   const dispatch = useDispatch()
+  const history = useHistory()
   const onSubmit = useCallback(
     (data: AuthFormData) => dispatch(authLoginAction(data)),
     [dispatch]
@@ -27,10 +39,22 @@ const Auth: FC = () => {
     [setValue]
   )
 
+  useEffect(() => {
+    const code = new URLSearchParams(history.location.search).get('code')
+    if (code) {
+      dispatch(authLoginOauthAction({ code }))
+    }
+  }, [history, dispatch])
+
+  const handleOauth = useCallback(() => {
+    OAuthService.getServiceId()
+  }, [])
+
   const getRegister = useCallback(
     (fieldName: AuthFormDataKey) => register({ name: fieldName }),
     [register]
   )
+
   return (
     <ContentBox>
       <Row gutter={[0, 10]}>
@@ -65,6 +89,20 @@ const Auth: FC = () => {
               </Col>
             </Row>
           </Form>
+        </Col>
+        <Col span={24}>
+          <div className="auth__oauth-container">
+            <Centered>
+              <p>Либо войти через:</p>
+              <Button
+                type="button"
+                className="auth__button-oauth"
+                onClick={handleOauth}
+              >
+                <Image src="/assets/images/yandex-logo.svg" />
+              </Button>
+            </Centered>
+          </div>
         </Col>
         <Col span={24}>
           <Centered>

@@ -1,4 +1,4 @@
-import { Color } from './colors'
+import { Color } from './settings'
 
 export type Nullable<T> = T | null
 

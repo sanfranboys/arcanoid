@@ -1,23 +1,32 @@
 import { Brick } from './Brick'
 import { Feature } from './Feature'
 import { BrickOptions } from './types'
+import { paddleHeight, paddleWidth } from './settings'
 
 export class Paddle extends Brick {
-  public height = 10
+  protected _height = paddleHeight
 
-  public width = 100
+  protected _width = paddleWidth
 
-  private dx = 7
+  private _dx = 7
 
-  private rightPressed = false
+  private _rightPressed = false
 
-  private leftPressed = false
+  private _leftPressed = false
 
-  public speed = 0
+  private _speed = 0
 
-  private time: number
+  private _time: number
 
-  private lastX: number
+  private _lastX: number
+
+  get speed() {
+    return this._speed
+  }
+
+  set speed(value) {
+    this._speed = value
+  }
 
   constructor(canvas: HTMLCanvasElement, options?: BrickOptions) {
     super(canvas, options)
@@ -36,85 +45,85 @@ export class Paddle extends Brick {
   }
 
   public draw() {
-    const { dx } = this
+    const { _dx } = this
 
     if (this.isNotCrossedRight()) {
-      this.x += dx
+      this._x += _dx
     } else if (this.isNotCrossedLeft()) {
-      this.x -= dx
+      this._x -= _dx
     }
 
-    super.draw(this.x, this.y)
+    super.draw(this._x, this._y)
   }
 
   private keyDownHandler = (e: KeyboardEvent) => {
     if (e.keyCode === 39) {
-      this.rightPressed = true
+      this._rightPressed = true
     } else if (e.keyCode === 37) {
-      this.leftPressed = true
+      this._leftPressed = true
     }
   }
 
   private keyUpHandler = (e: KeyboardEvent) => {
     if (e.keyCode === 39) {
-      this.rightPressed = false
+      this._rightPressed = false
     } else if (e.keyCode === 37) {
-      this.leftPressed = false
+      this._leftPressed = false
     }
   }
 
   private mouseMoveHandler = (e: MouseEvent) => {
-    const { canvas, width, lastX, x } = this
+    const { _canvas, _width, _lastX, _x } = this
     const canvasOffsetLeft =
-      canvas.getBoundingClientRect().left + document.body.scrollLeft
+      _canvas.getBoundingClientRect().left + document.body.scrollLeft
     const relativeX = e.clientX - canvasOffsetLeft
 
-    if (relativeX > 0 && relativeX < canvas.width) {
-      this.x = relativeX - width / 2
+    if (relativeX > 0 && relativeX < _canvas.width) {
+      this._x = relativeX - _width / 2
     }
 
     this.withTime((time) => {
-      const dx = x - lastX
+      const dx = _x - _lastX
       this.speed = Math.round((dx / time) * 100)
-      this.lastX = x
+      this._lastX = _x
     })
   }
 
   private withTime(callback: (time: number) => void) {
-    const { time } = this
+    const { _time } = this
 
-    if (time === null) {
-      this.time = Date.now()
+    if (_time === null) {
+      this._time = Date.now()
       return
     }
 
     const now = Date.now()
-    const dTime = now - time
+    const dTime = now - _time
 
     if (typeof callback === 'function') {
       callback(dTime)
     }
 
-    this.time = now
+    this._time = now
   }
 
   public isCrossedBy(feature: Feature) {
-    const { x, width } = this
-    return feature.x > x && feature.x < x + width
+    const { _x, _width } = this
+    return feature.x > _x && feature.x < _x + _width
   }
 
   public setStartPosition() {
-    this.x = (this.canvas.width - this.width) / 2
-    this.y = this.canvas.height - this.height
+    this.x = (this._canvas.width - this.width) / 2
+    this.y = this._canvas.height - this.height
   }
 
   private isNotCrossedRight() {
-    const { x, rightPressed, width, canvas } = this
-    return rightPressed && x < canvas.width - width
+    const { _x, _rightPressed, _width, _canvas } = this
+    return _rightPressed && _x < _canvas.width - _width
   }
 
   private isNotCrossedLeft() {
-    const { leftPressed, x } = this
-    return leftPressed && x > 0
+    const { _leftPressed, _x } = this
+    return _leftPressed && _x > 0
   }
 }

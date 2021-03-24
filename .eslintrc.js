@@ -10,6 +10,7 @@ module.exports = {
     project: ['./tsconfig.json'],
     tsconfigRootDir: __dirname,
     sourceType: 'module',
+    createDefaultProgram: true,
   },
   plugins: ['react-hooks'],
   rules: {
@@ -25,6 +26,14 @@ module.exports = {
     '@typescript-eslint/naming-convention': 0,
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'error',
+    'import/extensions': 1,
+    'no-underscore-dangle': [
+      'error',
+      {
+        allowAfterThis: true,
+        allow: ['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__', '__INITIAL_STATE__'],
+      },
+    ],
   },
   ignorePatterns: ['.eslintrc.js'],
   globals: {

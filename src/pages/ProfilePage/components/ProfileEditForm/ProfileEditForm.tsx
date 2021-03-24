@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 import { Form } from 'antd'
 import { Row, Col, Button, Avatar, Centered, Space, Upload } from 'elements'
 import { Input } from 'components'
-import { yupResolver } from '@hookform/resolvers/yup'
+import { yupResolver } from '@hookform/resolvers/yup.js'
 import { BASE_URL } from '@/constants'
 import { ProfileEditFormSchema } from '../../schema'
 import {

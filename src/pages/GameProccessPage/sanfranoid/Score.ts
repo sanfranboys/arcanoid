@@ -1,21 +1,28 @@
 import { Feature } from './Feature'
+import { Color } from './settings'
 
 export class Score extends Feature {
-  private count = 0
+  private _count = 0
 
-  public x = 8
+  protected _x = 8
 
-  public y = 20
+  protected _y = 20
+
+  protected _color = Color.White
 
   public draw() {
-    const { ctx, count, color, x, y } = this
+    const { _ctx, _count, _color, _x, _y } = this
 
-    ctx.font = '16px Arial'
-    ctx.fillStyle = color
-    ctx.fillText(`Score: ${count}`, x, y)
+    _ctx.font = '16px Arial'
+    _ctx.fillStyle = _color
+    _ctx.fillText(`Score: ${_count}`, _x, _y)
+  }
+
+  public getScore() {
+    return this._count
   }
 
   public increase() {
-    this.count += 1
+    this._count += 1
   }
 }

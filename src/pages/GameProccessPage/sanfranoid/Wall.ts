@@ -1,23 +1,30 @@
 import { Brick } from './Brick'
 import { Feature } from './Feature'
 import { FeatureOptions } from './types'
+import {
+  brickPadding,
+  brickWidth,
+  brickHeight,
+  brickOffsetLeft,
+  brickOffsetTop,
+} from './settings'
 
 export class Wall extends Feature {
-  private rowCount = 3
+  private _rowCount = 3
 
-  private columnCount = 5
+  private _columnCount = 5
 
-  private padding = 10
+  private _padding = brickPadding
 
-  private offsetTop = 30
+  private _offsetTop = brickOffsetTop
 
-  private offsetLeft = 30
+  private _offsetLeft = brickOffsetLeft
 
-  private bricksWidth = 75
+  private _bricksWidth = brickWidth
 
-  private bricksHeight = 20
+  private _bricksHeight = brickHeight
 
-  private bricks: Brick[][] = []
+  private _bricks: Brick[][] = []
 
   constructor(canvas: HTMLCanvasElement, options?: FeatureOptions) {
     super(canvas, options)
@@ -29,7 +36,7 @@ export class Wall extends Feature {
   public eachBrick(
     callback: (brick: Brick, rowIdx: number, colIdx: number) => void
   ) {
-    this.bricks.forEach((row, rowIdx) => {
+    this._bricks.forEach((row, rowIdx) => {
       row.forEach((brick, colIdx) => {
         if (typeof callback === 'function') {
           callback(brick, rowIdx, colIdx)
@@ -39,52 +46,52 @@ export class Wall extends Feature {
   }
 
   public draw() {
-    const { offsetLeft, offsetTop, padding } = this
+    const { _offsetLeft, _offsetTop, _padding } = this
 
     this.eachBrick((brick, rowIdx, colIdx) => {
       if (brick.isExist()) {
         const { width, height } = brick
-        const x = colIdx * (width + padding) + offsetLeft
-        const y = rowIdx * (height + padding) + offsetTop
+        const x = colIdx * (width + _padding) + _offsetLeft
+        const y = rowIdx * (height + _padding) + _offsetTop
 
-        brick.setColor(this.color)
+        brick.setColor(this._color)
         brick.draw(x, y)
       }
     })
   }
 
   public createBricks() {
-    this.bricks = Array.from(Array(this.rowCount), () => this.createRow())
+    this._bricks = Array.from(Array(this._rowCount), () => this.createRow())
   }
 
   private createRow() {
     return Array.from(
-      Array(this.columnCount),
+      Array(this._columnCount),
       () =>
-        new Brick(this.canvas, {
-          width: this.bricksWidth,
-          height: this.bricksHeight,
+        new Brick(this._canvas, {
+          width: this._bricksWidth,
+          height: this._bricksHeight,
         })
     )
   }
 
   public isDestroyed() {
-    return this.bricks.every((row) => row.every((brick) => !brick.isExist()))
+    return this._bricks.every((row) => row.every((brick) => !brick.isExist()))
   }
 
   private calculateBrick() {
-    const freeXSpace = this.canvas.width - this.offsetLeft * 2 + this.padding
-    const brickWidthSpace = this.bricksWidth + this.padding
-    this.columnCount = Math.ceil(freeXSpace / brickWidthSpace)
-    const diffX = freeXSpace - this.columnCount * brickWidthSpace
-    this.bricksWidth += Math.ceil(diffX / this.columnCount)
+    const freeXSpace = this._canvas.width - this._offsetLeft * 2 + this._padding
+    const brickWidthSpace = this._bricksWidth + this._padding
+    this._columnCount = Math.ceil(freeXSpace / brickWidthSpace)
+    const diffX = freeXSpace - this._columnCount * brickWidthSpace
+    this._bricksWidth += Math.ceil(diffX / this._columnCount)
 
     const freeYSpace = Math.ceil(
-      (this.canvas.height - this.offsetTop * 2 + this.padding) / 2
+      (this._canvas.height - this._offsetTop * 2 + this._padding) / 2
     )
-    const brickHeightSpace = this.bricksHeight + this.padding
-    this.rowCount = Math.ceil(freeYSpace / brickHeightSpace)
-    const diffY = freeYSpace - this.rowCount * brickHeightSpace
-    this.bricksHeight += Math.ceil(diffY / this.rowCount)
+    const brickHeightSpace = this._bricksHeight + this._padding
+    this._rowCount = Math.ceil(freeYSpace / brickHeightSpace)
+    const diffY = freeYSpace - this._rowCount * brickHeightSpace
+    this._bricksHeight += Math.ceil(diffY / this._rowCount)
   }
 }

@@ -12,46 +12,56 @@ import {
 
 function* sagaWorkerUser() {
   try {
+    yield put(userSetStatusAction(true))
     const data = yield call([AuthServices, 'getUserInfo'])
     yield put(setAuthAction(true))
     yield put(userSuccessAction(data))
+    yield put(userSetStatusAction(false))
   } catch (error) {
     yield put(setAuthAction(false))
-    yield put(userSetStatusAction())
+    yield put(userSetStatusAction(false))
   }
 }
 
 function* sagaWorkerChangeProfile({ payload }: SagaActionUser) {
   try {
+    yield put(userSetStatusAction(true))
+    const res = yield call([UserServices, 'changeUserProfile'], payload)
+    yield put(userSuccessAction(res.data))
+    yield put(userSetStatusAction(false))
     NotificationWindow({
+      status: res.status,
       description: 'Данные успешно изменены',
       type: 'success',
     })
-    const res = yield call([UserServices, 'changeUserProfile'], payload)
-    yield put(userSuccessAction(res.data))
   } catch (error) {
+    yield put(userSetStatusAction(false))
     NotificationWindow({
+      status: error.status,
       description: 'Неверные заполнены поля',
       type: 'error',
     })
-    yield put(userSetStatusAction())
   }
 }
 
 function* sagaWorkerChangeAvatar({ payload }: ActionAvatar) {
   try {
+    yield put(userSetStatusAction(true))
+    const res = yield call([UserServices, 'changeUserAvatar'], payload)
+    yield put(userSuccessAction(res.data))
+    yield put(userSetStatusAction(false))
     NotificationWindow({
+      status: res.status,
       description: 'Аватар успешно изменен',
       type: 'success',
     })
-    const res = yield call([UserServices, 'changeUserAvatar'], payload)
-    yield put(userSuccessAction(res.data))
   } catch (error) {
+    yield put(userSetStatusAction(false))
     NotificationWindow({
+      status: error.status,
       description: 'Неверный формат изображения',
       type: 'error',
     })
-    yield put(userSetStatusAction())
   }
 }
 

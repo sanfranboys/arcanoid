@@ -1,38 +1,50 @@
 import { Feature } from './Feature'
 import { FeatureOptions } from './types'
+import { Color, heartImg, lives } from './settings'
 
 export class Lives extends Feature {
-  private count = 3
+  img: HTMLImageElement[]
 
-  public y = 20
+  private _count = lives
+
+  protected _y = 5
+
+  protected _color = Color.White
 
   constructor(canvas: HTMLCanvasElement, options?: FeatureOptions) {
     super(canvas, options)
 
-    this.x = canvas.width - 65
+    this._x = canvas.width - 43
+    this.img = new Array(lives).fill('').map(() => {
+      const el = new Image()
+      el.src = heartImg
+      return el
+    })
   }
 
   public draw() {
-    const { ctx, count, color, x, y } = this
-
-    ctx.font = '16px Arial'
-    ctx.fillStyle = color
-    ctx.fillText(`Lives: ${count}`, x, y)
+    const { _ctx, _x, _y } = this
+    let position = _x
+    this.img.forEach((img: HTMLImageElement) => {
+      _ctx.drawImage(img, position, _y, 20, 20)
+      position -= 25
+    })
   }
 
   public decrease() {
-    this.count -= 1
+    this._count -= 1
+    this.img.shift()
   }
 
   public isOver() {
-    return this.count === 0
+    return this._count === 0
   }
 
   public isLow() {
-    return this.count === 2
+    return this._count === 2
   }
 
   public isCritical() {
-    return this.count === 1
+    return this._count === 1
   }
 }
