@@ -1,6 +1,6 @@
 import { Sequelize,DataTypes } from 'sequelize'
 
-const sequelize = new Sequelize('postgres://user:password@0.0.0.0:5432/name')
+export const sequelize = new Sequelize('postgres://user:password@0.0.0.0:5432/name')
 
 export const Thema = sequelize.define('Thema', {
   nameThema:{
