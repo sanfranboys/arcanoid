@@ -1,13 +1,11 @@
-import { Sequelize,DataTypes } from 'sequelize'
+import { Sequelize } from 'sequelize'
 
-export const sequelize = new Sequelize('postgres://user:password@0.0.0.0:5432/name')
+export const sequelize = new Sequelize({
+host: 'localhost',
+port: 5432,
+username: 'user',
+password: 'password',
+database: 'name',
 
-export const Thema = sequelize.define('Thema', {
-  nameThema:{
-    type:DataTypes.STRING
-  },
-  classThema:{
-    type:DataTypes.STRING
-  }
+dialect: 'postgres'
 });
-
