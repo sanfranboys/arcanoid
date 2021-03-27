@@ -9,9 +9,11 @@ import getHotMiddlewares from './middlewares/hot'
 import authMeddleware from './middlewares/auth'
 import serverRender from './serverRender'
 import { configureStore, getInitialState } from './store'
+import {sequelize} from './connectDB'
 
 const key = fs.readFileSync(`${__dirname}/../key.pem`)
 const cert = fs.readFileSync(`${__dirname}/../cert.pem`)
+
 
 const app = express()
 const server = https.createServer({ key, cert }, app)
@@ -60,6 +62,14 @@ app.get('*', [...getHotMiddlewares()], (req: CustomRequest, res: Response) => {
     })
 })
 
-server.listen(port, () => {
-  console.log(`Listening on port: ${port}`)
-})
+ sequelize.sync({force: true}).then(()=>{
+    server.listen(port, () => {
+      console.log(`Listening on port: ${port}`)
+    })
+  })
+
+
+
+
+
+
