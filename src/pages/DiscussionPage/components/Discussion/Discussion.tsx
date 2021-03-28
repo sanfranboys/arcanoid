@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useCallback, useMemo, useState } from 'react'
 import { Space, Panel, TextArea, Button, Row, Col } from 'elements'
-import Message from '../Message'
+import Message from 'components/Message'
 import { mock } from './mock'
 
 import './Discussion.scss'

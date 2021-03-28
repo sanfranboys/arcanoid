@@ -3,3 +3,8 @@ export type Message = {
   text: string
   author: string
 }
+
+export type MessageProps = {
+  message: Message
+  offset?: boolean
+}
