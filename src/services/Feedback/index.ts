@@ -1,7 +1,7 @@
 import { ApiServices } from 'services/Api'
 import { NewFeedback, Feedback } from 'ducks/feedback/types'
 
-const mock: Feedback[] = [
+export const mock: Feedback[] = [
   {
     id: 1,
     text: 'Очень крутой!',
@@ -26,25 +26,11 @@ export class FeedbackApi {
     this.APIService = APIService
   }
 
-  // eslint-disable-next-line class-methods-use-this
   list() {
-    return new Promise<Feedback[]>((resolve) => {
-      setTimeout(() => resolve(mock), 1000)
-    })
+    return this.APIService.get('/feedbacks').then((res) => res.data)
   }
 
-  // eslint-disable-next-line class-methods-use-this
   create(data: NewFeedback) {
-    return new Promise<Feedback>((resolve) => {
-      setTimeout(
-        // eslint-disable-next-line no-return-assign
-        () =>
-          resolve({
-            id: mock.length + 1,
-            ...data,
-          }),
-        1000
-      )
-    })
+    return this.APIService.post('/feedbacks', data).then((res) => res.data)
   }
 }

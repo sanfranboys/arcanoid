@@ -26,7 +26,7 @@ const FeedbackPage = () => {
   const create = useCallback(() => {
     dispatch(
       createFeedback({
-        author: user.display_name,
+        author: user.display_name || user.first_name,
         text: message,
       })
     )
