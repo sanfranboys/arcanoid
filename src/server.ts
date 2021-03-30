@@ -5,17 +5,22 @@ import { saga as rootSaga } from 'ducks'
 import cookieParser from 'cookie-parser'
 import { StaticRouterContext } from 'react-router'
 import { CustomRequest } from 'types'
+import { routerCustom } from './dataBase/routers/siteTheme'
 import getHotMiddlewares from './middlewares/hot'
 import authMeddleware from './middlewares/auth'
 import serverRender from './serverRender'
 import { configureStore, getInitialState } from './store'
-import {sequelize} from './connectDB'
+import { sequelize } from './dataBase/models'
+import SiteTheme from './dataBase/models/siteTheme'
+import UserTheme from './dataBase/models/usersTheme'
 
 const key = fs.readFileSync(`${__dirname}/../key.pem`)
 const cert = fs.readFileSync(`${__dirname}/../cert.pem`)
 
-
 const app = express()
+
+routerCustom(app)
+
 const server = https.createServer({ key, cert }, app)
 
 const port = process.env.PORT || 5000
@@ -43,6 +48,7 @@ app.get('*', [...getHotMiddlewares()], (req: CustomRequest, res: Response) => {
     .then(() => {
       const context: StaticRouterContext = {}
       const content = serverRender(req, store, context)
+
       // if (context.notFound) {
       //   res.status(404)
       // }
@@ -62,11 +68,25 @@ app.get('*', [...getHotMiddlewares()], (req: CustomRequest, res: Response) => {
     })
 })
 
- sequelize.sync({force: true}).then(()=>{
-    server.listen(port, () => {
-      console.log(`Listening on port: ${port}`)
-    })
+sequelize.sync({ force: true }).then(() => {
+  SiteTheme.create({
+    themeName: 'default',
+    themeClass: 'default-theme',
+  });
+  SiteTheme.create({
+    themeName: 'dark',
+    themeClass: 'dark-theme',
+  });
+  UserTheme.create({
+    userId: '12345',
+  });
+  UserTheme.create({
+    userId: '2345',
+  });
+  server.listen(port, () => {
+    console.log(`Listening on port: ${port}`);
   })
+})
 
 
 
