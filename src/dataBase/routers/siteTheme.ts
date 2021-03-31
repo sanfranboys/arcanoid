@@ -1,14 +1,17 @@
-import contollerSiteTheme from '../controllers/siteTheme.controller'
-import contollerUserTheme from '../controllers/usersTheme.controller'
+
+import { ControllerUserTheme, ControllerSiteTheme } from '../controllers'
 
 const router = require("express").Router();
+const bodyParser = require("body-parser");
 
-export const routerCustom = (app: any) => {
+const routerCustom = (app: any) => {
+  app.use(bodyParser.json())
 
-  router.get("/alltheme", contollerSiteTheme.getAllTheme);
-  router.get("/user", contollerUserTheme.getUser);
-  router.get("/user/registration", contollerUserTheme.registrationUser);
-  router.get("/user/update", contollerUserTheme.updateTheme);
+  router.post("/theme", ControllerSiteTheme.getAllTheme);
+  router.post("/theme/user", ControllerUserTheme.getUser);
+  router.post("/theme/user/registration", ControllerUserTheme.registrationUser);
+  router.post("/theme/user/update", ControllerUserTheme.updateTheme);
 
-  app.use("/api/sitetheme", router);
+  app.use("/api/v3", router);
 };
+export default routerCustom

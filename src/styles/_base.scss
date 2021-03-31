@@ -11,6 +11,23 @@ body {
 }
 
 :root {
+
+
+  --size-text-5xl: 72px;
+  --size-text-4xl: 48px;
+  --size-text-l: 18px;
+  --size-text-m: 16px;
+  --size-text-s: 14px;
+  --size-text-xs: 12px;
+}
+
+body {
+  color: var(--white);
+  font-family: 'Noto Sans', sans-serif;
+  line-height: 1.5;
+}
+
+body.default-theme{
   --black: #1e1e1e;
   --main: #40375c;
   --grey: #6c6c6d;
@@ -31,20 +48,31 @@ body {
   --color-gold: #c2ba92;
   --color-light-purple: #9286b7;
   --color-shadow-purple: #473d67;
-  --color-border-dark: #5e5087;
-
-  --size-text-5xl: 72px;
-  --size-text-4xl: 48px;
-  --size-text-l: 18px;
-  --size-text-m: 16px;
-  --size-text-s: 14px;
-  --size-text-xs: 12px;
-}
-
-body {
+  --color-border-dark: #b2adc2;
   color: var(--white);
-  font-family: 'Noto Sans', sans-serif;
-  line-height: 1.5;
+}
+body.dark-theme{
+  --black: #1e1e1e;
+  --main: #171717;
+  --grey: #6c6c6d;
+  --light: #f3f1fa;
+  --mainHover: #a3a2a7;
+  --white: #fff;
+  --link: #c2b780;
+  --link-hover: #f0e29e;
+  --purple-border: #48397a;
+  --error: #ce5353;
+  --errorHover: #e47070;
+  --hoverTime: 0.15s;
+  --border: #c2ba92;
+  --board: #ebe8e9;
+  --lightBg: #d2cdde;
+  --tooltipBg: #fcfcfd;
+
+  --color-gold: #414141;
+  --color-light-purple: #9286b7;
+  --color-shadow-purple: #dddddd;
+  --color-border-dark: #5e5087;
 }
 
 #root {

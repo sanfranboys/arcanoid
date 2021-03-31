@@ -5,14 +5,13 @@ import { saga as rootSaga } from 'ducks'
 import cookieParser from 'cookie-parser'
 import { StaticRouterContext } from 'react-router'
 import { CustomRequest } from 'types'
-import { routerCustom } from './dataBase/routers/siteTheme'
+import { routerCustom, sequelize } from 'dataBase'
+import SiteTheme from './dataBase/models/siteTheme'
 import getHotMiddlewares from './middlewares/hot'
 import authMeddleware from './middlewares/auth'
+import themeMeddleware from './middlewares/theme'
 import serverRender from './serverRender'
 import { configureStore, getInitialState } from './store'
-import { sequelize } from './dataBase/models'
-import SiteTheme from './dataBase/models/siteTheme'
-import UserTheme from './dataBase/models/usersTheme'
 
 const key = fs.readFileSync(`${__dirname}/../key.pem`)
 const cert = fs.readFileSync(`${__dirname}/../cert.pem`)
@@ -30,14 +29,16 @@ app.use(express.static('dist'))
 app.use(cookieParser())
 
 app.use(authMeddleware)
+app.use(themeMeddleware)
 
 app.get('*', [...getHotMiddlewares()], (req: CustomRequest, res: Response) => {
   const location = req.url
   const { store } = configureStore(getInitialState(location), location)
-  const { auth, user } = store.getState()
+  const { auth, user, theme } = store.getState()
   if (req.customProperty) {
     user.user = req.customProperty
     auth.isAuth = true
+    theme.theme = req.customTheme
   } else {
     auth.isAuth = false
   }
@@ -76,12 +77,6 @@ sequelize.sync({ force: true }).then(() => {
   SiteTheme.create({
     themeName: 'dark',
     themeClass: 'dark-theme',
-  });
-  UserTheme.create({
-    userId: '12345',
-  });
-  UserTheme.create({
-    userId: '2345',
   });
   server.listen(port, () => {
     console.log(`Listening on port: ${port}`);

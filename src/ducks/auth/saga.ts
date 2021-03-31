@@ -1,7 +1,7 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
-import { AuthServices, OAuthService } from 'services/'
+import { AuthServices, OAuthService, ThemeServices } from 'services'
 import { NotificationWindow } from 'elements'
-import { userRequestAction } from 'ducks/'
+import { userRequestAction } from 'ducks'
 import { setStatusAction, setAuthAction } from './actions'
 import {
   AUTH_LOGIN,
@@ -76,7 +76,8 @@ function* sagaWorkerLogout() {
 function* sagaWorkerRegistration({ payload }: ActionRegistrationTypes) {
   try {
     yield put(setStatusAction(true))
-    yield call([AuthServices, 'signUp'], payload)
+    const responseUser: { data: { id: number } } = yield call([AuthServices, 'signUp'], payload)
+    yield call([ThemeServices, 'registrationUser'], { userId: responseUser.data.id })
     yield put(setAuthAction(true))
     yield put(userRequestAction())
     yield put(setStatusAction(false))

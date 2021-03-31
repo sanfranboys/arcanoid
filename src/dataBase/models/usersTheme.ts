@@ -1,6 +1,6 @@
 
 import { DataTypes } from 'sequelize';
-import { sequelize } from './index';
+import sequelize from './connect';
 import SiteTheme from './siteTheme';
 
 const UserTheme = sequelize.define('userTheme', {

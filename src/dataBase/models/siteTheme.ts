@@ -1,5 +1,5 @@
 import { DataTypes } from 'sequelize';
-import { sequelize } from './index';
+import sequelize from './connect';
 
 const SiteTheme = sequelize.define('siteTheme', {
   themeName: DataTypes.STRING,
