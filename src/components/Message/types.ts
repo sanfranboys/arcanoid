@@ -1,5 +1,5 @@
 export type Message = {
-  id: number
+  id: number | string
   text: string
   author: string
 }

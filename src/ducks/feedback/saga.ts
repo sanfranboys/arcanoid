@@ -1,14 +1,18 @@
-import { takeEvery, put, call, select } from 'redux-saga/effects'
+import { takeEvery, put, call } from 'redux-saga/effects'
 import { FeedbackServices } from 'services'
-import { setFeedbacks } from './actions'
+import { setFeedbacks, fetchFeedbacks } from './actions'
 import { FEEDBACK_FETCH, FEEDBACK_CREATE } from './actionTypes'
 import { CreateFeedbackAction } from './types'
-import { getFeedbacks } from './selectors'
 
 function* sagaWorkerFetchFeedbacks() {
   try {
-    const res = yield call([FeedbackServices, 'list'])
-    yield put(setFeedbacks(res))
+    const feedbackList = yield call([FeedbackServices, 'list'])
+
+    yield put(
+      setFeedbacks(
+        feedbackList.map((item: { _id: string }) => ({ ...item, id: item._id }))
+      )
+    )
   } catch (error) {
     console.log(error)
   }
@@ -16,13 +20,8 @@ function* sagaWorkerFetchFeedbacks() {
 
 function* sagaWorkerCreateFeedback({ payload }: CreateFeedbackAction) {
   try {
-    const newFeedback = yield call([FeedbackServices, 'create'], payload)
-
-    let feedbacks = yield select(getFeedbacks)
-    feedbacks = [...feedbacks]
-    feedbacks.push(newFeedback)
-
-    yield put(setFeedbacks(feedbacks))
+    yield call([FeedbackServices, 'create'], payload)
+    yield put(fetchFeedbacks())
   } catch (error) {
     console.log(error)
   }
