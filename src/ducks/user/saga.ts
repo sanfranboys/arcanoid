@@ -1,7 +1,7 @@
-import { AuthServices, UserServices } from 'services'
+import { AuthServices, ThemeServices, UserServices } from 'services'
 import { takeEvery, put, call } from 'redux-saga/effects'
 import { NotificationWindow } from 'elements'
-import { ActionAvatar, SagaActionUser } from './types'
+import { ActionAvatar, ResponseApiService, SagaActionUser, UserTypes } from './types'
 import { setAuthAction } from '../auth'
 import { userSetStatusAction, userSuccessAction } from './actions'
 import {
@@ -13,7 +13,8 @@ import {
 function* sagaWorkerUser() {
   try {
     yield put(userSetStatusAction(true))
-    const data = yield call([AuthServices, 'getUserInfo'])
+    const data: UserTypes = yield call([AuthServices, 'getUserInfo'])
+    yield call([ThemeServices, 'registrationUser'], { userId: data.id })
     yield put(setAuthAction(true))
     yield put(userSuccessAction(data))
     yield put(userSetStatusAction(false))
@@ -26,7 +27,7 @@ function* sagaWorkerUser() {
 function* sagaWorkerChangeProfile({ payload }: SagaActionUser) {
   try {
     yield put(userSetStatusAction(true))
-    const res = yield call([UserServices, 'changeUserProfile'], payload)
+    const res: ResponseApiService = yield call([UserServices, 'changeUserProfile'], payload)
     yield put(userSuccessAction(res.data))
     yield put(userSetStatusAction(false))
     NotificationWindow({
@@ -47,7 +48,7 @@ function* sagaWorkerChangeProfile({ payload }: SagaActionUser) {
 function* sagaWorkerChangeAvatar({ payload }: ActionAvatar) {
   try {
     yield put(userSetStatusAction(true))
-    const res = yield call([UserServices, 'changeUserAvatar'], payload)
+    const res: ResponseApiService = yield call([UserServices, 'changeUserAvatar'], payload)
     yield put(userSuccessAction(res.data))
     yield put(userSetStatusAction(false))
     NotificationWindow({

@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { getProfileUser, requestThemeAction, getThemeUser } from 'ducks'
+import { getProfileUser, requestThemeAction, getThemeUser, getIsAuth } from 'ducks'
 
 import './Switch.scss'
 
 const Switch: React.FC = () => {
 
+  const isAuth = useSelector(getIsAuth)
   const theme = useSelector(getThemeUser)
   const [active, setActive] = useState(theme !== 'default-theme')
   const dispatch = useDispatch()
@@ -30,10 +31,11 @@ const Switch: React.FC = () => {
 
   return (
     <div className="swich">
-      <label htmlFor="swich" className="swich__box">
+      {isAuth ? (<label htmlFor="swich" className="swich__box">
         <input type="checkbox" className="swich-input" id="swich" checked={active} onChange={handleChangeUser} />
         <div className='swich__box-button' />
-      </label>
+      </label>) : null}
+
     </div>
   )
 }
