@@ -41,7 +41,7 @@ function* sagaWorkerChangeProfile({ payload }: SagaActionUser) {
   } catch (error) {
     yield put(userSetStatusAction(false))
     NotificationWindow({
-      status: error.status,
+      status: error.request.status,
       description: 'Неверные заполнены поля',
       type: 'error',
     })
@@ -62,7 +62,7 @@ function* sagaWorkerChangeAvatar({ payload }: ActionAvatar) {
   } catch (error) {
     yield put(userSetStatusAction(false))
     NotificationWindow({
-      status: error.status,
+      status: error.request.status,
       description: 'Неверный формат изображения',
       type: 'error',
     })

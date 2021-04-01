@@ -30,7 +30,7 @@ function* sagaWorkerChangeTheme({ payload }: ActionRequestThemeTypes) {
     yield put(setStatuschangeThemeAction(false))
   } catch (error) {
     NotificationWindow({
-      status: error.status,
+      status: error.request.status,
       description: 'Что-то пошло не так',
     })
     yield put(setStatuschangeThemeAction(false))

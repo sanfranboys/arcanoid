@@ -23,15 +23,15 @@ function* sagaWorkerLogin({ payload }: ActionLoginTypes) {
     yield put(userRequestAction())
     yield put(setStatusAction(false))
   } catch (error) {
-    if (error.status === 400) {
+    if (error.request.status === 400) {
       NotificationWindow({
-        status: error.status,
+        status: error.request.status,
         description: 'Вы уже в системе',
       })
     }
-    if (error.status === 401) {
+    if (error.request.status === 401) {
       NotificationWindow({
-        status: error.status,
+        status: error.request.status,
         type: 'error',
         description: 'Неверный логин или пароль',
       })
@@ -48,9 +48,9 @@ function* sagaWorkerLoginOauth({ payload }: ActionLoginOauthTypes) {
     yield put(userRequestAction())
     yield put(setStatusAction(false))
   } catch (error) {
-    if (error.status === 400) {
+    if (error.request.status === 400) {
       NotificationWindow({
-        status: error.status,
+        status: error.request.status,
         description: 'Вы уже в системе',
       })
     }
@@ -66,7 +66,7 @@ function* sagaWorkerLogout() {
     yield put(setAuthAction(false))
   } catch (error) {
     NotificationWindow({
-      status: error.status,
+      status: error.request.status,
       description: 'Что-то пошло не так!',
     })
     yield put(setStatusAction(false))
@@ -83,7 +83,7 @@ function* sagaWorkerRegistration({ payload }: ActionRegistrationTypes) {
     yield put(setStatusAction(false))
   } catch (error) {
     NotificationWindow({
-      status: error.status,
+      status: error.request.status,
       description: 'Неверно введены данные!',
     })
 
