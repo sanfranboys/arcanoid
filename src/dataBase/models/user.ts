@@ -3,17 +3,17 @@ import { DataTypes } from 'sequelize';
 import sequelize from './connect';
 import SiteTheme from './siteTheme';
 
-const UserTheme = sequelize.define('userTheme', {
+const User = sequelize.define('userTheme', {
   userId: DataTypes.STRING,
 }, {
   timestamps: false
 });
 
-UserTheme.belongsTo(SiteTheme, {
+User.belongsTo(SiteTheme, {
   foreignKey: {
     name: 'theme',
     defaultValue: 1
   }
 })
 
-export default UserTheme
+export default User

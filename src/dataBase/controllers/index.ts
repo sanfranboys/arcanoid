@@ -1,2 +1,2 @@
-export { default as ControllerUserTheme } from './usersTheme.controller'
-export { default as ControllerSiteTheme } from './siteTheme.controller'
+export { default as ControllerUser } from './users'
+export { default as ControllerSiteTheme } from './siteTheme'

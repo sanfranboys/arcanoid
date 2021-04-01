@@ -16,7 +16,7 @@ export class Theme {
     return this.APIService.post('/theme/user/update', data)
   }
 
-  getUser(data: RegistrationTypes) {
+  getUserTheme(data: RegistrationTypes) {
     return this.APIService.post('/theme/user', data).then((res) => res.data)
   }
 

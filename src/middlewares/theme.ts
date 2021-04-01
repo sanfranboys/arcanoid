@@ -1,6 +1,6 @@
 import { NextFunction, Response } from 'express'
 import SiteTheme from '../dataBase/models/siteTheme'
-import UserTheme from '../dataBase/models/usersTheme'
+import User from '../dataBase/models/user'
 import { CustomRequest } from '../types'
 
 const themeMiddleware = async (
@@ -9,7 +9,7 @@ const themeMiddleware = async (
   next: NextFunction
 ) => {
   if (req.customProperty) {
-    await UserTheme.findAll({
+    await User.findAll({
       where: { userId: JSON.stringify(req.customProperty.id) },
       include: [SiteTheme]
     })

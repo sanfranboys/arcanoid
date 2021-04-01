@@ -25,7 +25,7 @@ function* sagaWorkerChangeTheme({ payload }: ActionRequestThemeTypes) {
   try {
     yield put(setStatuschangeThemeAction(true))
     yield call([ThemeServices, 'updateTheme'], payload)
-    const themeClass: string = yield call([ThemeServices, 'getUser'], { userId })
+    const themeClass: string = yield call([ThemeServices, 'getUserTheme'], { userId })
     yield put(changeThemeAction(themeClass))
     yield put(setStatuschangeThemeAction(false))
   } catch (error) {

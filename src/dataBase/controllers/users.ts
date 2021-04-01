@@ -1,44 +1,49 @@
 import { Response } from 'express'
 
 import SiteTheme from '../models/siteTheme';
-import UserTheme from '../models/usersTheme'
+import User from '../models/user'
 import { CustomRequestController } from './types';
 
 
 class Controller {
   registrationUser = (req: CustomRequestController, res: Response) => {
     const { userId } = req.body;
-    UserTheme.findOrCreate({
+    User.findOrCreate({
       where: { userId: JSON.stringify(userId) },
       defaults: {
         userId: JSON.stringify(userId)
       }
     })
       .then((response) => {
-        const { dataValues }: any = response[0]
-        res.send(dataValues)
+        res.send(response[0])
       })
       .catch(() => res.status(404).send({}));
   }
 
   updateTheme = (_req: CustomRequestController, res: Response) => {
     const { userId, theme } = _req.body;
-    UserTheme.update({ theme: JSON.stringify(theme) },
+    User.update({ theme: JSON.stringify(theme) },
       { where: { userId: JSON.stringify(userId) } })
       .then((el) => res.send(el))
       .catch(() => res.status(404).send({}))
   };
 
-  getUser = (_req: CustomRequestController, res: Response) => {
+  getUserTheme = (_req: CustomRequestController, res: Response) => {
     const { userId } = _req.body
-    UserTheme.findAll({
+    User.findOne({
       where: { userId: JSON.stringify(userId) },
-      include: [SiteTheme]
+      include: [
+        {
+          model: SiteTheme,
+          attributes: ['themeClass'],
+        },
+      ]
     })
-      .then((el: any) => res.send(el[0].siteTheme.themeClass))
+      .then((el: any) =>
+        res.send(el.siteTheme.themeClass))
       .catch(() => res.status(404).send({}))
   };
 }
-const ControllerUserTheme = new Controller()
+const ControllerUser = new Controller()
 
-export default ControllerUserTheme
+export default ControllerUser

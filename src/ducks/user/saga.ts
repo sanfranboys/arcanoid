@@ -1,6 +1,7 @@
 import { AuthServices, ThemeServices, UserServices } from 'services'
 import { takeEvery, put, call } from 'redux-saga/effects'
 import { NotificationWindow } from 'elements'
+import { changeThemeAction } from 'ducks'
 import { ActionAvatar, ResponseApiService, SagaActionUser, UserTypes } from './types'
 import { setAuthAction } from '../auth'
 import { userSetStatusAction, userSuccessAction } from './actions'
@@ -14,7 +15,9 @@ function* sagaWorkerUser() {
   try {
     yield put(userSetStatusAction(true))
     const data: UserTypes = yield call([AuthServices, 'getUserInfo'])
-    yield call([ThemeServices, 'registrationUser'], { userId: data.id })
+     yield call([ThemeServices, 'registrationUser'], { userId: data.id })
+    const themeClass:string = yield call([ThemeServices, 'getUserTheme'], { userId: data.id })
+    yield put(changeThemeAction(themeClass))
     yield put(setAuthAction(true))
     yield put(userSuccessAction(data))
     yield put(userSetStatusAction(false))
