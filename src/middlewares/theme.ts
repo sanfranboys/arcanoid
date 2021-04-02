@@ -9,11 +9,16 @@ const themeMiddleware = async (
   next: NextFunction
 ) => {
   if (req.customProperty) {
-    await User.findAll({
+    await User.findOne({
       where: { userId: JSON.stringify(req.customProperty.id) },
-      include: [SiteTheme]
+      include: [
+        {
+          model: SiteTheme,
+          attributes: ['themeClass'],
+        },
+      ]
     })
-      .then((el: any) => { req.customTheme = el[0].siteTheme.dataValues.themeClass }
+      .then((el: any) => { req.customTheme = el.siteTheme.themeClass }
       ).catch(() => { req.customTheme = 'default-theme' })
   }
   await next()
