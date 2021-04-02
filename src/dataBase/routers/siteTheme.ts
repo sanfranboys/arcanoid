@@ -1,4 +1,5 @@
 
+import { PREFIX_URL } from '@/constants';
 import { ControllerUser, ControllerSiteTheme } from '../controllers'
 
 const router = require("express").Router();
@@ -12,6 +13,6 @@ const routerCustom = (app: any) => {
   router.post("/theme/user/registration", ControllerUser.registrationUser);
   router.post("/theme/user/update", ControllerUser.updateTheme);
 
-  app.use("/api/v3", router);
+  app.use(PREFIX_URL, router);
 };
 export default routerCustom

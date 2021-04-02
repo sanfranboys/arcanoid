@@ -5,6 +5,4 @@ export const config = {
   username: 'user',
   password: 'password',
   database: 'name',
-
-  dialect: 'postgres'
 }
