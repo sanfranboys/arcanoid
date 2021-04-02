@@ -1,1 +1,1 @@
-export { default as routerCustom } from './siteTheme'
+export { default as routerCustom } from './router'
