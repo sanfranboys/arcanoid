@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 import { Button } from 'elements'
 import { toggleFullScreen } from 'utils'
 import { root } from '@/constants'
-
+import { Switch } from './Switch'
 import './Nav.scss'
 
 const Nav: FC = () => (
@@ -35,8 +35,10 @@ const Nav: FC = () => (
       <li className="nav__item nav__full-screen">
         <Button onClick={toggleFullScreen(root)}>Полноэкранный режим</Button>
       </li>
+      <li className="nav__item">
+        <Switch />
+      </li>
     </ul>
   </nav>
 )
-
 export default Nav

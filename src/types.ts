@@ -1,5 +1,6 @@
 import { Request } from "express";
 
 export type CustomRequest = {
-  customProperty:Object | null
+  customProperty: { id: number } | null,
+  customTheme?: {}
 } & Request

@@ -30,3 +30,7 @@ export type ActionAvatar = {
   type: string
   payload: FormData
 }
+
+export type ResponseApiService = {
+  data: UserTypes, status: number
+}

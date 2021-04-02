@@ -1,7 +1,7 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
-import { AuthServices, OAuthService } from 'services/'
+import { AuthServices, OAuthService, ThemeServices } from 'services'
 import { NotificationWindow } from 'elements'
-import { userRequestAction } from 'ducks/'
+import { userRequestAction } from 'ducks'
 import { setStatusAction, setAuthAction } from './actions'
 import {
   AUTH_LOGIN,
@@ -23,15 +23,15 @@ function* sagaWorkerLogin({ payload }: ActionLoginTypes) {
     yield put(userRequestAction())
     yield put(setStatusAction(false))
   } catch (error) {
-    if (error.status === 400) {
+    if (error.request.status === 400) {
       NotificationWindow({
-        status: error.status,
+        status: error.request.status,
         description: 'Вы уже в системе',
       })
     }
-    if (error.status === 401) {
+    if (error.request.status === 401) {
       NotificationWindow({
-        status: error.status,
+        status: error.request.status,
         type: 'error',
         description: 'Неверный логин или пароль',
       })
@@ -48,9 +48,9 @@ function* sagaWorkerLoginOauth({ payload }: ActionLoginOauthTypes) {
     yield put(userRequestAction())
     yield put(setStatusAction(false))
   } catch (error) {
-    if (error.status === 400) {
+    if (error.request.status === 400) {
       NotificationWindow({
-        status: error.status,
+        status: error.request.status,
         description: 'Вы уже в системе',
       })
     }
@@ -66,7 +66,7 @@ function* sagaWorkerLogout() {
     yield put(setAuthAction(false))
   } catch (error) {
     NotificationWindow({
-      status: error.status,
+      status: error.request.status,
       description: 'Что-то пошло не так!',
     })
     yield put(setStatusAction(false))
@@ -76,13 +76,14 @@ function* sagaWorkerLogout() {
 function* sagaWorkerRegistration({ payload }: ActionRegistrationTypes) {
   try {
     yield put(setStatusAction(true))
-    yield call([AuthServices, 'signUp'], payload)
+    const responseUser: { data: { id: number } } = yield call([AuthServices, 'signUp'], payload)
+    yield call([ThemeServices, 'registrationUser'], { userId: responseUser.data.id })
     yield put(setAuthAction(true))
     yield put(userRequestAction())
     yield put(setStatusAction(false))
   } catch (error) {
     NotificationWindow({
-      status: error.status,
+      status: error.request.status,
       description: 'Неверно введены данные!',
     })
 
