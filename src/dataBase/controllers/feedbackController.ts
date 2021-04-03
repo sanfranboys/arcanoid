@@ -25,5 +25,5 @@ class Controller {
   }
 }
 
-const feedbackController = new Controller()
-export default feedbackController
+const ControllerFeedback = new Controller()
+export default ControllerFeedback

@@ -1,7 +1,6 @@
 export const BASE_URL = 'https://ya-praktikum.tech'
 export const OUR_URL = 'https://local.ya-praktikum.tech:5000'
 export const API_URL = `${BASE_URL}/api/v2`
-export const OWN_API_URL = `/api`
 export const PREFIX_URL = '/api/v3'
 export const API_OUR = `${OUR_URL}${PREFIX_URL}`
 export const phoneRegExp = /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/
