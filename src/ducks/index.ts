@@ -5,7 +5,9 @@ import { History } from 'history'
 import { sagaAuth, auth } from './auth'
 import { sagaUser, user } from './user'
 import { sagaLeaderBoard, leaderboard } from './leaderboard'
+import { sagaTheme, theme } from './theme'
 
+export * from './theme'
 export * from './auth'
 export * from './user'
 export * from './leaderboard'
@@ -15,9 +17,10 @@ export const createRootReducer = (history: History) =>
     auth,
     user,
     leaderboard,
+    theme,
     router: connectRouter(history),
   })
 
 export function* saga() {
-  yield all([fork(sagaUser), fork(sagaAuth), fork(sagaLeaderBoard)])
+  yield all([fork(sagaUser), fork(sagaAuth), fork(sagaLeaderBoard), fork(sagaTheme)])
 }

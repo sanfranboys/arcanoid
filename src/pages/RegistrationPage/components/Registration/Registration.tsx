@@ -3,8 +3,9 @@ import { Form } from 'antd'
 import { useForm } from 'react-hook-form'
 import { Button, ContentBox, LinkElement, Row, Col, Centered } from 'elements'
 import { Input } from 'components'
-import { AuthServices } from 'services'
+import { useDispatch } from 'react-redux'
 import { yupResolver } from '@hookform/resolvers/yup.js'
+import { authRegistrationAction } from 'ducks'
 import { RegistrationSchema } from '../../schema'
 import { RegistrationFormData, RegistrationFormDataKey } from '../../types'
 
@@ -17,8 +18,9 @@ const Registration: FC = () => {
   } = useForm<RegistrationFormData>({
     resolver: yupResolver(RegistrationSchema),
   })
+  const dispatch = useDispatch()
 
-  const onSubmit = (data: RegistrationFormData) => AuthServices.signUp(data)
+  const onSubmit = (data: RegistrationFormData) => dispatch(authRegistrationAction(data))
 
   const handleChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
