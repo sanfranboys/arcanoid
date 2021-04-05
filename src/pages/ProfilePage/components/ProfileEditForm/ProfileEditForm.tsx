@@ -51,7 +51,7 @@ const ProfileEditForm: FC<ChangeProfileTypes> = ({
         <Upload action={changeAvatar} showUploadList={false}>
           <Avatar
             size={150}
-            src={avatar ? BASE_URL + avatar : '/assets/images/avatar.png'}
+            src={avatar ? `${BASE_URL}/api/v2/resources${avatar}` : '/assets/images/avatar.png'}
           />
         </Upload>
       </Centered>
