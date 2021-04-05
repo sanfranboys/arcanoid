@@ -1,5 +1,8 @@
 .game-container {
   border: 2px solid var(--color-border-dark);
+  background-image: url('../../assets/images/game-fon.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .game-container:hover {
