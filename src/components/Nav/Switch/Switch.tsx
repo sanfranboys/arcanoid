@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { ChangeEvent, useState } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { getProfileUser, requestThemeAction, getThemeUser, getIsAuth } from 'ducks'
@@ -18,7 +18,7 @@ const Switch: React.FC = () => {
     document.body.className = theme
   }, [theme])
 
-  const handleChangeUser = () => {
+  const handleChangeUser = (e:ChangeEvent<HTMLInputElement>) => {
     let currentTheme;
     setActive(!active)
     if (active) {
@@ -26,7 +26,8 @@ const Switch: React.FC = () => {
     } else {
       currentTheme = 2
     }
-    dispatch(requestThemeAction({ userId: id, theme: currentTheme }))
+    e.target.blur();
+    dispatch(requestThemeAction({ userId: id, theme: currentTheme }));
   }
 
   return (

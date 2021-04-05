@@ -13,6 +13,7 @@ const GameProccessPage = () => {
   const userData: ProfileTypes = useSelector(getProfileUser)
   const dispatch = useDispatch()
   const history = useHistory()
+  const refAudio = useRef<Nullable<HTMLAudioElement>>(null)
 
   const onGameEnd = useCallback(
     (score: number) => {
@@ -32,8 +33,8 @@ const GameProccessPage = () => {
     const canvas = canvasRef.current
     let sanfranoid: Sanfranoid
 
-    if (canvas) {
-      sanfranoid = new Sanfranoid(canvas, onGameEnd)
+    if (canvas && refAudio.current) {
+      sanfranoid = new Sanfranoid(canvas, onGameEnd, refAudio.current)
       sanfranoid.go()
     }
 
@@ -42,6 +43,10 @@ const GameProccessPage = () => {
 
   return (
     <Page>
+       <audio  ref={refAudio}>
+            <source src='assets/music/ball.mp3' type='audio/mpeg'/>
+            <track kind="captions" src='assets/music/ball.mp3' />
+            </audio>
       <Row>
         <Col span={18} offset={3}>
           <Centered>
