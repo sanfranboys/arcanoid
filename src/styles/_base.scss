@@ -23,9 +23,30 @@ body {
   color: var(--white);
   font-family: 'Noto Sans', sans-serif;
   line-height: 1.5;
+  --black: #1e1e1e;
+  --main: #40375c;
+  --grey: #6c6c6d;
+  --light: #f3f1fa;
+  --mainHover: #6b5ba0;
+  --white: #fff;
+  --link: #c2b780;
+  --link-hover: #f0e29e;
+  --purple-border: #48397a;
+  --error: #ce5353;
+  --errorHover: #e47070;
+  --hoverTime: 0.15s;
+  --border: #c2ba92;
+  --board: #ebe8e9;
+  --lightBg: #d2cdde;
+  --tooltipBg: #fcfcfd;
+
+  --color-gold: #c2ba92;
+  --color-light-purple: #9286b7;
+  --color-shadow-purple: #473d67;
+  --color-border-dark: #b2adc2;
 }
 
-body.default-theme{
+body.default-theme {
   --black: #1e1e1e;
   --main: #40375c;
   --grey: #6c6c6d;
@@ -49,7 +70,7 @@ body.default-theme{
   --color-border-dark: #b2adc2;
   color: var(--white);
 }
-body.dark-theme{
+body.dark-theme {
   --black: #1e1e1e;
   --main: #171717;
   --grey: #6c6c6d;

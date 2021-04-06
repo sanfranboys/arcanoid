@@ -9,6 +9,7 @@ export default function getHotMiddlewares() {
 
   return [
     devMiddleware(compiler, {
+      serverSideRender: true,
       writeToDisk: true,
       publicPath: clientConfig.output!.publicPath!,
     }),

@@ -1,5 +1,5 @@
 import { Sequelize } from 'sequelize'
-import { config } from '../config'
+import { config } from './config'
 
 const { host, port, username, password, database } = config
 const sequelize = new Sequelize({
@@ -8,9 +8,9 @@ const sequelize = new Sequelize({
   username,
   password,
   database,
-  dialect:'postgres',
-});
+  dialect: 'postgres',
+})
+
+// Пока вышло только так подключить
 
 export default sequelize
-
-

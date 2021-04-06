@@ -1,8 +1,8 @@
-import { Request } from "express";
+import { Request } from 'express'
 
-export type CustomRequestController = {
+export type ThemeRequestController = {
   body: {
-    userId: number,
+    userId: number
     theme: number
   }
 } & Request

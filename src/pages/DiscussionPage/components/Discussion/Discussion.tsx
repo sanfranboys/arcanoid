@@ -1,13 +1,18 @@
-import React, { ChangeEvent, useCallback, useMemo, useState } from 'react'
+import React, { ChangeEvent, FC, useCallback, useMemo, useState } from 'react'
+import { useParams } from 'react-router'
+import { useDispatch, useSelector } from 'react-redux'
+import { createMessage, getProfileUser } from 'ducks'
 import { Space, Panel, TextArea, Button, Row, Col } from 'elements'
+import withForumSpin from 'hocs/withForumSpin'
+import { DiscussionProps, TopicIdParams } from 'pages/DiscussionPage/types'
 import Message from '../Message'
-import { mock } from './mock'
-
 import './Discussion.scss'
 
-const Discussion = () => {
-  const [messages, setMessages] = useState(mock)
+const Discussion: FC<DiscussionProps> = ({ messages }) => {
+  const { topicId } = useParams<TopicIdParams>()
   const [activeMessage, setActiveMessage] = useState('')
+  const { login } = useSelector(getProfileUser)
+  const dispatch = useDispatch()
 
   const handleMessageChange = useCallback(
     (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -17,27 +22,18 @@ const Discussion = () => {
   )
 
   const addMessage = useCallback(() => {
-    setMessages((oldMessages) => {
-      const newMessages = [...oldMessages]
-      const { length } = newMessages
-
-      newMessages.push({
-        id: length + 1,
-        text: activeMessage,
-        author: `author${length}`,
-      })
-
-      return newMessages
-    })
+    const payload = {
+      text: activeMessage,
+      author: login,
+      topicId: Number(topicId),
+    }
+    dispatch(createMessage(payload))
 
     setActiveMessage('')
-  }, [activeMessage])
+  }, [topicId, activeMessage, login, dispatch])
 
   const messageList = useMemo(
-    () =>
-      messages.map((item, idx) => (
-        <Message key={item.id} message={item} offset={!!(idx % 2)} />
-      )),
+    () => messages.map((item) => <Message key={item.id} message={item} />),
     [messages]
   )
 
@@ -45,9 +41,11 @@ const Discussion = () => {
     <Space direction="vertical" full size={50}>
       <Row gutter={[16, 16]}>
         <Col span={24}>
-          <Panel head="Как вам дизайн?">
+          <Panel>
             <Space size={20} direction="vertical" full className="discussion">
-              {messageList}
+              {messageList.length
+                ? messageList
+                : 'Пока по этой теме нет сообщений, будь первым!)'}
             </Space>
           </Panel>
         </Col>
@@ -71,4 +69,4 @@ const Discussion = () => {
   )
 }
 
-export default Discussion
+export default withForumSpin(Discussion)

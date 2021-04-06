@@ -1,17 +1,24 @@
-import React, { useCallback, useMemo, useState, ChangeEvent } from 'react'
-import { useHistory, useRouteMatch } from 'react-router-dom'
+import React, { useCallback, useMemo, useState, ChangeEvent, FC } from 'react'
+import { useHistory, useParams, useRouteMatch } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { ForumIdParams } from 'pages/TopicPage/types'
 import { Row, Col, Space, Button } from 'elements'
 import { Description, Input } from 'components'
-import Topic from '../Topic'
 
-import { mock } from './mock'
+import { TopicItemWithCounts } from 'ducks/forum/types'
+import { createTopic } from 'ducks'
+import withForumSpin from 'hocs/withForumSpin'
+import { TopicsProps } from './types'
+import Topic from '../Topic'
 
 import './Topics.scss'
 
-const Topics = () => {
+const Topics: FC<TopicsProps> = ({ data }) => {
   const history = useHistory()
-  const { url } = useRouteMatch()
-  const [topics, setTopics] = useState(mock)
+  const { url } = useRouteMatch<string>()
+  const params = useParams<ForumIdParams>()
+  const dispatch = useDispatch()
+  const { topics } = data
   const [topic, setTopic] = useState('')
 
   const handleTopicChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
@@ -24,24 +31,17 @@ const Topics = () => {
   )
 
   const addTopic = useCallback(() => {
-    setTopics((oldTopics) => {
-      const newTopics = [...oldTopics]
-
-      newTopics.push({
-        id: topics.length + 1,
-        name: topic,
-        answersCount: topics.length * 44,
-      })
-
-      return newTopics
-    })
-
+    const payload = {
+      title: topic,
+      forumId: Number(params?.forumId),
+    }
+    dispatch(createTopic(payload))
     setTopic('')
-  }, [topic, topics.length])
+  }, [topic, params, dispatch])
 
   const topicList = useMemo(
     () =>
-      topics.map((item) => {
+      topics.map((item: TopicItemWithCounts) => {
         const { id } = item
         return <Topic key={id} topic={item} onClick={goToDiscussion(id)} />
       }),
@@ -81,4 +81,4 @@ const Topics = () => {
   )
 }
 
-export default Topics
+export default withForumSpin(Topics)
