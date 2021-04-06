@@ -34,6 +34,12 @@ export const TopicMessageModel = sequelize.define('message', {
   author: {
     type: DataTypes.STRING,
   },
+  likes: {
+    type: DataTypes.INTEGER,
+  },
+  dislikes: {
+    type: DataTypes.INTEGER,
+  },
 })
 
 ForumModel.hasMany(TopicModel, { as: 'topics' })

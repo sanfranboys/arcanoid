@@ -7,4 +7,6 @@ export type MessageRequest = {
   text: string
   author: string
   topicId: number
+  likes: number
+  dislikes: number
 }

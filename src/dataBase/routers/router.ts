@@ -8,6 +8,7 @@ import {
   getForumById,
   getForums,
   getTopicById,
+  updateMessage,
 } from '../controllers/forum'
 
 const router = express.Router()
@@ -23,6 +24,7 @@ const routerCustom = (app: any) => {
   router.get('/topics/:id', getTopicById)
   router.post('/topics/new', createTopic)
   router.post('/messages/new', createMessage)
+  router.post('/messages/update', updateMessage)
 
   app.use(PREFIX_URL, router)
 }

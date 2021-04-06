@@ -7,6 +7,7 @@ import {
   FORUM_GET_FORUM,
   FORUM_GET_FORUMS,
   FORUM_GET_TOPIC,
+  FORUM_UPDATE_MESSAGES,
 } from './actionTypes'
 import {
   forumSetForum,
@@ -14,7 +15,12 @@ import {
   forumSetStatus,
   forumSetTopic,
 } from './actions'
-import { ActionCreateMessage, ActionCreateTopic, ActionGetForum } from './types'
+import {
+  ActionCreateMessage,
+  ActionCreateTopic,
+  ActionGetForum,
+  ActionUpdateMessage,
+} from './types'
 import { getForum, getTopic } from './selectors'
 
 function* sagaWorkerGetForums() {
@@ -89,13 +95,42 @@ function* sagaWorkerCreateMessages({ payload }: ActionCreateMessage) {
   try {
     yield put(forumSetStatus('isLoading'))
     const { data } = yield call([ForumServices, 'createMessage'], payload)
-    const { id, text, author } = data
+    const { id, text, author, likes, dislikes } = data
     yield put(
       forumSetTopic({
         ...topic,
-        messages: [...topic.messages, { id, text, author }],
+        messages: [...topic.messages, { id, text, author, likes, dislikes }],
       })
     )
+    yield put(forumSetStatus('success'))
+  } catch (error) {
+    NotificationWindow({
+      status: error.status,
+      description: 'Что-то пошло не так',
+    })
+    yield put(forumSetStatus('idle'))
+  }
+}
+
+function* sagaWorkerUpdateMessages({ payload }: ActionUpdateMessage) {
+  const topic = yield select(getTopic)
+  try {
+    yield put(forumSetStatus('isLoading'))
+    yield call([ForumServices, 'updateMessage'], payload)
+    const newArr = [...topic.messages]
+    newArr.forEach((item, key) => {
+      if (item.id === payload.id) {
+        newArr[key] = { ...payload }
+      }
+    })
+
+    yield put(
+      forumSetTopic({
+        ...topic,
+        messages: newArr,
+      })
+    )
+
     yield put(forumSetStatus('success'))
   } catch (error) {
     NotificationWindow({
@@ -112,4 +147,5 @@ export default function* sagaWatcher() {
   yield takeEvery(FORUM_GET_TOPIC, sagaWorkerGetTopicById)
   yield takeEvery(FORUM_CREATE_TOPIC, sagaWorkerCreateTopic)
   yield takeEvery(FORUM_CREATE_MESSAGES, sagaWorkerCreateMessages)
+  yield takeEvery(FORUM_UPDATE_MESSAGES, sagaWorkerUpdateMessages)
 }

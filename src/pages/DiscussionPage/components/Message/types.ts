@@ -1,4 +1,4 @@
-import { Message } from '../../types'
+import { Message } from 'ducks/forum/types'
 
 export type MessageProps = {
   message: Message

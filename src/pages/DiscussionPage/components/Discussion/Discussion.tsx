@@ -26,6 +26,8 @@ const Discussion: FC<DiscussionProps> = ({ messages }) => {
       text: activeMessage,
       author: login,
       topicId: Number(topicId),
+      likes: 0,
+      dislikes: 0,
     }
     dispatch(createMessage(payload))
 

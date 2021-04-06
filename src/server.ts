@@ -116,18 +116,24 @@ sequelize.sync({ force: true }).then(() => {
     text: 'Очень крутой!',
     author: 'Junepaik',
     topicId: 1,
+    likes: 150,
+    dislikes: 2,
   })
 
   TopicMessageModel.create({
     text: 'Нахрен иди пес',
     author: 'Jey',
     topicId: 1,
+    likes: 0,
+    dislikes: 3,
   })
 
   TopicMessageModel.create({
     text: 'Нахрен иди пес',
     author: 'Jey2',
     topicId: 2,
+    likes: 5,
+    dislikes: 1,
   })
   server.listen(port, () => {
     console.log(`Listening on port: ${port}`)

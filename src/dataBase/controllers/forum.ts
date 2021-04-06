@@ -1,6 +1,7 @@
 import { Response } from 'express'
 import sequelize from 'sequelize'
 import { ForumModel, TopicMessageModel, TopicModel } from '../models/forum'
+import { MessageRequestController } from './types'
 
 export const getForums = (_req: any, res: Response) => {
   ForumModel.findAll({
@@ -30,7 +31,7 @@ export const getTopicById = (req: any, res: Response) => {
       {
         model: TopicMessageModel,
         as: 'messages',
-        attributes: ['id', 'text', 'author'],
+        attributes: ['id', 'text', 'author', 'likes', 'dislikes'],
         include: [
           { model: TopicMessageModel, as: 'answers', attributes: ['id'] },
         ],
@@ -89,21 +90,40 @@ export const createTopic = (req: any, res: Response) => {
     .catch(() => res.status(404).send())
 }
 
-export const createMessage = async (req: any, res: Response) => {
-  const { text, author, topicId } = req.body
+export const createMessage = async (
+  req: MessageRequestController,
+  res: Response
+) => {
+  const { text, author, topicId, likes, dislikes } = req.body
   TopicMessageModel.create({
     text,
     author,
     topicId,
+    likes,
+    dislikes,
   })
-    .then(() => {
+    .then(({ id }) => {
       res.send({
+        id,
         text,
         author,
         topicId,
+        likes,
+        dislikes,
       })
     })
     .catch(() => res.status(404).send())
+}
+
+export const updateMessage = (
+  _req: MessageRequestController,
+  res: Response
+) => {
+  const { id } = _req.body
+
+  TopicMessageModel.update({ ..._req.body }, { where: { id } })
+    .then((el) => res.send(el))
+    .catch(() => res.status(404).send({}))
 }
 
 export default getForums

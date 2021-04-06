@@ -1,3 +1,4 @@
+import { Message } from 'ducks/forum/types'
 import { ApiServices } from 'services/Api'
 import { MessageRequest, TopicRequest } from './types'
 
@@ -26,5 +27,9 @@ export class Forum {
 
   createMessage(data: MessageRequest) {
     return this.APIService.post('/messages/new', data)
+  }
+
+  updateMessage(data: Message) {
+    return this.APIService.post('/messages/update', data)
   }
 }

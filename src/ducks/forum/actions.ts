@@ -1,4 +1,8 @@
-import { MessageRequest, TopicRequest } from 'services/Forum/types'
+import {
+  MessageRequest,
+  MessageUpdateRequest,
+  TopicRequest,
+} from 'services/Forum/types'
 import {
   FORUM_CREATE_MESSAGES,
   FORUM_CREATE_TOPIC,
@@ -9,6 +13,7 @@ import {
   FORUM_SET_FORUMS,
   FORUM_SET_STATUS,
   FORUM_SET_FORUM,
+  FORUM_UPDATE_MESSAGES,
 } from './actionTypes'
 import { ForumWithTopicArray, ForumWithTopicCounts } from './types'
 
@@ -55,6 +60,11 @@ const createMessage = (data: MessageRequest) => ({
   payload: data,
 })
 
+const updateMessage = (data: MessageUpdateRequest) => ({
+  type: FORUM_UPDATE_MESSAGES,
+  payload: data,
+})
+
 export {
   forumGetForums,
   forumSetStatus,
@@ -65,4 +75,5 @@ export {
   createTopic,
   createMessage,
   forumSetForums,
+  updateMessage,
 }

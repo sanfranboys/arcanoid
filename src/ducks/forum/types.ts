@@ -37,6 +37,8 @@ export type Message = {
   id: number
   text: string
   author: string
+  likes: number
+  dislikes: number
 }
 
 export type ActionGetForum = {
@@ -57,6 +59,19 @@ export type ActionCreateMessage = {
   payload: {
     text: string
     author: string
+    likes: number
+    dislikes: number
     topicId: number
+  }
+}
+
+export type ActionUpdateMessage = {
+  type: string
+  payload: {
+    id: number
+    text: string
+    author: string
+    likes: number
+    dislikes: number
   }
 }
