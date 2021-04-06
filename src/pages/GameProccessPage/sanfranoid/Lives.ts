@@ -26,7 +26,9 @@ export class Lives extends Feature {
     const { _ctx, _x, _y } = this
     let position = _x
     this.img.forEach((img: HTMLImageElement) => {
+      _ctx.beginPath()
       _ctx.drawImage(img, position, _y, 20, 20)
+      _ctx.closePath()
       position -= 25
     })
   }

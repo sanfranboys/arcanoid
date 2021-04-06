@@ -44,7 +44,7 @@ const GameProccessPage = () => {
   return (
     <Page>
        <audio  ref={refAudio}>
-            <source src='assets/music/ball.mp3' type='audio/mpeg'/>
+            <source src='assets/music/ball.mp3' type='audio/mp3'/>
             <track kind="captions" src='assets/music/ball.mp3' />
             </audio>
       <Row>

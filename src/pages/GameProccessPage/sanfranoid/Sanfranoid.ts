@@ -37,7 +37,7 @@ class Sanfranoid {
     this._onGameEnd = onGameEnd
     this._ctx = this._canvas.getContext('2d')
 
-    this._ball = new Ball(canvas, { color: Color.Green })
+    this._ball = new Ball(canvas)
     this._paddle = new Paddle(canvas)
     this._wall = new Wall(canvas)
     this._score = new Score(canvas)
@@ -62,6 +62,7 @@ class Sanfranoid {
   }
 
   public go() {
+
     const draw = () => {
       this.clear()
 
@@ -77,8 +78,8 @@ class Sanfranoid {
         _ball.changeYDirection()
       } else if (_ball.crossedBottom()) {
         if (this._paddle.isCrossedBy(_ball)) {
-          this.paddleCrossedProcessing()
           this.music.play()
+          this.paddleCrossedProcessing()
         } else {
           this.failProcessing()
         }

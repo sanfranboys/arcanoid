@@ -1,11 +1,28 @@
 .game-container {
   border: 2px solid var(--color-border-dark);
   background-image: url('../../assets/images/game-fon.jpg');
-  background-repeat: no-repeat;
+  background-repeat: repeat;
   background-size: cover;
+  background-position:0 0;
+  animation: anim 220s linear infinite;
 }
 
 .game-container:hover {
   cursor: none;
   color: firebrick;
+}
+
+
+@keyframes anim {
+  0%{
+    background-position:0 0;
+  }
+
+  50%{
+    background-position:0 100%;
+  }
+
+  100%{
+    background-position:0 0;
+  }
 }
