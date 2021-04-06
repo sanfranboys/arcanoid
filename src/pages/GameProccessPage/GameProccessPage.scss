@@ -4,25 +4,16 @@
   background-repeat: repeat;
   background-size: cover;
   background-position:0 0;
-  animation: anim 220s linear infinite;
+  animation: anim 100s linear infinite;
 }
 
 .game-container:hover {
   cursor: none;
-  color: firebrick;
 }
 
 
 @keyframes anim {
-  0%{
-    background-position:0 0;
-  }
-
-  50%{
-    background-position:0 100%;
-  }
-
   100%{
-    background-position:0 0;
+    background-position:0 1000px;
   }
 }
