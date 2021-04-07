@@ -31,9 +31,14 @@ export const getTopicById = (req: any, res: Response) => {
       {
         model: TopicMessageModel,
         as: 'messages',
-        attributes: ['id', 'text', 'author', 'likes', 'dislikes'],
-        include: [
-          { model: TopicMessageModel, as: 'answers', attributes: ['id'] },
+        attributes: [
+          'id',
+          'text',
+          'author',
+          'likes',
+          'dislikes',
+          'parentId',
+          'parentAuthor',
         ],
       },
     ],
@@ -94,13 +99,23 @@ export const createMessage = async (
   req: MessageRequestController,
   res: Response
 ) => {
-  const { text, author, topicId, likes, dislikes } = req.body
+  const {
+    text,
+    author,
+    topicId,
+    likes,
+    dislikes,
+    parentId,
+    parentAuthor,
+  } = req.body
   TopicMessageModel.create({
     text,
     author,
     topicId,
     likes,
     dislikes,
+    parentId,
+    parentAuthor,
   })
     .then(({ id }) => {
       res.send({
@@ -110,6 +125,8 @@ export const createMessage = async (
         topicId,
         likes,
         dislikes,
+        parentId,
+        parentAuthor,
       })
     })
     .catch(() => res.status(404).send())

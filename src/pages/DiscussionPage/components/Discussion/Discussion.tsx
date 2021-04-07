@@ -7,18 +7,50 @@ import withForumSpin from 'hocs/withForumSpin'
 import { DiscussionProps, TopicIdParams } from 'pages/DiscussionPage/types'
 import Message from '../Message'
 import './Discussion.scss'
+import { getMessageList } from './utils'
+import { AnswerData } from './type'
 
 const Discussion: FC<DiscussionProps> = ({ messages }) => {
   const { topicId } = useParams<TopicIdParams>()
   const [activeMessage, setActiveMessage] = useState('')
+  const [answerData, setAnswerData] = useState<AnswerData | null>(null)
   const { login } = useSelector(getProfileUser)
   const dispatch = useDispatch()
+
+  const transformedMessages = messages.length
+    ? getMessageList(messages)
+    : messages
 
   const handleMessageChange = useCallback(
     (e: ChangeEvent<HTMLTextAreaElement>) => {
       setActiveMessage(e.currentTarget.value)
     },
     []
+  )
+
+  const handleAnswer = useCallback((author: string, id: number) => {
+    setAnswerData({ author, id })
+  }, [])
+
+  const handleAnswerClear = useCallback(() => {
+    setAnswerData(null)
+  }, [])
+
+  const getAnswerText = useMemo(
+    () => (
+      <div className="discussion__answers">
+        <div className="discussion__answerPrefix">
+          Ответ {answerData?.author}:
+        </div>
+        <button
+          className="discussion__answerClear"
+          type="button"
+          onClick={handleAnswerClear}
+          aria-label="clear answer"
+        />
+      </div>
+    ),
+    [answerData, handleAnswerClear]
   )
 
   const addMessage = useCallback(() => {
@@ -28,15 +60,20 @@ const Discussion: FC<DiscussionProps> = ({ messages }) => {
       topicId: Number(topicId),
       likes: 0,
       dislikes: 0,
+      parentAuthor: answerData?.author,
+      parentId: answerData?.id,
     }
     dispatch(createMessage(payload))
 
     setActiveMessage('')
-  }, [topicId, activeMessage, login, dispatch])
+  }, [topicId, activeMessage, login, dispatch, answerData])
 
   const messageList = useMemo(
-    () => messages.map((item) => <Message key={item.id} message={item} />),
-    [messages]
+    () =>
+      transformedMessages.map((item) => (
+        <Message key={item?.id} message={item} onAnswer={handleAnswer} />
+      )),
+    [transformedMessages, handleAnswer]
   )
 
   return (
@@ -55,6 +92,7 @@ const Discussion: FC<DiscussionProps> = ({ messages }) => {
 
       <Row gutter={[16, 16]}>
         <Col span={24}>
+          {answerData && getAnswerText}
           <Space direction="vertical" full size="large">
             <TextArea
               rows={3}

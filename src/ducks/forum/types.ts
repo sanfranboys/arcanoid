@@ -39,6 +39,9 @@ export type Message = {
   author: string
   likes: number
   dislikes: number
+  parentAuthor?: string
+  children?: Message[]
+  offset?: boolean
 }
 
 export type ActionGetForum = {

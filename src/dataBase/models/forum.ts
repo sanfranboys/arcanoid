@@ -40,6 +40,12 @@ export const TopicMessageModel = sequelize.define('message', {
   dislikes: {
     type: DataTypes.INTEGER,
   },
+  parentId: {
+    type: DataTypes.INTEGER,
+  },
+  parentAuthor: {
+    type: DataTypes.STRING,
+  },
 })
 
 ForumModel.hasMany(TopicModel, { as: 'topics' })
@@ -54,11 +60,4 @@ TopicModel.hasMany(TopicMessageModel, { as: 'messages' })
 TopicMessageModel.belongsTo(TopicModel, {
   foreignKey: 'topicId',
   as: 'message',
-})
-
-TopicMessageModel.hasMany(TopicMessageModel, { as: 'answers' })
-
-TopicMessageModel.belongsTo(TopicMessageModel, {
-  foreignKey: 'answerId',
-  as: 'answerTo',
 })

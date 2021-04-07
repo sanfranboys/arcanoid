@@ -16,6 +16,10 @@
     font-size: var(--size-text-xs);
     color: var(--grey);
     margin: 0 0 10px;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
   }
 
   &__emotion {
@@ -34,6 +38,11 @@
     .message:hover & {
       opacity: 1;
     }
+  }
+
+  &__prefix {
+    font-size: 11px;
+    color: var(--white);
   }
 
   &__emo {

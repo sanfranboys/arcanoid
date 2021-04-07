@@ -95,11 +95,14 @@ function* sagaWorkerCreateMessages({ payload }: ActionCreateMessage) {
   try {
     yield put(forumSetStatus('isLoading'))
     const { data } = yield call([ForumServices, 'createMessage'], payload)
-    const { id, text, author, likes, dislikes } = data
+    const { id, text, author, likes, dislikes, parentId, parentAuthor } = data
     yield put(
       forumSetTopic({
         ...topic,
-        messages: [...topic.messages, { id, text, author, likes, dislikes }],
+        messages: [
+          ...topic.messages,
+          { id, text, author, likes, dislikes, parentId, parentAuthor },
+        ],
       })
     )
     yield put(forumSetStatus('success'))

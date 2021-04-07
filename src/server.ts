@@ -126,12 +126,34 @@ sequelize.sync({ force: true }).then(() => {
     topicId: 1,
     likes: 0,
     dislikes: 3,
+    parentId: 1,
+    parentAuthor: 'Junepaik',
   })
 
   TopicMessageModel.create({
     text: 'Нахрен иди пес',
     author: 'Jey2',
-    topicId: 2,
+    topicId: 1,
+    likes: 5,
+    dislikes: 1,
+    parentId: 1,
+    parentAuthor: 'Junepaik',
+  })
+
+  TopicMessageModel.create({
+    text: 'вложенное во вложенное',
+    author: 'Jey2',
+    topicId: 1,
+    likes: 5,
+    dislikes: 1,
+    parentId: 2,
+    parentAuthor: 'Jey',
+  })
+
+  TopicMessageModel.create({
+    text: 'Сообщение без родителя',
+    author: 'Jey2',
+    topicId: 1,
     likes: 5,
     dislikes: 1,
   })

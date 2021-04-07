@@ -81,6 +81,7 @@
     "@types/react-helmet": "6.1.0",
     "@wojtekmaj/enzyme-adapter-react-17": "0.4.1",
     "antd": "4.12.1",
+    "array-to-tree": "^3.3.2",
     "axios": "0.21.1",
     "body-parser": "1.19.0",
     "connected-react-router": "6.9.1",
