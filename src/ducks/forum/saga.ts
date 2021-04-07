@@ -71,7 +71,6 @@ function* sagaWorkerGetTopicById({ payload }: ActionGetForum) {
 function* sagaWorkerCreateTopic({ payload }: ActionCreateTopic) {
   const forum = yield select(getForum)
   try {
-    yield put(forumSetStatus('isLoading'))
     const { data } = yield call([ForumServices, 'createTopic'], payload)
     const { id, title } = data
     yield put(
@@ -80,20 +79,17 @@ function* sagaWorkerCreateTopic({ payload }: ActionCreateTopic) {
         topics: [...forum.topics, { id, title, messagesCount: 0 }],
       })
     )
-    yield put(forumSetStatus('success'))
   } catch (error) {
     NotificationWindow({
       status: error.status,
       description: 'Что-то пошло не так',
     })
-    yield put(forumSetStatus('idle'))
   }
 }
 
 function* sagaWorkerCreateMessages({ payload }: ActionCreateMessage) {
   const topic = yield select(getTopic)
   try {
-    yield put(forumSetStatus('isLoading'))
     const { data } = yield call([ForumServices, 'createMessage'], payload)
     const { id, text, author, likes, dislikes, parentId, parentAuthor } = data
     yield put(
@@ -105,20 +101,17 @@ function* sagaWorkerCreateMessages({ payload }: ActionCreateMessage) {
         ],
       })
     )
-    yield put(forumSetStatus('success'))
   } catch (error) {
     NotificationWindow({
       status: error.status,
       description: 'Что-то пошло не так',
     })
-    yield put(forumSetStatus('idle'))
   }
 }
 
 function* sagaWorkerUpdateMessages({ payload }: ActionUpdateMessage) {
   const topic = yield select(getTopic)
   try {
-    yield put(forumSetStatus('isLoading'))
     yield call([ForumServices, 'updateMessage'], payload)
     const newArr = [...topic.messages]
     newArr.forEach((item, key) => {
@@ -133,14 +126,11 @@ function* sagaWorkerUpdateMessages({ payload }: ActionUpdateMessage) {
         messages: newArr,
       })
     )
-
-    yield put(forumSetStatus('success'))
   } catch (error) {
     NotificationWindow({
       status: error.status,
       description: 'Что-то пошло не так',
     })
-    yield put(forumSetStatus('idle'))
   }
 }
 
