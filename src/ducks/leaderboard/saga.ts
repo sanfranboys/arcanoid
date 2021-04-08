@@ -1,3 +1,4 @@
+import { NotificationWindow } from 'elements'
 import { takeEvery, put, call } from 'redux-saga/effects'
 import { LeadersServices } from 'services'
 import { GetLeaderBoardPayload } from 'services/Leaders/types'
@@ -18,7 +19,10 @@ function* sagaWorkerGetLeaders() {
     const res = yield call([LeadersServices, 'getLeaderboard'], initialReqData)
     yield put(setLeaders(transformLeadersData(res.data)))
   } catch (error) {
-    console.log(error)
+    NotificationWindow({
+      status: error.status,
+      description: 'Что-то пошло не так',
+    })
   }
 }
 
@@ -29,7 +33,10 @@ function* sagaWorkerNewLeaders({ payload }: NewLeaderAction) {
       transformNewLeaderData(payload)
     )
   } catch (error) {
-    console.log(error)
+    NotificationWindow({
+      status: error.status,
+      description: 'Что-то пошло не так',
+    })
   }
 }
 

@@ -1,8 +1,9 @@
 import { Sequelize } from 'sequelize'
 import mongoose from 'mongoose'
-import { config, mongoConnectionString } from '../config'
+import { config, mongoConnectionString } from './config'
 
 const { host, port, username, password, database } = config
+
 const sequelize = new Sequelize({
   host,
   port,

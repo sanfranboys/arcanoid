@@ -1,8 +1,13 @@
-import { Request } from "express";
+import { Message } from 'ducks/forum/types'
+import { Request } from 'express'
 
-export type CustomRequestController = {
+export type ThemeRequestController = {
   body: {
-    userId: number,
+    userId: number
     theme: number
   }
+} & Request
+
+export type MessageRequestController = {
+  body: Message
 } & Request
