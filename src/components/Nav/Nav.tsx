@@ -32,6 +32,11 @@ const Nav: FC = () => (
           <span>Профиль</span>
         </NavLink>
       </li>
+      <li className="nav__item">
+        <NavLink className="nav__link" to="/feedback">
+          <span>Отзывы</span>
+        </NavLink>
+      </li>
       <li className="nav__item nav__full-screen">
         <Button onClick={toggleFullScreen(root)}>Полноэкранный режим</Button>
       </li>
