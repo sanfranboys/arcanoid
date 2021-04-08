@@ -1,6 +1,6 @@
 import { Feature } from './Feature'
 import { FeatureOptions } from './types'
-import { ballSpeed, ballRadius } from './settings'
+import { ballSpeed, ballRadius, ballImg } from './settings'
 
 export class Ball extends Feature {
   private _radius = ballRadius
@@ -9,22 +9,25 @@ export class Ball extends Feature {
 
   private _dy = -ballSpeed
 
+  private el:HTMLImageElement
+
   constructor(canvas: HTMLCanvasElement, options?: FeatureOptions) {
     super(canvas, options)
 
     this.setStartPosition()
+    this.el = new Image()
+    this.el.src = ballImg
   }
 
   public draw() {
-    const { _ctx, _radius, _color, _dx, _dy, _x, _y } = this
+    const { _ctx, _radius, _dx, _dy, _x, _y } = this
 
     this._x += _dx
     this._y += _dy
 
+    _ctx.drawImage(this.el, _x - 9, _y - 9, 22, 22)
     _ctx.beginPath()
     _ctx.arc(_x, _y, _radius, 0, Math.PI * 2)
-    _ctx.fillStyle = _color
-    _ctx.fill()
     _ctx.closePath()
   }
 

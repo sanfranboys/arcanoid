@@ -9,6 +9,7 @@ const URLS = [
   '/assets/images/dog.jpg',
   '/assets/images/notbad.jpg',
   '/assets/images/error.jpg',
+  '/assets/images/game-fon.jpg',
   '/assets/fonts/81d3c5139883841834aa2ac459370dc2.woff2',
   '/assets/fonts/98bad1928614d31281c78c122e584861.woff',
   '/assets/fonts/NotoSans.woff',
