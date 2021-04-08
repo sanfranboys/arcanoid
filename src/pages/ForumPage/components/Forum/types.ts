@@ -1,6 +1,6 @@
-import { Forum } from '../../types'
+import { ForumWithTopicCounts } from 'ducks/forum/types'
 
 export type ForumProps = {
-  forum: Forum
+  forum: ForumWithTopicCounts
   onClick?: () => void
 }

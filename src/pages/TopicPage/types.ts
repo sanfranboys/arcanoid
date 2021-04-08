@@ -1,5 +1,3 @@
-export type Topic = {
-  id: number
-  name: string
-  answersCount: number
+export type ForumIdParams = {
+  forumId: string
 }

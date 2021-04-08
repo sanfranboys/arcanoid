@@ -1,2 +1,2 @@
 export * from './routers'
-export * from './models'
+export { default as sequelize } from './connect'

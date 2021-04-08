@@ -5,6 +5,11 @@ import { saga as rootSaga } from 'ducks'
 import cookieParser from 'cookie-parser'
 import { StaticRouterContext } from 'react-router'
 import { CustomRequest } from 'types'
+import {
+  ForumModel,
+  TopicMessageModel,
+  TopicModel,
+} from './dataBase/models/forum'
 import { routerCustom, sequelize } from './dataBase'
 import SiteTheme from './dataBase/models/siteTheme'
 import getHotMiddlewares from './middlewares/hot'
@@ -23,8 +28,6 @@ routerCustom(app)
 const server = https.createServer({ key, cert }, app)
 
 const port = process.env.PORT || 5000
-
-app.use(express.static('dist'))
 
 app.use(cookieParser())
 
@@ -73,18 +76,88 @@ sequelize.sync({ force: true }).then(() => {
   SiteTheme.create({
     themeName: 'default',
     themeClass: 'default-theme',
-  });
+  })
   SiteTheme.create({
     themeName: 'dark',
     themeClass: 'dark-theme',
-  });
+  })
+
+  ForumModel.create({
+    id: 1,
+    title: 'Впечатление от игры',
+  })
+
+  ForumModel.create({
+    id: 2,
+    title: 'Разработка',
+  })
+
+  TopicModel.create({
+    title: 'Как Вам дизайн?',
+    forumId: 1,
+  })
+
+  TopicModel.create({
+    title: 'Геймплей',
+    forumId: 1,
+  })
+
+  TopicModel.create({
+    title: 'Геймплей 3',
+    forumId: 1,
+  })
+
+  TopicModel.create({
+    title: 'Геймплей 2',
+    forumId: 2,
+  })
+
+  TopicMessageModel.create({
+    text: 'Очень крутой!',
+    author: 'Junepaik',
+    topicId: 1,
+    likes: 150,
+    dislikes: 2,
+  })
+
+  TopicMessageModel.create({
+    text: 'Нахрен иди пес',
+    author: 'Jey',
+    topicId: 1,
+    likes: 0,
+    dislikes: 3,
+    parentId: 1,
+    parentAuthor: 'Junepaik',
+  })
+
+  TopicMessageModel.create({
+    text: 'Нахрен иди пес',
+    author: 'Jey2',
+    topicId: 1,
+    likes: 5,
+    dislikes: 1,
+    parentId: 1,
+    parentAuthor: 'Junepaik',
+  })
+
+  TopicMessageModel.create({
+    text: 'вложенное во вложенное',
+    author: 'Jey2',
+    topicId: 1,
+    likes: 5,
+    dislikes: 1,
+    parentId: 2,
+    parentAuthor: 'Jey',
+  })
+
+  TopicMessageModel.create({
+    text: 'Сообщение без родителя',
+    author: 'Jey2',
+    topicId: 1,
+    likes: 5,
+    dislikes: 1,
+  })
   server.listen(port, () => {
-    console.log(`Listening on port: ${port}`);
+    console.log(`Listening on port: ${port}`)
   })
 })
-
-
-
-
-
-

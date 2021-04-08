@@ -1,11 +1,12 @@
-import React, { useCallback, useMemo } from 'react'
+import React, { FC, useCallback, useMemo } from 'react'
 import { useHistory, useRouteMatch } from 'react-router-dom'
 import { Row, Col, Space } from 'elements'
 import { Description } from 'components'
+import withForumSpin from 'hocs/withForumSpin'
 import Forum from '../Forum'
-import { mock } from './mock'
+import { ForumsProps } from './types'
 
-const Forums = () => {
+const Forums: FC<ForumsProps> = ({ forums }) => {
   const history = useHistory()
   const { url } = useRouteMatch()
 
@@ -16,11 +17,11 @@ const Forums = () => {
 
   const forumList = useMemo(
     () =>
-      mock.map((forum) => {
+      forums.map((forum) => {
         const { id } = forum
         return <Forum key={id} forum={forum} onClick={goToTopic(id)} />
       }),
-    [goToTopic]
+    [goToTopic, forums]
   )
 
   return (
@@ -33,15 +34,11 @@ const Forums = () => {
         <Col span={2}>
           <Description title="Темы" />
         </Col>
-
-        <Col span={2}>
-          <Description title="Ответы" />
-        </Col>
       </Row>
 
-      {forumList}
+      {forums && forumList}
     </Space>
   )
 }
 
-export default Forums
+export default withForumSpin(Forums)
