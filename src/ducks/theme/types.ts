@@ -13,13 +13,13 @@ export type RequestThemeType = {
   theme: number | string
 }
 
-export type RegistrationUserType = {
+export type UserIdType = {
   userId: number,
 }
 
 export type ActionRegistrationUserTypes = {
   type: string
-  payload: RegistrationUserType
+  payload: UserIdType
 }
 export type ActionRequestThemeTypes = {
   type: string
