@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react'
+import React, { SyntheticEvent, useState } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { getProfileUser, requestThemeAction, getThemeUser, getIsAuth } from 'ducks'
@@ -18,7 +18,7 @@ const Switch: React.FC = () => {
     document.body.className = theme
   }, [theme])
 
-  const handleChangeUser = (e:ChangeEvent<HTMLInputElement>) => {
+  const handleChangeUser = (e:SyntheticEvent) => {
     let currentTheme;
     setActive(!active)
     if (active) {
@@ -26,14 +26,14 @@ const Switch: React.FC = () => {
     } else {
       currentTheme = 2
     }
-    e.target.blur();
+    (e.target as HTMLInputElement).blur();
     dispatch(requestThemeAction({ userId: id, theme: currentTheme }));
   }
 
   return (
     <div className="swich">
       {isAuth ? (<label htmlFor="swich" className="swich__box">
-        <input type="checkbox" className="swich-input" id="swich" checked={active} onChange={handleChangeUser} />
+        <input type="checkbox" className="swich-input" id="swich" checked={active} onClick={handleChangeUser} />
         <div className='swich__box-button' />
       </label>) : null}
 

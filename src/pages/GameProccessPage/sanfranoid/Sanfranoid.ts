@@ -30,9 +30,8 @@ class Sanfranoid {
 
   private _starting: boolean
 
-  private music: HTMLAudioElement
 
-  constructor(canvas: HTMLCanvasElement, onGameEnd: (score: number) => void, music:HTMLAudioElement) {
+  constructor(canvas: HTMLCanvasElement, onGameEnd: (score: number) => void) {
     this._canvas = canvas
     this._onGameEnd = onGameEnd
     this._ctx = this._canvas.getContext('2d')
@@ -46,7 +45,6 @@ class Sanfranoid {
 
     this._isContinues = false
     this._starting = false
-    this.music = music
 
     document.addEventListener('keydown', this.keyDownHandler, false)
   }
@@ -78,7 +76,6 @@ class Sanfranoid {
         _ball.changeYDirection()
       } else if (_ball.crossedBottom()) {
         if (this._paddle.isCrossedBy(_ball)) {
-          this.music.play()
           this.paddleCrossedProcessing()
         } else {
           this.failProcessing()

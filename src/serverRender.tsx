@@ -12,6 +12,8 @@ const serverRender = (
   store: any,
   context: StaticRouterContext
 ) => {
+  console.log('serverRender');
+
   const content = renderToString(
     <Provider store={store}>
       <StaticRouter context={context} location={req.url}>

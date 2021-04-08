@@ -23,14 +23,12 @@ const cert = fs.readFileSync(`${__dirname}/../cert.pem`)
 
 const app = express()
 
-routerCustom(app)
-
 const server = https.createServer({ key, cert }, app)
 
 const port = process.env.PORT || 5000
 
+routerCustom(app)
 app.use(cookieParser())
-
 app.use(authMeddleware)
 app.use(themeMeddleware)
 
@@ -38,6 +36,7 @@ app.get('*', [...getHotMiddlewares()], (req: CustomRequest, res: Response) => {
   const location = req.url
   const { store } = configureStore(getInitialState(location), location)
   const { auth, user, theme } = store.getState()
+
   if (req.customProperty) {
     user.user = req.customProperty
     auth.isAuth = true

@@ -9,6 +9,8 @@ const themeMiddleware = async (
   next: NextFunction
 ) => {
   if (req.customProperty) {
+    console.log('на каждый переход срабатывает запрос');
+
     await User.findOne({
       where: { userId: JSON.stringify(req.customProperty.id) },
       include: [
