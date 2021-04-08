@@ -7,12 +7,14 @@ import { sagaUser, user } from './user'
 import { sagaLeaderBoard, leaderboard } from './leaderboard'
 import { sagaTheme, theme } from './theme'
 import { sagaForum, forum } from './forum'
+import { sagaFeedback, feedback } from './feedback'
 
 export * from './theme'
 export * from './auth'
 export * from './user'
 export * from './leaderboard'
 export * from './forum'
+export * from './feedback'
 
 export const createRootReducer = (history: History) =>
   combineReducers({
@@ -21,6 +23,7 @@ export const createRootReducer = (history: History) =>
     leaderboard,
     theme,
     forum,
+    feedback,
     router: connectRouter(history),
   })
 
@@ -31,5 +34,6 @@ export function* saga() {
     fork(sagaLeaderBoard),
     fork(sagaTheme),
     fork(sagaForum),
+    fork(sagaFeedback),
   ])
 }

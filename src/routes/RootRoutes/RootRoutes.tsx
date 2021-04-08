@@ -6,6 +6,7 @@ import {
   LeaderboardPage,
   ProfilePage,
   RegistrationPage,
+  FeedbackPage,
 } from 'pages/'
 
 import { PrivateRoute, UnPrivateRoute } from 'hocs/'
@@ -20,6 +21,7 @@ const RootRoutes = () => (
     <PrivateRoute component={LeaderboardPage} path="/leaderboard" />
     <PrivateRoute component={ProfilePage} path="/profile" />
     <PrivateRoute component={ForumRoutes} path="/forum" />
+    <PrivateRoute component={FeedbackPage} path="/feedback" />
     <UnPrivateRoute component={AuthPage} path="/auth" />
     <UnPrivateRoute component={RegistrationPage} path="/registration" />
     <Route>

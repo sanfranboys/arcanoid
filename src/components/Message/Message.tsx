@@ -10,6 +10,8 @@ const Message: FC<MessageProps> = ({ message, onAnswer }) => {
   const { id, author, text, likes, dislikes, offset, parentAuthor } = message
   const dispatch = useDispatch()
 
+  console.log(likes)
+
   const handleEmotion = useCallback(
     (e) => {
       const target = e.target as HTMLButtonElement
@@ -24,7 +26,7 @@ const Message: FC<MessageProps> = ({ message, onAnswer }) => {
   )
 
   const handleAnswer = useCallback(() => {
-    onAnswer(author, id)
+    if (onAnswer) onAnswer(author, id)
   }, [onAnswer, author, id])
 
   return (
@@ -33,7 +35,11 @@ const Message: FC<MessageProps> = ({ message, onAnswer }) => {
         message_offset: offset,
       })}
     >
-      <button type="button" className="message__author" onClick={handleAnswer}>
+      <button
+        type="button"
+        className="message__author"
+        onClick={onAnswer && handleAnswer}
+      >
         {author}
       </button>
       <div>
@@ -42,25 +48,26 @@ const Message: FC<MessageProps> = ({ message, onAnswer }) => {
         )}
         {text}
       </div>
-
-      <div className="message__emotion">
-        <button
-          className="message__emo"
-          type="button"
-          onClick={handleEmotion}
-          data-emo="likes"
-        >
-          Нравится: {likes}
-        </button>
-        <button
-          className="message__emo"
-          type="button"
-          onClick={handleEmotion}
-          data-emo="dislikes"
-        >
-          Не нравится: {dislikes}
-        </button>
-      </div>
+      {typeof likes !== 'undefined' && (
+        <div className="message__emotion">
+          <button
+            className="message__emo"
+            type="button"
+            onClick={handleEmotion}
+            data-emo="likes"
+          >
+            Нравится: {likes}
+          </button>
+          <button
+            className="message__emo"
+            type="button"
+            onClick={handleEmotion}
+            data-emo="dislikes"
+          >
+            Не нравится: {dislikes}
+          </button>
+        </div>
+      )}
     </div>
   )
 }

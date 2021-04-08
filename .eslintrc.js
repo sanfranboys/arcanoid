@@ -31,7 +31,7 @@ module.exports = {
       'error',
       {
         allowAfterThis: true,
-        allow: ['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__', '__INITIAL_STATE__'],
+        allow: ['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__', '__INITIAL_STATE__', '_id'],
       },
     ],
   },

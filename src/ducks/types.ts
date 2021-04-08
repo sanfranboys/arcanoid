@@ -4,6 +4,7 @@ import { ForumState } from './forum/types'
 import { LeaderBoardState } from './leaderboard/types'
 import { ThemeState } from './theme/types'
 import { UserState } from './user/types'
+import { FeedbackState } from './feedback/types'
 
 export type Store = {
   auth: AuthState
@@ -11,10 +12,12 @@ export type Store = {
   leaderboard: LeaderBoardState
   theme: ThemeState
   forum: ForumState
+  feedback: FeedbackState
 }
 
 export interface State {
   auth: AuthState
   user: UserState
+  feedback: FeedbackState
   router: RouterState
 }
