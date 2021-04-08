@@ -1,5 +1,6 @@
 import { Sequelize } from 'sequelize'
-import { config } from '../config'
+import mongoose from 'mongoose'
+import { config, mongoConnectionString } from '../config'
 
 const { host, port, username, password, database } = config
 const sequelize = new Sequelize({
@@ -8,9 +9,16 @@ const sequelize = new Sequelize({
   username,
   password,
   database,
-  dialect:'postgres',
-});
+  dialect: 'postgres',
+})
 
 export default sequelize
 
+mongoose.connect(mongoConnectionString, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
 
+const db = mongoose.connection
+db.on('error', () => console.log('Failed mongo connection'))
+db.once('open', () => console.log('Connected mongo'))

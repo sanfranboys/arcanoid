@@ -9,3 +9,11 @@ services:
       POSTGRES_USER: user
       POSTGRES_DB: name
       POSTGRES_PASSWORD: password
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - data-volume:/data/db
+volumes:
+  data-volume:

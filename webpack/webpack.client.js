@@ -10,6 +10,7 @@ const fontLoader = require('./loaders/font')
 const cssLoader = require('./loaders/css')
 const scssLoader = require('./loaders/scss')
 const jsLoader = require('./loaders/js')
+const mp3Loader = require('./loaders/mp3')
 
 const isProd = process.env.NODE_ENV === 'production'
 const isDev = !isProd
@@ -37,12 +38,13 @@ const config = {
       cssLoader.client,
       scssLoader.client,
       jsLoader.client,
+      mp3Loader.client
     ],
   },
   resolve: {
     alias,
-    extensions: ['.ts', '.tsx', '.js'],
-    plugins: [new TsconfigPathsPlugin({ configFile: './tsconfig.json' })],
+    extensions: [ '.ts', '.tsx', '.js' ],
+    plugins: [ new TsconfigPathsPlugin({ configFile: './tsconfig.json' }) ],
   },
 
   plugins: [
@@ -58,6 +60,11 @@ const config = {
         },
         {
           from: 'fonts/*',
+          context: path.resolve(__dirname, '../src', 'assets'),
+          to: './assets',
+        },
+        {
+          from: 'music/*',
           context: path.resolve(__dirname, '../src', 'assets'),
           to: './assets',
         },

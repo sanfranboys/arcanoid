@@ -6,6 +6,7 @@ import {
   createRootReducer,
   userInitialState,
   authInitialState,
+  feedbackInitialState,
 } from 'ducks'
 import { createBrowserHistory, createMemoryHistory } from 'history'
 import { routerMiddleware, RouterState } from 'connected-react-router'
@@ -34,6 +35,7 @@ export type AppStore = Store & {
 export const getInitialState = (pathname: string = '/'): State => ({
   auth: authInitialState,
   user: userInitialState,
+  feedback: feedbackInitialState,
   router: {
     location: { pathname, search: '', hash: '', key: '' },
     action: 'POP',
