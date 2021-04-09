@@ -45,7 +45,7 @@ export class Wall extends Feature {
     })
   }
 
-  public draw() {
+  public draw(level:number) {
     const { _offsetLeft, _offsetTop, _padding } = this
 
     this.eachBrick((brick, rowIdx, colIdx) => {
@@ -54,6 +54,21 @@ export class Wall extends Feature {
         const x = colIdx * (width + _padding) + _offsetLeft
         const y = rowIdx * (height + _padding) + _offsetTop
 
+        if(level === 1){
+          if(colIdx % 2 === 0 ){
+            brick.destroy()
+          }
+        }
+
+        if(level === 2){
+          if(rowIdx % 2===0){
+            if(colIdx % 2 === 0 ){
+              brick.destroy()
+            }
+          }else if(colIdx % 2 !== 0 ){
+              brick.destroy()
+            }
+        }
         brick.setColor(this._color)
         brick.draw(x, y)
       }

@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react'
+import React, { ChangeEvent, useState, useEffect } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
 import {
@@ -20,13 +20,15 @@ const Switch: React.FC = () => {
   const dispatch = useDispatch()
   const { id } = useSelector(getProfileUser)
 
-  React.useEffect(() => {
+  useEffect(() => {
     if(isAuth){
       dispatch(getUserThemeAction({userId:id}))
     }
-  }, [ id, dispatch, isAuth ])
+  // сделанно для отработки один раз при загрузки приложения
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setActive(theme !== 'default-theme');
     document.body.className = theme;
   }, [ theme, setActive ])
