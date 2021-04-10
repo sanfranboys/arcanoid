@@ -1,7 +1,13 @@
-import React, { ChangeEvent, useState } from 'react'
+import React, { ChangeEvent, useState, useEffect } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { getProfileUser, requestThemeAction, getThemeUser, getIsAuth } from 'ducks'
+import {
+  getProfileUser,
+  requestThemeAction,
+  getThemeUser,
+  getIsAuth,
+  getUserThemeAction,
+  isLoadingTheme } from 'ducks'
 
 import './Switch.scss'
 
@@ -9,14 +15,23 @@ const Switch: React.FC = () => {
 
   const isAuth = useSelector(getIsAuth)
   const theme = useSelector(getThemeUser)
-  const [active, setActive] = useState(theme !== 'default-theme')
+  const loading = useSelector(isLoadingTheme)
+  const [active, setActive] = useState(false)
   const dispatch = useDispatch()
   const { id } = useSelector(getProfileUser)
 
+  useEffect(() => {
+    if(isAuth){
+      dispatch(getUserThemeAction({userId:id}))
+    }
+  // сделанно для отработки один раз при загрузки приложения
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[]);
 
-  React.useEffect(() => {
-    document.body.className = theme
-  }, [theme])
+  useEffect(() => {
+    setActive(theme !== 'default-theme');
+    document.body.className = theme;
+  }, [ theme, setActive ])
 
   const handleChangeUser = (e:ChangeEvent<HTMLInputElement>) => {
     let currentTheme;
@@ -33,10 +48,15 @@ const Switch: React.FC = () => {
   return (
     <div className="swich">
       {isAuth ? (<label htmlFor="swich" className="swich__box">
-        <input type="checkbox" className="swich-input" id="swich" checked={active} onChange={handleChangeUser} />
+        <input
+        type="checkbox"
+        className="swich-input"
+        id="swich"
+        checked={active}
+        onChange={handleChangeUser}
+        disabled={loading}/>
         <div className='swich__box-button' />
       </label>) : null}
-
     </div>
   )
 }

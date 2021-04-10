@@ -13,6 +13,7 @@ const authMiddleware = async (
     authCookie: req.cookies.authCookie,
     uuid: req.cookies.uuid,
   }
+
   const cookies = Object.entries(authData)
     .map(([key, value]) => `${key}=${value}`)
     .join(';')

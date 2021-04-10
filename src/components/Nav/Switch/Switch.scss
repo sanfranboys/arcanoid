@@ -27,11 +27,10 @@
   top: 50%;
   left: 5%;
   transform: translateY(-50%);
-  transition: left .3s linear;
+  transition: left .2s linear;
 }
 
 .swich-input:checked + .swich__box-button{
   left: 65%;
   background-color: var(--color-border-dark);
 }
-
