@@ -30,9 +30,9 @@ class Sanfranoid {
 
   private _starting: boolean
 
-  private music: HTMLAudioElement
+  private _level : number
 
-  constructor(canvas: HTMLCanvasElement, onGameEnd: (score: number) => void, music:HTMLAudioElement) {
+  constructor(canvas: HTMLCanvasElement, onGameEnd: (score: number) => void) {
     this._canvas = canvas
     this._onGameEnd = onGameEnd
     this._ctx = this._canvas.getContext('2d')
@@ -44,10 +44,9 @@ class Sanfranoid {
     this._lives = new Lives(canvas)
     this.pausa = new Pausa(canvas)
 
-    this._isContinues = false
-    this._starting = false
-    this.music = music
-
+    this._isContinues = true
+    this._starting = true
+    this._level = 0
     document.addEventListener('keydown', this.keyDownHandler, false)
   }
 
@@ -78,7 +77,6 @@ class Sanfranoid {
         _ball.changeYDirection()
       } else if (_ball.crossedBottom()) {
         if (this._paddle.isCrossedBy(_ball)) {
-          this.music.play()
           this.paddleCrossedProcessing()
         } else {
           this.failProcessing()
@@ -87,7 +85,7 @@ class Sanfranoid {
 
       this._ball.draw()
       this._paddle.draw()
-      this._wall.draw()
+      this._wall.draw(this._level)
       this._score.draw()
       this._lives.draw()
 
@@ -148,6 +146,7 @@ class Sanfranoid {
         this._score.increase()
 
         if (this._wall.isDestroyed()) {
+          this._level += 1
           this._wall.createBricks()
         }
       }
