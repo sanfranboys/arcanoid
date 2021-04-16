@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "experimentalDecorators": true,
     "baseUrl": "./src",
     "paths": {
       "@": ["./"],
@@ -19,7 +20,7 @@
     "strictNullChecks": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "jsx": "react"
+    "jsx": "react",
   },
   "types": ["node"],
   "include": ["src/**/**/*"],

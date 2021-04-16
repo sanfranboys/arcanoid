@@ -2,8 +2,9 @@ import React, { FC } from 'react'
 import { Header, Content, Layout } from 'elements'
 
 import { Nav } from 'components'
-import './App.scss'
 import { RootRoutes } from 'routes'
+
+import './App.scss'
 
 const App: FC = () => (
   <Layout>

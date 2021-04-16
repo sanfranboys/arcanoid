@@ -32,7 +32,7 @@ const GameProccessPage = () => {
     const canvas = canvasRef.current
     let sanfranoid: Sanfranoid
 
-    if (canvas) {
+    if ( canvas ) {
       sanfranoid = new Sanfranoid(canvas, onGameEnd)
       sanfranoid.go()
     }

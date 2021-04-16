@@ -1,3 +1,31 @@
 .discussion {
   padding: 20px;
+
+  &__answers {
+    position: absolute;
+    top: -26px;
+    display: inline-flex;
+    justify-self: center;
+    align-items: center;
+    background: var(--white);
+    color: black;
+    padding: 3px;
+    opacity: 0.7;
+  }
+
+  &__answerClear {
+    position: relative;
+    flex-shrink: 0;
+    display: block;
+    margin: 0 0 0 10px;
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+    background-color: transparent;
+    background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='iso-8859-1'%3F%3E%3C!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0) --%3E%3C!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'%3E%3Csvg version='1.1' id='Capa_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' width='357px' height='357px' viewBox='0 0 357 357' style='enable-background:new 0 0 357 357;' xml:space='preserve'%3E%3Cg%3E%3Cg id='clear'%3E%3Cpolygon points='357,35.7 321.3,0 178.5,142.8 35.7,0 0,35.7 142.8,178.5 0,321.3 35.7,357 178.5,214.2 321.3,357 357,321.3 214.2,178.5 '/%3E%3C/g%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3C/svg%3E");
+    background-size: cover;
+    background-position: 50% 50%;
+    border: none;
+    z-index: 1;
+  }
 }

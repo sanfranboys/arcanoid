@@ -17,12 +17,13 @@ const ProfileInfo: FC<ProfileTypes> = ({
 }) => {
   const dispatch = useDispatch()
   const handleLogOut = () => dispatch(authLogoutAction())
+
   return (
     <Space size="large" direction="vertical" full>
       <Centered>
         <Avatar
           size={150}
-          src={avatar ? BASE_URL + avatar : '/assets/images/avatar.png'}
+          src={avatar ? `${BASE_URL}/api/v2/resources${avatar}` : '/assets/images/avatar.png'}
         />
       </Centered>
       <Description title="Имя:">{first_name}</Description>

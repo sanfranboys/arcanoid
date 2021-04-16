@@ -1,6 +1,6 @@
-import { Topic } from '../../types'
+import { TopicItemWithCounts } from 'ducks/forum/types'
 
 export type TopicProps = {
-  topic: Topic
+  topic: TopicItemWithCounts
   onClick?: () => void
 }

@@ -8,7 +8,7 @@ export class ApiServices {
     this.baseUrl = url
     axios.interceptors.response.use(
       (response: AxiosResponse<any>) => response,
-      (error: AxiosError) => Promise.reject(error.request)
+      (error: AxiosError) => Promise.reject(error)
     )
   }
 
