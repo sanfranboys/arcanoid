@@ -1,5 +1,5 @@
 export const BASE_URL = 'https://ya-praktikum.tech'
-export const OUR_URL = 'https://local.ya-praktikum.tech:5000'
+export const OUR_URL = ''
 export const API_URL = `${BASE_URL}/api/v2`
 export const PREFIX_URL = '/api/v3'
 export const API_OUR = `${OUR_URL}${PREFIX_URL}`
