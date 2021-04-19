@@ -38,7 +38,6 @@ app.get('*', [...getHotMiddlewares()], (req: CustomRequest, res: Response) => {
   if (req.customProperty) {
     user.user = req.customProperty
     auth.isAuth = true
-    // theme.theme = req.customTheme
   } else {
     auth.isAuth = false
   }
