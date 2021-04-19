@@ -157,4 +157,4 @@ sequelize.sync({ force: true }).then(() => {
   server.listen(port, () => {
     console.log(`Listening on port: ${port}`)
   })
-})
+}).catch(error=>console.log('Error sequelize',error))
