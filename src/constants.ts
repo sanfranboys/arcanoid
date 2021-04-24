@@ -10,6 +10,6 @@ export const OAuthRedirecUrl =
   'https://oauth.yandex.ru/authorize?response_type=code&client_id='
 export const APP_URL = `${
   isProd
-    ? 'https://sanfranoid.herokuapp.com/'
+    ? 'https://san-francisco-arcanoid-03.ya-praktikum.tech/'
     : 'https://local.ya-praktikum.tech:5000/'
 }`
