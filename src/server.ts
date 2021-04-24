@@ -5,6 +5,7 @@ import { saga as rootSaga } from 'ducks'
 import cookieParser from 'cookie-parser'
 import { StaticRouterContext } from 'react-router'
 import { CustomRequest } from 'types'
+import compression from 'compression'
 import {
   ForumModel,
   TopicMessageModel,
@@ -15,12 +16,19 @@ import SiteTheme from './dataBase/models/siteTheme'
 import getHotMiddlewares from './middlewares/hot'
 import authMeddleware from './middlewares/auth'
 import serverRender from './serverRender'
+
 import { configureStore, getInitialState } from './store'
 
 const key = fs.readFileSync(`${__dirname}/../key.pem`)
 const cert = fs.readFileSync(`${__dirname}/../cert.pem`)
 
 const app = express()
+const shouldCompress = (req: any, res: any) => {
+  if (req.headers['x-no-compression']) {
+    return false
+  }
+  return compression.filter(req, res)
+}
 
 const server = https.createServer({ key, cert }, app)
 
@@ -30,6 +38,13 @@ routerCustom(app)
 app.use(cookieParser())
 app.use(authMeddleware)
 
+app.use(
+  compression({
+    filter: shouldCompress,
+    threshold: 0,
+  })
+)
+
 app.get('*', [...getHotMiddlewares()], (req: CustomRequest, res: Response) => {
   const location = req.url
   const { store } = configureStore(getInitialState(location), location)
@@ -38,7 +53,6 @@ app.get('*', [...getHotMiddlewares()], (req: CustomRequest, res: Response) => {
   if (req.customProperty) {
     user.user = req.customProperty
     auth.isAuth = true
-    // theme.theme = req.customTheme
   } else {
     auth.isAuth = false
   }
@@ -49,10 +63,6 @@ app.get('*', [...getHotMiddlewares()], (req: CustomRequest, res: Response) => {
     .then(() => {
       const context: StaticRouterContext = {}
       const content = serverRender(req, store, context)
-
-      // if (context.notFound) {
-      //   res.status(404)
-      // }
 
       res.send(content)
     })
