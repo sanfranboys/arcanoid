@@ -32,7 +32,9 @@ class Sanfranoid {
 
   private _level : number
 
-  constructor(canvas: HTMLCanvasElement, onGameEnd: (score: number) => void) {
+  private music : HTMLAudioElement
+
+  constructor(canvas: HTMLCanvasElement, onGameEnd: (score: number) => void, music: HTMLAudioElement) {
     this._canvas = canvas
     this._onGameEnd = onGameEnd
     this._ctx = this._canvas.getContext('2d')
@@ -47,15 +49,18 @@ class Sanfranoid {
     this._isContinues = true
     this._starting = true
     this._level = 0
+    this.music = music
     document.addEventListener('keydown', this.keyDownHandler, false)
   }
 
   private keyDownHandler = (e: KeyboardEvent) => {
     if (e.keyCode === 32) {
       this._isContinues = !this._isContinues
+      this.music.pause()
       if (this._isContinues) {
         this._starting = true
         this.go()
+        this.music.play()
       }
     }
   }
