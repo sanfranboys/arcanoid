@@ -6,6 +6,7 @@ import { Score } from './Score'
 import { Lives } from './Lives'
 import { Color } from './settings'
 import { Pausa } from './Pausa'
+import { FpsWidget } from './FpsWidget'
 
 class Sanfranoid {
   private readonly _ctx: Nullable<CanvasRenderingContext2D>
@@ -22,6 +23,8 @@ class Sanfranoid {
 
   private _score: Score
 
+  private _fpsWidget: FpsWidget
+
   private _lives: Lives
 
   private _isContinues: boolean
@@ -30,9 +33,11 @@ class Sanfranoid {
 
   private _starting: boolean
 
-  private _level : number
+  private _level: number
 
-  constructor(canvas: HTMLCanvasElement, onGameEnd: (score: number) => void) {
+  private music : HTMLAudioElement
+
+  constructor(canvas: HTMLCanvasElement, onGameEnd: (score: number) => void, music: HTMLAudioElement) {
     this._canvas = canvas
     this._onGameEnd = onGameEnd
     this._ctx = this._canvas.getContext('2d')
@@ -41,21 +46,25 @@ class Sanfranoid {
     this._paddle = new Paddle(canvas)
     this._wall = new Wall(canvas)
     this._score = new Score(canvas)
+    this._fpsWidget = new FpsWidget(canvas)
     this._lives = new Lives(canvas)
     this.pausa = new Pausa(canvas)
 
     this._isContinues = true
     this._starting = true
     this._level = 0
+    this.music = music
     document.addEventListener('keydown', this.keyDownHandler, false)
   }
 
   private keyDownHandler = (e: KeyboardEvent) => {
     if (e.keyCode === 32) {
       this._isContinues = !this._isContinues
+      this.music.pause()
       if (this._isContinues) {
         this._starting = true
         this.go()
+        this.music.play()
       }
     }
   }
@@ -87,6 +96,7 @@ class Sanfranoid {
       this._paddle.draw()
       this._wall.draw(this._level)
       this._score.draw()
+      this._fpsWidget.draw()
       this._lives.draw()
 
       if (this._isContinues) {

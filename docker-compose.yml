@@ -1,19 +1,39 @@
 version: "3"
 services:
+
   postgres:
-    container_name: "sanfranoid_db"
     image: postgres:13.2-alpine
+    networks:
+      - awesome
     ports:
       - "5432:5432"
     environment:
       POSTGRES_USER: user
       POSTGRES_DB: name
       POSTGRES_PASSWORD: password
+
   mongo:
     image: mongo
+    networks:
+      - awesome
     ports:
       - "27017:27017"
     volumes:
       - data-volume:/data/db
+
+  app:
+    image: sanfranoid
+    ports:
+      - 5000:5000
+    depends_on:
+      - mongo
+      - postgres
+    networks:
+      - awesome
+
+networks:
+  awesome:
+    driver: bridge
+
 volumes:
   data-volume:
