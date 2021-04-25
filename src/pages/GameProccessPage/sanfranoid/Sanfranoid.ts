@@ -6,6 +6,7 @@ import { Score } from './Score'
 import { Lives } from './Lives'
 import { Color } from './settings'
 import { Pausa } from './Pausa'
+import { FpsWidget } from './FpsWidget'
 
 class Sanfranoid {
   private readonly _ctx: Nullable<CanvasRenderingContext2D>
@@ -22,6 +23,8 @@ class Sanfranoid {
 
   private _score: Score
 
+  private _fpsWidget: FpsWidget
+
   private _lives: Lives
 
   private _isContinues: boolean
@@ -30,7 +33,7 @@ class Sanfranoid {
 
   private _starting: boolean
 
-  private _level : number
+  private _level: number
 
   private music : HTMLAudioElement
 
@@ -43,6 +46,7 @@ class Sanfranoid {
     this._paddle = new Paddle(canvas)
     this._wall = new Wall(canvas)
     this._score = new Score(canvas)
+    this._fpsWidget = new FpsWidget(canvas)
     this._lives = new Lives(canvas)
     this.pausa = new Pausa(canvas)
 
@@ -92,6 +96,7 @@ class Sanfranoid {
       this._paddle.draw()
       this._wall.draw(this._level)
       this._score.draw()
+      this._fpsWidget.draw()
       this._lives.draw()
 
       if (this._isContinues) {
