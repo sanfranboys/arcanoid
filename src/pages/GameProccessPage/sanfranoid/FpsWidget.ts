@@ -24,6 +24,6 @@ export class FpsWidget extends Feature {
 
     _ctx.font = '16px Arial'
     _ctx.fillStyle = _color
-    _ctx.fillText(`Fps: ${this._fps.value}`, _x, _y)
+    _ctx.fillText(`Fps: ${this._fps.value} `, _x, _y)
   }
 }

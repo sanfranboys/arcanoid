@@ -9,17 +9,15 @@ import './Message.scss'
 const Message: FC<MessageProps> = ({ message, onAnswer }) => {
   const { id, author, text, likes, dislikes, offset, parentAuthor } = message
   const dispatch = useDispatch()
-
-  console.log(likes)
-
   const handleEmotion = useCallback(
     (e) => {
       const target = e.target as HTMLButtonElement
       const clicked = target.dataset.emo as 'likes' | 'dislikes'
       const payload = {
         ...message,
-        [clicked]: message[clicked] + 1,
+        [clicked]: Number(message[clicked]) + 1,
       }
+
       dispatch(updateMessage(payload))
     },
     [message, dispatch]

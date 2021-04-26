@@ -34,9 +34,12 @@ const FeedbackPage = () => {
     setMessage('')
   }, [dispatch, message, user])
 
-  const write = useCallback((e: Event) => {
-    setMessage(e.currentTarget.value)
-  }, [])
+  const write = useCallback(
+    (e: Event) => {
+      setMessage(e.currentTarget.value)
+    },
+    [setMessage]
+  )
 
   const feedbackComponentList = useMemo(
     () =>
