@@ -25,16 +25,19 @@ const Discussion: FC<DiscussionProps> = ({ messages }) => {
     (e: ChangeEvent<HTMLTextAreaElement>) => {
       setActiveMessage(e.currentTarget.value)
     },
-    []
+    [setActiveMessage]
   )
 
-  const handleAnswer = useCallback((author: string, id: number) => {
-    setAnswerData({ author, id })
-  }, [])
+  const handleAnswer = useCallback(
+    (author: string, id: number) => {
+      setAnswerData({ author, id })
+    },
+    [setAnswerData]
+  )
 
   const handleAnswerClear = useCallback(() => {
     setAnswerData(null)
-  }, [])
+  }, [setAnswerData])
 
   const getAnswerText = useMemo(
     () => (

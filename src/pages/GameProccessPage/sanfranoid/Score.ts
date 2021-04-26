@@ -4,7 +4,7 @@ import { Color } from './settings'
 export class Score extends Feature {
   private _count = 0
 
-  protected _x = 70
+  protected _x = 80
 
   protected _y = 20
 

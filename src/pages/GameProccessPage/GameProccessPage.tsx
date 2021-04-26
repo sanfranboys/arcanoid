@@ -24,8 +24,8 @@ const GameProccessPage = () => {
           sanfranScore: score,
         })
       )
-      history.push(`/game/finish?score=${score}`);
-      if(audioRef.current){
+      history.push(`/game/finish?score=${score}`)
+      if (audioRef.current) {
         audioRef.current.pause()
       }
     },
@@ -36,7 +36,7 @@ const GameProccessPage = () => {
     const canvas = canvasRef.current
     let sanfranoid: Sanfranoid
 
-    if ( canvas && audioRef.current) {
+    if (canvas && audioRef.current) {
       sanfranoid = new Sanfranoid(canvas, onGameEnd, audioRef.current)
       sanfranoid.go()
       audioRef.current.play()
@@ -47,16 +47,9 @@ const GameProccessPage = () => {
 
   return (
     <Page>
-      <audio
-      ref={audioRef}
-      loop
-      src='assets/music/game_music.mp3'>
-        <source
-        src="assets/music/game_music.mp3"
-        type="audio/mp3" />
-        <track
-        kind="captions"
-        src='assets/music/game_music.mp3'/>
+      <audio ref={audioRef} loop src="assets/music/game_music.mp3">
+        <source src="assets/music/game_music.mp3" type="audio/mp3" />
+        <track kind="captions" src="assets/music/game_music.mp3" />
       </audio>
       <Row>
         <Col span={18} offset={3}>
