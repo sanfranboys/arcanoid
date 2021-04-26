@@ -4,7 +4,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
 
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 
 const alias = require('./alias')
@@ -86,7 +85,7 @@ if (isDev) {
 if (isProd) {
   config.optimization = {
     minimize: true,
-    minimizer: [new UglifyJsPlugin(), new CssMinimizerPlugin()],
+    minimizer: [new CssMinimizerPlugin()],
   }
 }
 
