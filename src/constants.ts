@@ -8,8 +8,4 @@ export const root = window.document.getElementById('root')
 export const isProd = process.env.NODE_ENV === 'production'
 export const OAuthRedirecUrl =
   'https://oauth.yandex.ru/authorize?response_type=code&client_id='
-export const APP_URL = `${
-  isProd
-    ? 'https://san-francisco-arcanoid-03.ya-praktikum.tech/'
-    : 'https://local.ya-praktikum.tech:5000/'
-}`
+export const APP_URL = 'https://san-francisco-arcanoid-03.ya-praktikum.tech/'
