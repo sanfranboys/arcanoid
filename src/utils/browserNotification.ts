@@ -3,7 +3,7 @@ import storage from './setLocalStorage'
 const timeForPush = 8
 const hourNow = new Date().getHours()
 const minutesNow = new Date().getMinutes()
-const dateNow = new Date().getDay()
+const dateNow = new Date().getDate()
 
 type StorageState = {
   date: number
