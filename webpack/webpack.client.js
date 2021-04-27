@@ -4,6 +4,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
 
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
+
 const alias = require('./alias')
 const fileLoader = require('./loaders/file')
 const fontLoader = require('./loaders/font')
@@ -17,20 +19,13 @@ const isDev = !isProd
 
 const config = {
   mode: 'development',
-  entry: [
-    isDev && 'react-hot-loader/patch',
-    isDev && 'webpack-hot-middleware/client',
-    isDev && 'css-hot-loader/hotModuleReplacement',
-    path.join(__dirname, '../src/client'),
-  ],
+  entry: [path.join(__dirname, '../src/client')],
   output: {
     path: path.join(__dirname, '../dist'),
     filename: 'bundle.js',
     publicPath: '',
   },
-
-  devtool: isDev ? 'source-map' : false,
-
+  devtool: 'source-map',
   module: {
     rules: [
       fileLoader.client,
@@ -38,13 +33,13 @@ const config = {
       cssLoader.client,
       scssLoader.client,
       jsLoader.client,
-      mp3Loader.client
+      mp3Loader.client,
     ],
   },
   resolve: {
     alias,
-    extensions: [ '.ts', '.tsx', '.js' ],
-    plugins: [ new TsconfigPathsPlugin({ configFile: './tsconfig.json' }) ],
+    extensions: ['.ts', '.tsx', '.js'],
+    plugins: [new TsconfigPathsPlugin({ configFile: './tsconfig.json' })],
   },
 
   plugins: [
@@ -75,8 +70,23 @@ const config = {
         },
       ],
     }),
-    isDev && new webpack.HotModuleReplacementPlugin(),
   ],
+}
+
+if (isDev) {
+  config.plugins.push(new webpack.HotModuleReplacementPlugin())
+  config.entry.push(
+    'react-hot-loader/patch',
+    'webpack-hot-middleware/client',
+    'css-hot-loader/hotModuleReplacement'
+  )
+}
+
+if (isProd) {
+  config.optimization = {
+    minimize: true,
+    minimizer: [new CssMinimizerPlugin()],
+  }
 }
 
 module.exports = config

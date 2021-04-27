@@ -1,4 +1,7 @@
 FROM node:12
 WORKDIR /app
 COPY . .
-RUN npm ci && npm run ssr
+
+RUN npm install
+CMD npm run prod
+

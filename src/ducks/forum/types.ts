@@ -37,8 +37,8 @@ export type Message = {
   id: number
   text: string
   author: string
-  likes: number
-  dislikes: number
+  likes?: number
+  dislikes?: number
   parentAuthor?: string
   children?: Message[]
   offset?: boolean

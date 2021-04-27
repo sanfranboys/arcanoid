@@ -10,6 +10,7 @@ import './GameProccessPage.scss'
 
 const GameProccessPage = () => {
   const canvasRef = useRef<Nullable<HTMLCanvasElement>>(null)
+  const audioRef = useRef<Nullable<HTMLMediaElement>>(null)
   const userData: ProfileTypes = useSelector(getProfileUser)
   const dispatch = useDispatch()
   const history = useHistory()
@@ -24,24 +25,32 @@ const GameProccessPage = () => {
         })
       )
       history.push(`/game/finish?score=${score}`)
+      if (audioRef.current) {
+        audioRef.current.pause()
+      }
     },
-    [userData, dispatch, history]
+    [userData, dispatch, history, audioRef]
   )
 
   useEffect(() => {
     const canvas = canvasRef.current
     let sanfranoid: Sanfranoid
 
-    if ( canvas ) {
-      sanfranoid = new Sanfranoid(canvas, onGameEnd)
+    if (canvas && audioRef.current) {
+      sanfranoid = new Sanfranoid(canvas, onGameEnd, audioRef.current)
       sanfranoid.go()
+      audioRef.current.play()
     }
 
     return () => sanfranoid && sanfranoid.destroy()
-  }, [onGameEnd])
+  }, [onGameEnd, audioRef])
 
   return (
     <Page>
+      <audio ref={audioRef} loop src="assets/music/game_music.mp3">
+        <source src="assets/music/game_music.mp3" type="audio/mp3" />
+        <track kind="captions" src="assets/music/game_music.mp3" />
+      </audio>
       <Row>
         <Col span={18} offset={3}>
           <Centered>

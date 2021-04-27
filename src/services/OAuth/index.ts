@@ -1,3 +1,4 @@
+import { APP_URL } from '@/constants'
 import { NotificationWindow } from 'elements'
 import { ApiServices } from '../Api'
 import { getOAuthURL } from './utils'
@@ -14,7 +15,9 @@ export class OAuth {
   }
 
   getServiceId() {
-    return this.APIService.get('/oauth/yandex/service-id').then(({ data }) => {
+    return this.APIService.get(
+      `/oauth/yandex/service-id?redirect_uri=${APP_URL}`
+    ).then(({ data }) => {
       if (data.service_id) {
         window.location.href = getOAuthURL(data.service_id)
       } else {

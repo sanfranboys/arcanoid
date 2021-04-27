@@ -5,13 +5,6 @@ const isDev = process.env.NODE_ENV !== 'production'
 const tpl = {
   test: /\.tsx?$/,
   use: [
-    isDev && {
-      loader: 'babel-loader',
-      options: {
-        cacheDirectory: true,
-        plugins: ['react-hot-loader/babel'],
-      },
-    },
     {
       loader: 'ts-loader',
       options: {
@@ -20,6 +13,16 @@ const tpl = {
     },
   ],
   exclude: [path.resolve(__dirname, 'node_modules'), /\.test.tsx?$/],
+}
+
+if (isDev) {
+  tpl.use.unshift({
+    loader: 'babel-loader',
+    options: {
+      cacheDirectory: true,
+      plugins: ['react-hot-loader/babel'],
+    },
+  })
 }
 
 const cfg = {

@@ -11,28 +11,37 @@
 - цель игры — сбить как можно больше кирпичей
 
 # Использование
+
 Локальный запуск
+
+1. Для локального запуска нужно использовать файл docker-compose.local - он запускает только образы баз данных
+
 ```shell script
-npm run dev
+npm run ssr
 ```
 
-Сборка
+Запуск продакшна
+
 ```shell script
-npm run build
+npm run prod
 ```
 
 Проверка синтаксиса
+
 ```shell script
 npm run lint
 ```
+
 ## Запуск PostgresSQL
+
 ```shell script
-docker-compose up 
+docker-compose up
 ```
+
 потом запускаем локально сервер
 
 ```shell script
-npm run ssr 
+npm run ssr
 ```
 
 ## Команда
