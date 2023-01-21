@@ -10,31 +10,31 @@
 - если шарик падает мимо платформы — игрок теряет 1 попытку, после 3х попыток игра заканчивается;
 - цель игры — сбить как можно больше кирпичей
 
-# Использование
-Локальный запуск
+# Usage
+Local run
 ```shell script
 npm run dev
 ```
 
-Сборка
+Build
 ```shell script
 npm run build
 ```
 
-Проверка синтаксиса
+Linters checking
 ```shell script
 npm run lint
 ```
-## Запуск PostgresSQL
+## Run PostgresSQL
 ```shell script
 docker-compose up 
 ```
-потом запускаем локально сервер
+Server's local run
 
 ```shell script
 npm run ssr 
 ```
 
-## Команда
+## The Team
 
 Domion-M, Dihlofos, malig
